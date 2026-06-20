@@ -1,8 +1,16 @@
 # KG Portfolio
 
-Static portfolio site for **Kevin Alexander Guerra** — generated from `build_site.py`.
+Static portfolio site for **Kevin Alexander Guerra** — dark-themed, generated from `build_site.py`.
 
 Live site (after GitHub Pages is enabled): **https://kevingnet.github.io/kg-portfolio/**
+
+## Features
+
+- Dark UI with skill tags, career timeline, and hero CTA
+- 12 employer project pages with technology chips
+- Services grid with descriptions
+- Sample projects with inline code snippets + GitHub links
+- SEO meta tags, favicon, skip link, reduced-motion support
 
 ## Build
 
@@ -56,6 +64,7 @@ Pushes to `main` run `.github/workflows/pages.yml`, which runs `build_site.py` a
 | `projects/` | Employer project detail pages |
 | `css/style.css` | Styles |
 | `js/carousel.js` | Logo carousel |
+| `js/site.js` | Scroll animations, copy-email button |
 | `assets/` | Images, favicon, resume PDF |
 
 The `site/` and `mirrored/` folders are legacy Wix mirrors and are not deployed.

@@ -17,11 +17,16 @@
   <meta name="twitter:title" content="Samples | KG PORTFOLIO">
   <meta name="twitter:description" content="Open-source sample projects on GitHub — C++, Java, Node.js, TypeScript, and AWS.">
   <meta name="twitter:image" content="https://kevingnet.github.io/kg-portfolio/assets/images/profile.jpeg">
+  <meta name="theme-color" content="#0e1014">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header">
   <div class="top-bar">
-    <img class="profile-thumb" src="assets/images/profile.jpeg" alt="Kevin Alexander Guerra">
+    <a href="about.html" aria-label="About Kevin Alexander Guerra">
+      <img class="profile-thumb" src="assets/images/profile.jpeg" alt="Kevin Alexander Guerra">
+    </a>
     <a href="index.html" class="site-brand">KG PORTFOLIO</a>
   </div>
   <div class="nav-wrap">
@@ -34,87 +39,102 @@
   </div>
   <div class="logo-carousel">
     <div class="logo-carousel-track">
-      <img src="assets/images/electrosonic.jpeg" alt="electrosonic">
-      <img src="assets/images/voltdelta.jpeg" alt="voltdelta">
-      <img src="assets/images/hpe.jpeg" alt="hpe">
-      <img src="assets/images/hypermedia.jpeg" alt="hypermedia">
-      <img src="assets/images/spirent.jpeg" alt="spirent">
-      <img src="assets/images/surfware.jpeg" alt="surfware">
-      <img src="assets/images/netpulse.jpeg" alt="netpulse">
-      <img src="assets/images/knulrd.jpeg" alt="knulrd">
-      <img src="assets/images/butterfleye.jpeg" alt="butterfleye">
-      <img src="assets/images/directv.jpeg" alt="directv">
-      <img src="assets/images/opentv.jpeg" alt="opentv">
-      <img src="assets/images/disney.jpeg" alt="disney">
-      <img src="assets/images/yahoo.jpeg" alt="yahoo">
-      <img src="assets/images/guidance.jpeg" alt="guidance">
-      <img src="assets/images/motorola.jpeg" alt="motorola">
-      <img src="assets/images/dolby.jpeg" alt="dolby">
-      <img src="assets/images/veritas.jpeg" alt="veritas">
-      <img src="assets/images/vmware.jpeg" alt="vmware">
-      <img src="assets/images/google.jpeg" alt="google">
-      <img src="assets/images/facebook.jpeg" alt="facebook">
+      <img src="assets/images/mafroda.svg" alt="MAF RODA">
+      <img src="assets/images/google.jpeg" alt="Google">
+      <img src="assets/images/directv.jpeg" alt="DirecTV">
+      <img src="assets/images/company.png" alt="JakeKnows">
+      <img src="assets/images/disney.jpeg" alt="Disney">
+      <img src="assets/images/electrosonic.jpeg" alt="Electrosonic">
+      <img src="assets/images/voltdelta.jpeg" alt="VoltDelta">
+      <img src="assets/images/vmware.jpeg" alt="Vmware">
+      <img src="assets/images/hypermedia.jpeg" alt="HMS">
+      <img src="assets/images/surfware.jpeg" alt="Surfware">
+      <img src="assets/images/motorola.jpeg" alt="Motorola">
+      <img src="assets/images/opentv.jpeg" alt="OpenTV">
+      <img src="assets/images/spirent.jpeg" alt="Spirent">
     </div>
   </div>
-  <main>
+  </header>
+  <main id="main-content">
     <h1 class="page-title">Projects Samples</h1>
     <div class="content-section">
-      <div class="sample-entry">
-        <h2><a href="https://github.com/kevingnet/HiveMapperDrone" target="_blank" rel="noopener">Hive Mapper - Drone Navigation, C++</a></h2>
-        <p>The goal is to navigate a drone through an airport in the shortest time possible. The airport is composed of several interconnected circular roads, and the drone's position is described by a road name and the degrees clockwise around the road's circumference. The drone can transfer between roads at points of intersection. One week for completion.</p>
+      <article class="sample-entry fade-in">
+        <h2><a href="https://github.com/kevingnet/HiveMapperDrone" target="_blank" rel="noopener">Hive Mapper — Drone Navigation (C++)</a></h2>
+        <p>Navigate a drone through interconnected circular roads in minimum time; position is road name plus degrees clockwise.</p>
+        <pre class="code-snippet"><code><span class="cm">// Greedy leg: pick next hop minimizing remaining arc distance</span>
+<span class="kw">int</span> <span class="fn">shortest_degrees</span>(<span class="kw">const</span> Road&amp; from, <span class="kw">const</span> Road&amp; to) {
+  <span class="kw">return</span> (to.origin_deg - from.origin_deg + 360) % 360;
+}</code></pre>
         <div class="sample-links">
           <a href="https://github.com/kevingnet/HiveMapperDrone" target="_blank" rel="noopener">GitHub (kevingnet)</a>
           <a href="https://github.com/iguerranet/HiveMapperDrone" target="_blank" rel="noopener">GitHub (iguerranet)</a>
         </div>
-      </div>
-      <div class="sample-entry">
-        <h2><a href="https://github.com/kevingnet/magazine" target="_blank" rel="noopener">Magazine - Node.js REST EC2 App</a></h2>
-        <p>Magazine sample app using Angular, Node.js with REST API for EC2 deployment. One week for completion.</p>
+      </article>
+      <article class="sample-entry fade-in">
+        <h2><a href="https://github.com/kevingnet/magazine" target="_blank" rel="noopener">Magazine — Node.js REST EC2 App</a></h2>
+        <p>Angular front end with Node REST API, packaged for EC2 deployment.</p>
+        
         <div class="sample-links">
           <a href="https://github.com/kevingnet/magazine" target="_blank" rel="noopener">GitHub (kevingnet)</a>
           <a href="https://github.com/iguerranet/magazine" target="_blank" rel="noopener">GitHub (iguerranet)</a>
         </div>
-      </div>
-      <div class="sample-entry">
-        <h2><a href="https://github.com/kevingnet/GameOfLife" target="_blank" rel="noopener">Game of Life - Java</a></h2>
-        <p>Conway's Game of Life - Java implementation. One day to develop.</p>
+      </article>
+      <article class="sample-entry fade-in">
+        <h2><a href="https://github.com/kevingnet/GameOfLife" target="_blank" rel="noopener">Game of Life — Java</a></h2>
+        <p>Conway&#x27;s Game of Life — cellular automaton in Java.</p>
+        <pre class="code-snippet"><code><span class="kw">int</span> neighbors = 0;
+<span class="kw">for</span> (<span class="kw">int</span> dy = -1; dy &lt;= 1; dy++)
+  <span class="kw">for</span> (<span class="kw">int</span> dx = -1; dx &lt;= 1; dx++)
+    <span class="kw">if</span> (dx != 0 || dy != 0) neighbors += grid.at(x+dx, y+dy);
+next[x][y] = (neighbors == 3) || (grid.at(x,y) &amp;&amp; neighbors == 2);</code></pre>
         <div class="sample-links">
           <a href="https://github.com/kevingnet/GameOfLife" target="_blank" rel="noopener">GitHub (kevingnet)</a>
           <a href="https://github.com/iguerranet/GameOfLife" target="_blank" rel="noopener">GitHub (iguerranet)</a>
         </div>
-      </div>
-      <div class="sample-entry">
-        <h2><a href="https://github.com/kevingnet/WordFinder" target="_blank" rel="noopener">Word Finder - C++</a></h2>
-        <p>Find Longest Word Made of Other Words. Program reads a file containing a sorted list of words (one word per line, no spaces, all lower case), then identifies the longest word in the file that can be constructed by concatenating copies of shorter words also found in the file.</p>
+      </article>
+      <article class="sample-entry fade-in">
+        <h2><a href="https://github.com/kevingnet/WordFinder" target="_blank" rel="noopener">Word Finder — C++</a></h2>
+        <p>Longest word buildable by concatenating shorter dictionary words.</p>
+        <pre class="code-snippet"><code><span class="kw">bool</span> <span class="fn">can_build</span>(<span class="kw">const</span> string&amp; word, <span class="kw">const</span> set&lt;string&gt;&amp; dict) {
+  vector&lt;<span class="kw">bool</span>&gt; ok(word.size() + 1);
+  ok[0] = <span class="kw">true</span>;
+  <span class="kw">for</span> (<span class="kw">size_t</span> i = 1; i &lt;= word.size(); i++)
+    <span class="kw">for</span> (<span class="kw">size_t</span> j = 0; j &lt; i; j++)
+      <span class="kw">if</span> (ok[j] &amp;&amp; dict.count(word.substr(j, i - j))) { ok[i] = <span class="kw">true</span>; <span class="kw">break</span>; }
+  <span class="kw">return</span> ok[word.size()];
+}</code></pre>
         <div class="sample-links">
           <a href="https://github.com/kevingnet/WordFinder" target="_blank" rel="noopener">GitHub (kevingnet)</a>
           <a href="https://github.com/iguerranet/WordFinder" target="_blank" rel="noopener">GitHub (iguerranet)</a>
         </div>
-      </div>
-      <div class="sample-entry">
+      </article>
+      <article class="sample-entry fade-in">
         <h2><a href="https://github.com/iguerranet/coffee.bitnami" target="_blank" rel="noopener">Virtual Coffee Machine</a></h2>
-        <p>Cloud app on AWS using Docker containers. Server is a NodeJS app with a simple API (level(GET), brew, refill (POST). A Client in TypeScript accesses those APIs to operate. 6 days to complete.</p>
+        <p>AWS Docker app — Node API (level, brew, refill) with TypeScript client.</p>
+        
         <div class="sample-links">
           <a href="https://github.com/iguerranet/coffee.bitnami" target="_blank" rel="noopener">GitHub (kevingnet)</a>
           <a href="https://github.com/iguerranet/coffee.bitnami" target="_blank" rel="noopener">GitHub (iguerranet)</a>
         </div>
-      </div>
-      <div class="sample-entry">
-        <h2><a href="https://github.com/kevingnet/FluxElectricVehicle" target="_blank" rel="noopener">Flux - Electric Vehicle</a></h2>
-        <p>Project Plan - 30, 60 and 90 days. Developed plan in two days. Look at Diagram and Architecture Document.</p>
+      </article>
+      <article class="sample-entry fade-in">
+        <h2><a href="https://github.com/kevingnet/FluxElectricVehicle" target="_blank" rel="noopener">Flux — Electric Vehicle</a></h2>
+        <p>30 / 60 / 90-day project plan with architecture diagrams.</p>
+        
         <div class="sample-links">
           <a href="https://github.com/kevingnet/FluxElectricVehicle" target="_blank" rel="noopener">GitHub (kevingnet)</a>
           <a href="https://github.com/iguerranet/FluxElectricVehicle" target="_blank" rel="noopener">GitHub (iguerranet)</a>
         </div>
-      </div>
-      <div class="sample-entry">
-        <h2><a href="https://github.com/kevingnet/time_server" target="_blank" rel="noopener">Time Server - Client/Server, TypeScript, JavaScript, SQL, Python</a></h2>
-        <p>Time Server sample app using Angular, Node.js with REST API for EC2 deployment. One week to develop.</p>
+      </article>
+      <article class="sample-entry fade-in">
+        <h2><a href="https://github.com/kevingnet/time_server" target="_blank" rel="noopener">Time Server — TypeScript / Node.js</a></h2>
+        <p>Angular + Node REST time service for EC2.</p>
+        
         <div class="sample-links">
           <a href="https://github.com/kevingnet/time_server" target="_blank" rel="noopener">GitHub (kevingnet)</a>
           <a href="https://github.com/iguerranet/time_server" target="_blank" rel="noopener">GitHub (iguerranet)</a>
         </div>
-      </div>
+      </article>
     </div>
   </main>
   <footer class="site-footer">
@@ -130,5 +150,6 @@
     <p class="footer-copy">&copy; 2026 Kevin Alexander Guerra. <a href="assets/Kevin-Guerra.pdf">Resume (PDF)</a></p>
   </footer>
   <script src="js/carousel.js"></script>
+  <script src="js/site.js"></script>
 </body>
 </html>

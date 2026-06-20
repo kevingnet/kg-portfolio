@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Generate static HTML pages for KG Portfolio."""
 
+import html
 import os
 import shutil
 from pathlib import Path
@@ -17,8 +18,8 @@ COPYRIGHT_YEAR = "2026"
 CONTACT_EMAIL = "kevingnet1@gmail.com"
 SITE_BASE_URL = os.getenv("SITE_BASE_URL", "https://kevingnet.github.io/kg-portfolio").rstrip("/")
 SITE_TAGLINE = (
-    "Software developer portfolio — enterprise systems, security, embedded, "
-    "cloud, and performance optimization across Google, Disney, VMware, and more."
+    "Software developer portfolio — currently Sr. Software Engineer at MAF RODA Agrobotic; "
+    "enterprise systems, computer vision, traceability, cloud, and performance optimization."
 )
 DEFAULT_OG_IMAGE = "assets/images/profile.jpeg"
 
@@ -53,67 +54,165 @@ SOCIAL = {
     "github": "https://github.com/iguerranet",
 }
 
-CAROUSEL_LOGOS = [
-    ("electrosonic", "jpeg"), ("voltdelta", "jpeg"), ("hpe", "jpeg"),
-    ("hypermedia", "jpeg"), ("spirent", "jpeg"), ("surfware", "jpeg"),
-    ("netpulse", "jpeg"), ("knulrd", "jpeg"), ("butterfleye", "jpeg"),
-    ("directv", "jpeg"), ("opentv", "jpeg"), ("disney", "jpeg"),
-    ("yahoo", "jpeg"), ("guidance", "jpeg"), ("motorola", "jpeg"),
-    ("dolby", "jpeg"), ("veritas", "jpeg"), ("vmware", "jpeg"),
-    ("google", "jpeg"), ("facebook", "jpeg"),
-]
-
-# name, image file (without ext), image ext, project slug, card description
+# name, image file, ext, slug, card description, skill chips (max ~5 shown on card)
 PORTFOLIO = [
+    ("MAF RODA", "mafroda", "svg", "mafroda",
+     "Americas traceability lead — fleet installer, OpenCV on sorters, sample apps.",
+     ["Python", "OpenCV", "C#", ".NET", "Traceability"]),
     ("Google", "google", "jpeg", "google",
-     "Localization, Maps, Hardware Analytics, Speech Ops, YouTube, HR. C++, Java, Python, RBAC/OAuth2, GIS, Postgres, Dart."),
+     "Localization, Maps, Hardware Analytics, Speech Ops, YouTube, HR.",
+     ["Java", "Python", "GCP", "Postgres", "Dart"]),
     ("DirecTV", "directv", "jpeg", "directv",
-     "Automation Engineer, created OCR system and test automation tools. C++, Python."),
+     "OCR automation, image processing, and test infrastructure.",
+     ["C++", "Python", "OCR", "Computer Vision"]),
     ("JakeKnows", "company", "png", "jakeknows",
-     "Architecture, Design and Development of distributed web system, database driven. Application backend for mobile apps for Sony, to enable job applicants to submit resumes. C#, C++, MSSql, Python."),
+     "Distributed identity engine and Sony mobile job-application backend.",
+     ["C#", "Python", "MSSQL", "Web Services"]),
     ("Disney", "disney", "jpeg", "disney",
-     "Developed web apps. Software Deployer/Updater. Networking tools for Netware. C/C++, Visual Basic, MS Sql, MS Access, ASP."),
+     "Enterprise web apps, deployers, and Novell networking tools.",
+     ["C++", "ASP", "VB", "MSSQL"]),
     ("Electrosonic", "electrosonic", "jpeg", "electrosonic",
-     "Developed second version of a Scheduler to automate Video Server, Robotic devices, Networking Devices, etc... Developed Remote Control system for scheduler through Email. Developed various tools for integration."),
+     "AV scheduling, robotics integration, and remote device control.",
+     ["C++", "COM", "TCP/IP", "Embedded"]),
     ("VoltDelta", "voltdelta", "jpeg", "voltdelta",
-     "Developed Phone Switch Simulator to be able to test software. Developed X25 Network Connector. C++."),
+     "Phone switch simulator and X.25 network connector.",
+     ["C++", "X.25", "TCP/IP", "Win32"]),
     ("Vmware", "vmware", "jpeg", "vmware",
-     "Developed Test Development Framework replacing Perl legacy system with over 1 million lines of code in 60k loc. Python."),
+     "QA automation framework — 80k LOC legacy replaced with 8k LOC Python.",
+     ["Python", "Perl", "Automation", "Virtualization"]),
     ("HMS", "hypermedia", "jpeg", "hms",
-     "Developed Input Validation Library. Tools for penetration testing. Site analysis networking tools. Audited code from other developers for Security and Privacy compliance. C++, Python, Bash."),
+     "Input validation library, penetration testing, security audits.",
+     ["C++", "Python", "Security", "Linux"]),
     ("Surfware", "surfware", "jpeg", "surfware",
-     "Developed enhancements and new features for CNC Metal Cutting Software and interfaces for Autocad and Solidworks. C++."),
+     "CAD/CAM CNC software and SolidWorks / AutoCAD interfaces.",
+     ["C++", "C#", "OpenGL", "CAD/CAM"]),
     ("Motorola", "motorola", "jpeg", "motorola",
-     "Developed Closed Captioning Module for Setup Boxes. C++."),
+     "Closed-captioning module for set-top boxes.",
+     ["C++", "Embedded", "OCAP", "Linux"]),
     ("OpenTV", "opentv", "jpeg", "opentv",
-     "Developed Enhancements and New Features for Local Advertisement Scheduler Application. C#, C++, Python."),
+     "Local advertisement scheduler for major cable operators.",
+     ["C#", "C++", "Python", "Oracle"]),
     ("Spirent", "spirent", "jpeg", "spirent",
-     "Developed Scripting Interface for Tcl to enable Automation and Instrumentation of Networking Tester Appliance and Equipment. C++, Tcl."),
+     "Tcl scripting interface for network test appliances.",
+     ["C++", "Tcl", "SWIG", "Networking"]),
 ]
 
-SAMPLES = [
-    ("Hive Mapper - Drone Navigation, C++",
-     "The goal is to navigate a drone through an airport in the shortest time possible. The airport is composed of several interconnected circular roads, and the drone's position is described by a road name and the degrees clockwise around the road's circumference. The drone can transfer between roads at points of intersection. One week for completion.",
-     "https://github.com/kevingnet/HiveMapperDrone", "https://github.com/iguerranet/HiveMapperDrone"),
-    ("Magazine - Node.js REST EC2 App",
-     "Magazine sample app using Angular, Node.js with REST API for EC2 deployment. One week for completion.",
-     "https://github.com/kevingnet/magazine", "https://github.com/iguerranet/magazine"),
-    ("Game of Life - Java",
-     "Conway's Game of Life - Java implementation. One day to develop.",
-     "https://github.com/kevingnet/GameOfLife", "https://github.com/iguerranet/GameOfLife"),
-    ("Word Finder - C++",
-     "Find Longest Word Made of Other Words. Program reads a file containing a sorted list of words (one word per line, no spaces, all lower case), then identifies the longest word in the file that can be constructed by concatenating copies of shorter words also found in the file.",
-     "https://github.com/kevingnet/WordFinder", "https://github.com/iguerranet/WordFinder"),
-    ("Virtual Coffee Machine",
-     "Cloud app on AWS using Docker containers. Server is a NodeJS app with a simple API (level(GET), brew, refill (POST). A Client in TypeScript accesses those APIs to operate. 6 days to complete.",
-     "https://github.com/iguerranet/coffee.bitnami", "https://github.com/iguerranet/coffee.bitnami"),
-    ("Flux - Electric Vehicle",
-     "Project Plan - 30, 60 and 90 days. Developed plan in two days. Look at Diagram and Architecture Document.",
-     "https://github.com/kevingnet/FluxElectricVehicle", "https://github.com/iguerranet/FluxElectricVehicle"),
-    ("Time Server - Client/Server, TypeScript, JavaScript, SQL, Python",
-     "Time Server sample app using Angular, Node.js with REST API for EC2 deployment. One week to develop.",
-     "https://github.com/kevingnet/time_server", "https://github.com/iguerranet/time_server"),
+SERVICES = [
+    ("Ideation", "Product concepts, architecture options, and rapid prototypes to validate direction before a full build."),
+    ("Web & Cloud Development", "Full-stack apps, REST APIs, microservices, and deployment on AWS, GCP, or Docker."),
+    ("Security & Privacy", "Threat modeling, code review, input validation libraries, and compliance-aware design."),
+    ("Reverse Engineering", "Legacy system analysis, protocol decoding, and safe modernization paths."),
+    ("Databases", "Schema design, query optimization, Postgres / SQL Server, and data pipelines."),
+    ("Consulting", "Technical leadership, stalled-project recovery, and team mentoring."),
+    ("Custom Applications", "Desktop, embedded, and internal tools tailored to your workflow."),
+    ("Performance Optimization", "Profiling-driven speedups — from geospatial XML (11×) to zero-allocation embedded paths."),
+    ("Embedded Systems", "Set-top boxes, device drivers, robotics interfaces, and resource-constrained C++."),
+    ("Image Processing", "OCR, machine vision, FFT-based recognition, and video capture pipelines."),
 ]
+
+CORE_SKILLS = [
+    "C/C++", "Python", "Java", "C#", "TypeScript", "Go",
+    "Postgres", "SQL Server", "REST", "Microservices",
+    "AWS", "GCP", "Docker", "Linux", "Win32", "Embedded",
+    "Security", "OAuth2", "RBAC", "Automation", "OCR",
+    "OpenCV", "SIMD", "Traceability",
+    "Angular", "Node.js", "Tcl", "CAD/CAM", "Virtualization",
+]
+
+TIMELINE = [
+    ("MAF RODA Agrobotic", "2025–present",
+     "Sr. Software Engineer — Americas traceability lead, fleet installers, OpenCV on production sorters."),
+    ("Independent · Leidos · Google · Meta", "2018–2025",
+     "Solution architecture, AWS microservices, YouTube/Earth/HR at Google, privacy audits at Meta."),
+    ("VMware · Veritas · HPE", "2015–2018",
+     "QA framework rewrite (80k→8k LOC), OSCAP/OWASP hardening on appliances."),
+    ("Electrosonic · Disney · DirecTV · …", "1990s–2010s",
+     "Embedded AV, enterprise web, OCR automation, CAD/CAM, set-top boxes, network test gear."),
+]
+
+# title, description, github kevingnet, github iguerranet, optional code snippet HTML
+SAMPLES = [
+    ("Hive Mapper — Drone Navigation (C++)",
+     "Navigate a drone through interconnected circular roads in minimum time; position is road name plus degrees clockwise.",
+     "https://github.com/kevingnet/HiveMapperDrone", "https://github.com/iguerranet/HiveMapperDrone",
+     """<pre class="code-snippet"><code><span class="cm">// Greedy leg: pick next hop minimizing remaining arc distance</span>
+<span class="kw">int</span> <span class="fn">shortest_degrees</span>(<span class="kw">const</span> Road&amp; from, <span class="kw">const</span> Road&amp; to) {
+  <span class="kw">return</span> (to.origin_deg - from.origin_deg + 360) % 360;
+}</code></pre>"""),
+    ("Magazine — Node.js REST EC2 App",
+     "Angular front end with Node REST API, packaged for EC2 deployment.",
+     "https://github.com/kevingnet/magazine", "https://github.com/iguerranet/magazine", None),
+    ("Game of Life — Java",
+     "Conway's Game of Life — cellular automaton in Java.",
+     "https://github.com/kevingnet/GameOfLife", "https://github.com/iguerranet/GameOfLife",
+     """<pre class="code-snippet"><code><span class="kw">int</span> neighbors = 0;
+<span class="kw">for</span> (<span class="kw">int</span> dy = -1; dy &lt;= 1; dy++)
+  <span class="kw">for</span> (<span class="kw">int</span> dx = -1; dx &lt;= 1; dx++)
+    <span class="kw">if</span> (dx != 0 || dy != 0) neighbors += grid.at(x+dx, y+dy);
+next[x][y] = (neighbors == 3) || (grid.at(x,y) &amp;&amp; neighbors == 2);</code></pre>"""),
+    ("Word Finder — C++",
+     "Longest word buildable by concatenating shorter dictionary words.",
+     "https://github.com/kevingnet/WordFinder", "https://github.com/iguerranet/WordFinder",
+     """<pre class="code-snippet"><code><span class="kw">bool</span> <span class="fn">can_build</span>(<span class="kw">const</span> string&amp; word, <span class="kw">const</span> set&lt;string&gt;&amp; dict) {
+  vector&lt;<span class="kw">bool</span>&gt; ok(word.size() + 1);
+  ok[0] = <span class="kw">true</span>;
+  <span class="kw">for</span> (<span class="kw">size_t</span> i = 1; i &lt;= word.size(); i++)
+    <span class="kw">for</span> (<span class="kw">size_t</span> j = 0; j &lt; i; j++)
+      <span class="kw">if</span> (ok[j] &amp;&amp; dict.count(word.substr(j, i - j))) { ok[i] = <span class="kw">true</span>; <span class="kw">break</span>; }
+  <span class="kw">return</span> ok[word.size()];
+}</code></pre>"""),
+    ("Virtual Coffee Machine",
+     "AWS Docker app — Node API (level, brew, refill) with TypeScript client.",
+     "https://github.com/iguerranet/coffee.bitnami", "https://github.com/iguerranet/coffee.bitnami", None),
+    ("Flux — Electric Vehicle",
+     "30 / 60 / 90-day project plan with architecture diagrams.",
+     "https://github.com/kevingnet/FluxElectricVehicle", "https://github.com/iguerranet/FluxElectricVehicle", None),
+    ("Time Server — TypeScript / Node.js",
+     "Angular + Node REST time service for EC2.",
+     "https://github.com/kevingnet/time_server", "https://github.com/iguerranet/time_server", None),
+]
+
+
+def skill_chips(skills: list[str], limit: int | None = None) -> str:
+    items = skills[:limit] if limit else skills
+    return '<div class="skill-row">' + "".join(
+        f'<span class="skill-chip">{html.escape(s)}</span>' for s in items
+    ) + "</div>"
+
+
+def tech_to_chips(tech: str, limit: int = 16) -> str:
+    parts = [t.strip() for t in tech.replace(";", ",").split(",") if t.strip()]
+    return skill_chips(parts, limit)
+
+
+def project_gallery(figures: list[tuple[str, str]], depth: int = 1) -> str:
+    """figures: list of (filename under projects/mafroda/, caption)"""
+    p = rel_prefix(depth)
+    items = "\n".join(
+        f"""      <figure class="project-figure">
+        <img src="{p}assets/images/projects/mafroda/{fname}" alt="{html.escape(caption)}" loading="lazy">
+        <figcaption>{html.escape(caption)}</figcaption>
+      </figure>"""
+        for fname, caption in figures
+    )
+    return f'      <div class="project-gallery">\n{items}\n      </div>'
+
+
+def copy_maf_project_images() -> None:
+    src_dir = Path("/home/kg/Jobs/Graphics/images")
+    dest = ROOT / "assets/images/projects/mafroda"
+    dest.mkdir(parents=True, exist_ok=True)
+    mapping = [
+        ("traceability-dashboard.png", "Screenshot 2026-06-02 144647.png"),
+        ("traceability-detail.png", "Screenshot 2026-06-02 144820.png"),
+        ("traceability-ui.png", "Screenshot 2026-06-02 141535.png"),
+        ("installer-gui.png", "Screenshot 2025-08-01 131140.png"),
+        ("installer-scripts.png", "ListOfScripts.png"),
+    ]
+    for dest_name, src_name in mapping:
+        src = src_dir / src_name
+        if src.is_file():
+            shutil.copy2(src, dest / dest_name)
 
 
 def rel_prefix(depth: int) -> str:
@@ -123,8 +222,8 @@ def rel_prefix(depth: int) -> str:
 def carousel(depth: int = 0) -> str:
     p = rel_prefix(depth)
     imgs = "\n".join(
-        f'      <img src="{p}assets/images/{name}.{ext}" alt="{name}">'
-        for name, ext in CAROUSEL_LOGOS
+        f'      <img src="{p}assets/images/{img}.{ext}" alt="{html.escape(display)}">'
+        for display, img, ext, _slug, _desc, _skills in PORTFOLIO
     )
     return f"""  <div class="logo-carousel">
     <div class="logo-carousel-track">
@@ -139,8 +238,11 @@ def header(active: str, depth: int = 0) -> str:
         f'        <li><a href="{p}{href}" class="{"active" if label == active else ""}">{label}</a></li>'
         for label, href in NAV
     )
-    return f"""  <div class="top-bar">
-    <img class="profile-thumb" src="{p}assets/images/profile.jpeg" alt="{OWNER}">
+    return f"""  <header class="site-header">
+  <div class="top-bar">
+    <a href="{p}about.html" aria-label="About {OWNER}">
+      <img class="profile-thumb" src="{p}assets/images/profile.jpeg" alt="{OWNER}">
+    </a>
     <a href="{p}index.html" class="site-brand">{SITE_NAME}</a>
   </div>
   <div class="nav-wrap">
@@ -148,7 +250,8 @@ def header(active: str, depth: int = 0) -> str:
 {links}
     </ul>
   </div>
-{carousel(depth)}"""
+{carousel(depth)}
+  </header>"""
 
 
 def footer(depth: int = 0) -> str:
@@ -213,20 +316,72 @@ def page(
   <meta name="twitter:title" content="{full_title}">
   <meta name="twitter:description" content="{desc}">
   <meta name="twitter:image" content="{og_img}">
+  <meta name="theme-color" content="#0e1014">
   <link rel="stylesheet" href="{p}css/style.css">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 {header(active, depth)}
-  <main>
+  <main id="main-content">
 {body}
   </main>
 {footer(depth)}
   <script src="{p}js/carousel.js"></script>
+  <script src="{p}js/site.js"></script>
 </body>
 </html>
 """
 
 PROJECTS = {
+    "mafroda": {
+        "title": "MAF RODA Agrobotic",
+        "intro": """<p><strong>Sr. Software Engineer — R&amp;D Staff</strong> · Apr 2025 – Present · Remote / Americas</p>
+<p>MAF RODA Agrobotic — global leader in post-harvest fruit and vegetable automation (sorting, grading, packaging, palletizing). Current role (3rd at MAF RODA): <strong>Americas traceability lead</strong>.</p>
+<ul>
+<li><strong>Traceability — Americas:</strong> lead regional traceability systems; AI-assisted tooling and codebase modernization</li>
+<li><strong>Python fleet installer (ORPHEA):</strong> YAML-driven operations framework — WMI/WinRM discovery, network config, remote provisioning of sorting clusters</li>
+<li><strong>UiSettingsEditor:</strong> WinForms C# tool for production HMI skin / Figma palette settings (JSON appsettings)</li>
+<li><strong>JsonWebApi:</strong> ASP.NET Core REST API backing traceability and packing web views</li>
+<li><strong>OpenCV:</strong> SIMD + startup buffer pre-allocation on production sorters</li>
+</ul>""",
+        "tech": "Python, OpenCV, SIMD, C++, C#, ASP.NET Core, WinForms, WMI, WinRM, YAML, JSON, Windows, Image Processing, Traceability, Fleet Deployment, Network Provisioning, AI-Assisted Development",
+        "sections": [
+            ("Traceability — Americas", "Current · Regional traceability lead", """<p>Lead traceability systems across the Americas. Apply AI on the engineering side — developer tooling, codebase modernization, and AI-assisted improvements to traceability projects and delivery workflows.</p>
+<p>Screenshots from traceability tooling and web views deployed in the MAF sorting environment.</p>"""
+            + project_gallery([
+                ("traceability-dashboard.png", "Traceability dashboard — production sorting overview"),
+                ("traceability-detail.png", "Traceability detail view — lot and lane tracking"),
+                ("traceability-ui.png", "Traceability UI — configuration and monitoring"),
+            ])),
+            ("Python Fleet Installer", "ORPHEA Operations Framework · Python · YAML · WinRM", """<p>Designed and built the <strong>MAF Silent Install</strong> / ORPHEA operations framework: a layered Python system that provisions fruit-sorting clusters from YAML configuration.</p>
+<ul>
+<li>Multi-tier architecture: high-level modules, operation objects, and support layer (WinRM, PSRP, OpenSSH, PsExec, WMIC, netsh)</li>
+<li>Remote handling of large installer payloads (~10 GB), decompression, and end-to-end software deployment on Orphea, Engine, and cluster hosts</li>
+<li>GUI (<code>run_gui.py</code>) and batch runners for field engineers; script catalog and per-operation YAML configs</li>
+<li>Documented in <em>Software Architecture Document</em>, <em>Functional Specifications</em>, and <em>Framework.md</em> (installer.doc)</li>
+</ul>"""
+            + project_gallery([
+                ("installer-gui.png", "Installer GUI — fleet deployment control panel"),
+                ("installer-scripts.png", "Operations script catalog — batch and individual runners"),
+            ])),
+            ("UiSettingsEditor", "C# · WinForms · JSON · Figma palettes", """<p>Desktop sample application for editing production UI settings used on sorting-line HMIs.</p>
+<ul>
+<li>Loads and saves JSON <code>appsettings</code> for skin, outlet, and message styling</li>
+<li>Figma-integrated color palette editor with live swatches (container, label, font, border, clock, message stroke/shadow)</li>
+<li>Validates combinations and syncs palette slots for article / outlet configurations</li>
+</ul>
+<p>Stack: .NET WinForms, System.Text.Json, custom color-swatch controls.</p>"""),
+            ("JsonWebApi", "ASP.NET Core · REST · JSON", """<p>Sample web API supporting traceability and packing workflows — serves JSON to Angular / web front ends in the MAF ecosystem.</p>
+<ul>
+<li>ASP.NET Core minimal hosting with controllers and OpenAPI</li>
+<li>JSON serialization with explicit property naming for legacy client compatibility</li>
+<li>CORS-enabled development mode; integrates with ArticlesImg XML and web view projects</li>
+</ul>
+<p>Companion to web modules (WebPacking, WebViewBinFillers, LindaVista) in the Graphics tree.</p>"""),
+            ("OpenCV Performance", "SIMD · Buffer pre-allocation · Production sorters", """<p>Optimized OpenCV image-processing paths on production fruit sorters using SIMD intrinsics and an allocation strategy that pre-allocates buffers at startup.</p>
+<p>Result: reduced runtime memory footprint and buffer churn during high-throughput sorting operations on the line.</p>"""),
+        ],
+    },
     "google": {
         "title": "Google Projects",
         "intro": """<p>Localization Tools: Added new features and enhancements to in-house localization tools</p>
@@ -428,7 +583,7 @@ def project_body(slug: str) -> str:
         f'    <h1 class="page-title">{p["title"]}</h1>',
         '    <div class="content-section">',
         p["intro"],
-        f'      <p class="tech-tags">{p["tech"]}</p>',
+        f'      <div class="tech-tags"><strong>Technologies</strong>{tech_to_chips(p["tech"])}</div>',
     ]
     if "sections" in p:
         for h2, h3, content in p["sections"]:
@@ -443,28 +598,41 @@ def project_body(slug: str) -> str:
 
 def main():
     assets = ROOT / "assets"
-    assets.mkdir(exist_ok=True)
+    assets.mkdir(parents=True, exist_ok=True)
+    copy_maf_project_images()
     if RESUME_SRC.is_file():
         shutil.copy2(RESUME_SRC, assets / "Kevin-Guerra.pdf")
     elif not (assets / "Kevin-Guerra.pdf").is_file():
         print(f"warn: resume not found at {RESUME_SRC}")
 
     cards = "\n".join(
-        f"""      <div class="portfolio-item">
+        f"""      <article class="portfolio-item fade-in{" portfolio-item--current" if slug == "mafroda" else ""}">
         <a href="projects/{slug}.html">
+          {'<span class="current-badge">Current</span>' if slug == "mafroda" else ""}
           <div class="logo-wrap"><img src="assets/images/{img}.{ext}" alt="{name}"></div>
           <span class="company-name">{name}</span>
           <span class="company-desc">{desc}</span>
+          {skill_chips(skills, 5)}
         </a>
-      </div>"""
-        for name, img, ext, slug, desc in PORTFOLIO
+      </article>"""
+        for name, img, ext, slug, desc, skills in PORTFOLIO
     )
     (ROOT / "index.html").write_text(
         page(
             "Portfolio",
             "Portfolio",
-            f"""    <h1 class="page-title">My Portfolio</h1>
-    <p class="page-intro">Welcome to my portfolio. Here you'll find a selection of my work. Explore my projects to learn more about what I do.</p>
+            f"""    <section class="hero fade-in">
+      <p class="hero-eyebrow">Software Developer</p>
+      <h1>{OWNER}</h1>
+      <p class="hero-lead">Currently <strong>Sr. Software Engineer at MAF RODA Agrobotic</strong> (Americas traceability). Enterprise systems, computer vision, security, embedded software, and performance work across Google, Disney, VMware, DirecTV, and more.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="{RESUME_ASSET}">Download Resume</a>
+        <a class="btn btn-secondary" href="mailto:{CONTACT_EMAIL}">Get in Touch</a>
+        <a class="btn btn-secondary" href="samples.html">View Samples</a>
+      </div>
+    </section>
+    <h2 class="page-title">Experience</h2>
+    <p class="page-intro">Selected employers and project highlights. Click a card for full detail.</p>
     <div class="portfolio-grid">
 {cards}
     </div>""",
@@ -473,34 +641,45 @@ def main():
     )
 
     services = "\n".join(
-        f"      <li>{s}</li>"
-        for s in [
-            "IDEATION", "WEB &amp; CLOUD DEVELOPMENT", "SECURITY &amp; PRIVACY",
-            "REVERSE ENGINEERING", "DATABASES", "CONSULTING",
-            "CUSTOM APPLICATIONS", "PERFORMANCE OPTIMIZATION",
-            "EMBEDDED SYSTEMS", "IMAGE PROCESSING",
-        ]
+        f"""      <article class="service-card fade-in">
+        <h2>{html.escape(title)}</h2>
+        <p>{html.escape(blurb)}</p>
+      </article>"""
+        for title, blurb in SERVICES
     )
     (ROOT / "services.html").write_text(
         page(
             "Services",
             "Services",
-            f'    <h1 class="page-title">My Services</h1>\n    <ul class="services-list">\n{services}\n    </ul>',
+            f"""    <h1 class="page-title">Services</h1>
+    <p class="page-intro text-center">What I bring to your team — from architecture through delivery.</p>
+    <div class="services-grid">
+{services}
+    </div>
+    <section class="contact-panel fade-in" style="margin-top:2rem">
+      <h2>Start a project</h2>
+      <p>Email me at <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a> or connect on <a href="{SOCIAL["linkedin"]}">LinkedIn</a>.</p>
+      <div class="contact-actions">
+        <a class="btn btn-primary" href="mailto:{CONTACT_EMAIL}">Email Kevin</a>
+        <a class="btn btn-secondary" href="{RESUME_ASSET}">Download Resume</a>
+      </div>
+    </section>""",
             slug_path="services.html",
             description="Consulting and development: web, cloud, security, embedded systems, and performance optimization.",
         )
     )
 
     samples_html = "\n".join(
-        f"""      <div class="sample-entry">
-        <h2><a href="{gh1}" target="_blank" rel="noopener">{title}</a></h2>
-        <p>{desc}</p>
+        f"""      <article class="sample-entry fade-in">
+        <h2><a href="{gh1}" target="_blank" rel="noopener">{html.escape(title)}</a></h2>
+        <p>{html.escape(desc)}</p>
+        {snippet or ""}
         <div class="sample-links">
           <a href="{gh1}" target="_blank" rel="noopener">GitHub (kevingnet)</a>
           <a href="{gh2}" target="_blank" rel="noopener">GitHub (iguerranet)</a>
         </div>
-      </div>"""
-        for title, desc, gh1, gh2 in SAMPLES
+      </article>"""
+        for title, desc, gh1, gh2, snippet in SAMPLES
     )
     (ROOT / "samples.html").write_text(
         page(
@@ -517,18 +696,37 @@ def main():
             "About",
             "About",
             f"""    <div class="about-layout">
-      <img class="about-hero-img" src="assets/images/hero.jpg" alt="{OWNER}">
-      <div class="about-bio">
-        <h1>BIO</h1>
-        <p>Hello, my name is Kevin, I'm a software developer, my career started as a hobby and I'm still passionate about computer programming and software development. I've had the opportunity and privilege to work on many types of projects ranging from tools, to custom apps, web sites, embedded systems, robotics, optimization, networking, databases, security and privacy, virtualization, and many others...</p>
-        <p>I pride myself in developing good quality software that is fast and responsive, with fewer lines of code, code generation, best practices using a variety of tools and technologies. I guarantee my work and I'm highly productive, you might say that I'm a team of developers in one — see my <a href="{RESUME_ASSET}">resume (PDF)</a> for illustrations of the technologies I've used and the companies I've worked for.</p>
-        <p>Please see the services section for a partial list of what I can do for your company. The Portfolio section contains projects with more detail than the resume, plus sample code on GitHub. Contact: <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p>
+      <img class="about-hero-img fade-in" src="assets/images/hero.jpg" alt="{OWNER}">
+      <div class="about-bio fade-in">
+        <h1>About</h1>
+        <p>Hello, my name is Kevin. I'm a software developer — my career started as a hobby and I'm still passionate about building fast, reliable software across tools, web apps, embedded systems, robotics, networking, databases, security, and virtualization.</p>
+        <p>I focus on quality code that stays maintainable: fewer lines, code generation where it helps, and patterns that scale. See my <a href="{RESUME_ASSET}">resume (PDF)</a> for the full technology list and employment history.</p>
+        <h2>Core skills</h2>
+        <div class="skills-cloud">{"".join(f'<span class="skill-chip">{html.escape(s)}</span>' for s in CORE_SKILLS)}</div>
+        <h2>Career timeline</h2>
+        <div class="timeline">
+{"".join(f'''          <div class="timeline-item">
+            <strong>{html.escape(label)}</strong>
+            <span>{html.escape(era)}</span>
+            <p>{html.escape(note)}</p>
+          </div>''' for label, era, note in TIMELINE)}
+        </div>
         <h2>Personal</h2>
         <ul>
-          <li>Sports oriented, weight training, tennis, ping-pong, could do over 1500 push-ups in high school.</li>
-          <li>Autodidact, studied many subjects in Computer Science and other subjects, continuous development.</li>
-          <li>Solved Rubik's cube in middle school on average 11.2 seconds, best time 9.4 seconds. Early 80s world record was 19 seconds, 2018 record is 3.47, 2008 record was 9.18. <a href="https://www.recordholders.org/en/list/rubik.html" target="_blank" rel="noopener">Rubik's cube records</a></li>
+          <li>Sports oriented — weight training, tennis, ping-pong; 1500+ push-ups in high school.</li>
+          <li>Autodidact; continuous study across computer science and related fields.</li>
+          <li>Rubik's cube: ~11.2s average in middle school (best 9.4s). <a href="https://www.recordholders.org/en/list/rubik.html" target="_blank" rel="noopener">World records</a></li>
         </ul>
+        <section class="contact-panel">
+          <h2>Contact</h2>
+          <p>Open to consulting and senior development roles.</p>
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="mailto:{CONTACT_EMAIL}">Email {CONTACT_EMAIL}</a>
+            <button type="button" class="btn btn-secondary" data-copy-email="{CONTACT_EMAIL}">Copy email</button>
+            <a class="btn btn-secondary" href="{SOCIAL["linkedin"]}" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn btn-secondary" href="{RESUME_ASSET}">Resume PDF</a>
+          </div>
+        </section>
       </div>
     </div>""",
             slug_path="about.html",

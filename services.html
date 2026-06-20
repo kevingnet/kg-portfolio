@@ -17,11 +17,16 @@
   <meta name="twitter:title" content="Services | KG PORTFOLIO">
   <meta name="twitter:description" content="Consulting and development: web, cloud, security, embedded systems, and performance optimization.">
   <meta name="twitter:image" content="https://kevingnet.github.io/kg-portfolio/assets/images/profile.jpeg">
+  <meta name="theme-color" content="#0e1014">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header">
   <div class="top-bar">
-    <img class="profile-thumb" src="assets/images/profile.jpeg" alt="Kevin Alexander Guerra">
+    <a href="about.html" aria-label="About Kevin Alexander Guerra">
+      <img class="profile-thumb" src="assets/images/profile.jpeg" alt="Kevin Alexander Guerra">
+    </a>
     <a href="index.html" class="site-brand">KG PORTFOLIO</a>
   </div>
   <div class="nav-wrap">
@@ -34,42 +39,75 @@
   </div>
   <div class="logo-carousel">
     <div class="logo-carousel-track">
-      <img src="assets/images/electrosonic.jpeg" alt="electrosonic">
-      <img src="assets/images/voltdelta.jpeg" alt="voltdelta">
-      <img src="assets/images/hpe.jpeg" alt="hpe">
-      <img src="assets/images/hypermedia.jpeg" alt="hypermedia">
-      <img src="assets/images/spirent.jpeg" alt="spirent">
-      <img src="assets/images/surfware.jpeg" alt="surfware">
-      <img src="assets/images/netpulse.jpeg" alt="netpulse">
-      <img src="assets/images/knulrd.jpeg" alt="knulrd">
-      <img src="assets/images/butterfleye.jpeg" alt="butterfleye">
-      <img src="assets/images/directv.jpeg" alt="directv">
-      <img src="assets/images/opentv.jpeg" alt="opentv">
-      <img src="assets/images/disney.jpeg" alt="disney">
-      <img src="assets/images/yahoo.jpeg" alt="yahoo">
-      <img src="assets/images/guidance.jpeg" alt="guidance">
-      <img src="assets/images/motorola.jpeg" alt="motorola">
-      <img src="assets/images/dolby.jpeg" alt="dolby">
-      <img src="assets/images/veritas.jpeg" alt="veritas">
-      <img src="assets/images/vmware.jpeg" alt="vmware">
-      <img src="assets/images/google.jpeg" alt="google">
-      <img src="assets/images/facebook.jpeg" alt="facebook">
+      <img src="assets/images/mafroda.svg" alt="MAF RODA">
+      <img src="assets/images/google.jpeg" alt="Google">
+      <img src="assets/images/directv.jpeg" alt="DirecTV">
+      <img src="assets/images/company.png" alt="JakeKnows">
+      <img src="assets/images/disney.jpeg" alt="Disney">
+      <img src="assets/images/electrosonic.jpeg" alt="Electrosonic">
+      <img src="assets/images/voltdelta.jpeg" alt="VoltDelta">
+      <img src="assets/images/vmware.jpeg" alt="Vmware">
+      <img src="assets/images/hypermedia.jpeg" alt="HMS">
+      <img src="assets/images/surfware.jpeg" alt="Surfware">
+      <img src="assets/images/motorola.jpeg" alt="Motorola">
+      <img src="assets/images/opentv.jpeg" alt="OpenTV">
+      <img src="assets/images/spirent.jpeg" alt="Spirent">
     </div>
   </div>
-  <main>
-    <h1 class="page-title">My Services</h1>
-    <ul class="services-list">
-      <li>IDEATION</li>
-      <li>WEB &amp; CLOUD DEVELOPMENT</li>
-      <li>SECURITY &amp; PRIVACY</li>
-      <li>REVERSE ENGINEERING</li>
-      <li>DATABASES</li>
-      <li>CONSULTING</li>
-      <li>CUSTOM APPLICATIONS</li>
-      <li>PERFORMANCE OPTIMIZATION</li>
-      <li>EMBEDDED SYSTEMS</li>
-      <li>IMAGE PROCESSING</li>
-    </ul>
+  </header>
+  <main id="main-content">
+    <h1 class="page-title">Services</h1>
+    <p class="page-intro text-center">What I bring to your team — from architecture through delivery.</p>
+    <div class="services-grid">
+      <article class="service-card fade-in">
+        <h2>Ideation</h2>
+        <p>Product concepts, architecture options, and rapid prototypes to validate direction before a full build.</p>
+      </article>
+      <article class="service-card fade-in">
+        <h2>Web &amp; Cloud Development</h2>
+        <p>Full-stack apps, REST APIs, microservices, and deployment on AWS, GCP, or Docker.</p>
+      </article>
+      <article class="service-card fade-in">
+        <h2>Security &amp; Privacy</h2>
+        <p>Threat modeling, code review, input validation libraries, and compliance-aware design.</p>
+      </article>
+      <article class="service-card fade-in">
+        <h2>Reverse Engineering</h2>
+        <p>Legacy system analysis, protocol decoding, and safe modernization paths.</p>
+      </article>
+      <article class="service-card fade-in">
+        <h2>Databases</h2>
+        <p>Schema design, query optimization, Postgres / SQL Server, and data pipelines.</p>
+      </article>
+      <article class="service-card fade-in">
+        <h2>Consulting</h2>
+        <p>Technical leadership, stalled-project recovery, and team mentoring.</p>
+      </article>
+      <article class="service-card fade-in">
+        <h2>Custom Applications</h2>
+        <p>Desktop, embedded, and internal tools tailored to your workflow.</p>
+      </article>
+      <article class="service-card fade-in">
+        <h2>Performance Optimization</h2>
+        <p>Profiling-driven speedups — from geospatial XML (11×) to zero-allocation embedded paths.</p>
+      </article>
+      <article class="service-card fade-in">
+        <h2>Embedded Systems</h2>
+        <p>Set-top boxes, device drivers, robotics interfaces, and resource-constrained C++.</p>
+      </article>
+      <article class="service-card fade-in">
+        <h2>Image Processing</h2>
+        <p>OCR, machine vision, FFT-based recognition, and video capture pipelines.</p>
+      </article>
+    </div>
+    <section class="contact-panel fade-in" style="margin-top:2rem">
+      <h2>Start a project</h2>
+      <p>Email me at <a href="mailto:kevingnet1@gmail.com">kevingnet1@gmail.com</a> or connect on <a href="https://www.linkedin.com/in/kevin-guerra-36151446/">LinkedIn</a>.</p>
+      <div class="contact-actions">
+        <a class="btn btn-primary" href="mailto:kevingnet1@gmail.com">Email Kevin</a>
+        <a class="btn btn-secondary" href="assets/Kevin-Guerra.pdf">Download Resume</a>
+      </div>
+    </section>
   </main>
   <footer class="site-footer">
     <div class="footer-social">
@@ -84,5 +122,6 @@
     <p class="footer-copy">&copy; 2026 Kevin Alexander Guerra. <a href="assets/Kevin-Guerra.pdf">Resume (PDF)</a></p>
   </footer>
   <script src="js/carousel.js"></script>
+  <script src="js/site.js"></script>
 </body>
 </html>

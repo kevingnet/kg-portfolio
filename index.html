@@ -17,11 +17,16 @@
   <meta name="twitter:title" content="Portfolio | KG PORTFOLIO">
   <meta name="twitter:description" content="Selected software projects at Google, Disney, VMware, DirecTV, and other companies.">
   <meta name="twitter:image" content="https://kevingnet.github.io/kg-portfolio/assets/images/profile.jpeg">
+  <meta name="theme-color" content="#0e1014">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header">
   <div class="top-bar">
-    <img class="profile-thumb" src="assets/images/profile.jpeg" alt="Kevin Alexander Guerra">
+    <a href="about.html" aria-label="About Kevin Alexander Guerra">
+      <img class="profile-thumb" src="assets/images/profile.jpeg" alt="Kevin Alexander Guerra">
+    </a>
     <a href="index.html" class="site-brand">KG PORTFOLIO</a>
   </div>
   <div class="nav-wrap">
@@ -34,116 +39,153 @@
   </div>
   <div class="logo-carousel">
     <div class="logo-carousel-track">
-      <img src="assets/images/electrosonic.jpeg" alt="electrosonic">
-      <img src="assets/images/voltdelta.jpeg" alt="voltdelta">
-      <img src="assets/images/hpe.jpeg" alt="hpe">
-      <img src="assets/images/hypermedia.jpeg" alt="hypermedia">
-      <img src="assets/images/spirent.jpeg" alt="spirent">
-      <img src="assets/images/surfware.jpeg" alt="surfware">
-      <img src="assets/images/netpulse.jpeg" alt="netpulse">
-      <img src="assets/images/knulrd.jpeg" alt="knulrd">
-      <img src="assets/images/butterfleye.jpeg" alt="butterfleye">
-      <img src="assets/images/directv.jpeg" alt="directv">
-      <img src="assets/images/opentv.jpeg" alt="opentv">
-      <img src="assets/images/disney.jpeg" alt="disney">
-      <img src="assets/images/yahoo.jpeg" alt="yahoo">
-      <img src="assets/images/guidance.jpeg" alt="guidance">
-      <img src="assets/images/motorola.jpeg" alt="motorola">
-      <img src="assets/images/dolby.jpeg" alt="dolby">
-      <img src="assets/images/veritas.jpeg" alt="veritas">
-      <img src="assets/images/vmware.jpeg" alt="vmware">
-      <img src="assets/images/google.jpeg" alt="google">
-      <img src="assets/images/facebook.jpeg" alt="facebook">
+      <img src="assets/images/mafroda.svg" alt="MAF RODA">
+      <img src="assets/images/google.jpeg" alt="Google">
+      <img src="assets/images/directv.jpeg" alt="DirecTV">
+      <img src="assets/images/company.png" alt="JakeKnows">
+      <img src="assets/images/disney.jpeg" alt="Disney">
+      <img src="assets/images/electrosonic.jpeg" alt="Electrosonic">
+      <img src="assets/images/voltdelta.jpeg" alt="VoltDelta">
+      <img src="assets/images/vmware.jpeg" alt="Vmware">
+      <img src="assets/images/hypermedia.jpeg" alt="HMS">
+      <img src="assets/images/surfware.jpeg" alt="Surfware">
+      <img src="assets/images/motorola.jpeg" alt="Motorola">
+      <img src="assets/images/opentv.jpeg" alt="OpenTV">
+      <img src="assets/images/spirent.jpeg" alt="Spirent">
     </div>
   </div>
-  <main>
-    <h1 class="page-title">My Portfolio</h1>
-    <p class="page-intro">Welcome to my portfolio. Here you'll find a selection of my work. Explore my projects to learn more about what I do.</p>
+  </header>
+  <main id="main-content">
+    <section class="hero fade-in">
+      <p class="hero-eyebrow">Software Developer</p>
+      <h1>Kevin Alexander Guerra</h1>
+      <p class="hero-lead">Currently <strong>Sr. Software Engineer at MAF RODA Agrobotic</strong> (Americas traceability). Enterprise systems, computer vision, security, embedded software, and performance work across Google, Disney, VMware, DirecTV, and more.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="assets/Kevin-Guerra.pdf">Download Resume</a>
+        <a class="btn btn-secondary" href="mailto:kevingnet1@gmail.com">Get in Touch</a>
+        <a class="btn btn-secondary" href="samples.html">View Samples</a>
+      </div>
+    </section>
+    <h2 class="page-title">Experience</h2>
+    <p class="page-intro">Selected employers and project highlights. Click a card for full detail.</p>
     <div class="portfolio-grid">
-      <div class="portfolio-item">
+      <article class="portfolio-item fade-in portfolio-item--current">
+        <a href="projects/mafroda.html">
+          <span class="current-badge">Current</span>
+          <div class="logo-wrap"><img src="assets/images/mafroda.svg" alt="MAF RODA"></div>
+          <span class="company-name">MAF RODA</span>
+          <span class="company-desc">Americas traceability lead — fleet installer, OpenCV on sorters, sample apps.</span>
+          <div class="skill-row"><span class="skill-chip">Python</span><span class="skill-chip">OpenCV</span><span class="skill-chip">C#</span><span class="skill-chip">.NET</span><span class="skill-chip">Traceability</span></div>
+        </a>
+      </article>
+      <article class="portfolio-item fade-in">
         <a href="projects/google.html">
+          
           <div class="logo-wrap"><img src="assets/images/google.jpeg" alt="Google"></div>
           <span class="company-name">Google</span>
-          <span class="company-desc">Localization, Maps, Hardware Analytics, Speech Ops, YouTube, HR. C++, Java, Python, RBAC/OAuth2, GIS, Postgres, Dart.</span>
+          <span class="company-desc">Localization, Maps, Hardware Analytics, Speech Ops, YouTube, HR.</span>
+          <div class="skill-row"><span class="skill-chip">Java</span><span class="skill-chip">Python</span><span class="skill-chip">GCP</span><span class="skill-chip">Postgres</span><span class="skill-chip">Dart</span></div>
         </a>
-      </div>
-      <div class="portfolio-item">
+      </article>
+      <article class="portfolio-item fade-in">
         <a href="projects/directv.html">
+          
           <div class="logo-wrap"><img src="assets/images/directv.jpeg" alt="DirecTV"></div>
           <span class="company-name">DirecTV</span>
-          <span class="company-desc">Automation Engineer, created OCR system and test automation tools. C++, Python.</span>
+          <span class="company-desc">OCR automation, image processing, and test infrastructure.</span>
+          <div class="skill-row"><span class="skill-chip">C++</span><span class="skill-chip">Python</span><span class="skill-chip">OCR</span><span class="skill-chip">Computer Vision</span></div>
         </a>
-      </div>
-      <div class="portfolio-item">
+      </article>
+      <article class="portfolio-item fade-in">
         <a href="projects/jakeknows.html">
+          
           <div class="logo-wrap"><img src="assets/images/company.png" alt="JakeKnows"></div>
           <span class="company-name">JakeKnows</span>
-          <span class="company-desc">Architecture, Design and Development of distributed web system, database driven. Application backend for mobile apps for Sony, to enable job applicants to submit resumes. C#, C++, MSSql, Python.</span>
+          <span class="company-desc">Distributed identity engine and Sony mobile job-application backend.</span>
+          <div class="skill-row"><span class="skill-chip">C#</span><span class="skill-chip">Python</span><span class="skill-chip">MSSQL</span><span class="skill-chip">Web Services</span></div>
         </a>
-      </div>
-      <div class="portfolio-item">
+      </article>
+      <article class="portfolio-item fade-in">
         <a href="projects/disney.html">
+          
           <div class="logo-wrap"><img src="assets/images/disney.jpeg" alt="Disney"></div>
           <span class="company-name">Disney</span>
-          <span class="company-desc">Developed web apps. Software Deployer/Updater. Networking tools for Netware. C/C++, Visual Basic, MS Sql, MS Access, ASP.</span>
+          <span class="company-desc">Enterprise web apps, deployers, and Novell networking tools.</span>
+          <div class="skill-row"><span class="skill-chip">C++</span><span class="skill-chip">ASP</span><span class="skill-chip">VB</span><span class="skill-chip">MSSQL</span></div>
         </a>
-      </div>
-      <div class="portfolio-item">
+      </article>
+      <article class="portfolio-item fade-in">
         <a href="projects/electrosonic.html">
+          
           <div class="logo-wrap"><img src="assets/images/electrosonic.jpeg" alt="Electrosonic"></div>
           <span class="company-name">Electrosonic</span>
-          <span class="company-desc">Developed second version of a Scheduler to automate Video Server, Robotic devices, Networking Devices, etc... Developed Remote Control system for scheduler through Email. Developed various tools for integration.</span>
+          <span class="company-desc">AV scheduling, robotics integration, and remote device control.</span>
+          <div class="skill-row"><span class="skill-chip">C++</span><span class="skill-chip">COM</span><span class="skill-chip">TCP/IP</span><span class="skill-chip">Embedded</span></div>
         </a>
-      </div>
-      <div class="portfolio-item">
+      </article>
+      <article class="portfolio-item fade-in">
         <a href="projects/voltdelta.html">
+          
           <div class="logo-wrap"><img src="assets/images/voltdelta.jpeg" alt="VoltDelta"></div>
           <span class="company-name">VoltDelta</span>
-          <span class="company-desc">Developed Phone Switch Simulator to be able to test software. Developed X25 Network Connector. C++.</span>
+          <span class="company-desc">Phone switch simulator and X.25 network connector.</span>
+          <div class="skill-row"><span class="skill-chip">C++</span><span class="skill-chip">X.25</span><span class="skill-chip">TCP/IP</span><span class="skill-chip">Win32</span></div>
         </a>
-      </div>
-      <div class="portfolio-item">
+      </article>
+      <article class="portfolio-item fade-in">
         <a href="projects/vmware.html">
+          
           <div class="logo-wrap"><img src="assets/images/vmware.jpeg" alt="Vmware"></div>
           <span class="company-name">Vmware</span>
-          <span class="company-desc">Developed Test Development Framework replacing Perl legacy system with over 1 million lines of code in 60k loc. Python.</span>
+          <span class="company-desc">QA automation framework — 80k LOC legacy replaced with 8k LOC Python.</span>
+          <div class="skill-row"><span class="skill-chip">Python</span><span class="skill-chip">Perl</span><span class="skill-chip">Automation</span><span class="skill-chip">Virtualization</span></div>
         </a>
-      </div>
-      <div class="portfolio-item">
+      </article>
+      <article class="portfolio-item fade-in">
         <a href="projects/hms.html">
+          
           <div class="logo-wrap"><img src="assets/images/hypermedia.jpeg" alt="HMS"></div>
           <span class="company-name">HMS</span>
-          <span class="company-desc">Developed Input Validation Library. Tools for penetration testing. Site analysis networking tools. Audited code from other developers for Security and Privacy compliance. C++, Python, Bash.</span>
+          <span class="company-desc">Input validation library, penetration testing, security audits.</span>
+          <div class="skill-row"><span class="skill-chip">C++</span><span class="skill-chip">Python</span><span class="skill-chip">Security</span><span class="skill-chip">Linux</span></div>
         </a>
-      </div>
-      <div class="portfolio-item">
+      </article>
+      <article class="portfolio-item fade-in">
         <a href="projects/surfware.html">
+          
           <div class="logo-wrap"><img src="assets/images/surfware.jpeg" alt="Surfware"></div>
           <span class="company-name">Surfware</span>
-          <span class="company-desc">Developed enhancements and new features for CNC Metal Cutting Software and interfaces for Autocad and Solidworks. C++.</span>
+          <span class="company-desc">CAD/CAM CNC software and SolidWorks / AutoCAD interfaces.</span>
+          <div class="skill-row"><span class="skill-chip">C++</span><span class="skill-chip">C#</span><span class="skill-chip">OpenGL</span><span class="skill-chip">CAD/CAM</span></div>
         </a>
-      </div>
-      <div class="portfolio-item">
+      </article>
+      <article class="portfolio-item fade-in">
         <a href="projects/motorola.html">
+          
           <div class="logo-wrap"><img src="assets/images/motorola.jpeg" alt="Motorola"></div>
           <span class="company-name">Motorola</span>
-          <span class="company-desc">Developed Closed Captioning Module for Setup Boxes. C++.</span>
+          <span class="company-desc">Closed-captioning module for set-top boxes.</span>
+          <div class="skill-row"><span class="skill-chip">C++</span><span class="skill-chip">Embedded</span><span class="skill-chip">OCAP</span><span class="skill-chip">Linux</span></div>
         </a>
-      </div>
-      <div class="portfolio-item">
+      </article>
+      <article class="portfolio-item fade-in">
         <a href="projects/opentv.html">
+          
           <div class="logo-wrap"><img src="assets/images/opentv.jpeg" alt="OpenTV"></div>
           <span class="company-name">OpenTV</span>
-          <span class="company-desc">Developed Enhancements and New Features for Local Advertisement Scheduler Application. C#, C++, Python.</span>
+          <span class="company-desc">Local advertisement scheduler for major cable operators.</span>
+          <div class="skill-row"><span class="skill-chip">C#</span><span class="skill-chip">C++</span><span class="skill-chip">Python</span><span class="skill-chip">Oracle</span></div>
         </a>
-      </div>
-      <div class="portfolio-item">
+      </article>
+      <article class="portfolio-item fade-in">
         <a href="projects/spirent.html">
+          
           <div class="logo-wrap"><img src="assets/images/spirent.jpeg" alt="Spirent"></div>
           <span class="company-name">Spirent</span>
-          <span class="company-desc">Developed Scripting Interface for Tcl to enable Automation and Instrumentation of Networking Tester Appliance and Equipment. C++, Tcl.</span>
+          <span class="company-desc">Tcl scripting interface for network test appliances.</span>
+          <div class="skill-row"><span class="skill-chip">C++</span><span class="skill-chip">Tcl</span><span class="skill-chip">SWIG</span><span class="skill-chip">Networking</span></div>
         </a>
-      </div>
+      </article>
     </div>
   </main>
   <footer class="site-footer">
@@ -159,5 +201,6 @@
     <p class="footer-copy">&copy; 2026 Kevin Alexander Guerra. <a href="assets/Kevin-Guerra.pdf">Resume (PDF)</a></p>
   </footer>
   <script src="js/carousel.js"></script>
+  <script src="js/site.js"></script>
 </body>
 </html>
