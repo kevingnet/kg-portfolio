@@ -56,9 +56,12 @@ SOCIAL = {
 
 # name, image file, ext, slug, card description, skill chips (max ~5 shown on card)
 PORTFOLIO = [
-    ("MAF RODA", "mafroda", "svg", "mafroda",
+    ("MAF RODA", "mafroda", "png", "mafroda",
      "Americas traceability lead — fleet installer, OpenCV on sorters, sample apps.",
      ["Python", "OpenCV", "C#", ".NET", "Traceability"]),
+    ("Leidos", "leidos", "png", "leidos",
+     "Airport security scanning app (C++, Qt5, Python) and enterprise performance architecture.",
+     ["C++", "Qt5", "Python", "Imaging", "Security"]),
     ("Google", "google", "jpeg", "google",
      "Localization, Maps, Hardware Analytics, Speech Ops, YouTube, HR.",
      ["Java", "Python", "GCP", "Postgres", "Dart"]),
@@ -122,8 +125,8 @@ CORE_SKILLS = [
 TIMELINE = [
     ("MAF RODA Agrobotic", "2025–present",
      "Sr. Software Engineer — Americas traceability lead, fleet installers, OpenCV on production sorters."),
-    ("Independent · Leidos · Google · Meta", "2018–2025",
-     "Solution architecture, AWS microservices, YouTube/Earth/HR at Google, privacy audits at Meta."),
+    ("Leidos · Independent · Google · Meta", "2018–2025",
+     "Airport scanning (Leidos), AWS consulting, YouTube/Earth/HR at Google, privacy audits at Meta."),
     ("VMware · Veritas · HPE", "2015–2018",
      "QA framework rewrite (80k→8k LOC), OSCAP/OWASP hardening on appliances."),
     ("Electrosonic · Disney · DirecTV · …", "1990s–2010s",
@@ -380,6 +383,23 @@ PROJECTS = {
 <p>Companion to web modules (WebPacking, WebViewBinFillers, LindaVista) in the Graphics tree.</p>"""),
             ("OpenCV Performance", "SIMD · Buffer pre-allocation · Production sorters", """<p>Optimized OpenCV image-processing paths on production fruit sorters using SIMD intrinsics and an allocation strategy that pre-allocates buffers at startup.</p>
 <p>Result: reduced runtime memory footprint and buffer churn during high-throughput sorting operations on the line.</p>"""),
+        ],
+    },
+    "leidos": {
+        "title": "Leidos Projects",
+        "intro": """<p><strong>Sr. Solution Architect</strong> · Nov 2022 – Jun 2023</p>
+<p>Leidos · Contractor (KForce) · Remote</p>
+<p>Leidos is a defense, aviation, and information-technology company providing mission-critical systems for government and commercial customers.</p>
+<ul>
+<li>Secure airport scanning application — C++, Qt5, Python imaging pipeline for high-assurance environments</li>
+<li>Enterprise architecture and performance engineering — profiling, caching, high-transaction systems</li>
+</ul>""",
+        "tech": "C++, Qt5, Python, Image Processing, Security, Enterprise Architecture, Performance Profiling, Caching, High-Transaction Systems",
+        "sections": [
+            ("Airport Scanning Application", "C++, Qt5, Python · High-assurance imaging", """<p>Developed a secure airport scanning application combining a C++ and Qt5 front end with Python components for the imaging pipeline.</p>
+<p>Built for high-assurance environments where reliability, security, and accurate image processing are critical to operations.</p>"""),
+            ("Enterprise Architecture", "Performance · Profiling · Caching", """<p>Solution architecture and performance work on high-transaction enterprise systems.</p>
+<p>Applied profiling and caching strategies to improve throughput and responsiveness under production load.</p>"""),
         ],
     },
     "google": {
