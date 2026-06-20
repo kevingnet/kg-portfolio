@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Legacy Wix mirror output (not the live site)
+site/
+mirrored/
+_handmade_backup/
+assets/wix/
