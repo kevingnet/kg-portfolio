@@ -51,7 +51,7 @@ NAV = [
 
 SOCIAL = {
     "linkedin": "https://www.linkedin.com/in/kevin-guerra-36151446/",
-    "github": "https://github.com/iguerranet",
+    "github": "https://github.com/kevingnet",
 }
 
 # name, image file, ext, slug, card description, skill chips (max ~5 shown on card)
@@ -133,21 +133,21 @@ TIMELINE = [
      "Embedded AV, enterprise web, OCR automation, CAD/CAM, set-top boxes, network test gear."),
 ]
 
-# title, description, github kevingnet, github iguerranet, optional code snippet HTML
+# title, description, github URL, optional code snippet HTML
 SAMPLES = [
     ("Hive Mapper — Drone Navigation (C++)",
      "Navigate a drone through interconnected circular roads in minimum time; position is road name plus degrees clockwise.",
-     "https://github.com/kevingnet/HiveMapperDrone", "https://github.com/iguerranet/HiveMapperDrone",
+     "https://github.com/kevingnet/HiveMapperDrone",
      """<pre class="code-snippet"><code><span class="cm">// Greedy leg: pick next hop minimizing remaining arc distance</span>
 <span class="kw">int</span> <span class="fn">shortest_degrees</span>(<span class="kw">const</span> Road&amp; from, <span class="kw">const</span> Road&amp; to) {
   <span class="kw">return</span> (to.origin_deg - from.origin_deg + 360) % 360;
 }</code></pre>"""),
     ("Magazine — Node.js REST EC2 App",
      "Angular front end with Node REST API, packaged for EC2 deployment.",
-     "https://github.com/kevingnet/magazine", "https://github.com/iguerranet/magazine", None),
+     "https://github.com/kevingnet/magazine", None),
     ("Game of Life — Java",
      "Conway's Game of Life — cellular automaton in Java.",
-     "https://github.com/kevingnet/GameOfLife", "https://github.com/iguerranet/GameOfLife",
+     "https://github.com/kevingnet/GameOfLife",
      """<pre class="code-snippet"><code><span class="kw">int</span> neighbors = 0;
 <span class="kw">for</span> (<span class="kw">int</span> dy = -1; dy &lt;= 1; dy++)
   <span class="kw">for</span> (<span class="kw">int</span> dx = -1; dx &lt;= 1; dx++)
@@ -155,7 +155,7 @@ SAMPLES = [
 next[x][y] = (neighbors == 3) || (grid.at(x,y) &amp;&amp; neighbors == 2);</code></pre>"""),
     ("Word Finder — C++",
      "Longest word buildable by concatenating shorter dictionary words.",
-     "https://github.com/kevingnet/WordFinder", "https://github.com/iguerranet/WordFinder",
+     "https://github.com/kevingnet/WordFinder",
      """<pre class="code-snippet"><code><span class="kw">bool</span> <span class="fn">can_build</span>(<span class="kw">const</span> string&amp; word, <span class="kw">const</span> set&lt;string&gt;&amp; dict) {
   vector&lt;<span class="kw">bool</span>&gt; ok(word.size() + 1);
   ok[0] = <span class="kw">true</span>;
@@ -166,13 +166,13 @@ next[x][y] = (neighbors == 3) || (grid.at(x,y) &amp;&amp; neighbors == 2);</code
 }</code></pre>"""),
     ("Virtual Coffee Machine",
      "AWS Docker app — Node API (level, brew, refill) with TypeScript client.",
-     "https://github.com/iguerranet/coffee.bitnami", "https://github.com/iguerranet/coffee.bitnami", None),
+     "https://github.com/kevingnet/coffee.bitnami", None),
     ("Flux — Electric Vehicle",
      "30 / 60 / 90-day project plan with architecture diagrams.",
-     "https://github.com/kevingnet/FluxElectricVehicle", "https://github.com/iguerranet/FluxElectricVehicle", None),
+     "https://github.com/kevingnet/FluxElectricVehicle", None),
     ("Time Server — TypeScript / Node.js",
      "Angular + Node REST time service for EC2.",
-     "https://github.com/kevingnet/time_server", "https://github.com/iguerranet/time_server", None),
+     "https://github.com/kevingnet/time_server", None),
 ]
 
 
@@ -691,15 +691,14 @@ def main():
 
     samples_html = "\n".join(
         f"""      <article class="sample-entry fade-in">
-        <h2><a href="{gh1}" target="_blank" rel="noopener">{html.escape(title)}</a></h2>
+        <h2><a href="{gh}" target="_blank" rel="noopener">{html.escape(title)}</a></h2>
         <p>{html.escape(desc)}</p>
         {snippet or ""}
         <div class="sample-links">
-          <a href="{gh1}" target="_blank" rel="noopener">GitHub (kevingnet)</a>
-          <a href="{gh2}" target="_blank" rel="noopener">GitHub (iguerranet)</a>
+          <a href="{gh}" target="_blank" rel="noopener">GitHub</a>
         </div>
       </article>"""
-        for title, desc, gh1, gh2, snippet in SAMPLES
+        for title, desc, gh, snippet in SAMPLES
     )
     (ROOT / "samples.html").write_text(
         page(
