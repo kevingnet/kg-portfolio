@@ -133,7 +133,7 @@ TIMELINE = [
      "Embedded AV, enterprise web, OCR automation, CAD/CAM, set-top boxes, network test gear."),
 ]
 
-# title, description, github URL, optional code snippet HTML
+# title, description, github URL, optional code snippet HTML, optional live demo URL
 SAMPLES = [
     ("Hive Mapper — Drone Navigation (C++)",
      "Navigate a drone through interconnected circular roads in minimum time; position is road name plus degrees clockwise.",
@@ -141,10 +141,10 @@ SAMPLES = [
      """<pre class="code-snippet"><code><span class="cm">// Greedy leg: pick next hop minimizing remaining arc distance</span>
 <span class="kw">int</span> <span class="fn">shortest_degrees</span>(<span class="kw">const</span> Road&amp; from, <span class="kw">const</span> Road&amp; to) {
   <span class="kw">return</span> (to.origin_deg - from.origin_deg + 360) % 360;
-}</code></pre>"""),
+}</code></pre>""", None),
     ("Magazine — Node.js REST EC2 App",
      "Angular front end with Node REST API, packaged for EC2 deployment.",
-     "https://github.com/kevingnet/magazine", None),
+     "https://github.com/kevingnet/magazine", None, None),
     ("Game of Life — Java",
      "Conway's Game of Life — cellular automaton in Java.",
      "https://github.com/kevingnet/GameOfLife",
@@ -152,7 +152,7 @@ SAMPLES = [
 <span class="kw">for</span> (<span class="kw">int</span> dy = -1; dy &lt;= 1; dy++)
   <span class="kw">for</span> (<span class="kw">int</span> dx = -1; dx &lt;= 1; dx++)
     <span class="kw">if</span> (dx != 0 || dy != 0) neighbors += grid.at(x+dx, y+dy);
-next[x][y] = (neighbors == 3) || (grid.at(x,y) &amp;&amp; neighbors == 2);</code></pre>"""),
+next[x][y] = (neighbors == 3) || (grid.at(x,y) &amp;&amp; neighbors == 2);</code></pre>""", None),
     ("Word Finder — C++",
      "Longest word buildable by concatenating shorter dictionary words.",
      "https://github.com/kevingnet/WordFinder",
@@ -163,16 +163,17 @@ next[x][y] = (neighbors == 3) || (grid.at(x,y) &amp;&amp; neighbors == 2);</code
     <span class="kw">for</span> (<span class="kw">size_t</span> j = 0; j &lt; i; j++)
       <span class="kw">if</span> (ok[j] &amp;&amp; dict.count(word.substr(j, i - j))) { ok[i] = <span class="kw">true</span>; <span class="kw">break</span>; }
   <span class="kw">return</span> ok[word.size()];
-}</code></pre>"""),
+}</code></pre>""", None),
     ("Virtual Coffee Machine",
      "AWS Docker app — Node API (level, brew, refill) with TypeScript client.",
-     "https://github.com/kevingnet/coffee.bitnami", None),
+     "https://github.com/kevingnet/coffee.bitnami", None,
+     "https://kevingnet.github.io/coffee.bitnami/"),
     ("Flux — Electric Vehicle",
      "30 / 60 / 90-day project plan with architecture diagrams.",
-     "https://github.com/kevingnet/FluxElectricVehicle", None),
+     "https://github.com/kevingnet/FluxElectricVehicle", None, None),
     ("Time Server — TypeScript / Node.js",
      "Angular + Node REST time service for EC2.",
-     "https://github.com/kevingnet/time_server", None),
+     "https://github.com/kevingnet/time_server", None, None),
 ]
 
 
@@ -695,10 +696,11 @@ def main():
         <p>{html.escape(desc)}</p>
         {snippet or ""}
         <div class="sample-links">
-          <a href="{gh}" target="_blank" rel="noopener">GitHub</a>
+          <a href="{gh}" target="_blank" rel="noopener">GitHub</a>{f'''
+          <a href="{demo}" target="_blank" rel="noopener">LiveDemo</a>''' if demo else ''}
         </div>
       </article>"""
-        for title, desc, gh, snippet in SAMPLES
+        for title, desc, gh, snippet, demo in SAMPLES
     )
     (ROOT / "samples.html").write_text(
         page(
