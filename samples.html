@@ -60,6 +60,15 @@
     <h1 class="page-title">Projects Samples</h1>
     <div class="content-section">
       <article class="sample-entry fade-in">
+        <h2>Hive Mapper — Drone Navigation (C++)</h2>
+        <p>Navigate a drone through interconnected circular roads in minimum time; position is road name plus degrees clockwise.</p>
+        <pre class="code-snippet"><code><span class="cm">// Greedy leg: pick next hop minimizing remaining arc distance</span>
+<span class="kw">int</span> <span class="fn">shortest_degrees</span>(<span class="kw">const</span> Road&amp; from, <span class="kw">const</span> Road&amp; to) {
+  <span class="kw">return</span> (to.origin_deg - from.origin_deg + 360) % 360;
+}</code></pre>
+
+      </article>
+      <article class="sample-entry fade-in">
         <h2><a href="https://kevingnet.github.io/magazine/" target="_blank" rel="noopener">Magazine — Angular + REST Demo</a></h2>
         <p>Angular admin app with in-browser fake backend — live on GitHub Pages.</p>
         
@@ -78,6 +87,19 @@ next[x][y] = (neighbors == 3) || (grid.at(x,y) &amp;&amp; neighbors == 2);</code
         <div class="sample-links">
           <a href="https://github.com/kevingnet/GameOfLife" target="_blank" rel="noopener">GitHub</a> <a href="https://kevingnet.github.io/GameOfLife/" target="_blank" rel="noopener">LiveDemo</a>
         </div>
+      </article>
+      <article class="sample-entry fade-in">
+        <h2>Word Finder — C++</h2>
+        <p>Longest word buildable by concatenating shorter dictionary words.</p>
+        <pre class="code-snippet"><code><span class="kw">bool</span> <span class="fn">can_build</span>(<span class="kw">const</span> string&amp; word, <span class="kw">const</span> set&lt;string&gt;&amp; dict) {
+  vector&lt;<span class="kw">bool</span>&gt; ok(word.size() + 1);
+  ok[0] = <span class="kw">true</span>;
+  <span class="kw">for</span> (<span class="kw">size_t</span> i = 1; i &lt;= word.size(); i++)
+    <span class="kw">for</span> (<span class="kw">size_t</span> j = 0; j &lt; i; j++)
+      <span class="kw">if</span> (ok[j] &amp;&amp; dict.count(word.substr(j, i - j))) { ok[i] = <span class="kw">true</span>; <span class="kw">break</span>; }
+  <span class="kw">return</span> ok[word.size()];
+}</code></pre>
+
       </article>
       <article class="sample-entry fade-in">
         <h2><a href="https://kevingnet.github.io/coffee.bitnami/" target="_blank" rel="noopener">Virtual Coffee Machine</a></h2>
