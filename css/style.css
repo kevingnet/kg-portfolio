@@ -673,6 +673,33 @@ main {
   font-size: 0.95rem;
 }
 
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.timeline-role {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.timeline-dates {
+  font-size: 0.82rem;
+  color: var(--accent);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.timeline-org {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin: 0.1rem 0 0.25rem;
+}
+
 .timeline-item span {
   font-size: 0.82rem;
   color: var(--accent);

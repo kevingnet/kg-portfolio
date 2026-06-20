@@ -124,15 +124,24 @@ CORE_SKILLS = [
     "Angular", "Node.js", "Tcl", "CAD/CAM", "Virtualization",
 ]
 
+# role title, organization, dates, summary (matches resume order)
 TIMELINE = [
-    ("MAF RODA Agrobotic", "2025–present",
-     "Sr. Software Engineer — Americas traceability lead, fleet installers, OpenCV on production sorters."),
-    ("Leidos · Independent · Google · Meta", "2018–2025",
-     "Airport scanning (Leidos), AWS consulting, YouTube/Earth/HR at Google, privacy audits at Meta."),
-    ("VMware · Veritas · HPE", "2015–2018",
-     "QA framework rewrite (80k→8k LOC), OSCAP/OWASP hardening on appliances."),
-    ("Electrosonic · Disney · DirecTV · …", "1990s–2010s",
-     "Embedded AV, enterprise web, OCR automation, CAD/CAM, set-top boxes, network test gear."),
+    ("Sr. Software Engineer — R&D Staff", "MAF RODA Agrobotic", "Apr 2025 – Present",
+     "Americas traceability lead; Python fleet installer (WMI/WinRM), OpenCV SIMD on production sorters."),
+    ("Senior Solution Architect", "Independent Consultant", "Jul 2023 – Apr 2025",
+     "AWS microservices (EC2, S3, Lambda, API Gateway, CloudFormation) for multiple clients."),
+    ("Sr. Solution Architect", "Leidos · Contractor (KForce)", "Nov 2022 – Jun 2023",
+     "Secure airport scanning app (C++, Qt5, Python); enterprise performance — profiling and caching."),
+    ("Sr. Software Engineer / Solution Architect", "Google · Contractors", "2018 – 2022",
+     "YouTube, Hardware, Devices (2018–2020); Earth Enterprise & L10n (2020–2022); HR microservices (2022)."),
+    ("Solution Architect", "Intelliswift · Contractor (Accenture)", "Mar 2021 – Jan 2022",
+     "AWS serverless/hybrid cloud; Java static-analysis platform with VS Code/PMD integration."),
+    ("Privacy Audit Engineer", "Meta · Contractor (DISYS)", "Oct 2020 – Mar 2021",
+     "Privacy/security assessments for acquisitions; architecture review tooling across SQL/NoSQL estates."),
+    ("Senior Software Developer / Solutions Architect", "VMware · Veritas · HPE", "2015 – 2018",
+     "QA framework rewrite (80k→8k LOC, ~8× faster); OSCAP/OWASP hardening on backup appliances."),
+    ("Earlier career", "OpenTV, Disney, DirecTV, embedded/AV, and more", "2013 and earlier",
+     "See resume for full Experience History."),
 ]
 
 # metric, title, blurb, optional project slug for "read more" link
@@ -193,6 +202,20 @@ next[x][y] = (neighbors == 3) || (grid.at(x,y) &amp;&amp; neighbors == 2);</code
      "Angular client with REST time API and in-browser demo backend on GitHub Pages.",
      "https://github.com/kevingnet/time_server", None, "https://kevingnet.github.io/time_server/"),
 ]
+
+
+def timeline_block() -> str:
+    return "\n".join(
+        f"""          <div class="timeline-item">
+            <div class="timeline-header">
+              <strong class="timeline-role">{html.escape(role)}</strong>
+              <span class="timeline-dates">{html.escape(era)}</span>
+            </div>
+            <div class="timeline-org">{html.escape(org)}</div>
+            <p>{html.escape(note)}</p>
+          </div>"""
+        for role, org, era, note in TIMELINE
+    )
 
 
 def skill_chips(skills: list[str], limit: int | None = None) -> str:
@@ -835,11 +858,7 @@ def main():
         <div class="skills-cloud">{"".join(f'<span class="skill-chip">{html.escape(s)}</span>' for s in CORE_SKILLS)}</div>
         <h2>Career timeline</h2>
         <div class="timeline">
-{"".join(f'''          <div class="timeline-item">
-            <strong>{html.escape(label)}</strong>
-            <span>{html.escape(era)}</span>
-            <p>{html.escape(note)}</p>
-          </div>''' for label, era, note in TIMELINE)}
+{timeline_block()}
         </div>
         <h2>Personal</h2>
         <ul>
