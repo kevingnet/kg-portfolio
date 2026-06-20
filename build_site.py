@@ -13,13 +13,15 @@ RESUME_ASSET = "assets/Kevin-Guerra.pdf"
 
 OWNER = "Kevin Alexander Guerra"
 OWNER_SHORT = "Kevin"
+PROFESSIONAL_TITLE = "Senior Solution Architect"
 SITE_NAME = "KG PORTFOLIO"
 COPYRIGHT_YEAR = "2026"
 CONTACT_EMAIL = "kevingnet1@gmail.com"
 SITE_BASE_URL = os.getenv("SITE_BASE_URL", "https://kevingnet.github.io/kg-portfolio").rstrip("/")
+RESUME_HTML_SRC = Path("/home/kg/Jobs/Kevin Guerra - Resume.html")
 SITE_TAGLINE = (
-    "Software developer portfolio — currently Sr. Software Engineer at MAF RODA Agrobotic; "
-    "enterprise systems, computer vision, traceability, cloud, and performance optimization."
+    f"{PROFESSIONAL_TITLE} portfolio — currently Sr. Software Engineer at MAF RODA Agrobotic; "
+    "cloud, distributed systems, performance, security, computer vision, and traceability."
 )
 DEFAULT_OG_IMAGE = "assets/images/profile.jpeg"
 
@@ -477,13 +479,12 @@ PROJECTS = {
     },
     "google": {
         "title": "Google Projects",
-        "intro": """<p><strong>Software Engineer</strong> · 2018 – 2022 · Mountain View / Remote</p>
-<p>Multiple teams across Google — localization, Maps / Earth Enterprise, hardware analytics, devices, YouTube, and HR / finance. Focus: stalled-project recovery, performance optimization, privacy-aware microservices, and greenfield rewrites at global scale.</p>
+        "intro": """<p><strong>Sr. Software Engineer / Solution Architect</strong> · 2018 – 2022 · Remote / Mountain View</p>
+<p>Google — multiple teams · Contractors. Focus: stalled-project recovery, performance optimization, privacy-aware microservices, and greenfield rewrites at global scale.</p>
 <ul>
-<li><strong>Localization (Avik / Babel):</strong> unstalled a 2-year project; ~45k LOC legacy replaced with ~24k LOC greenfield + 2k LOC RBAC security module — delivered in 7 months</li>
-<li><strong>Google Earth Enterprise:</strong> open-source migration, library upgrades, and geospatial XML pipeline — processing time <strong>2 hours → 11 minutes</strong> (~11×)</li>
-<li><strong>Hardware Analytics &amp; YouTube:</strong> privacy-aware microservices, authN/authZ, BigQuery pipelines, Borg / GCP</li>
-<li><strong>HR payroll (v2):</strong> Java microservices with Guice, Protobuf, and dependency-injection patterns</li>
+<li><strong>YouTube, Hardware, Devices (2018–2020):</strong> Java/C++/Python microservices; Python/Angular/TypeScript on Borg; authN/authZ, audit tooling, BigQuery pipelines</li>
+<li><strong>Earth Enterprise &amp; L10n (2020–2022):</strong> geospatial XML pipeline <strong>2 hours → 11 minutes</strong> (~11×); greenfield ~24k LOC replacement of ~45k LOC legacy platform + 2k LOC RBAC — delivered in 7 months after two years of stagnation</li>
+<li><strong>HR (2022):</strong> Java microservices (Guice, Protobuf) for privacy-conscious internal payroll tooling</li>
 </ul>""",
         "tech": "Java, Python, C++, Postgres, Dart, TypeScript, Angular, GCP, App Engine, BigQuery, Microservices, OAuth2, RBAC, Protobuf, Guice, Borg, HTML5, CSS, Memcache",
         "sections": [
@@ -758,9 +759,9 @@ def main():
             "Portfolio",
             "Portfolio",
             f"""    <section class="hero fade-in">
-      <p class="hero-eyebrow">Software Developer</p>
+      <p class="hero-eyebrow">{PROFESSIONAL_TITLE}</p>
       <h1>{OWNER}</h1>
-      <p class="hero-lead">Currently <strong>Sr. Software Engineer at MAF RODA Agrobotic</strong> (Americas traceability). Enterprise systems, computer vision, security, embedded software, and performance work across Google, Disney, VMware, DirecTV, and more.</p>
+      <p class="hero-lead">Currently <strong>Sr. Software Engineer at MAF RODA Agrobotic</strong> (Americas traceability). Cloud, distributed systems, performance, and security work across Google, Leidos, VMware, Disney, DirecTV, and more.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="{RESUME_ASSET}">Download Resume</a>
         <a class="btn btn-secondary" href="mailto:{CONTACT_EMAIL}">Get in Touch</a>
@@ -773,7 +774,7 @@ def main():
     <div class="portfolio-grid">
 {cards}
     </div>""",
-            description="Selected software projects at Google, Disney, VMware, DirecTV, and other companies.",
+            description=f"{PROFESSIONAL_TITLE} — selected projects at Google, Leidos, VMware, Disney, DirecTV, and other companies.",
         )
     )
 
@@ -828,7 +829,7 @@ def main():
       <img class="about-hero-img fade-in" src="assets/images/hero.jpg" alt="{OWNER}">
       <div class="about-bio fade-in">
         <h1>About</h1>
-        <p>Hello, my name is Kevin. I'm a software developer — my career started as a hobby and I'm still passionate about building fast, reliable software across tools, web apps, embedded systems, robotics, networking, databases, security, and virtualization.</p>
+        <p>Hello, my name is Kevin. I'm a {PROFESSIONAL_TITLE.lower()} — my career started as a hobby and I'm still passionate about building fast, reliable systems across cloud, web, embedded, robotics, networking, databases, security, and virtualization.</p>
         <p>I focus on quality code that stays maintainable: fewer lines, code generation where it helps, and patterns that scale. See my <a href="{RESUME_ASSET}">resume (PDF)</a> for the full technology list and employment history.</p>
         <h2>Core skills</h2>
         <div class="skills-cloud">{"".join(f'<span class="skill-chip">{html.escape(s)}</span>' for s in CORE_SKILLS)}</div>
@@ -854,12 +855,13 @@ def main():
             <button type="button" class="btn btn-secondary" data-copy-email="{CONTACT_EMAIL}">Copy email</button>
             <a class="btn btn-secondary" href="{SOCIAL["linkedin"]}" target="_blank" rel="noopener">LinkedIn</a>
             <a class="btn btn-secondary" href="{RESUME_ASSET}">Resume PDF</a>
+            <a class="btn btn-secondary" href="{SITE_BASE_URL}/">Portfolio</a>
           </div>
         </section>
       </div>
     </div>""",
             slug_path="about.html",
-            description=f"About {OWNER} — software developer, autodidact, and portfolio author.",
+            description=f"About {OWNER} — {PROFESSIONAL_TITLE.lower()}, autodidact, and portfolio author.",
             og_image="assets/images/hero.jpg",
         )
     )
