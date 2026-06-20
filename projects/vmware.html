@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vmware Projects | KG PORTFOLIO</title>
-  <meta name="description" content="Vmware Projects — Kevin Alexander Guerra.">
+  <title>VMware Projects | KG PORTFOLIO</title>
+  <meta name="description" content="VMware Projects — Kevin Alexander Guerra.">
   <link rel="canonical" href="https://kevingnet.github.io/kg-portfolio/projects/vmware.html">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="KG PORTFOLIO">
-  <meta property="og:title" content="Vmware Projects | KG PORTFOLIO">
-  <meta property="og:description" content="Vmware Projects — Kevin Alexander Guerra.">
+  <meta property="og:title" content="VMware Projects | KG PORTFOLIO">
+  <meta property="og:description" content="VMware Projects — Kevin Alexander Guerra.">
   <meta property="og:url" content="https://kevingnet.github.io/kg-portfolio/projects/vmware.html">
   <meta property="og:image" content="https://kevingnet.github.io/kg-portfolio/assets/images/profile.jpeg">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Vmware Projects | KG PORTFOLIO">
-  <meta name="twitter:description" content="Vmware Projects — Kevin Alexander Guerra.">
+  <meta name="twitter:title" content="VMware Projects | KG PORTFOLIO">
+  <meta name="twitter:description" content="VMware Projects — Kevin Alexander Guerra.">
   <meta name="twitter:image" content="https://kevingnet.github.io/kg-portfolio/assets/images/profile.jpeg">
   <meta name="theme-color" content="#0e1014">
   <link rel="stylesheet" href="../css/style.css">
@@ -58,17 +58,33 @@
   </header>
   <main id="main-content">
     <a href="../index.html" class="back-link">&larr; Back to Portfolio</a>
-    <h1 class="page-title">Vmware Projects</h1>
+    <h1 class="page-title">VMware Projects</h1>
     <div class="content-section">
+<p><strong>Sr. Member of Technical Staff (MTS)</strong> · 2015 – 2018 · Palo Alto</p>
+<p>VMware — virtualization and cloud infrastructure. QA automation for ESX, HBR, and related appliances.</p>
 <ul>
-<li>Gemini: Automation Framework to instrument virtual and non-virtual servers, workstations and appliances, such as ESX, HBR</li>
-<li>SSH Connector: Used by Gemini to securely connect and send commands to devices above</li>
-<li>Log Framework: Used by Gemini to log to terminal or html documents</li>
+<li><strong>Gemini framework:</strong> replaced ~80k LOC Perl legacy with ~8k LOC Python — ~8× faster execution</li>
+<li><strong>Paradigms:</strong> object-oriented, functional, and meta-programming patterns in a cohesive test harness</li>
+<li><strong>Veritas / HPE (adjacent):</strong> OSCAP and OWASP hardening on backup appliances (see timeline)</li>
 </ul>
-      <div class="tech-tags"><strong>Technologies</strong><div class="skill-row"><span class="skill-chip">Python</span><span class="skill-chip">Perl</span><span class="skill-chip">Virtualization</span><span class="skill-chip">Networking</span><span class="skill-chip">Automation</span><span class="skill-chip">QA</span><span class="skill-chip">Script Instrumentation</span><span class="skill-chip">Framework Development</span><span class="skill-chip">Test Development</span><span class="skill-chip">SSH</span></div></div>
-<h2>Work Performed</h2>
-<p>Architected, designed and implemented a new testing framework for the QA department.</p>
-<p>Replaced old framework mostly perl based with a lot of python. Original framework was over 80kloc, new framework is 8kloc, 8 times faster. Used object orientation, functional and meta programming as paradigms.</p>
+      <div class="tech-tags"><strong>Technologies</strong><div class="skill-row"><span class="skill-chip">Python</span><span class="skill-chip">Perl</span><span class="skill-chip">Virtualization</span><span class="skill-chip">ESX</span><span class="skill-chip">HBR</span><span class="skill-chip">SSH</span><span class="skill-chip">Automation</span><span class="skill-chip">QA</span><span class="skill-chip">Framework Development</span><span class="skill-chip">Test Instrumentation</span><span class="skill-chip">Networking</span></div></div>
+      <h2>Gemini Automation Framework</h2>
+      <h3>Python · QA · ~80k → ~8k LOC</h3>
+<p>Architected, designed, and implemented a new testing framework for the QA department — instrumenting virtual and physical servers, workstations, and appliances (ESX, HBR, and related targets).</p>
+<ul>
+<li>Replaced a ~80k LOC Perl-centric legacy framework with ~8k LOC Python — approximately <strong>8× faster</strong> test runs</li>
+<li>Unified instrumentation across heterogeneous VMware product lines</li>
+<li>OOP structure with functional helpers and meta-programming for extensible test definitions</li>
+<li>Field engineers and QA could script complex scenarios without touching low-level Perl internals</li>
+</ul>
+      <h2>SSH Connector &amp; Log Framework</h2>
+      <h3>Secure remote execution · HTML / terminal logging</h3>
+<p>Supporting libraries used throughout Gemini.</p>
+<ul>
+<li><strong>SSH Connector:</strong> secure command dispatch to ESX hosts, appliances, and lab devices</li>
+<li><strong>Log Framework:</strong> structured output to terminal or HTML reports for regression analysis</li>
+<li>Composable building blocks — connectors and logging shared across test suites</li>
+</ul>
     </div>
   </main>
   <footer class="site-footer">

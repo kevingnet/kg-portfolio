@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Samples | KG PORTFOLIO</title>
-  <meta name="description" content="Open-source sample projects on GitHub — C++, Java, Node.js, TypeScript, and AWS.">
+  <meta name="description" content="Open-source sample projects on GitHub — C++, Java, Angular, TypeScript, and Python demos.">
   <link rel="canonical" href="https://kevingnet.github.io/kg-portfolio/samples.html">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="KG PORTFOLIO">
   <meta property="og:title" content="Samples | KG PORTFOLIO">
-  <meta property="og:description" content="Open-source sample projects on GitHub — C++, Java, Node.js, TypeScript, and AWS.">
+  <meta property="og:description" content="Open-source sample projects on GitHub — C++, Java, Angular, TypeScript, and Python demos.">
   <meta property="og:url" content="https://kevingnet.github.io/kg-portfolio/samples.html">
   <meta property="og:image" content="https://kevingnet.github.io/kg-portfolio/assets/images/profile.jpeg">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Samples | KG PORTFOLIO">
-  <meta name="twitter:description" content="Open-source sample projects on GitHub — C++, Java, Node.js, TypeScript, and AWS.">
+  <meta name="twitter:description" content="Open-source sample projects on GitHub — C++, Java, Angular, TypeScript, and Python demos.">
   <meta name="twitter:image" content="https://kevingnet.github.io/kg-portfolio/assets/images/profile.jpeg">
   <meta name="theme-color" content="#0e1014">
   <link rel="stylesheet" href="css/style.css">
@@ -60,24 +60,11 @@
     <h1 class="page-title">Projects Samples</h1>
     <div class="content-section">
       <article class="sample-entry fade-in">
-        <h2><a href="https://kevingnet.github.io/HiveMapperDrone/" target="_blank" rel="noopener">Hive Mapper — Drone Navigation (C++)</a></h2>
-        <p>Navigate a drone through interconnected circular roads in minimum time; position is road name plus degrees clockwise.</p>
-        <pre class="code-snippet"><code><span class="cm">// Greedy leg: pick next hop minimizing remaining arc distance</span>
-<span class="kw">int</span> <span class="fn">shortest_degrees</span>(<span class="kw">const</span> Road&amp; from, <span class="kw">const</span> Road&amp; to) {
-  <span class="kw">return</span> (to.origin_deg - from.origin_deg + 360) % 360;
-}</code></pre>
-        <div class="sample-links">
-          <a href="https://github.com/kevingnet/HiveMapperDrone" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://kevingnet.github.io/HiveMapperDrone/" target="_blank" rel="noopener">LiveDemo</a>
-        </div>
-      </article>
-      <article class="sample-entry fade-in">
-        <h2><a href="https://kevingnet.github.io/magazine/" target="_blank" rel="noopener">Magazine — Node.js REST EC2 App</a></h2>
-        <p>Angular front end with Node REST API, packaged for EC2 deployment.</p>
+        <h2><a href="https://kevingnet.github.io/magazine/" target="_blank" rel="noopener">Magazine — Angular + REST Demo</a></h2>
+        <p>Angular admin app with in-browser fake backend — live on GitHub Pages.</p>
         
         <div class="sample-links">
-          <a href="https://github.com/kevingnet/magazine" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://kevingnet.github.io/magazine/" target="_blank" rel="noopener">LiveDemo</a>
+          <a href="https://github.com/kevingnet/magazine" target="_blank" rel="noopener">GitHub</a> <a href="https://kevingnet.github.io/magazine/" target="_blank" rel="noopener">LiveDemo</a>
         </div>
       </article>
       <article class="sample-entry fade-in">
@@ -89,24 +76,7 @@
     <span class="kw">if</span> (dx != 0 || dy != 0) neighbors += grid.at(x+dx, y+dy);
 next[x][y] = (neighbors == 3) || (grid.at(x,y) &amp;&amp; neighbors == 2);</code></pre>
         <div class="sample-links">
-          <a href="https://github.com/kevingnet/GameOfLife" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://kevingnet.github.io/GameOfLife/" target="_blank" rel="noopener">LiveDemo</a>
-        </div>
-      </article>
-      <article class="sample-entry fade-in">
-        <h2><a href="https://kevingnet.github.io/WordFinder/" target="_blank" rel="noopener">Word Finder — C++</a></h2>
-        <p>Longest word buildable by concatenating shorter dictionary words.</p>
-        <pre class="code-snippet"><code><span class="kw">bool</span> <span class="fn">can_build</span>(<span class="kw">const</span> string&amp; word, <span class="kw">const</span> set&lt;string&gt;&amp; dict) {
-  vector&lt;<span class="kw">bool</span>&gt; ok(word.size() + 1);
-  ok[0] = <span class="kw">true</span>;
-  <span class="kw">for</span> (<span class="kw">size_t</span> i = 1; i &lt;= word.size(); i++)
-    <span class="kw">for</span> (<span class="kw">size_t</span> j = 0; j &lt; i; j++)
-      <span class="kw">if</span> (ok[j] &amp;&amp; dict.count(word.substr(j, i - j))) { ok[i] = <span class="kw">true</span>; <span class="kw">break</span>; }
-  <span class="kw">return</span> ok[word.size()];
-}</code></pre>
-        <div class="sample-links">
-          <a href="https://github.com/kevingnet/WordFinder" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://kevingnet.github.io/WordFinder/" target="_blank" rel="noopener">LiveDemo</a>
+          <a href="https://github.com/kevingnet/GameOfLife" target="_blank" rel="noopener">GitHub</a> <a href="https://kevingnet.github.io/GameOfLife/" target="_blank" rel="noopener">LiveDemo</a>
         </div>
       </article>
       <article class="sample-entry fade-in">
@@ -114,8 +84,7 @@ next[x][y] = (neighbors == 3) || (grid.at(x,y) &amp;&amp; neighbors == 2);</code
         <p>Angular coffee simulator — brew, refill, and tank levels. Live on GitHub Pages; Node API for local dev.</p>
         
         <div class="sample-links">
-          <a href="https://github.com/kevingnet/coffee.bitnami" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://kevingnet.github.io/coffee.bitnami/" target="_blank" rel="noopener">LiveDemo</a>
+          <a href="https://github.com/kevingnet/coffee.bitnami" target="_blank" rel="noopener">GitHub</a> <a href="https://kevingnet.github.io/coffee.bitnami/" target="_blank" rel="noopener">LiveDemo</a>
         </div>
       </article>
       <article class="sample-entry fade-in">
@@ -123,17 +92,15 @@ next[x][y] = (neighbors == 3) || (grid.at(x,y) &amp;&amp; neighbors == 2);</code
         <p>30 / 60 / 90-day project plan with architecture diagrams.</p>
         
         <div class="sample-links">
-          <a href="https://github.com/kevingnet/FluxElectricVehicle" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://kevingnet.github.io/FluxElectricVehicle/" target="_blank" rel="noopener">LiveDemo</a>
+          <a href="https://github.com/kevingnet/FluxElectricVehicle" target="_blank" rel="noopener">GitHub</a> <a href="https://kevingnet.github.io/FluxElectricVehicle/" target="_blank" rel="noopener">LiveDemo</a>
         </div>
       </article>
       <article class="sample-entry fade-in">
-        <h2><a href="https://kevingnet.github.io/time_server/" target="_blank" rel="noopener">Time Server — TypeScript / Node.js</a></h2>
-        <p>Angular + Node REST time service for EC2.</p>
+        <h2><a href="https://kevingnet.github.io/time_server/" target="_blank" rel="noopener">Time Server — Angular + REST Demo</a></h2>
+        <p>Angular client with REST time API and in-browser demo backend on GitHub Pages.</p>
         
         <div class="sample-links">
-          <a href="https://github.com/kevingnet/time_server" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://kevingnet.github.io/time_server/" target="_blank" rel="noopener">LiveDemo</a>
+          <a href="https://github.com/kevingnet/time_server" target="_blank" rel="noopener">GitHub</a> <a href="https://kevingnet.github.io/time_server/" target="_blank" rel="noopener">LiveDemo</a>
         </div>
       </article>
     </div>

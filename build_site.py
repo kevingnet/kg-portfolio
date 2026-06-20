@@ -133,17 +133,26 @@ TIMELINE = [
      "Embedded AV, enterprise web, OCR automation, CAD/CAM, set-top boxes, network test gear."),
 ]
 
+# metric, title, blurb, optional project slug for "read more" link
+HIGHLIGHTS = [
+    ("2h → 11m", "Google Earth pipeline",
+     "Geospatial XML processing — branch reordering, invariant caching, parallel Postgres import.",
+     "google"),
+    ("7 months", "Localization platform",
+     "Unstalled a 2-year project; ~45k LOC legacy replaced with ~24k LOC greenfield + 2k LOC RBAC.",
+     "google"),
+    ("80k → 8k LOC", "VMware QA framework",
+     "Python automation framework ~8× faster than legacy Perl — OOP, functional, and meta-programming.",
+     "vmware"),
+    ("<2 months", "DirecTV OCR system",
+     "Rebuilt failed OCR pipeline after a prior 6-person, 4-year effort — C++, FFT, client/server.",
+     "directv"),
+]
+
 # title, description, github URL, optional code snippet HTML, optional live demo URL
 SAMPLES = [
-    ("Hive Mapper — Drone Navigation (C++)",
-     "Navigate a drone through interconnected circular roads in minimum time; position is road name plus degrees clockwise.",
-     "https://github.com/kevingnet/HiveMapperDrone",
-     """<pre class="code-snippet"><code><span class="cm">// Greedy leg: pick next hop minimizing remaining arc distance</span>
-<span class="kw">int</span> <span class="fn">shortest_degrees</span>(<span class="kw">const</span> Road&amp; from, <span class="kw">const</span> Road&amp; to) {
-  <span class="kw">return</span> (to.origin_deg - from.origin_deg + 360) % 360;
-}</code></pre>""", "https://kevingnet.github.io/HiveMapperDrone/"),
-    ("Magazine — Node.js REST EC2 App",
-     "Angular front end with Node REST API, packaged for EC2 deployment.",
+    ("Magazine — Angular + REST Demo",
+     "Angular admin app with in-browser fake backend — live on GitHub Pages.",
      "https://github.com/kevingnet/magazine", None, "https://kevingnet.github.io/magazine/"),
     ("Game of Life — Java",
      "Conway's Game of Life — cellular automaton in Java.",
@@ -153,17 +162,6 @@ SAMPLES = [
   <span class="kw">for</span> (<span class="kw">int</span> dx = -1; dx &lt;= 1; dx++)
     <span class="kw">if</span> (dx != 0 || dy != 0) neighbors += grid.at(x+dx, y+dy);
 next[x][y] = (neighbors == 3) || (grid.at(x,y) &amp;&amp; neighbors == 2);</code></pre>""", "https://kevingnet.github.io/GameOfLife/"),
-    ("Word Finder — C++",
-     "Longest word buildable by concatenating shorter dictionary words.",
-     "https://github.com/kevingnet/WordFinder",
-     """<pre class="code-snippet"><code><span class="kw">bool</span> <span class="fn">can_build</span>(<span class="kw">const</span> string&amp; word, <span class="kw">const</span> set&lt;string&gt;&amp; dict) {
-  vector&lt;<span class="kw">bool</span>&gt; ok(word.size() + 1);
-  ok[0] = <span class="kw">true</span>;
-  <span class="kw">for</span> (<span class="kw">size_t</span> i = 1; i &lt;= word.size(); i++)
-    <span class="kw">for</span> (<span class="kw">size_t</span> j = 0; j &lt; i; j++)
-      <span class="kw">if</span> (ok[j] &amp;&amp; dict.count(word.substr(j, i - j))) { ok[i] = <span class="kw">true</span>; <span class="kw">break</span>; }
-  <span class="kw">return</span> ok[word.size()];
-}</code></pre>""", "https://kevingnet.github.io/WordFinder/"),
     ("Virtual Coffee Machine",
      "Angular coffee simulator — brew, refill, and tank levels. Live on GitHub Pages; Node API for local dev.",
      "https://github.com/kevingnet/coffee.bitnami", None,
@@ -171,8 +169,8 @@ next[x][y] = (neighbors == 3) || (grid.at(x,y) &amp;&amp; neighbors == 2);</code
     ("Flux — Electric Vehicle",
      "30 / 60 / 90-day project plan with architecture diagrams.",
      "https://github.com/kevingnet/FluxElectricVehicle", None, "https://kevingnet.github.io/FluxElectricVehicle/"),
-    ("Time Server — TypeScript / Node.js",
-     "Angular + Node REST time service for EC2.",
+    ("Time Server — Angular + REST Demo",
+     "Angular client with REST time API and in-browser demo backend on GitHub Pages.",
      "https://github.com/kevingnet/time_server", None, "https://kevingnet.github.io/time_server/"),
 ]
 
@@ -182,6 +180,54 @@ def skill_chips(skills: list[str], limit: int | None = None) -> str:
     return '<div class="skill-row">' + "".join(
         f'<span class="skill-chip">{html.escape(s)}</span>' for s in items
     ) + "</div>"
+
+
+def highlights_strip(depth: int = 0) -> str:
+    p = rel_prefix(depth)
+    cards = []
+    for metric, title, blurb, slug in HIGHLIGHTS:
+        link = f'{p}projects/{slug}.html' if slug else None
+        title_html = (
+            f'<a href="{link}">{html.escape(title)}</a>' if link
+            else html.escape(title)
+        )
+        cards.append(
+            f"""      <article class="highlight-card fade-in">
+        <span class="highlight-metric">{html.escape(metric)}</span>
+        <h2 class="highlight-title">{title_html}</h2>
+        <p>{html.escape(blurb)}</p>
+      </article>"""
+        )
+    return (
+        '    <section class="highlights-strip fade-in" aria-label="Selected highlights">\n'
+        '      <h2 class="highlights-heading">Selected highlights</h2>\n'
+        '      <div class="highlights-grid">\n'
+        + "\n".join(cards)
+        + "\n      </div>\n    </section>"
+    )
+
+
+def sample_entry(title: str, desc: str, gh: str | None, snippet: str | None, demo: str | None) -> str:
+    link = demo or gh
+    title_html = (
+        f'<a href="{link}" target="_blank" rel="noopener">{html.escape(title)}</a>'
+        if link else html.escape(title)
+    )
+    links = []
+    if gh:
+        links.append(f'<a href="{gh}" target="_blank" rel="noopener">GitHub</a>')
+    if demo:
+        links.append(f'<a href="{demo}" target="_blank" rel="noopener">LiveDemo</a>')
+    links_block = (
+        f'        <div class="sample-links">\n          {" ".join(links)}\n        </div>'
+        if links else ""
+    )
+    return f"""      <article class="sample-entry fade-in">
+        <h2>{title_html}</h2>
+        <p>{html.escape(desc)}</p>
+        {snippet or ""}
+{links_block}
+      </article>"""
 
 
 def tech_to_chips(tech: str, limit: int = 16) -> str:
@@ -388,43 +434,80 @@ PROJECTS = {
     },
     "leidos": {
         "title": "Leidos Projects",
-        "intro": """<p><strong>Sr. Solution Architect</strong> · Nov 2022 – Jun 2023</p>
-<p>Leidos · Contractor (KForce) · Remote</p>
-<p>Leidos is a defense, aviation, and information-technology company providing mission-critical systems for government and commercial customers.</p>
+        "intro": """<p><strong>Sr. Solution Architect</strong> · Nov 2022 – Jun 2023 · Remote</p>
+<p>Leidos — defense, aviation, and information-technology company building mission-critical systems for government and commercial customers. Contract via KForce.</p>
 <ul>
-<li>Secure airport scanning application — C++, Qt5, Python imaging pipeline for high-assurance environments</li>
-<li>Enterprise architecture and performance engineering — profiling, caching, high-transaction systems</li>
+<li><strong>Airport scanning application:</strong> C++ / Qt5 front end with Python imaging pipeline for high-assurance environments</li>
+<li><strong>Enterprise architecture:</strong> performance profiling, caching, and throughput tuning on high-transaction systems</li>
+<li><strong>Security-first design:</strong> reliability and accurate image processing where operational failure is not an option</li>
 </ul>""",
         "tech": "C++, Qt5, Python, Image Processing, Security, Enterprise Architecture, Performance Profiling, Caching, High-Transaction Systems",
         "sections": [
-            ("Airport Scanning Application", "C++, Qt5, Python · High-assurance imaging", """<p>Developed a secure airport scanning application combining a C++ and Qt5 front end with Python components for the imaging pipeline.</p>
-<p>Built for high-assurance environments where reliability, security, and accurate image processing are critical to operations.</p>"""),
-            ("Enterprise Architecture", "Performance · Profiling · Caching", """<p>Solution architecture and performance work on high-transaction enterprise systems.</p>
-<p>Applied profiling and caching strategies to improve throughput and responsiveness under production load.</p>"""),
+            ("Airport Scanning Application", "C++, Qt5, Python · High-assurance imaging", """<p>Developed a secure airport scanning application combining a C++ and Qt5 operator UI with Python components for the imaging pipeline.</p>
+<ul>
+<li>Built for high-assurance environments — reliability, security, and accurate image processing are operational requirements</li>
+<li>Integrated C++ UI with Python image-processing modules across a multi-language codebase</li>
+<li>Qt5 desktop patterns for operator workflows in regulated airport security contexts</li>
+</ul>"""),
+            ("Enterprise Architecture", "Performance · Profiling · Caching", """<p>Solution architecture and performance engineering on high-transaction enterprise systems.</p>
+<ul>
+<li>Profiling-driven identification of bottlenecks under production-like load</li>
+<li>Caching strategies to improve throughput and responsiveness</li>
+<li>Architecture guidance for teams maintaining latency-sensitive services</li>
+</ul>"""),
         ],
     },
     "google": {
         "title": "Google Projects",
-        "intro": """<p>Localization Tools: Added new features and enhancements to in-house localization tools</p>
-<p>avik/babel: Web app, Android Screen Shotting app, System to enable translation verification world wide employees to verify translations in their native language(s) and compare Android and Web apps with English so as to ascertain correctness.</p>
-<p>GoogleEarth: Converted to Open Source, Upgraded most libraries to newer versions, Performed Code Optimizations.</p>
-<p>Hardware Analytics Tools and Apps: Created new apps and provided enhancements to existing ones.</p>
-<p>Devices Apps and Tools: Provided enhancements and fixes.</p>
-<p>YouTube Apps: Developed Internal Web Applications, Microservices for use by Teams.</p>
-<p>HR App: Helped to create 2nd version of HR Payroll Processing Application as Microservices, using the latest technologies and best practices.</p>""",
-        "tech": "Java, C/C++, Python, Postgres, JavaScript, Image Processing, Octa Trees, Optimization, OAuth2 Authentication, RBAC (MAC, DAC) Authorization, HTML5, Dart, CSS, Angular, TypeScript, GCP, Google Cloud Platform, AppEngine, BigQuery, BigTable, Microservices, Borg, Protobuf, Guice Guava",
+        "intro": """<p><strong>Software Engineer</strong> · 2018 – 2022 · Mountain View / Remote</p>
+<p>Multiple teams across Google — localization, Maps / Earth Enterprise, hardware analytics, devices, YouTube, and HR / finance. Focus: stalled-project recovery, performance optimization, privacy-aware microservices, and greenfield rewrites at global scale.</p>
+<ul>
+<li><strong>Localization (Avik / Babel):</strong> unstalled a 2-year project; ~45k LOC legacy replaced with ~24k LOC greenfield + 2k LOC RBAC security module — delivered in 7 months</li>
+<li><strong>Google Earth Enterprise:</strong> open-source migration, library upgrades, and geospatial XML pipeline — processing time <strong>2 hours → 11 minutes</strong> (~11×)</li>
+<li><strong>Hardware Analytics &amp; YouTube:</strong> privacy-aware microservices, authN/authZ, BigQuery pipelines, Borg / GCP</li>
+<li><strong>HR payroll (v2):</strong> Java microservices with Guice, Protobuf, and dependency-injection patterns</li>
+</ul>""",
+        "tech": "Java, Python, C++, Postgres, Dart, TypeScript, Angular, GCP, App Engine, BigQuery, Microservices, OAuth2, RBAC, Protobuf, Guice, Borg, HTML5, CSS, Memcache",
         "sections": [
-            ("Localization", "Web and Android Application", """<p>Web Applications Development. Object Oriented Software Development in Java and Python. Learned Google technology stack, several enterprise applications, including one with over 60,000 lines of code, web based and android in about 2 months.</p>
-<p>Reverse engineering of Java code.</p>
-<p>Provided enhancements and fixed issues in existing applications in Python. Used cloud technologies such as DataStore, AppEngine plus other APIs. Developed new architecture, designed, coded, wrote unit, integration and performance tests, including database storage for a global impact in production application replacing the web based system of ~45k LOC with ~16k LOC in Java for the backend and ~6k LOC for the front end in Dart. Inclusive Role Based Authentication and Resource Authorization Security Module that I wrote in ~2k LOC. The new system provides numerous enhancements, including simplified workflow with very highly performant operation, saving the company about 1/2 million dollars projected for the first year, for vendor expenses plus great time savings for users. Security Module (RBAC, MAC, DAC, Authentication and Authorization,) Memcache, HTML5, CSS, Spring, Hybernate, JDO, Leadership in bringing a project stalled for two years, to completion in 7 months.</p>"""),
-            ("Maps Google Earth", "C++, Python Application — Open Sourced", """<p>Develop enhancements and maintain the Google Earth Enterprise and related products.</p>
-<p>Developed optimizations to python XML processing, decreasing processing time 11 times, this was a three prong approach: Rearranging python code to move the more likely branches to the top, Importing to postgres using file based process and Added C++ and Python code to calculate geospatial data, taking into consideration point invariant and therefore avoiding that extra calculation.</p>
-<p>Developed optimizations for C++ by using more modern libraries. C++, Python, JavaScript, Postgres, Image Processing.</p>"""),
-            ("Hardware Analytics", "Python, Angular, JavaScript, Typescript, SQL, BigQuery, Microservices.", """<p>Architecture and Design, Developed and maintained solutions for the Hardware Analytics Team.</p>
-<p>Developed authentication and authorization mechanisms to enhance security and compliance with privacy policies. Developed solutions for auditing, automatic alerts. Improved efficiency and optimized solutions and applications. Cloud development using Borg and related systems.</p>"""),
-            ("Google Devices", "Python, Java, Angular, Javascript, Microservices.", """<p>Improved Speech Data Collection Tools team to automate and simplify data collection. Created a testing framework for 1st and 3rd party devices.</p>"""),
-            ("YouTube", "Java, C++, Python, Angular, JavaScript, SQL, BigQuery, Microservices.", """<p>Architecture and Design, Developed and maintained solutions for the YouTube Team. Applications needed to be secure and privacy aware. Provided data pipelines to proprietary graphical query application. Mentored other team members.</p>"""),
-            ("HR - Finance", "Java, Guice, Protobuf, Microservices.", """<p>Designed, Developed and tested the new version of application for HR Team. Java and Micro-Services. Heavy use of dependency injection, patterns, Guice, protobuf, and other internal and open source tools. Application was highly secure and addressed privacy concerns.</p>"""),
+            ("Localization Platform", "Avik / Babel · Java · Dart · RBAC · 7-month delivery", """<p>Led recovery and greenfield rewrite of a global localization platform that had been stalled for two years.</p>
+<ul>
+<li>Replaced ~45k LOC legacy web stack with ~16k LOC Java backend and ~6k LOC Dart front end (~24k LOC total)</li>
+<li>Authored ~2k LOC RBAC module (MAC, DAC, authentication and authorization) — OAuth2-aware security layer</li>
+<li>Onboarded to Google stack and a 60k+ LOC enterprise codebase in ~2 months; reverse-engineered legacy Java</li>
+<li>Simplified operator workflow with highly performant operation; projected ~$500k first-year vendor savings plus user time savings</li>
+<li>Unit, integration, and performance tests; Datastore / App Engine and internal APIs</li>
+</ul>"""),
+            ("Google Earth Enterprise", "C++, Python · Open source · 11× XML speedup", """<p>Maintained and optimized Google Earth Enterprise after open-source conversion — library upgrades and code optimization across C++, Python, and JavaScript.</p>
+<ul>
+<li><strong>Geospatial XML pipeline:</strong> reduced processing from ~2 hours to ~11 minutes via three-prong approach</li>
+<li>Branch reordering — moved hot paths to the top of Python control flow</li>
+<li>Parallel Postgres import using file-based bulk load</li>
+<li>C++ / Python invariant caching for geospatial calculations — skip redundant point-invariant work</li>
+<li>Modernized C++ dependencies; Postgres and image-processing integration</li>
+</ul>"""),
+            ("Hardware Analytics", "Python · Angular · BigQuery · Microservices", """<p>Architecture, design, and delivery for the Hardware Analytics team.</p>
+<ul>
+<li>Authentication and authorization mechanisms for security and privacy-policy compliance</li>
+<li>Auditing solutions and automatic alerting pipelines</li>
+<li>Cloud development on Borg and related internal platforms</li>
+</ul>"""),
+            ("Google Devices", "Python · Java · Speech data collection", """<p>Speech Data Collection Tools — automation and simplification of device data capture.</p>
+<ul>
+<li>Built testing framework for first- and third-party devices</li>
+<li>Reduced manual steps in data-collection workflows for speech teams</li>
+</ul>"""),
+            ("YouTube", "Java · C++ · Python · Privacy-aware microservices", """<p>Architecture and development for internal YouTube team tooling.</p>
+<ul>
+<li>Secure, privacy-aware applications and data pipelines to proprietary graphical query tools</li>
+<li>BigQuery-backed reporting; microservice decomposition</li>
+<li>Mentored team members on design and delivery practices</li>
+</ul>"""),
+            ("HR Finance (Payroll v2)", "Java · Guice · Protobuf · Microservices", """<p>Designed, developed, and tested the second-generation HR payroll processing application.</p>
+<ul>
+<li>Microservice architecture with heavy dependency injection (Guice) and Protobuf messaging</li>
+<li>Highly secure design addressing privacy and access-control requirements</li>
+<li>Patterns and internal tooling aligned with Google best practices</li>
+</ul>"""),
         ],
     },
     "directv": {
@@ -529,16 +612,30 @@ PROJECTS = {
 <p>Developed other tools using web technologies, MS SQL, Stored Procedures and Visual Studio.</p>""",
     },
     "vmware": {
-        "title": "Vmware Projects",
-        "intro": """<ul>
-<li>Gemini: Automation Framework to instrument virtual and non-virtual servers, workstations and appliances, such as ESX, HBR</li>
-<li>SSH Connector: Used by Gemini to securely connect and send commands to devices above</li>
-<li>Log Framework: Used by Gemini to log to terminal or html documents</li>
+        "title": "VMware Projects",
+        "intro": """<p><strong>Sr. Member of Technical Staff (MTS)</strong> · 2015 – 2018 · Palo Alto</p>
+<p>VMware — virtualization and cloud infrastructure. QA automation for ESX, HBR, and related appliances.</p>
+<ul>
+<li><strong>Gemini framework:</strong> replaced ~80k LOC Perl legacy with ~8k LOC Python — ~8× faster execution</li>
+<li><strong>Paradigms:</strong> object-oriented, functional, and meta-programming patterns in a cohesive test harness</li>
+<li><strong>Veritas / HPE (adjacent):</strong> OSCAP and OWASP hardening on backup appliances (see timeline)</li>
 </ul>""",
-        "tech": "Python, Perl, Virtualization, Networking, Automation, QA, Script Instrumentation, Framework Development, Test Development, SSH",
-        "work": """<h2>Work Performed</h2>
-<p>Architected, designed and implemented a new testing framework for the QA department.</p>
-<p>Replaced old framework mostly perl based with a lot of python. Original framework was over 80kloc, new framework is 8kloc, 8 times faster. Used object orientation, functional and meta programming as paradigms.</p>""",
+        "tech": "Python, Perl, Virtualization, ESX, HBR, SSH, Automation, QA, Framework Development, Test Instrumentation, Networking",
+        "sections": [
+            ("Gemini Automation Framework", "Python · QA · ~80k → ~8k LOC", """<p>Architected, designed, and implemented a new testing framework for the QA department — instrumenting virtual and physical servers, workstations, and appliances (ESX, HBR, and related targets).</p>
+<ul>
+<li>Replaced a ~80k LOC Perl-centric legacy framework with ~8k LOC Python — approximately <strong>8× faster</strong> test runs</li>
+<li>Unified instrumentation across heterogeneous VMware product lines</li>
+<li>OOP structure with functional helpers and meta-programming for extensible test definitions</li>
+<li>Field engineers and QA could script complex scenarios without touching low-level Perl internals</li>
+</ul>"""),
+            ("SSH Connector &amp; Log Framework", "Secure remote execution · HTML / terminal logging", """<p>Supporting libraries used throughout Gemini.</p>
+<ul>
+<li><strong>SSH Connector:</strong> secure command dispatch to ESX hosts, appliances, and lab devices</li>
+<li><strong>Log Framework:</strong> structured output to terminal or HTML reports for regression analysis</li>
+<li>Composable building blocks — connectors and logging shared across test suites</li>
+</ul>"""),
+        ],
     },
     "hms": {
         "title": "Hypermedia Projects",
@@ -652,6 +749,7 @@ def main():
         <a class="btn btn-secondary" href="samples.html">View Samples</a>
       </div>
     </section>
+{highlights_strip()}
     <h2 class="page-title">Experience</h2>
     <p class="page-intro">Selected employers and project highlights. Click a card for full detail.</p>
     <div class="portfolio-grid">
@@ -691,15 +789,7 @@ def main():
     )
 
     samples_html = "\n".join(
-        f"""      <article class="sample-entry fade-in">
-        <h2><a href="{demo or gh}" target="_blank" rel="noopener">{html.escape(title)}</a></h2>
-        <p>{html.escape(desc)}</p>
-        {snippet or ""}
-        <div class="sample-links">
-          <a href="{gh}" target="_blank" rel="noopener">GitHub</a>{f'''
-          <a href="{demo}" target="_blank" rel="noopener">LiveDemo</a>''' if demo else ''}
-        </div>
-      </article>"""
+        sample_entry(title, desc, gh, snippet, demo)
         for title, desc, gh, snippet, demo in SAMPLES
     )
     (ROOT / "samples.html").write_text(
@@ -708,7 +798,7 @@ def main():
             "Samples",
             f'    <h1 class="page-title">Projects Samples</h1>\n    <div class="content-section">\n{samples_html}\n    </div>',
             slug_path="samples.html",
-            description="Open-source sample projects on GitHub — C++, Java, Node.js, TypeScript, and AWS.",
+            description="Open-source sample projects on GitHub — C++, Java, Angular, TypeScript, and Python demos.",
         )
     )
 
