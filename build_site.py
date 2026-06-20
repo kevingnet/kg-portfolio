@@ -165,7 +165,7 @@ next[x][y] = (neighbors == 3) || (grid.at(x,y) &amp;&amp; neighbors == 2);</code
   <span class="kw">return</span> ok[word.size()];
 }</code></pre>""", None),
     ("Virtual Coffee Machine",
-     "AWS Docker app — Node API (level, brew, refill) with TypeScript client.",
+     "Angular coffee simulator — brew, refill, and tank levels. Live on GitHub Pages; Node API for local dev.",
      "https://github.com/kevingnet/coffee.bitnami", None,
      "https://kevingnet.github.io/coffee.bitnami/"),
     ("Flux — Electric Vehicle",
@@ -692,7 +692,7 @@ def main():
 
     samples_html = "\n".join(
         f"""      <article class="sample-entry fade-in">
-        <h2><a href="{gh}" target="_blank" rel="noopener">{html.escape(title)}</a></h2>
+        <h2><a href="{demo or gh}" target="_blank" rel="noopener">{html.escape(title)}</a></h2>
         <p>{html.escape(desc)}</p>
         {snippet or ""}
         <div class="sample-links">
