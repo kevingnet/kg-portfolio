@@ -153,7 +153,7 @@ HIGHLIGHTS = [
 SAMPLES = [
     ("Hive Mapper — Drone Navigation (C++)",
      "Navigate a drone through interconnected circular roads in minimum time; position is road name plus degrees clockwise.",
-     None,
+     "https://github.com/kevingnet/HiveMapperDrone",
      """<pre class="code-snippet"><code><span class="cm">// Greedy leg: pick next hop minimizing remaining arc distance</span>
 <span class="kw">int</span> <span class="fn">shortest_degrees</span>(<span class="kw">const</span> Road&amp; from, <span class="kw">const</span> Road&amp; to) {
   <span class="kw">return</span> (to.origin_deg - from.origin_deg + 360) % 360;
@@ -171,7 +171,7 @@ SAMPLES = [
 next[x][y] = (neighbors == 3) || (grid.at(x,y) &amp;&amp; neighbors == 2);</code></pre>""", "https://kevingnet.github.io/GameOfLife/"),
     ("Word Finder — C++",
      "Longest word buildable by concatenating shorter dictionary words.",
-     None,
+     "https://github.com/kevingnet/WordFinder",
      """<pre class="code-snippet"><code><span class="kw">bool</span> <span class="fn">can_build</span>(<span class="kw">const</span> string&amp; word, <span class="kw">const</span> set&lt;string&gt;&amp; dict) {
   vector&lt;<span class="kw">bool</span>&gt; ok(word.size() + 1);
   ok[0] = <span class="kw">true</span>;
