@@ -342,7 +342,7 @@ def rel_prefix(depth: int) -> str:
 def carousel(depth: int = 0) -> str:
     p = rel_prefix(depth)
     imgs = "\n".join(
-        f'      <span class="logo-slot"><img src="{p}assets/images/{img}.{ext}" alt="{html.escape(display)}"></span>'
+        f'      <img src="{p}assets/images/{img}.{ext}" alt="{html.escape(display)}">'
         for display, img, ext in CAROUSEL_LOGOS
     )
     return f"""  <div class="logo-carousel" aria-label="Companies and clients">

@@ -185,26 +185,19 @@ a:hover {
 .logo-carousel-track {
   display: flex;
   align-items: center;
-  gap: 0.15rem;
+  gap: 0;
   width: max-content;
-  padding: 0 0.15rem;
+  padding: 0;
   will-change: transform;
-}
-
-.logo-slot {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  height: 84px;
-  padding: 0 0.1rem;
 }
 
 .logo-carousel-track img {
   display: block;
   height: 80px;
   width: auto;
-  max-width: none;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
   object-fit: contain;
   filter: grayscale(0.1) brightness(0.95);
   opacity: 0.92;
