@@ -6,8 +6,16 @@ import os
 import shutil
 from pathlib import Path
 
+try:
+    import numpy as np
+    from PIL import Image
+    HAS_PIL = True
+except ImportError:
+    HAS_PIL = False
+
 ROOT = Path(__file__).parent
 PROJECTS_DIR = ROOT / "projects"
+CAROUSEL_DIR = ROOT / "assets/images/carousel"
 RESUME_SRC = Path("/home/kg/Jobs/Kevin Guerra.pdf")
 RESUME_ASSET = "assets/Kevin-Guerra.pdf"
 
@@ -128,6 +136,56 @@ CAROUSEL_LOGOS = [
     ("OpenTV", "opentv", "jpeg"),
     ("Spirent", "spirent", "jpeg"),
 ]
+
+
+def _trim_logo_content(path: Path, pad: int = 2) -> Image.Image | None:
+    """Crop empty margin around logo art (fixes huge visual gaps in carousel)."""
+    im = Image.open(path).convert("RGBA")
+    arr = np.array(im)
+    h, w = arr.shape[:2]
+    corners = np.vstack([
+        arr[0:3, 0:3].reshape(-1, 4),
+        arr[0:3, w - 3 : w].reshape(-1, 4),
+        arr[h - 3 : h, 0:3].reshape(-1, 4),
+        arr[h - 3 : h, w - 3 : w].reshape(-1, 4),
+    ])
+    bg = np.median(corners, axis=0)
+    mask = np.abs(arr.astype(np.int16) - bg.astype(np.int16)).sum(axis=2) > 35
+    if not mask.any():
+        return im
+    ys, xs = np.where(mask)
+    x0, x1 = max(0, int(xs.min()) - pad), min(w, int(xs.max()) + pad + 1)
+    y0, y1 = max(0, int(ys.min()) - pad), min(h, int(ys.max()) + pad + 1)
+    return im.crop((x0, y0, x1, y1))
+
+
+def ensure_carousel_logos() -> None:
+    """Write tight-cropped carousel copies — source files have large empty margins."""
+    if not HAS_PIL:
+        print("warn: Pillow/numpy missing; carousel logos not trimmed")
+        return
+    src_dir = ROOT / "assets/images"
+    CAROUSEL_DIR.mkdir(parents=True, exist_ok=True)
+    for _display, img, ext in CAROUSEL_LOGOS:
+        src = src_dir / f"{img}.{ext}"
+        dest = CAROUSEL_DIR / f"{img}.{ext}"
+        if not src.is_file():
+            print(f"  warn: carousel source missing: {src.name}")
+            continue
+        try:
+            trimmed = _trim_logo_content(src)
+            if trimmed is None:
+                shutil.copy2(src, dest)
+                continue
+            if ext == "png":
+                trimmed.save(dest, "PNG", optimize=True)
+            else:
+                rgb = trimmed.convert("RGB")
+                rgb.save(dest, "JPEG", quality=90, optimize=True)
+        except Exception as exc:
+            print(f"  warn: trim {src.name}: {exc}")
+            if not dest.is_file():
+                shutil.copy2(src, dest)
 
 SERVICES = [
     ("Ideation", "Product concepts, architecture options, and rapid prototypes to validate direction before a full build.", "ideation.jpg"),
@@ -342,7 +400,7 @@ def rel_prefix(depth: int) -> str:
 def carousel(depth: int = 0) -> str:
     p = rel_prefix(depth)
     imgs = "\n".join(
-        f'      <img src="{p}assets/images/{img}.{ext}" alt="{html.escape(display)}">'
+        f'      <img src="{p}assets/images/carousel/{img}.{ext}" alt="{html.escape(display)}">'
         for display, img, ext in CAROUSEL_LOGOS
     )
     return f"""  <div class="logo-carousel" aria-label="Companies and clients">
@@ -787,6 +845,7 @@ def main():
     assets = ROOT / "assets"
     assets.mkdir(parents=True, exist_ok=True)
     copy_maf_project_images()
+    ensure_carousel_logos()
     if RESUME_SRC.is_file():
         shutil.copy2(RESUME_SRC, assets / "Kevin-Guerra.pdf")
     elif not (assets / "Kevin-Guerra.pdf").is_file():
