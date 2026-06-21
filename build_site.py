@@ -150,7 +150,7 @@ def _trim_logo_content(path: Path, pad: int = 2) -> Image.Image | None:
         arr[h - 3 : h, w - 3 : w].reshape(-1, 4),
     ])
     bg = np.median(corners, axis=0)
-    mask = np.abs(arr.astype(np.int16) - bg.astype(np.int16)).sum(axis=2) > 35
+    mask = np.abs(arr.astype(np.int16) - bg.astype(np.int16)).sum(axis=2) > 28
     if not mask.any():
         return im
     ys, xs = np.where(mask)
