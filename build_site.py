@@ -103,16 +103,16 @@ PORTFOLIO = [
 ]
 
 SERVICES = [
-    ("Ideation", "Product concepts, architecture options, and rapid prototypes to validate direction before a full build."),
-    ("Web & Cloud Development", "Full-stack apps, REST APIs, microservices, and deployment on AWS, GCP, or Docker."),
-    ("Security & Privacy", "Threat modeling, code review, input validation libraries, and compliance-aware design."),
-    ("Reverse Engineering", "Legacy system analysis, protocol decoding, and safe modernization paths."),
-    ("Databases", "Schema design, query optimization, Postgres / SQL Server, and data pipelines."),
-    ("Consulting", "Technical leadership, stalled-project recovery, and team mentoring."),
-    ("Custom Applications", "Desktop, embedded, and internal tools tailored to your workflow."),
-    ("Performance Optimization", "Profiling-driven speedups — from geospatial XML (11×) to zero-allocation embedded paths."),
-    ("Embedded Systems", "Set-top boxes, device drivers, robotics interfaces, and resource-constrained C++."),
-    ("Image Processing", "OCR, machine vision, FFT-based recognition, and video capture pipelines."),
+    ("Ideation", "Product concepts, architecture options, and rapid prototypes to validate direction before a full build.", "ideation.jpg"),
+    ("Web & Cloud Development", "Full-stack apps, REST APIs, microservices, and deployment on AWS, GCP, or Docker.", "web-cloud.jpg"),
+    ("Security & Privacy", "Threat modeling, code review, input validation libraries, and compliance-aware design.", "security-privacy.jpg"),
+    ("Reverse Engineering", "Legacy system analysis, protocol decoding, and safe modernization paths.", "reverse-engineering.jpg"),
+    ("Databases", "Schema design, query optimization, Postgres / SQL Server, and data pipelines.", "databases.jpg"),
+    ("Consulting", "Technical leadership, stalled-project recovery, and team mentoring.", "consulting.jpg"),
+    ("Custom Applications", "Desktop, embedded, and internal tools tailored to your workflow.", "custom-applications.jpg"),
+    ("Performance Optimization", "Profiling-driven speedups — from geospatial XML (11×) to zero-allocation embedded paths.", "performance.jpg"),
+    ("Embedded Systems", "Set-top boxes, device drivers, robotics interfaces, and resource-constrained C++.", "embedded.jpg"),
+    ("Image Processing", "OCR, machine vision, FFT-based recognition, and video capture pipelines.", "image-processing.jpg"),
 ]
 
 CORE_SKILLS = [
@@ -160,47 +160,30 @@ HIGHLIGHTS = [
      "directv"),
 ]
 
-# title, description, github URL, optional code snippet HTML, optional live demo URL
+# title, description, github URL, optional code snippet HTML, optional live demo URL, image filename
 SAMPLES = [
-    ("Hive Mapper — Drone Navigation (C++)",
-     "Navigate a drone through interconnected circular roads in minimum time; position is road name plus degrees clockwise.",
-     "https://github.com/kevingnet/HiveMapperDrone",
-     """<pre class="code-snippet"><code><span class="cm">// Greedy leg: pick next hop minimizing remaining arc distance</span>
-<span class="kw">int</span> <span class="fn">shortest_degrees</span>(<span class="kw">const</span> Road&amp; from, <span class="kw">const</span> Road&amp; to) {
-  <span class="kw">return</span> (to.origin_deg - from.origin_deg + 360) % 360;
-}</code></pre>""", None),
-    ("Magazine — Angular + REST Demo",
-     "Angular admin app with in-browser fake backend — live on GitHub Pages.",
-     "https://github.com/kevingnet/magazine", None, "https://kevingnet.github.io/magazine/"),
-    ("Game of Life — Java",
-     "Conway's Game of Life — cellular automaton in Java.",
-     "https://github.com/kevingnet/GameOfLife",
-     """<pre class="code-snippet"><code><span class="kw">int</span> neighbors = 0;
-<span class="kw">for</span> (<span class="kw">int</span> dy = -1; dy &lt;= 1; dy++)
-  <span class="kw">for</span> (<span class="kw">int</span> dx = -1; dx &lt;= 1; dx++)
-    <span class="kw">if</span> (dx != 0 || dy != 0) neighbors += grid.at(x+dx, y+dy);
-next[x][y] = (neighbors == 3) || (grid.at(x,y) &amp;&amp; neighbors == 2);</code></pre>""", "https://kevingnet.github.io/GameOfLife/"),
-    ("Word Finder — C++",
-     "Longest word buildable by concatenating shorter dictionary words.",
-     "https://github.com/kevingnet/WordFinder",
-     """<pre class="code-snippet"><code><span class="kw">bool</span> <span class="fn">can_build</span>(<span class="kw">const</span> string&amp; word, <span class="kw">const</span> set&lt;string&gt;&amp; dict) {
-  vector&lt;<span class="kw">bool</span>&gt; ok(word.size() + 1);
-  ok[0] = <span class="kw">true</span>;
-  <span class="kw">for</span> (<span class="kw">size_t</span> i = 1; i &lt;= word.size(); i++)
-    <span class="kw">for</span> (<span class="kw">size_t</span> j = 0; j &lt; i; j++)
-      <span class="kw">if</span> (ok[j] &amp;&amp; dict.count(word.substr(j, i - j))) { ok[i] = <span class="kw">true</span>; <span class="kw">break</span>; }
-  <span class="kw">return</span> ok[word.size()];
-}</code></pre>""", None),
+    ("Hive Mapper - Drone Navigation, C++",
+     "The goal is to navigate a drone through an airport in the shortest time possible. The airport is composed of several interconnected circular roads, and the drone's position is described by a road name and the degrees clockwise around the road's circumference. The drone can transfer between roads at points of intersection. One week for completion.",
+     "https://github.com/kevingnet/HiveMapperDrone", None, None, "hive-mapper.jpg"),
+    ("Magazine - Node.js REST EC2 App",
+     "Magazine sample app using Angular, Node.js with REST API for EC2 deployment. One week for completion.",
+     "https://github.com/kevingnet/magazine", None, "https://kevingnet.github.io/magazine/", "magazine.jpg"),
+    ("Game of Life - Java",
+     "Conway's Game of Life - Java implementation. One day to develop.",
+     "https://github.com/kevingnet/GameOfLife", None, "https://kevingnet.github.io/GameOfLife/", "game-of-life.jpg"),
+    ("Word Finder - C++",
+     "Find Longest Word Made of Other Words. Program reads a file containing a sorted list of words (one word per line, no spaces, all lower case), then identifies the longest word in the file that can be constructed by concatenating copies of shorter words also found in the file.",
+     "https://github.com/kevingnet/WordFinder", None, None, "word-finder.jpg"),
     ("Virtual Coffee Machine",
-     "Angular coffee simulator — brew, refill, and tank levels. Live on GitHub Pages; Node API for local dev.",
+     "Cloud app on AWS using Docker containers. Server is a NodeJS app with a simple API (level(GET), brew, refill (POST). A Client in TypeScript accesses those APIs to operate. 6 days to complete.",
      "https://github.com/kevingnet/coffee.bitnami", None,
-     "https://kevingnet.github.io/coffee.bitnami/"),
-    ("Flux — Electric Vehicle",
-     "30 / 60 / 90-day project plan with architecture diagrams.",
-     "https://github.com/kevingnet/FluxElectricVehicle", None, "https://kevingnet.github.io/FluxElectricVehicle/"),
-    ("Time Server — Angular + REST Demo",
-     "Angular client with REST time API and in-browser demo backend on GitHub Pages.",
-     "https://github.com/kevingnet/time_server", None, "https://kevingnet.github.io/time_server/"),
+     "https://kevingnet.github.io/coffee.bitnami/", "coffee.jpg"),
+    ("Flux - Electric Vehicle",
+     "Project Plan - 30, 60 and 90 days. Developed plan in two days. Look at Diagram and Architecture Document.",
+     "https://github.com/kevingnet/FluxElectricVehicle", None, "https://kevingnet.github.io/FluxElectricVehicle/", "flux.jpg"),
+    ("Time Server - Client/Server, TypeScript, JavaScript, SQL, Python",
+     "Time Server sample app using Angular, Node.js with REST API for EC2 deployment. One week to develop.",
+     "https://github.com/kevingnet/time_server", None, "https://kevingnet.github.io/time_server/", "time-server.jpg"),
 ]
 
 
@@ -250,7 +233,16 @@ def highlights_strip(depth: int = 0) -> str:
     )
 
 
-def sample_entry(title: str, desc: str, gh: str | None, snippet: str | None, demo: str | None) -> str:
+def sample_entry(
+    title: str,
+    desc: str,
+    gh: str | None,
+    snippet: str | None,
+    demo: str | None,
+    image: str,
+    depth: int = 0,
+) -> str:
+    p = rel_prefix(depth)
     link = demo or gh
     title_html = (
         f'<a href="{link}" target="_blank" rel="noopener">{html.escape(title)}</a>'
@@ -262,14 +254,22 @@ def sample_entry(title: str, desc: str, gh: str | None, snippet: str | None, dem
     if demo:
         links.append(f'<a href="{demo}" target="_blank" rel="noopener">LiveDemo</a>')
     links_block = (
-        f'        <div class="sample-links">\n          {" ".join(links)}\n        </div>'
+        f'          <div class="sample-links">\n            {" ".join(links)}\n          </div>'
         if links else ""
     )
+    img_link = link or gh or "#"
     return f"""      <article class="sample-entry fade-in">
-        <h2>{title_html}</h2>
-        <p>{html.escape(desc)}</p>
-        {snippet or ""}
+        <div class="sample-entry-img">
+          <a href="{img_link}" target="_blank" rel="noopener">
+            <img src="{p}assets/images/samples/{html.escape(image)}" alt="{html.escape(title)}" loading="lazy">
+          </a>
+        </div>
+        <div class="sample-entry-body">
+          <h2>{title_html}</h2>
+          <p>{html.escape(desc)}</p>
+          {snippet or ""}
 {links_block}
+        </div>
       </article>"""
 
 
@@ -803,16 +803,20 @@ def main():
 
     services = "\n".join(
         f"""      <article class="service-card fade-in">
+        <div class="service-card-img">
+          <img src="assets/images/services/{html.escape(img)}" alt="{html.escape(title)}" loading="lazy">
+        </div>
         <h2>{html.escape(title)}</h2>
         <p>{html.escape(blurb)}</p>
       </article>"""
-        for title, blurb in SERVICES
+        for title, blurb, img in SERVICES
     )
     (ROOT / "services.html").write_text(
         page(
             "Services",
             "Services",
-            f"""    <h1 class="page-title">Services</h1>
+            f"""    <img class="services-hero fade-in" src="assets/images/services/hero-banner.jpg" alt="" loading="lazy">
+    <h1 class="page-title">Services</h1>
     <p class="page-intro text-center">What I bring to your team — from architecture through delivery.</p>
     <div class="services-grid">
 {services}
@@ -831,14 +835,18 @@ def main():
     )
 
     samples_html = "\n".join(
-        sample_entry(title, desc, gh, snippet, demo)
-        for title, desc, gh, snippet, demo in SAMPLES
+        sample_entry(title, desc, gh, snippet, demo, image)
+        for title, desc, gh, snippet, demo, image in SAMPLES
     )
     (ROOT / "samples.html").write_text(
         page(
             "Samples",
             "Samples",
-            f'    <h1 class="page-title">Projects Samples</h1>\n    <div class="content-section">\n{samples_html}\n    </div>',
+            f"""    <img class="samples-hero fade-in" src="assets/images/samples/hero-beer.jpg" alt="" loading="lazy">
+    <h1 class="page-title">Projects Samples</h1>
+    <div class="samples-list">
+{samples_html}
+    </div>""",
             slug_path="samples.html",
             description="Open-source sample projects on GitHub — C++, Java, Angular, TypeScript, and Python demos.",
         )

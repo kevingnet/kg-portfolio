@@ -57,76 +57,112 @@
   </div>
   </header>
   <main id="main-content">
+    <img class="samples-hero fade-in" src="assets/images/samples/hero-beer.jpg" alt="" loading="lazy">
     <h1 class="page-title">Projects Samples</h1>
-    <div class="content-section">
+    <div class="samples-list">
       <article class="sample-entry fade-in">
-        <h2><a href="https://github.com/kevingnet/HiveMapperDrone" target="_blank" rel="noopener">Hive Mapper — Drone Navigation (C++)</a></h2>
-        <p>Navigate a drone through interconnected circular roads in minimum time; position is road name plus degrees clockwise.</p>
-        <pre class="code-snippet"><code><span class="cm">// Greedy leg: pick next hop minimizing remaining arc distance</span>
-<span class="kw">int</span> <span class="fn">shortest_degrees</span>(<span class="kw">const</span> Road&amp; from, <span class="kw">const</span> Road&amp; to) {
-  <span class="kw">return</span> (to.origin_deg - from.origin_deg + 360) % 360;
-}</code></pre>
-        <div class="sample-links">
-          <a href="https://github.com/kevingnet/HiveMapperDrone" target="_blank" rel="noopener">GitHub</a>
+        <div class="sample-entry-img">
+          <a href="https://github.com/kevingnet/HiveMapperDrone" target="_blank" rel="noopener">
+            <img src="assets/images/samples/hive-mapper.jpg" alt="Hive Mapper - Drone Navigation, C++" loading="lazy">
+          </a>
+        </div>
+        <div class="sample-entry-body">
+          <h2><a href="https://github.com/kevingnet/HiveMapperDrone" target="_blank" rel="noopener">Hive Mapper - Drone Navigation, C++</a></h2>
+          <p>The goal is to navigate a drone through an airport in the shortest time possible. The airport is composed of several interconnected circular roads, and the drone&#x27;s position is described by a road name and the degrees clockwise around the road&#x27;s circumference. The drone can transfer between roads at points of intersection. One week for completion.</p>
+          
+          <div class="sample-links">
+            <a href="https://github.com/kevingnet/HiveMapperDrone" target="_blank" rel="noopener">GitHub</a>
+          </div>
         </div>
       </article>
       <article class="sample-entry fade-in">
-        <h2><a href="https://kevingnet.github.io/magazine/" target="_blank" rel="noopener">Magazine — Angular + REST Demo</a></h2>
-        <p>Angular admin app with in-browser fake backend — live on GitHub Pages.</p>
-        
-        <div class="sample-links">
-          <a href="https://github.com/kevingnet/magazine" target="_blank" rel="noopener">GitHub</a> <a href="https://kevingnet.github.io/magazine/" target="_blank" rel="noopener">LiveDemo</a>
+        <div class="sample-entry-img">
+          <a href="https://kevingnet.github.io/magazine/" target="_blank" rel="noopener">
+            <img src="assets/images/samples/magazine.jpg" alt="Magazine - Node.js REST EC2 App" loading="lazy">
+          </a>
+        </div>
+        <div class="sample-entry-body">
+          <h2><a href="https://kevingnet.github.io/magazine/" target="_blank" rel="noopener">Magazine - Node.js REST EC2 App</a></h2>
+          <p>Magazine sample app using Angular, Node.js with REST API for EC2 deployment. One week for completion.</p>
+          
+          <div class="sample-links">
+            <a href="https://github.com/kevingnet/magazine" target="_blank" rel="noopener">GitHub</a> <a href="https://kevingnet.github.io/magazine/" target="_blank" rel="noopener">LiveDemo</a>
+          </div>
         </div>
       </article>
       <article class="sample-entry fade-in">
-        <h2><a href="https://kevingnet.github.io/GameOfLife/" target="_blank" rel="noopener">Game of Life — Java</a></h2>
-        <p>Conway&#x27;s Game of Life — cellular automaton in Java.</p>
-        <pre class="code-snippet"><code><span class="kw">int</span> neighbors = 0;
-<span class="kw">for</span> (<span class="kw">int</span> dy = -1; dy &lt;= 1; dy++)
-  <span class="kw">for</span> (<span class="kw">int</span> dx = -1; dx &lt;= 1; dx++)
-    <span class="kw">if</span> (dx != 0 || dy != 0) neighbors += grid.at(x+dx, y+dy);
-next[x][y] = (neighbors == 3) || (grid.at(x,y) &amp;&amp; neighbors == 2);</code></pre>
-        <div class="sample-links">
-          <a href="https://github.com/kevingnet/GameOfLife" target="_blank" rel="noopener">GitHub</a> <a href="https://kevingnet.github.io/GameOfLife/" target="_blank" rel="noopener">LiveDemo</a>
+        <div class="sample-entry-img">
+          <a href="https://kevingnet.github.io/GameOfLife/" target="_blank" rel="noopener">
+            <img src="assets/images/samples/game-of-life.jpg" alt="Game of Life - Java" loading="lazy">
+          </a>
+        </div>
+        <div class="sample-entry-body">
+          <h2><a href="https://kevingnet.github.io/GameOfLife/" target="_blank" rel="noopener">Game of Life - Java</a></h2>
+          <p>Conway&#x27;s Game of Life - Java implementation. One day to develop.</p>
+          
+          <div class="sample-links">
+            <a href="https://github.com/kevingnet/GameOfLife" target="_blank" rel="noopener">GitHub</a> <a href="https://kevingnet.github.io/GameOfLife/" target="_blank" rel="noopener">LiveDemo</a>
+          </div>
         </div>
       </article>
       <article class="sample-entry fade-in">
-        <h2><a href="https://github.com/kevingnet/WordFinder" target="_blank" rel="noopener">Word Finder — C++</a></h2>
-        <p>Longest word buildable by concatenating shorter dictionary words.</p>
-        <pre class="code-snippet"><code><span class="kw">bool</span> <span class="fn">can_build</span>(<span class="kw">const</span> string&amp; word, <span class="kw">const</span> set&lt;string&gt;&amp; dict) {
-  vector&lt;<span class="kw">bool</span>&gt; ok(word.size() + 1);
-  ok[0] = <span class="kw">true</span>;
-  <span class="kw">for</span> (<span class="kw">size_t</span> i = 1; i &lt;= word.size(); i++)
-    <span class="kw">for</span> (<span class="kw">size_t</span> j = 0; j &lt; i; j++)
-      <span class="kw">if</span> (ok[j] &amp;&amp; dict.count(word.substr(j, i - j))) { ok[i] = <span class="kw">true</span>; <span class="kw">break</span>; }
-  <span class="kw">return</span> ok[word.size()];
-}</code></pre>
-        <div class="sample-links">
-          <a href="https://github.com/kevingnet/WordFinder" target="_blank" rel="noopener">GitHub</a>
+        <div class="sample-entry-img">
+          <a href="https://github.com/kevingnet/WordFinder" target="_blank" rel="noopener">
+            <img src="assets/images/samples/word-finder.jpg" alt="Word Finder - C++" loading="lazy">
+          </a>
+        </div>
+        <div class="sample-entry-body">
+          <h2><a href="https://github.com/kevingnet/WordFinder" target="_blank" rel="noopener">Word Finder - C++</a></h2>
+          <p>Find Longest Word Made of Other Words. Program reads a file containing a sorted list of words (one word per line, no spaces, all lower case), then identifies the longest word in the file that can be constructed by concatenating copies of shorter words also found in the file.</p>
+          
+          <div class="sample-links">
+            <a href="https://github.com/kevingnet/WordFinder" target="_blank" rel="noopener">GitHub</a>
+          </div>
         </div>
       </article>
       <article class="sample-entry fade-in">
-        <h2><a href="https://kevingnet.github.io/coffee.bitnami/" target="_blank" rel="noopener">Virtual Coffee Machine</a></h2>
-        <p>Angular coffee simulator — brew, refill, and tank levels. Live on GitHub Pages; Node API for local dev.</p>
-        
-        <div class="sample-links">
-          <a href="https://github.com/kevingnet/coffee.bitnami" target="_blank" rel="noopener">GitHub</a> <a href="https://kevingnet.github.io/coffee.bitnami/" target="_blank" rel="noopener">LiveDemo</a>
+        <div class="sample-entry-img">
+          <a href="https://kevingnet.github.io/coffee.bitnami/" target="_blank" rel="noopener">
+            <img src="assets/images/samples/coffee.jpg" alt="Virtual Coffee Machine" loading="lazy">
+          </a>
+        </div>
+        <div class="sample-entry-body">
+          <h2><a href="https://kevingnet.github.io/coffee.bitnami/" target="_blank" rel="noopener">Virtual Coffee Machine</a></h2>
+          <p>Cloud app on AWS using Docker containers. Server is a NodeJS app with a simple API (level(GET), brew, refill (POST). A Client in TypeScript accesses those APIs to operate. 6 days to complete.</p>
+          
+          <div class="sample-links">
+            <a href="https://github.com/kevingnet/coffee.bitnami" target="_blank" rel="noopener">GitHub</a> <a href="https://kevingnet.github.io/coffee.bitnami/" target="_blank" rel="noopener">LiveDemo</a>
+          </div>
         </div>
       </article>
       <article class="sample-entry fade-in">
-        <h2><a href="https://kevingnet.github.io/FluxElectricVehicle/" target="_blank" rel="noopener">Flux — Electric Vehicle</a></h2>
-        <p>30 / 60 / 90-day project plan with architecture diagrams.</p>
-        
-        <div class="sample-links">
-          <a href="https://github.com/kevingnet/FluxElectricVehicle" target="_blank" rel="noopener">GitHub</a> <a href="https://kevingnet.github.io/FluxElectricVehicle/" target="_blank" rel="noopener">LiveDemo</a>
+        <div class="sample-entry-img">
+          <a href="https://kevingnet.github.io/FluxElectricVehicle/" target="_blank" rel="noopener">
+            <img src="assets/images/samples/flux.jpg" alt="Flux - Electric Vehicle" loading="lazy">
+          </a>
+        </div>
+        <div class="sample-entry-body">
+          <h2><a href="https://kevingnet.github.io/FluxElectricVehicle/" target="_blank" rel="noopener">Flux - Electric Vehicle</a></h2>
+          <p>Project Plan - 30, 60 and 90 days. Developed plan in two days. Look at Diagram and Architecture Document.</p>
+          
+          <div class="sample-links">
+            <a href="https://github.com/kevingnet/FluxElectricVehicle" target="_blank" rel="noopener">GitHub</a> <a href="https://kevingnet.github.io/FluxElectricVehicle/" target="_blank" rel="noopener">LiveDemo</a>
+          </div>
         </div>
       </article>
       <article class="sample-entry fade-in">
-        <h2><a href="https://kevingnet.github.io/time_server/" target="_blank" rel="noopener">Time Server — Angular + REST Demo</a></h2>
-        <p>Angular client with REST time API and in-browser demo backend on GitHub Pages.</p>
-        
-        <div class="sample-links">
-          <a href="https://github.com/kevingnet/time_server" target="_blank" rel="noopener">GitHub</a> <a href="https://kevingnet.github.io/time_server/" target="_blank" rel="noopener">LiveDemo</a>
+        <div class="sample-entry-img">
+          <a href="https://kevingnet.github.io/time_server/" target="_blank" rel="noopener">
+            <img src="assets/images/samples/time-server.jpg" alt="Time Server - Client/Server, TypeScript, JavaScript, SQL, Python" loading="lazy">
+          </a>
+        </div>
+        <div class="sample-entry-body">
+          <h2><a href="https://kevingnet.github.io/time_server/" target="_blank" rel="noopener">Time Server - Client/Server, TypeScript, JavaScript, SQL, Python</a></h2>
+          <p>Time Server sample app using Angular, Node.js with REST API for EC2 deployment. One week to develop.</p>
+          
+          <div class="sample-links">
+            <a href="https://github.com/kevingnet/time_server" target="_blank" rel="noopener">GitHub</a> <a href="https://kevingnet.github.io/time_server/" target="_blank" rel="noopener">LiveDemo</a>
+          </div>
         </div>
       </article>
     </div>
