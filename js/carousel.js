@@ -1,7 +1,6 @@
 (function () {
   const track = document.querySelector(".logo-carousel-track");
   if (!track) return;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   const items = [...track.children];
   if (items.length < 2) return;

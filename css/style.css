@@ -152,9 +152,10 @@ a:hover {
   outline-offset: -2px;
 }
 
-/* Carousel — matches igd-portfolio */
+/* Logo carousel — same as igd-portfolio (dark theme background) */
 .logo-carousel {
   overflow: hidden;
+  border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   background: var(--bg-elevated);
   padding: 0.35rem 0;
