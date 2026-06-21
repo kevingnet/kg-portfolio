@@ -138,7 +138,7 @@ CAROUSEL_LOGOS = [
 ]
 
 
-def _trim_logo_content(path: Path, pad: int = 2) -> Image.Image | None:
+def _trim_logo_content(path: Path, pad: int = 2):
     """Crop empty margin around logo art (fixes huge visual gaps in carousel)."""
     im = Image.open(path).convert("RGBA")
     arr = np.array(im)
