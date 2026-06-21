@@ -24,9 +24,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build site
-        run: |
-          pip install pillow numpy
-          python3 build_site.py
+        run: python3 build_site.py
         env:
           SITE_BASE_URL: https://kevingnet.github.io/kg-portfolio
 

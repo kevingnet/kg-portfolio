@@ -152,70 +152,29 @@ a:hover {
   outline-offset: -2px;
 }
 
-/* Carousel */
+/* Carousel — matches igd-portfolio */
 .logo-carousel {
-  position: relative;
   overflow: hidden;
   border-bottom: 1px solid var(--border);
   background: var(--bg-elevated);
-  padding: 0.65rem 0;
-}
-
-.logo-carousel::before,
-.logo-carousel::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 3rem;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.logo-carousel::before {
-  left: 0;
-  background: linear-gradient(to right, var(--bg-elevated), transparent);
-}
-
-.logo-carousel::after {
-  right: 0;
-  background: linear-gradient(to left, var(--bg-elevated), transparent);
+  padding: 0.35rem 0;
 }
 
 .logo-carousel-track {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 1.25rem;
   width: max-content;
-  padding: 0;
+  padding: 0 1rem;
   will-change: transform;
 }
 
-.logo-cell {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 130px;
-  height: 100px;
-}
-
-.logo-cell img {
-  display: block;
-  max-width: 120px;
-  max-height: 92px;
+.logo-carousel-track img {
+  height: 42px;
   width: auto;
-  height: auto;
+  max-width: 110px;
   object-fit: contain;
-  object-position: center;
-  filter: grayscale(0.05) brightness(0.97);
-  opacity: 0.95;
-  transition: filter 0.2s, opacity 0.2s;
-}
-
-.logo-carousel:hover .logo-cell img {
-  filter: grayscale(0) brightness(1.08);
-  opacity: 1;
+  flex-shrink: 0;
 }
 
 /* Main */
