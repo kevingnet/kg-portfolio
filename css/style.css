@@ -152,13 +152,13 @@ a:hover {
   outline-offset: -2px;
 }
 
-/* Logo carousel — same as igd-portfolio (dark theme background) */
+/* Logo carousel — igd-portfolio layout, Wix-sized tiles */
 .logo-carousel {
   overflow: hidden;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  background: var(--bg-elevated);
-  padding: 0.35rem 0;
+  background: var(--bg);
+  padding: 0.5rem 0;
 }
 
 .logo-carousel-track {
@@ -171,11 +171,13 @@ a:hover {
 }
 
 .logo-carousel-track img {
-  height: 42px;
+  display: block;
+  height: 54px;
   width: auto;
-  max-width: 110px;
+  max-width: 120px;
   object-fit: contain;
   flex-shrink: 0;
+  border-radius: 3px;
 }
 
 /* Main */
