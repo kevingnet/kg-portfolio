@@ -154,33 +154,66 @@ a:hover {
 
 /* Carousel */
 .logo-carousel {
+  position: relative;
   overflow: hidden;
   border-bottom: 1px solid var(--border);
   background: var(--bg-elevated);
-  padding: 0.5rem 0;
+  padding: 0.85rem 0;
+}
+
+.logo-carousel::before,
+.logo-carousel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3rem;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.logo-carousel::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-elevated), transparent);
+}
+
+.logo-carousel::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-elevated), transparent);
 }
 
 .logo-carousel-track {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 0.35rem;
   width: max-content;
-  padding: 0 1rem;
+  padding: 0 0.25rem;
   will-change: transform;
 }
 
-.logo-carousel-track img {
-  height: 36px;
-  width: auto;
-  max-width: 100px;
-  object-fit: contain;
+.logo-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
-  filter: grayscale(0.2) brightness(1.05);
-  opacity: 0.88;
+  height: 58px;
+  padding: 0 0.35rem;
 }
 
-.logo-carousel:hover .logo-carousel-track {
-  animation-play-state: paused;
+.logo-carousel-track img {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+  filter: grayscale(0.15) brightness(0.92);
+  opacity: 0.9;
+  transition: filter 0.2s, opacity 0.2s;
+}
+
+.logo-carousel:hover .logo-carousel-track img {
+  filter: grayscale(0) brightness(1.08);
+  opacity: 1;
 }
 
 /* Main */

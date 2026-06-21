@@ -102,6 +102,33 @@ PORTFOLIO = [
      ["C++", "Tcl", "SWIG", "Networking"]),
 ]
 
+# Carousel only — MAF first; includes employers beyond portfolio cards
+CAROUSEL_LOGOS = [
+    ("MAF RODA", "mafroda", "png"),
+    ("Leidos", "leidos", "png"),
+    ("Meta", "facebook", "jpeg"),
+    ("Google", "google", "jpeg"),
+    ("DirecTV", "directv", "jpeg"),
+    ("JakeKnows", "company", "png"),
+    ("Disney", "disney", "jpeg"),
+    ("Vmware", "vmware", "jpeg"),
+    ("Veritas", "veritas", "jpeg"),
+    ("HPE", "hpe", "jpeg"),
+    ("Electrosonic", "electrosonic", "jpeg"),
+    ("VoltDelta", "voltdelta", "jpeg"),
+    ("HMS", "hypermedia", "jpeg"),
+    ("Guidance Software", "guidance", "jpeg"),
+    ("Surfware", "surfware", "jpeg"),
+    ("Motorola", "motorola", "jpeg"),
+    ("Yahoo", "yahoo", "jpeg"),
+    ("Dolby", "dolby", "jpeg"),
+    ("Netpulse", "netpulse", "jpeg"),
+    ("Knulrd", "knulrd", "jpeg"),
+    ("Butterfleye", "butterfleye", "jpeg"),
+    ("OpenTV", "opentv", "jpeg"),
+    ("Spirent", "spirent", "jpeg"),
+]
+
 SERVICES = [
     ("Ideation", "Product concepts, architecture options, and rapid prototypes to validate direction before a full build.", "ideation.jpg"),
     ("Web & Cloud Development", "Full-stack apps, REST APIs, microservices, and deployment on AWS, GCP, or Docker.", "web-cloud.jpg"),
@@ -315,10 +342,10 @@ def rel_prefix(depth: int) -> str:
 def carousel(depth: int = 0) -> str:
     p = rel_prefix(depth)
     imgs = "\n".join(
-        f'      <img src="{p}assets/images/{img}.{ext}" alt="{html.escape(display)}">'
-        for display, img, ext, _slug, _desc, _skills in PORTFOLIO
+        f'      <span class="logo-slot"><img src="{p}assets/images/{img}.{ext}" alt="{html.escape(display)}"></span>'
+        for display, img, ext in CAROUSEL_LOGOS
     )
-    return f"""  <div class="logo-carousel">
+    return f"""  <div class="logo-carousel" aria-label="Companies and clients">
     <div class="logo-carousel-track">
 {imgs}
     </div>

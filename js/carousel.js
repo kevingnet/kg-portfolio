@@ -9,7 +9,7 @@
   items.forEach((item) => track.appendChild(item.cloneNode(true)));
 
   let offset = 0;
-  let speed = 0.45;
+  let speed = 0.32;
   let paused = false;
 
   track.closest(".logo-carousel")?.addEventListener("mouseenter", () => {
