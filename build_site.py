@@ -400,7 +400,7 @@ def rel_prefix(depth: int) -> str:
 def carousel(depth: int = 0) -> str:
     p = rel_prefix(depth)
     imgs = "\n".join(
-        f'      <img src="{p}assets/images/carousel/{img}.{ext}" alt="{html.escape(display)}">'
+        f'      <span class="logo-cell"><img src="{p}assets/images/carousel/{img}.{ext}" alt="{html.escape(display)}"></span>'
         for display, img, ext in CAROUSEL_LOGOS
     )
     return f"""  <div class="logo-carousel" aria-label="Companies and clients">

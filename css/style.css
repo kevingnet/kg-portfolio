@@ -185,20 +185,27 @@ a:hover {
 .logo-carousel-track {
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: 5px;
   width: max-content;
   padding: 0;
   will-change: transform;
 }
 
-.logo-carousel-track img {
-  display: block;
-  height: 120px;
-  width: auto;
-  max-width: 200px;
+.logo-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
-  margin: 0 5px 0 0;
-  padding: 0;
+  width: 130px;
+  height: 100px;
+}
+
+.logo-cell img {
+  display: block;
+  max-width: 120px;
+  max-height: 92px;
+  width: auto;
+  height: auto;
   object-fit: contain;
   object-position: center;
   filter: grayscale(0.05) brightness(0.97);
@@ -206,11 +213,7 @@ a:hover {
   transition: filter 0.2s, opacity 0.2s;
 }
 
-.logo-carousel-track img:last-child {
-  margin-right: 0;
-}
-
-.logo-carousel:hover .logo-carousel-track img {
+.logo-carousel:hover .logo-cell img {
   filter: grayscale(0) brightness(1.08);
   opacity: 1;
 }
