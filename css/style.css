@@ -475,7 +475,7 @@ main {
   object-fit: cover;
   border-radius: var(--radius);
   border: 1px solid var(--border);
-  margin-bottom: 1.25rem;
+  margin-top: 2rem;
   display: block;
 }
 

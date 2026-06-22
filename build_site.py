@@ -840,8 +840,7 @@ def main():
         page(
             "Services",
             "Services",
-            f"""    <img class="services-hero fade-in" src="assets/images/services/hero-banner.jpg" alt="" loading="lazy">
-    <h1 class="page-title">Services</h1>
+            f"""    <h1 class="page-title">Services</h1>
     <p class="page-intro text-center">What I bring to your team — from architecture through delivery.</p>
     <div class="services-grid">
 {services}
@@ -853,7 +852,8 @@ def main():
         <a class="btn btn-primary" href="mailto:{CONTACT_EMAIL}">Email Kevin</a>
         <a class="btn btn-secondary" href="{RESUME_ASSET}">Download Resume</a>
       </div>
-    </section>""",
+    </section>
+    <img class="services-hero fade-in" src="assets/images/services/hero-banner.jpg" alt="" loading="lazy">""",
             slug_path="services.html",
             description="Consulting and development: web, cloud, security, embedded systems, and performance optimization.",
         )
