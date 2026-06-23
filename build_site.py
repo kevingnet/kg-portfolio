@@ -102,28 +102,29 @@ PORTFOLIO = [
      ["C++", "Tcl", "SWIG", "Networking"]),
 ]
 
-# Same order and assets as igd-portfolio carousel
+# (image stem, extension, alt text) — career order, oldest → newest
 CAROUSEL_LOGOS = [
-    ("electrosonic", "jpeg"),
-    ("voltdelta", "jpeg"),
-    ("hpe", "jpeg"),
-    ("hypermedia", "jpeg"),
-    ("spirent", "jpeg"),
-    ("surfware", "jpeg"),
-    ("netpulse", "jpeg"),
-    ("knulrd", "jpeg"),
-    ("butterfleye", "jpeg"),
-    ("directv", "jpeg"),
-    ("opentv", "jpeg"),
-    ("disney", "jpeg"),
-    ("yahoo", "jpeg"),
-    ("guidance", "jpeg"),
-    ("motorola", "jpeg"),
-    ("dolby", "jpeg"),
-    ("veritas", "jpeg"),
-    ("vmware", "jpeg"),
-    ("google", "jpeg"),
-    ("facebook", "jpeg"),
+    ("electrosonic", "jpeg", "Electrosonic"),
+    ("disney", "jpeg", "Walt Disney"),
+    ("voltdelta", "jpeg", "Volt Delta"),
+    ("hypermedia", "jpeg", "Hypermedia Systems"),
+    ("guidance", "jpeg", "Guidance Software"),
+    ("directv", "jpeg", "DirecTV"),
+    ("surfware", "jpeg", "Surfware"),
+    ("dolby", "jpeg", "Dolby"),
+    ("motorola", "jpeg", "Motorola"),
+    ("yahoo", "jpeg", "Yahoo"),
+    ("company", "png", "JakeKnows"),
+    ("opentv", "jpeg", "OpenTV"),
+    ("veritas", "jpeg", "Veritas"),
+    ("vmware", "jpeg", "VMware"),
+    ("butterfleye", "jpeg", "Butterfleye"),
+    ("knulrd", "jpeg", "Knurld"),
+    ("hpe", "jpeg", "HPE"),
+    ("facebook", "jpeg", "Facebook"),
+    ("google", "jpeg", "Google"),
+    ("leidos", "png", "Leidos"),
+    ("mafroda", "png", "MAF RODA"),
 ]
 
 
@@ -340,8 +341,8 @@ def rel_prefix(depth: int) -> str:
 def carousel(depth: int = 0) -> str:
     p = rel_prefix(depth)
     imgs = "\n".join(
-        f'      <img src="{p}assets/images/{name}.{ext}" alt="{html.escape(name)}">'
-        for name, ext in CAROUSEL_LOGOS
+        f'      <img src="{p}assets/images/{name}.{ext}" alt="{html.escape(alt)}">'
+        for name, ext, alt in CAROUSEL_LOGOS
     )
     return f"""  <div class="logo-carousel">
     <div class="logo-carousel-track">
