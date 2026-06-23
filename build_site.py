@@ -379,7 +379,7 @@ def footer(depth: int = 0) -> str:
     return f"""  <footer class="site-footer">
     <div class="footer-social">
       <a href="{SOCIAL["linkedin"]}" target="_blank" rel="noopener" title="LinkedIn">
-        <img src="{p}assets/images/linkedin.png" alt="LinkedIn">
+        <img src="{p}assets/images/linkedin.svg" alt="LinkedIn">
       </a>
       <a href="{SOCIAL["github"]}" target="_blank" rel="noopener" title="GitHub">
         <img src="{p}assets/images/github.jpeg" alt="GitHub">
