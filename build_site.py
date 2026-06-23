@@ -54,6 +54,7 @@ NAV = [
 SOCIAL = {
     "linkedin": "https://www.linkedin.com/in/kevin-guerra-36151446/",
     "github": "https://github.com/kevingnet",
+    "stackoverflow": "https://stackoverflow.com/users/3828838/kevin-guerra",
 }
 
 # name, image file, ext, slug, card description, skill chips (max ~5 shown on card)
@@ -382,6 +383,9 @@ def footer(depth: int = 0) -> str:
       </a>
       <a href="{SOCIAL["github"]}" target="_blank" rel="noopener" title="GitHub">
         <img src="{p}assets/images/github.jpeg" alt="GitHub">
+      </a>
+      <a href="{SOCIAL["stackoverflow"]}" target="_blank" rel="noopener" title="Stack Overflow">
+        <img src="{p}assets/images/stackoverflow.svg" alt="Stack Overflow">
       </a>
       <a href="mailto:{CONTACT_EMAIL}" title="Email">{CONTACT_EMAIL}</a>
     </div>
@@ -907,6 +911,8 @@ def main():
             <a class="btn btn-primary" href="mailto:{CONTACT_EMAIL}">Email {CONTACT_EMAIL}</a>
             <button type="button" class="btn btn-secondary" data-copy-email="{CONTACT_EMAIL}">Copy email</button>
             <a class="btn btn-secondary" href="{SOCIAL["linkedin"]}" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn btn-secondary" href="{SOCIAL["github"]}" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn btn-secondary" href="{SOCIAL["stackoverflow"]}" target="_blank" rel="noopener">Stack Overflow</a>
             <a class="btn btn-secondary" href="{RESUME_ASSET}">Resume PDF</a>
             <a class="btn btn-secondary" href="{SITE_BASE_URL}/">Portfolio</a>
           </div>
