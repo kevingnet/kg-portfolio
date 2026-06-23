@@ -2,6 +2,7 @@
 """Generate static HTML pages for KG Portfolio."""
 
 import html
+import json
 import os
 import shutil
 from pathlib import Path
@@ -142,7 +143,7 @@ SERVICES = [
     ("Image Processing", "OCR, machine vision, FFT-based recognition, and video capture pipelines.", "image-processing.jpg"),
 ]
 
-CORE_SKILLS = [
+CORE_SKILLS_FALLBACK = [
     "C/C++", "Python", "Java", "C#", "TypeScript", "Go",
     "Postgres", "SQL Server", "REST", "Microservices",
     "AWS", "GCP", "Docker", "Linux", "Win32", "Embedded",
@@ -150,6 +151,21 @@ CORE_SKILLS = [
     "OpenCV", "SIMD", "Traceability",
     "Angular", "Node.js", "Tcl", "CAD/CAM", "Virtualization",
 ]
+
+LINKEDIN_SKILLS_FILE = ROOT / "data" / "linkedin-skills.json"
+
+
+def load_core_skills() -> list[str]:
+    """About-page skill chips — prefer LinkedIn sync (data/linkedin-skills.json)."""
+    if LINKEDIN_SKILLS_FILE.is_file():
+        try:
+            data = json.loads(LINKEDIN_SKILLS_FILE.read_text(encoding="utf-8"))
+            skills = data.get("display_skills")
+            if isinstance(skills, list) and skills:
+                return [str(s) for s in skills]
+        except (json.JSONDecodeError, OSError):
+            pass
+    return list(CORE_SKILLS_FALLBACK)
 
 # role title, organization, dates, summary (matches resume order)
 TIMELINE = [
@@ -893,7 +909,8 @@ def main():
         <p>Hello, my name is Kevin. I'm a {PROFESSIONAL_TITLE.lower()} — my career started as a hobby and I'm still passionate about building fast, reliable systems across cloud, web, embedded, robotics, networking, databases, security, and virtualization.</p>
         <p>I focus on quality code that stays maintainable: fewer lines, code generation where it helps, and patterns that scale. See my <a href="{RESUME_ASSET}">resume (PDF)</a> for the full technology list and employment history.</p>
         <h2>Core skills</h2>
-        <div class="skills-cloud">{"".join(f'<span class="skill-chip">{html.escape(s)}</span>' for s in CORE_SKILLS)}</div>
+        <p class="page-intro" style="margin-top:-0.5rem;margin-bottom:0.75rem">Synced from <a href="{SOCIAL["linkedin"]}">LinkedIn</a> profile skills.</p>
+        <div class="skills-cloud">{"".join(f'<span class="skill-chip">{html.escape(s)}</span>' for s in load_core_skills())}</div>
         <h2>Career timeline</h2>
         <div class="timeline">
 {timeline_block()}
