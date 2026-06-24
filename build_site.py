@@ -390,11 +390,10 @@ def header(active: str, depth: int = 0) -> str:
   </header>"""
 
 
-def footer(depth: int = 0) -> str:
+def social_icon_links(depth: int = 0) -> str:
+    """LinkedIn, GitHub, Stack Overflow — shared by footer and hero."""
     p = rel_prefix(depth)
-    return f"""  <footer class="site-footer">
-    <div class="footer-social">
-      <a href="{SOCIAL["linkedin"]}" target="_blank" rel="noopener" title="LinkedIn">
+    return f"""      <a href="{SOCIAL["linkedin"]}" target="_blank" rel="noopener" title="LinkedIn">
         <img src="{p}assets/images/linkedin.svg" alt="LinkedIn">
       </a>
       <a href="{SOCIAL["github"]}" target="_blank" rel="noopener" title="GitHub">
@@ -402,7 +401,14 @@ def footer(depth: int = 0) -> str:
       </a>
       <a href="{SOCIAL["stackoverflow"]}" target="_blank" rel="noopener" title="Stack Overflow">
         <img src="{p}assets/images/stackoverflow.svg" alt="Stack Overflow">
-      </a>
+      </a>"""
+
+
+def footer(depth: int = 0) -> str:
+    p = rel_prefix(depth)
+    return f"""  <footer class="site-footer">
+    <div class="footer-social">
+{social_icon_links(depth)}
       <a href="mailto:{CONTACT_EMAIL}" title="Email">{CONTACT_EMAIL}</a>
     </div>
     <p class="footer-copy">&copy; {COPYRIGHT_YEAR} {OWNER}. <a href="{p}{RESUME_ASSET}">Resume (PDF)</a></p>
@@ -834,7 +840,12 @@ def main():
       <div class="hero-actions">
         <a class="btn btn-primary" href="{RESUME_ASSET}">Download Resume</a>
         <a class="btn btn-secondary" href="mailto:{CONTACT_EMAIL}">Get in Touch</a>
-        <a class="btn btn-secondary" href="samples.html">View Samples</a>
+        <div class="hero-actions-samples">
+          <a class="btn btn-secondary" href="samples.html">View Samples</a>
+          <div class="hero-social" aria-label="Social profiles">
+{social_icon_links()}
+          </div>
+        </div>
       </div>
     </section>
 {highlights_strip()}

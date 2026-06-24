@@ -243,6 +243,39 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+  align-items: center;
+}
+
+.hero-actions-samples {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.hero-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.hero-social a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  opacity: 0.88;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.hero-social a:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.hero-social img {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  display: block;
 }
 
 /* Highlights strip (homepage) */
@@ -481,7 +514,7 @@ main {
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
@@ -952,6 +985,10 @@ main {
 
   .about-hero-img {
     max-width: 320px;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
   }
 }
 
