@@ -183,7 +183,6 @@ from lib.service.events import Events
 from lib.utility.log import clear_tabs
 from lib.base_test_helper.unhandled_exception_handler import all_exceptions_hander
 
-
 @log.class_logger
 class BaseTest(unittest.TestCase, configuration.Configuration):
     setattr(CurrentClass(), &#x27;name&#x27;, &#x27;None&#x27;)
@@ -334,8 +333,7 @@ class BaseTest(unittest.TestCase, configuration.Configuration):
         try:
             ssl._create_default_https_context = ssl._create_unverified_context
         except Exception, e:
-            self.logger.warning(&#x27;Exception:%s&#x27; % str(e))
-</code></pre>
+            self.logger.warning(&#x27;Exception:%s&#x27; % str(e))</code></pre>
       </article>
       <div class="archive-section-label">doc</div>
       <article class="archive-panel archive-panel--doc">
@@ -725,14 +723,16 @@ PROGRAMMING STYLE
          Version 1.0
 
           June 2015
-                                          Revision History
+
+                                          Revision History
 
 NOTE: The revision history cycle begins once changes or enhancements are requested after the initial
       version of the Software Architecture Document has been completed.
 
     Date            Version      Description                      Author
     06/12/2015      1.0          Initial version                  Kevin Guerra
-                                            Table of Contents
+
+                                            Table of Contents
 
 1. Introduction       1
     1.1. Purpose        1
@@ -752,7 +752,8 @@ NOTE: The revision history cycle begins once changes or enhancements are request
 7. Error Handling     6
 8. Sample Test        6
 9. Development        6
-                                  HBR-QA Testing Framework
+
+                                  HBR-QA Testing Framework
 
 1. Introduction
 This document provides a high level overview and explains the main classes and interactions for a
@@ -796,7 +797,8 @@ NOTE: Development is at an early stage, therefore this document is subject to ch
            Base Layer – Framework or Architectural Layer
    Other terms may pop up, related to libraries, technologies, etc..., explanation on those is beyond
    scope.
-   1.4.  References
+
+   1.4.  References
         vmtree library
 
    1.5.     Overview
@@ -842,7 +844,8 @@ which layer an object should go. So the criteria we&#x27;ll use is the following
      higher layer. For example a connection class, state is necessary, but it is not suitable for a
      test to call directly into it, because the concern of a connection is of lower grade, IOW, a test
      should not have to be concerned about connectivity issues, such as initiating directly, etc...
-        High: Objects here keep all the state provided by the configuration assigned at initialization.
+
+        High: Objects here keep all the state provided by the configuration assigned at initialization.
          Ideally, tests only interact with this layer.
 
 STATE
@@ -895,7 +898,8 @@ PARAMETERS
             ◦ Configuration data should be fairly stable, that is, it should resemble the objects
                capabilities, and only change to reflect changes, additions or removal of capabilities,
                this implies that a good location to put extra data, would not be configuration data
-         ◦ State data is the responsibility of each object and should not be made available
+
+         ◦ State data is the responsibility of each object and should not be made available
             directly, only through proper APIs, ideally the objects should use FSM (Finite State
             Machine) where applicable
          ◦ We should never treat an object as another via injecting configuration data, as it is
@@ -945,7 +949,8 @@ concerns and we want to avoid cluttering the higher layers and specially the tes
      Staf
      Spaz
      RemoteCommand
-      LocalCommand
+
+      LocalCommand
 
 4. Structure
 Directory structure and file organization
@@ -990,7 +995,8 @@ time consuming
   handled in the framework, for the most part.
  The tests should have some asserts and verification lines, however, whenever possible these
   should happen in Layer 1
-    This would have the effect that the test code would be very minimalistic, since having a good
+
+    This would have the effect that the test code would be very minimalistic, since having a good
      separation of concerns is paramount to good OOP. For example, if you call a Layer 1 function to
      say VM.PowerOn(), it should not be the responsibility of the test to make sure it happened, but
      of the Layer 1 object, moreover, the framework should also handle the error
@@ -1447,7 +1453,6 @@ import unittest
 from lib.utility import log
 from lib.base_test import BaseTest
 
-
 @log.class_logger
 class TestHostRemove(BaseTest):
 
@@ -1483,9 +1488,7 @@ class TestHostRemove(BaseTest):
                          % esxToBeRemoved.ip)
 
 if __name__ == &#x27;__main__&#x27;:
-    unittest.main()
-
-</code></pre>
+    unittest.main()</code></pre>
       </article>
       <div class="archive-section-label">doc</div>
       <article class="archive-panel archive-panel--text">
@@ -1695,14 +1698,11 @@ from lib.utility import log
 from lib.utility.log import clear_tabs
 from lib.service.events import ee
 
-
 logger = log.default_logger
-
 
 @ee.on(&quot;onMachineIp&quot;)
 def handler_onMachineIp(machineName):
     Controller.onMachineIp(machineName)
-
 
 @log.class_logger
 class Controller():
@@ -1749,10 +1749,8 @@ class Controller():
             if pm.enabled and pm.name == machineName:
                 pm.onMachineIp()
 
-
 def _clearFunctionTabs():
     clear_tabs()
-
 
 def execute(function, actors):
     _clearFunctionTabs()
@@ -1761,7 +1759,6 @@ def execute(function, actors):
     function(actors.ProtectedMachines, &#x27;ProtectedMachines&#x27;)
     function(actors.ReplicationGroups, &#x27;ReplicationGroups&#x27;)
 
-
 def executeCleanup(function, actors):
     _clearFunctionTabs()
     function(actors.ProtectedMachines, &#x27;ProtectedMachines&#x27;)
@@ -1769,13 +1766,11 @@ def executeCleanup(function, actors):
     function(actors.Esxs, &#x27;Esxs&#x27;)
     function(actors.Hbr, &#x27;Hbr&#x27;)
 
-
 def configure(items, text):
     if not items:
         return
     message(&#x27;Configuring&#x27;, items, text)
     items.configure()
-
 
 def check(items, text):
     if not items:
@@ -1783,13 +1778,11 @@ def check(items, text):
     message(&#x27;Checking&#x27;, items, text)
     items.check()
 
-
 def create(items, text):
     if not items:
         return
     message(&#x27;Creating dependent objects for&#x27;, items, text)
     items.create()
-
 
 def start(items, text):
     if not items:
@@ -1797,13 +1790,11 @@ def start(items, text):
     message(&#x27;Starting&#x27;, items, text)
     items.start()
 
-
 def stop(items, text):
     if not items:
         return
     message(&#x27;Stopping&#x27;, items, text)
     items.stop()
-
 
 def cleanup(items, text):
     if not items:
@@ -1812,20 +1803,17 @@ def cleanup(items, text):
     if items and items.cleanup:
         items.cleanup()
 
-
 def onMachineIp(items, text):
     if not items:
         return
     message(&#x27;onMachineIp&#x27;, items, text)
     items.onMachineIp()
 
-
 def message(operation, items, text):
     if isinstance(items, list):
         logger.note(&#x27;%s %s, count:%d&#x27; % (operation, text, len(items)))
     else:
-        logger.note(&#x27;%s %s&#x27; % (operation, text))
-</code></pre>
+        logger.note(&#x27;%s %s&#x27; % (operation, text))</code></pre>
       </article>
       <div class="archive-section-label">doc</div>
       <article class="archive-panel archive-panel--text">
@@ -2119,7 +2107,6 @@ from pyHbr import hostd
 from pyVmomi import Vmodl
 import pyHbr
 
-
 @log.class_logger
 @pretty_print
 class Esxs(Actors):
@@ -2134,7 +2121,6 @@ class Esxs(Actors):
 
     def remove(self, item):
         Actors.remove(self, item)
-
 
 @log.class_logger
 @pretty_print
@@ -2602,7 +2588,6 @@ from lib.utility.progress_bar import run_in_background
 import pyHbr
 from pyVmomi import Vmodl
 
-
 @log.class_logger
 @pretty_print
 class Hbr(Machine):
@@ -2861,7 +2846,6 @@ from lib.service.events import Events
 WAIT_FOR_IP_INITIAL = 60
 WAIT_FOR_IP_TIMEOUT = 60
 
-
 @log.class_logger
 @pretty_print
 class Machines(Actors):
@@ -2871,7 +2855,6 @@ class Machines(Actors):
         self.initialize(items)
         for item in items:
             self.append(Machine.build(item, None))
-
 
 @log.class_logger
 @pretty_print
@@ -3117,7 +3100,6 @@ from . import *
 ASCII_A_ORDINAL = ord(&quot;a&quot;)
 logger = log.default_logger
 
-
 @log.class_logger
 @pretty_print
 class HostMachines(Actors):
@@ -3131,7 +3113,6 @@ class HostMachines(Actors):
                 self.append(HostMachine.build(item, actors, config))
             else:
                 self.append(NullObject.build(item))
-
 
 @log.class_logger
 @pretty_print
@@ -3165,10 +3146,8 @@ class HostMachine(Actor):
         machine.powerOff()
         machine.powerOn(waitForIp=True)
 
-
 def _getDeviceName(index):
-    return &#x27;/dev/sd%s&#x27; % chr(ASCII_A_ORDINAL + index)
-</code></pre>
+    return &#x27;/dev/sd%s&#x27; % chr(ASCII_A_ORDINAL + index)</code></pre>
       </article>
       <div class="archive-section-label">src / gemini / lib / service</div>
       <article class="archive-panel archive-panel--code">
@@ -3182,11 +3161,9 @@ from lib.service.wait import wait
 
 logger = log.default_logger
 
-
 @log.class_logger
 class DiskCreate():
     pass
-
 
 # command tuple list (functionName, hasParams, command)
 methods = \
@@ -3196,7 +3173,6 @@ methods = \
         &#x27;diskCreate zzzzzzz %s&#x27;)
 
      ]
-
 
 def make_function(fcmd):
     @log.service_class_function_named(&#x27;lib.service&#x27;)
@@ -3213,7 +3189,6 @@ def make_function(fcmd):
                        ignoreError=ignoreError,
                        estimatedTimeToComplete=estimatedTimeToComplete)
     return disk_create
-
 
 print(&#x27;Creating %d esx host methods for class:DiskCreate&#x27; % len(methods))
 for method in methods:
@@ -3300,8 +3275,7 @@ Usage: diskCreate OPTIONS diskName
   15 pvfs          : PVFS disk and database
   16 seSparse      : VMFS space efficient virtual disk. only available on esx
 
-&quot;&quot;&quot;
-</code></pre>
+&quot;&quot;&quot;</code></pre>
       </article>
       <article class="archive-panel archive-panel--code">
         <div class="archive-panel__header">
@@ -3332,7 +3306,6 @@ if ENABLE_VMTREE:
     from   pyHbr.hbrsrv import MakeImage
 
 logger = log.default_logger
-
 
 @log.class_logger
 @pretty_print
@@ -3491,8 +3464,7 @@ class HbrControl(object):
             self.logger.debug(&quot;Added Thumbprint HostInfo %s for %s&quot; \
                               % (hostd.Thumbprint(), hostd.Hostname()))
         else:
-            self.logger.debug(&quot;Added User/Pass HostInfo %s&quot; % host)
-</code></pre>
+            self.logger.debug(&quot;Added User/Pass HostInfo %s&quot; % host)</code></pre>
       </article>
       <article class="archive-panel archive-panel--code">
         <div class="archive-panel__header">
@@ -3507,7 +3479,6 @@ import os
 import paramiko
 import socket
 import time
-
 
 @log.class_logger
 class Ssh():
@@ -3747,7 +3718,6 @@ TERABYTE = 1099511627776
 TWO_TERABYTES = TERABYTE * 2
 ASCII_A_ORDINAL = ord(&quot;a&quot;)
 
-
 @pretty_print
 class DiskData(dict):
     def __getitem__(self, i):
@@ -3816,7 +3786,6 @@ class DiskData(dict):
             data = getattr(self, &#x27;%s.disk&#x27; % name)
             logger.debug(&#x27;Checksum %s&#x27; % data)
         return data
-
 
 # why are checksums optional if the verification fails in not used?
 @log.class_logger
@@ -3980,7 +3949,6 @@ pattern = re.compile(r&#x27;^\$(.*)$&#x27;)
 yaml.add_implicit_resolver (&quot;!pathex&quot;, pattern)
 yamlFile = &#x27;/tmp/configuration.yaml&#x27;
 
-
 def pathex_constructor(loader, node):
     value = loader.construct_scalar(node)
     envVar = pattern.match(value).groups()[0]
@@ -3991,7 +3959,6 @@ def pathex_constructor(loader, node):
     return envVar
 
 yaml.add_constructor(&#x27;!pathex&#x27;, pathex_constructor)
-
 
 class Configuration(object):
 
@@ -4031,7 +3998,6 @@ class Configuration(object):
                                          &#x27;configuration.yaml&#x27;)
         self.dump(yamlConfiguration)
 
-
 def consolidate_files(testPath):
     # consolidate configuration files
     configurationYaml = os.path.join(PARENT_DIR, &#x27;configuration.yaml&#x27;)
@@ -4055,8 +4021,7 @@ def consolidate_files(testPath):
         for fname in yamlFiles:
             with open(fname) as infile:
                 outfile.write(infile.read())
-    return yamlFile
-</code></pre>
+    return yamlFile</code></pre>
       </article>
       <article class="archive-panel archive-panel--code">
         <div class="archive-panel__header">
@@ -4132,7 +4097,6 @@ level_dict = {
     &#x27;LOGGING_LEVEL_VVERBOSE&#x27;: 4,
               }
 
-
 def getLevelFromString(levelName):
     res = 0
     try:
@@ -4140,7 +4104,6 @@ def getLevelFromString(levelName):
     except:
         pass
     return res
-
 
 def getLevels(levelNames):
     levels = [
@@ -4151,7 +4114,6 @@ def getLevels(levelNames):
     for levelName in levelNames:
         levels.append(getLevelFromString(levelName))
     return levels
-
 
 class LogFilter(object):
     def __init__(self, levels):
@@ -4190,11 +4152,9 @@ levels = [
 simpleLogFilter = LogFilter(simple_levels)
 logFilter = LogFilter(levels)
 
-
 def setSimpleLevels(levels):
     simpleLogFilter = LogFilter(levels)
     simple_handler.addFilter(simpleLogFilter)
-
 
 def setFileSimpleLevels(levels):
     simpleLogFilter = LogFilter(levels)
@@ -4229,7 +4189,6 @@ if rootlogger.level == logging.NOTSET:
 
 default_logger.propagate = False
 
-
 # ---------------------------------------------------------------------------
 # ---------------------------------------------------------------------------
 DOUBLE_LINE = \
@@ -4258,7 +4217,6 @@ NOTE_STRING = (u&#x27;░░░░░░░░░░░░░░░░░░░�
                u&#x27;░░░░░░░░░░░░░░░░░░░░░&#x27;)
 IGNORED_ERROR_STRING = (u&#x27;░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░  DISREGARD ERROR  &#x27;
                         u&#x27;░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓&#x27;)
-
 
 def box(textString):
     extra = u&#x27;¤ ¤ ¤&#x27;
@@ -4299,7 +4257,6 @@ from lib.lwrdo.esx import Esx
 from lib.framework.esx import Esx as fwEsx
 from lib.utility import log
 from pyVmomi import Vmodl
-
 
 @log.class_logger
 @pretty_print
@@ -4406,9 +4363,7 @@ class HbrHosts(Actor):
         for h in self._hbr.storageManager.GetEnabledHosts():
             count += 1
         self.logger.info(&#x27;count: %d&#x27; % count)
-        return count
-
-</code></pre>
+        return count</code></pre>
       </article>
       <article class="archive-panel archive-panel--code">
         <div class="archive-panel__header">

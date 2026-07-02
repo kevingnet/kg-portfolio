@@ -133,7 +133,6 @@ WORK PERFORMED:
 #define _WINSOCKAPI_
 #endif
 
-
 #include &quot;MessageServiceSalBllConnection.h&quot;
 #include &quot;SalLogger.h&quot;
 #include &quot;HandleReserver.h&quot;
@@ -727,7 +726,8 @@ TBD Title                           TBD Title
                                 1                  Interface Wrappers.doc
 
                                                           xxx-xxxx-xxx, 1.
-          TABLE OF CONTENTS
+
+          TABLE OF CONTENTS
 
 `
 
@@ -760,7 +760,8 @@ TBD Title                           TBD Title
                                                                           2                                                    Interface Wrappers.doc
 
                                                                                                                                          xxx-xxxx-xxx, 1.
-1.0      Introduction
+
+1.0      Introduction
 
 1.1      Scope
       The scope of this document is to describe the Sal Interface Wrappers project of the Phoenix
@@ -785,7 +786,8 @@ TBD Title                           TBD Title
                                                     3                                    Interface Wrappers.doc
 
                                                                                                                  ,
-2.0      Component Design
+
+2.0      Component Design
       This component consists of one C++ module, a scripting library that makes the module accessible in
       a hopefully consistent way across different scripting languages implementation, and the actual SAL
       DLL which provides the actual interface to P2 through a defined API.
@@ -826,7 +828,8 @@ TBD Title                           TBD Title
                                                      4                                            Interface Wrappers.doc
 
                                                                                                                       ,
-2.2      SWIG Interface Module
+
+2.2      SWIG Interface Module
       Module actually is somewhat of a misnomer, although it is a module by virtue of “being” a dll. This
       module at the moment has no code other than one function that is run during dll load, and that is the
       Init() function.
@@ -883,7 +886,8 @@ TBD Title                           TBD Title
                                                      5                               Interface Wrappers.doc
 
                                                                                                              ,
-      The command produces sTcl_wrap.cxx, which is the file SWIG creates that wraps SalInterface.h
+
+      The command produces sTcl_wrap.cxx, which is the file SWIG creates that wraps SalInterface.h
       and makes available those exportable functions for our scripting language, in this case tcl.
       From sTcl.i interface file, one should note that we request SWIG to generate exception handling
       code for our target language. Also note that the stl classes vector and string are used. SWIG
@@ -942,7 +946,8 @@ TBD Title                           TBD Title
                                                     6                                   Interface Wrappers.doc
 
                                                                                                                 ,
-      thing to note is the fact that the BLL will notify SAL of some events, and some of these events may
+
+      thing to note is the fact that the BLL will notify SAL of some events, and some of these events may
       be error conditions. So it is important that these events are handled so that the users can be notified
       appropriately. However, if this events are serious errors, the question is, should those events cause
       exceptions to be raised? In my opinion, a resilient program should try to continue in spite of error
@@ -962,7 +967,8 @@ TBD Title                           TBD Title
                                                     7                                   Interface Wrappers.doc
 
                                                                                                                 ,
-3.0       Design Requirements
+
+3.0       Design Requirements
       The language dependent library may have to contain target language specific code. However, we
       should try to minimize this code and keep the interface as light as possible. The goal being zero
       lines of code; only the necessary lines to wrap the functions and rename them so the target
@@ -995,7 +1001,8 @@ TBD Title                           TBD Title
                                                    8                                   Interface Wrappers.doc
 
                                                                                                             ,
-4.0      Unit Test Strategy
+
+4.0      Unit Test Strategy
       Because this project virtually has no code, there are no “unit” tests to conduct. The only code
       available is the generated code and our team in several discussions dimmed unnecessary to unit
       test code that we did not produce. So, in a sense we trust the tool SWIG to work sufficiently well. In
@@ -1034,7 +1041,6 @@ TBD Title                           TBD Title
 #ifdef WIN32
 #define _WINSOCKAPI_
 #endif
-
 
 #include &quot;SalLogger.h&quot;
 #include &quot;SalInterface.h&quot;

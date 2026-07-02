@@ -340,9 +340,7 @@ CREATE INDEX idxPurchReq
 GO
 
 GRANT  EXECUTE  ON dbo.sp_UpdateTables  TO PurchReqAdmin
-GO
-
-</code></pre>
+GO</code></pre>
       </article>
       <div class="archive-section-label">Project root</div>
       <article class="archive-panel archive-panel--doc">
@@ -1888,9 +1886,7 @@ Updater Flow Chart</div>
           <span class="archive-badge-type">CODE</span>
           <span class="archive-filename">Generic Updater.cpp</span>
           <span class="archive-path">src/Generic Updater/Generic Updater.cpp</span>
-        </div>        <pre class="archive-code"><code class="language-cpp">
-
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        </div>        <pre class="archive-code"><code class="language-cpp">//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //			 ____________________________________________________________________
 //			|							Includes							     |
@@ -1911,7 +1907,6 @@ INT	iBackupServer = 1 ;
 //			 ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //
-
 
 //------------------------------------------------------------------------------------------------
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1974,7 +1969,6 @@ int WINAPI WinMain ( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	UNREFERENCED_PARAMETER(nCmdShow);
 	UNREFERENCED_PARAMETER(hPrevInstance);
 }
-
 
 //------------------------------------------------------------------------------------------------
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2123,9 +2117,7 @@ BOOL CALLBACK ServerDlgProc ( HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam
           <span class="archive-badge-type">CODE</span>
           <span class="archive-filename">Update.cpp</span>
           <span class="archive-path">src/Generic Updater/Update.cpp</span>
-        </div>        <pre class="archive-code"><code class="language-cpp">
-
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        </div>        <pre class="archive-code"><code class="language-cpp">//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //			 ____________________________________________________________________
 //			|							Includes							     |
@@ -2138,7 +2130,6 @@ BOOL CALLBACK ServerDlgProc ( HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam
 #ifndef __DINIFILE_H__
 	#include &quot;DConnection.h&quot;
 #endif
-
 
 DWORD dwResult ;
 
@@ -2343,7 +2334,6 @@ void ProcessUpdate ()
 
 	log &lt;&lt; szDoubleLine ;
 
-
 … [truncated — 1450 lines total]</code></pre>
         <p class="archive-truncated">Showing excerpt of 1450 lines.</p>
       </article>
@@ -2360,7 +2350,6 @@ void ProcessUpdate ()
           <span class="archive-path">src/NWConnect/NWConnect.cpp</span>
         </div>        <pre class="archive-code"><code class="language-cpp">#include &quot;windows.h&quot;
 #include &quot;NWConnect.h&quot;
-
 
 //DString szLine = &quot;\r\n______________________________________________________________________________\r\n¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\r\n&quot; ;
 DString szBeginLine = &quot;\r\n\r\n********************* NWConnect.dll *********************\r\n&quot; ;
@@ -2406,7 +2395,6 @@ LONG WINAPI NWIsConnected ( SERVER_INFO * si )
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // FUNCTION: NWIsNDSLoggedIn
 // PURPOSE:
@@ -2442,7 +2430,6 @@ LONG WINAPI NWIsNDSLoggedIn ( SERVER_INFO * si	)
 	return ( bConnection ) ;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // FUNCTION: NWNDSLogin
@@ -2542,7 +2529,6 @@ LONG WINAPI NWNDSLogout ( SERVER_INFO * si	)
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // FUNCTION: NWNDSLogoutAndDisconnect
 // PURPOSE:
@@ -2607,7 +2593,6 @@ LONG WINAPI NWNDSLogoutAndDisconnect ( SERVER_INFO * si	)
 #include &lt;process.h&gt;       /* for _beginthread                      */
 #include &quot;smtp.h&quot;
 
-
 /////////////////////////////////////////////////////////////////////////////
 //
 
@@ -2626,7 +2611,6 @@ STDMETHODIMP CSendMail::InterfaceSupportsErrorInfo(REFIID riid)
     }
     return S_FALSE;
 }
-
 
 //Ctor
 CSendMail::CSendMail()
@@ -2651,7 +2635,6 @@ STDMETHODIMP CSendMail::Send()
 	//TODO
 
   //SOCKET sock;
-
 
 //from app
 
@@ -2679,11 +2662,9 @@ STDMETHODIMP CSendMail::Send()
 
 	//m_response = &quot;Message may have been sent&quot; ;
 
-
   //end from app
     return S_OK;
 }
-
 
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -2832,8 +2813,6 @@ STDMETHODIMP CSendMail::get_Subject(BSTR * pVal)
 #include &quot;smtp.h&quot;
 
 #define EOL  &quot;\r\n&quot;
-
-
 
 //////////////// Implementation //////////////////////////////////////
 CSMTPSocket :: CSMTPSocket ()
@@ -3445,8 +3424,7 @@ RS.close
 &lt;!-- #include file=&quot;Footer.inc&quot; --&gt;
 
 &lt;/BODY&gt;
-&lt;/HTML&gt;
-</code></pre>
+&lt;/HTML&gt;</code></pre>
       </article>
       <div class="archive-section-label">Project root</div>
       <figure class="archive-figure">
@@ -3676,8 +3654,7 @@ function SubmitForm()
 &lt;!-- #include file=&quot;Footer.inc&quot; --&gt;
 
 &lt;/BODY&gt;
-&lt;/HTML&gt;
-</code></pre>
+&lt;/HTML&gt;</code></pre>
       </article>
       <div class="archive-section-label">Project root</div>
       <figure class="archive-figure">

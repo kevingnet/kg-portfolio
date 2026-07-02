@@ -58,6 +58,64 @@ def apply_branding(text: str) -> str:
         text = text.replace(old, new)
     return text
 
+
+# Legal / distribution boilerplate stripped from extracted archive text (not resume prose).
+_LEGAL_INLINE_RE = re.compile(
+    r"\s*(?:Google\s+Confidential\s+and\s+Proprietary|and\s+Proprietary\s+Information)\s*",
+    re.IGNORECASE,
+)
+_LEGAL_LINE_RE = re.compile(
+    r"^\s*(?:"
+    r"Google\s+Confidential\s+and\s+Proprietary|"
+    r"and\s+Proprietary\s+Information|"
+    r"Copyright\s+Consumer\s+Electronics\s+Association.*|"
+    r"Document\s+provided\s+by\s+IHS\s+Licensee=.*|"
+    r"Reproduced\s+by\s+IHS\s+under\s+license.*|"
+    r"Questions\s+or\s+comments\s+about\s+this\s+message.*|"
+    r"This\s+document\s+is\s+copyrighted\s+by\s+CEA.*|"
+    r".*\bAll\s+Rights\s+Reserved\b.*|"
+    r"CONFIDENTIAL|"
+    r"Proprietary\s+and\s+Confidential"
+    r")\s*$",
+    re.IGNORECASE,
+)
+
+
+def scrub_legal_boilerplate(text: str) -> str:
+    if not text:
+        return text
+    lines = []
+    for line in text.splitlines():
+        stripped = line.strip()
+        if not stripped:
+            lines.append(line)
+            continue
+        if _LEGAL_LINE_RE.match(stripped):
+            continue
+        lines.append(_LEGAL_INLINE_RE.sub("", line))
+    cleaned = "\n".join(lines)
+    cleaned = re.sub(r"\n{3,}", "\n\n", cleaned)
+    return cleaned.strip()
+
+
+def scrub_archive_obj(obj):
+    if isinstance(obj, dict):
+        out = {}
+        for key, val in obj.items():
+            if key == "content" and isinstance(val, str):
+                out[key] = scrub_legal_boilerplate(val)
+            else:
+                out[key] = scrub_archive_obj(val)
+        return out
+    if isinstance(obj, list):
+        return [scrub_archive_obj(item) for item in obj]
+    return obj
+
+
+def archive_text(text: str) -> str:
+    return scrub_legal_boilerplate(text or "")
+
+
 NAV = [
     ("Portfolio", "index.html"),
     ("Services", "services.html"),
@@ -591,7 +649,9 @@ def load_dev_inventory() -> dict:
 def load_nnn_archive() -> dict:
     if NNN_ARCHIVE_JSON.is_file():
         try:
-            return json.loads(NNN_ARCHIVE_JSON.read_text(encoding="utf-8"))
+            return scrub_archive_obj(
+                json.loads(NNN_ARCHIVE_JSON.read_text(encoding="utf-8"))
+            )
         except (json.JSONDecodeError, OSError):
             pass
     return {}
@@ -636,7 +696,7 @@ def render_doc_segments(segments: list[dict]) -> str:
     for seg in segments:
         kind = seg.get("kind")
         if kind == "text":
-            content = html.escape(seg.get("content") or "")
+            content = html.escape(archive_text(seg.get("content") or ""))
             if not content.strip():
                 continue
             parts.append(
@@ -684,7 +744,7 @@ def render_nnn_block(block: dict) -> str:
         header += f'          <span class="archive-path">{path_hint}</span>\n'
     header += "        </div>"
 
-    content = block.get("content") or ""
+    content = archive_text(block.get("content") or "")
     truncated = block.get("truncated")
     meta = ""
     if truncated:

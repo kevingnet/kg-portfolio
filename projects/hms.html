@@ -4639,7 +4639,8 @@ Table of Contents...............................................................
    7.2 Binary data encryption and checksum validation.......................................................................... 11
 8 Test results.............................................................................................................................................11
 9 Summary...............................................................................................................................................12
-1 Introduction
+
+1 Introduction
 It seems widely accepted that most application vulnerabilities exist because of poor input validation. In
 fact, it is estimated that over 90 percent of them relate to lack or poor input validation. The Hypermedia
 Systems Enterprise Security Team has taken proactive steps to remedy this situation by developing an
@@ -4682,7 +4683,8 @@ NOTE: “item” refers to a type of validation, “string” refers to the inpu
 
    Ensure we have a string and that it is not empty
    Compare string size with global minimum and maximum requirements
-   Compare string size with item&#x27;s minimum and maximum requirements
+
+   Compare string size with item&#x27;s minimum and maximum requirements
    If item is a standard data type ensure it conforms to proper type and range
    If item is a standard data type and has a value range ensure string is within proper range
    If item is a string ensure all non alpha-numeric characters are valid
@@ -4730,7 +4732,8 @@ check-sum function which would make the file unreadable.
 
 At this point we have two files that comprise our Input Validation Library, the library itself and
 libinval.pcre. Usage information is demonstrated in the next chapter and configuration data is provided
-in the following chapters.
+
+in the following chapters.
 
 Once we have an application to use the library. Validation can be done for the following data types:
 (signed/unsigned) char, short int, int, long, long long; float, double, bool and of course zero terminated
@@ -4778,7 +4781,8 @@ sensitivity. If you set an item to be case insensitive, its PCRE data will be co
 that should also speed things up.
 
 The Apache project XERCES XML parser library was used for PCREBinGen only, the library does not
-deal with XML at all in order to keep a small footprint.
+
+deal with XML at all in order to keep a small footprint.
 
 A logging system was used for output of information and other messages from the library.
 
@@ -4825,7 +4829,8 @@ The programmer must keep a reference to this ID throughout the runtime of their 
 must be obtained each time the application is started.
 
 Although, this may seem like an extra step, it is a necessary one in order to avoid calculating this
-internally each time by string comparison against possibly all entries. This, of course, was done in
+
+internally each time by string comparison against possibly all entries. This, of course, was done in
 order to increase run time performance.
 
 PERFORMANCE TIP: Put items that are to be validated the most in the beginning of the xml file. This
@@ -5178,7 +5183,6 @@ After we find out the
 	“best” method, we need to find out what options we have for
 	dealing with the notifications.
 
-and Proprietary Information
 6</div>
         </div>
       </article>

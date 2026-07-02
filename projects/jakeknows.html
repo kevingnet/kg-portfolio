@@ -182,8 +182,7 @@ namespace JakeKnowsEngineComponent
 		WS_GetNews, //getNews
 	}
 	}
-}
-</code></pre>
+}</code></pre>
       </article>
       <div class="archive-section-label">doc</div>
       <article class="archive-panel archive-panel--doc">
@@ -940,7 +939,6 @@ namespace JakeKnowsEngineComponent
             }
         }
 
-
 … [truncated — 245 lines total]</code></pre>
         <p class="archive-truncated">Showing excerpt of 245 lines.</p>
       </article>
@@ -1363,7 +1361,8 @@ content and converts it appropriately depending on the WS call return type.
 The second component is the ID engine itself which consists of two parts. The first module is a Visual
 Studio Project which produces an executable binary file that is a Windows Service, actually there is yet
 another such project which produces a regular executable with the exact same functionality which is
-used during testing, as it is easier to debug.
+
+used during testing, as it is easier to debug.
 
 This executable simply initializes the named pipe host so that it can accept calls from the Web Services
 DLL. It initializes the cache and loads it from database using the component DLL which will be explained
@@ -1372,7 +1371,8 @@ following graph shows the classes used.
 
 The second part of this component is another Visual Studio project that produces a DLL, and this is the
 most important part of the application and the main focus of this document.
-In the above graphic we see two logically grouped modules, (there is only logical grouping since they are
+
+In the above graphic we see two logically grouped modules, (there is only logical grouping since they are
 part of the same DLL code, and as you can see they also share some common classes.) In the first
 module we can see the reactor part of it which is the part that contains the listening named pipe, it
 handles concurrency by creating a task for each call that comes in. It is responsible for performing
@@ -1398,7 +1398,8 @@ At this level, the data record is not simply an entry in the profile table, but 
 &#x27;directly&#x27;, related. A direct relationship is one for which there is a record entry in an association table, in
 which the most important ID in the record directly correspond to the table type in this instance of the
 data object. This will become more understandable once I provide a use case scenario.
-The Data Object again is a dictionary with a record ID as the key, and table object, as the value, it is here
+
+The Data Object again is a dictionary with a record ID as the key, and table object, as the value, it is here
 where the association tables are found using object containment, and not object derivation, because a
 table object can have so many association types. Let&#x27;s keep in mind that at this level we are talking about
 types of associations, meaning, what tables &#x27;can&#x27; be associated. However, an actual association is an
@@ -1427,7 +1428,8 @@ types.
 All data objects derive from the table object and are treated the same when it comes to data access,
 because they all are tables in the database. All data is processed through stored procedures, but these
 are not all the same, because the association tables do not have auto increment record Ids.
-In the new architecture these details are completely irrelevant at the mid level, these details are handled
+
+In the new architecture these details are completely irrelevant at the mid level, these details are handled
 by the &#x27;plumbing&#x27; classes and modules uniformly, so that the programmer can focus on productivity
 using higher level constructs. I will give an example of this during a concrete web service call, and how
 the data flows in the system.
@@ -1468,7 +1470,8 @@ details please refer to Doxygen documents.
     8) Database, a directory with the following files:
 a) (AUTO-GENERATED) FieldMapper.cs : classes InputFieldInfo, FieldsDictionary, plus support
 enumerations and other code. This module deals with how the system or engine is to deal with input
-parameters. It is used in the strategy classes to do type conversion and recordID to Data and Data to
+
+parameters. It is used in the strategy classes to do type conversion and recordID to Data and Data to
 recordID mapping. An example of this is when for instance, you have a web service call with a parameter
 called FirstName, which is a string, this data is found in a table called tblPerson, and this table contains
 columns, IDPerson, Person, TYPerson (type of person, firstName, lastName, etc...) As you might suspect
@@ -1512,7 +1515,8 @@ For a record creation a similar pattern is followed and the stored procedure wil
 be used during initialization. Delete follows the same pattern, but the caller will be responsible for the
 actual object deletion, this is also a lower level implementation which does not hinder the higher level
 code with these kinds of nuisances.
-f) (AUTO-GENERATED) TablesAssociations.cs: Nothing interesting to see here, it is completely generated
+
+f) (AUTO-GENERATED) TablesAssociations.cs: Nothing interesting to see here, it is completely generated
 and holds instantiations of association table objects that are derived from the above CTableAssociation.
 g) AUTO-GENERATED) Tables.cs: Same as above, completely auto-generated, but this one is more
 interesting. As you may gather an association table, also &#x27;is&#x27;, a table. So we will find their actual data
@@ -1692,8 +1696,7 @@ namespace JakeKnowsEngineComponent
             return s;
         }
     }
-}
-</code></pre>
+}</code></pre>
       </article>
       <div class="archive-section-label">doc</div>
       <article class="archive-panel archive-panel--doc">
@@ -1771,7 +1774,6 @@ namespace JakeKnowsEngineComponent
         private TypeTitleData _TypeTitle = new TypeTitleData(0, 0);
         private TypeZipCodeData _TypeZipCode = new TypeZipCodeData(0, 0);
 
-
         public static TableTypes GetTableType(string table)
         {
             TableTypes type = TableTypes.TTABLEINVALID;
@@ -1792,8 +1794,7 @@ namespace JakeKnowsEngineComponent
             LoadData();
         }
     }
-}
-</code></pre>
+}</code></pre>
       </article>
       <div class="archive-section-label">doc</div>
       <article class="archive-panel archive-panel--doc">
@@ -2090,9 +2091,7 @@ namespace JakeKnowsEngineComponent
             }
         }
     }
-}
-
-</code></pre>
+}</code></pre>
       </article>
       <div class="archive-section-label">doc</div>
       <article class="archive-panel archive-panel--doc">
@@ -2421,7 +2420,8 @@ code generator and it is a wrapper that packages the parameters in a dataset and
 and a version number. The web application does some clean up of strings (removal of duplicate
 contiguous spaces) and it also knows to omit packaging unused parameters. It then opens a connection
 (named pipe) to the engine (windows service) to transmit the data and waits synchronously for a
-response. Note that tests conclude that we can also use multitasking at the web application level should
+
+response. Note that tests conclude that we can also use multitasking at the web application level should
 we need to and that this provides asynchronous operation, so that for instance a web service call can
 make more than one requests to the engine, and that the operations can be chained, this would
 facilitate refactoring of code for related calls. The engine, upon completion of a call returns a string
@@ -2469,7 +2469,8 @@ the saving of data, releasing the caller much sooner than what is currently.
 The code generator connects to the database to figure out how to generate the code, it also uses file
 templates for different stages, Web Service calls or Database objects for example. In order for the code
 generator to function with simpler code, it is necessary to keep a consistent way of naming tables and
-fields. This is how the code generator is able to figure out the different relationships among the tables.
+
+fields. This is how the code generator is able to figure out the different relationships among the tables.
 An extra table was added to the database to describe each web service call and each parameter and the
 diverse type of mappings, conversions and other operations that the code generator needs to resolve.
 
@@ -2514,7 +2515,8 @@ wrap their values into the xml structure (dataset) to be consumed by the app
 one DLL
 4) More consistency in the application structure, since the one entry point would have the decision logic
 to invoke the pertinent operations
-5) More parameters can be added to a web service call without affecting the application structure, the
+
+5) More parameters can be added to a web service call without affecting the application structure, the
 Decorator pattern would be used to provide the additional functionality
 
 Drawbacks:
@@ -2559,7 +2561,8 @@ following is a list of these, an overview and then some details.
        somewhat different from the previous one, in that the engine tries to match the user with an
        existing one through several means and if all those fail a new profile will be created, otherwise
        the found profile is returned. This process generates a token which is saved locally and it is used
-        throughout other calls. The second process registers the user with Taleo. Third, we create a local
+
+        throughout other calls. The second process registers the user with Taleo. Third, we create a local
         profile using our database and we store the parameters passed above, along with information
         returned from Taleo and our ID engine. Last we return a successful call return message which is
         wrapped and then sent back to the direct caller which is the web services app, and then it will
@@ -2608,7 +2611,8 @@ procedures and C# code. The code produced is saved to files which are not modifi
 the same classes can occur via other files and they can affect the non modified code. In other words,
 should the generated code need more tailoring, it can be done to a separate file affecting the class of the
 generated code. This makes maintenance much more feasible.
-Database connectivity is done by the Sony app directly via .NET classes, that are used by the classes of
+
+Database connectivity is done by the Sony app directly via .NET classes, that are used by the classes of
 code generated. This allows the app to be data agnostic to some extent. This is because complete data
 independence would mean to have an extra layer, and I wanted to improve performance, specially since
 we&#x27;re already using a heavy system such as .NET and C#. In any event the code generator makes up for
@@ -2705,8 +2709,7 @@ namespace JakeKnowsEngineComponent
             return true;
 		}
 	}
-}
-</code></pre>
+}</code></pre>
       </article>
       <div class="archive-section-label">doc</div>
       <article class="archive-panel archive-panel--doc">

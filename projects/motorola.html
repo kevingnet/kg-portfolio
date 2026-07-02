@@ -277,7 +277,6 @@ int next_start_code(uint32_t * buf, uint32_t byteCount)
   return -1;
 }
 
-
 #ifdef DEBUG_VERBOSE
   DigitalMask Parse053(uint8_t * data, uint32_t size, uint32_t pic,
       BufferInfo&amp; buf608, BufferInfo&amp; bufDTV)
@@ -755,9 +754,7 @@ void EIA708Packet::SubstractLine21Info()
   LINFO(&quot;SubstractLine21Info: substractied two bytes new &quot;
       &quot;CompleteLength: %d&quot;, (int)CompleteLength);
 #endif
-}
-
-</code></pre>
+}</code></pre>
       </article>
       <article class="archive-panel archive-panel--code">
         <div class="archive-panel__header">
@@ -1471,7 +1468,6 @@ Parse608::Parse608() :
 #else
 #define VERBOSE_COUNTER_INC result = true;
 #endif
-
 
 Parse708::Parse708() :
   ExtendedCode(false),

@@ -301,8 +301,7 @@ class DAC extends Cached&lt;String, Integer&gt; implements AuthorizeResource {
   @Override public Integer get(String hash) {
     return 0;
   }
-}
-</code></pre>
+}</code></pre>
       </article>
       <div class="archive-section-label">doc</div>
       <article class="archive-panel archive-panel--doc">
@@ -347,9 +346,7 @@ Images                                                                          
   - Validate and Combine Output data
 
                                                                PNG Screenshots
-         Eclipse Plugin                                                                                           Google Cloud Storage
-
-Google Confidential and Proprietary</div>
+         Eclipse Plugin                                                                                           Google Cloud Storage</div>
         <div class="archive-doc-segment archive-doc-segment--figures">
           <div class="archive-doc-figures__grid archive-doc-figures__grid--solo">
           <figure class="archive-doc-figure">
@@ -376,8 +373,6 @@ programmer by having to do a lot of extra work for referential integrity
 - Poor performance, due to complex queries and data access patterns, sql does not scale as well as Google’s Big Table.
 ...continued...
 
-                                                                                                                                    Google Confidential and Proprietary
-
 - Necessity for a database administrator, who must/should regularly back back or otherwise maintain the system. This would be a manual and labor intensive process. Google
 technologies already provide mechanisms that could be used in a manual process, or otherwise could be done programmatically in the application, in a more timely fashion,
 because libraries and API’s are readily available for this purpose.
@@ -393,8 +388,6 @@ consuming and laborious to understand the system, not to mention maintain.
 NOTE: Please refer to AViK documentation currently available to understand how the system currently works.
 
 Below are some links and quotations from the same regarding the original schema implementation.
-
-                                                                                                                                     Google Confidential and Proprietary
 
 wikipedia
 
@@ -422,8 +415,6 @@ Stack Overflow - EAV Pros and Cons Stack Overflow EAV in SQL
 
 EAV is notoriously problematic as it leads to severe deployment performance and scalability problems.
 
-                                                                                                                                                       Google Confidential and Proprietary
-
 Wordpress - Mike Smithers, The anti-pattern AEVil database design
 
 The EAV pattern looks very appealing at first glance. The upsides of EAV are usually most apparent during design and development. The downsides don’t tend to manifest themselves until after the
@@ -447,8 +438,6 @@ to prove the general point about the difficulty of getting data out of an EAV de
 US National Library of Medicine - AEV Proper use and application
 
 SQL Team - David M.
-
-                                                                                                                                                       Google Confidential and Proprietary
 
 Issues with current AViK system
 
@@ -482,8 +471,6 @@ future, but as it is right now, it is not used for review purposes.
 
 - Incompatible code with Google Java Coding Style Standards, and due to the large code base would be time consuming to bring the code to compliance
 
-                                                                                                                                                                                                                  Google Confidential and Proprietary
-
 Original AViK source code
 
 SLOC      Directory            SLOC-by-Language (Sorted)
@@ -511,8 +498,6 @@ python:            7 (0.02%)
 Total Physical Source Lines of Code (SLOC) = 33,205
 
 Note that it does not account for HTML, JavaScript or CSS content. This should bring it close to 40k~
-
-                                                                                                                                                 Google Confidential and Proprietary
 
 “New” AViK Architecture                                Upload Screens                                                   Visualize Screens
 
@@ -547,8 +532,6 @@ Note that it does not account for HTML, JavaScript or CSS content. This should b
                             Eclipse                         Google Cloud Storage                                   Google Data Store                                         Core
      - Script (IDE)                                                                                                                                                          Bugs
 
-                                                                                                                                           Google Confidential and Proprietary
-
 “New” AViK Architecture                              Upload Screens                                                   Visualize Screens
 
 -7k~ LOC (half~ auto gen)
@@ -580,11 +563,7 @@ Note that it does not account for HTML, JavaScript or CSS content. This should b
                                                               PNG Screenshots
                         Former Workbench:
                           EclipseOptional                 Google Cloud Storage                                   Google Data Store                                         Core
-     - Script (IDE)                                                                                                                                                        Bugs
-
-                                                                                                                                         Google Confidential and Proprietary
-
-Google Confidential and Proprietary</div>
+     - Script (IDE)                                                                                                                                                        Bugs</div>
         <div class="archive-doc-segment archive-doc-segment--figures">
           <div class="archive-doc-figures__grid archive-doc-figures__grid--solo">
           <figure class="archive-doc-figure">
@@ -613,8 +592,6 @@ Separation of backend (Java) from frontend (Dart, JavaScript), API based interfa
 
 Google Technology Stack, Object Oriented, Modularity, Caching, Validation,                                                      Performance, Reliability, Comprehensibility, Security
 
-                                                                                                                                                                                                    Google Confidential and Proprietary
-
 Demo milestone: TBD (3 weeks)
 
 - Complete API
@@ -639,8 +616,6 @@ Demo milestone: TBD (3 weeks)
 
 - Screen deduplication to avoid duplication of billable work (Checksum support already in place, FFT based would catch more)
 
-                                                                                                                                                  Google Confidential and Proprietary
-
 LQA Lab Platform: Scope
 
 ●   User Management:
@@ -658,8 +633,6 @@ LQA Lab Platform: Scope
      ○ v3.- TC integration
 ●   Google Cloud End Points API Front End - Back End integration
 ●
-
-                                                                              Google Confidential and Proprietary
 
 - Database Schema 90%+
 
@@ -684,8 +657,6 @@ LQA Lab Platform: Scope
 - Elimination of the Workbench and Console applications, only needed functionality moves to main app.
 
 - Ability to upload screens independently from AViK client
-
-                                                                                                              Google Confidential and Proprietary
 
 LQA Lab Platform
                        Front End (Dart)             Back End
@@ -713,8 +684,6 @@ Phone
                                                   Morpheus / Sesame
                          (OAuth2)
 
-                                                                       Google Confidential and Proprietary
-
 AViK: Old Architecture
                                                Reviewe
                                                r
@@ -735,8 +704,6 @@ AViK: Old Architecture
                   * Validation                                      -
                   * Upload                                    Google Cloud
                                                                   Store
-
-                                                              Google Confidential and Proprietary
 
 New source code
 
@@ -772,9 +739,7 @@ NOTE: Dart client code, in 161 LOC has:
 
 5) HTML code is very small boilerplate, since there are no ‘pages,’ content is dynamic
 
-6) JavaScript code is generated from Dart and it is consumed by the web browser as the client ‘application’
-
-                                                                                                                                          Google Confidential and Proprietary</div>
+6) JavaScript code is generated from Dart and it is consumed by the web browser as the client ‘application’</div>
         </div>
         <details class="archive-doc-fulltext">
           <summary>Full extracted text</summary>
@@ -783,7 +748,8 @@ NOTE: Dart client code, in 161 LOC has:
                   plus comparison with previous
                             version
 Author: Kevin Guerra guerrak@google.com
-                                                                                        “Old”AViK Architecture
+
+                                                                                        “Old”AViK Architecture
 
                                        -33k~ LOC (lines of code) [Missing Workbench code]
                                        -Dependency on 6 year old libraries
@@ -814,8 +780,8 @@ Images                                                                          
 
                                                                PNG Screenshots
          Eclipse Plugin                                                                                           Google Cloud Storage
-Google Confidential and Proprietary
-NOTE: Schema and SQL queries as provided are inconsistent when a new database is created. Causing the new db to be incompatible with the current code base and the
+
+NOTE: Schema and SQL queries as provided are inconsistent when a new database is created. Causing the new db to be incompatible with the current code base and the
 system unusable for the new database.
 Pros and Cons for (not) using old AViK database schema and implementation
 Pros:
@@ -833,8 +799,7 @@ programmer by having to do a lot of extra work for referential integrity
 - Poor performance, due to complex queries and data access patterns, sql does not scale as well as Google’s Big Table.
 ...continued...
 
-                                                                                                                                    Google Confidential and Proprietary
-- Necessity for a database administrator, who must/should regularly back back or otherwise maintain the system. This would be a manual and labor intensive process. Google
+- Necessity for a database administrator, who must/should regularly back back or otherwise maintain the system. This would be a manual and labor intensive process. Google
 technologies already provide mechanisms that could be used in a manual process, or otherwise could be done programmatically in the application, in a more timely fashion,
 because libraries and API’s are readily available for this purpose.
 - System difficult to understand, implement, code, maintain and test, due to its complexity and inconsistent naming conventions
@@ -850,8 +815,7 @@ NOTE: Please refer to AViK documentation currently available to understand how t
 
 Below are some links and quotations from the same regarding the original schema implementation.
 
-                                                                                                                                     Google Confidential and Proprietary
-wikipedia
+wikipedia
 
 Entity–attribute–value model (EAV) is a data model to describe entities where the number of attributes (properties, parameters) that can be used to describe them is potentially vast, but the number
 
@@ -877,8 +841,7 @@ Stack Overflow - EAV Pros and Cons Stack Overflow EAV in SQL
 
 EAV is notoriously problematic as it leads to severe deployment performance and scalability problems.
 
-                                                                                                                                                       Google Confidential and Proprietary
-Wordpress - Mike Smithers, The anti-pattern AEVil database design
+Wordpress - Mike Smithers, The anti-pattern AEVil database design
 
 The EAV pattern looks very appealing at first glance. The upsides of EAV are usually most apparent during design and development. The downsides don’t tend to manifest themselves until after the
 
@@ -902,8 +865,7 @@ US National Library of Medicine - AEV Proper use and application
 
 SQL Team - David M.
 
-                                                                                                                                                       Google Confidential and Proprietary
-                                                                                                                          Issues with current AViK system
+                                                                                                                          Issues with current AViK system
 
 - Reliance in xml manifest files: Forces screen producer to list all ‘valid’ screens to submit and then to validate them a priori. This is an issue because our usage pattern will utilize tools that ‘crawl’ an application, being script agnostic as such. The manifest files restrict
 
@@ -935,8 +897,7 @@ future, but as it is right now, it is not used for review purposes.
 
 - Incompatible code with Google Java Coding Style Standards, and due to the large code base would be time consuming to bring the code to compliance
 
-                                                                                                                                                                                                                  Google Confidential and Proprietary
-                                                                                     Original AViK source code
+                                                                                     Original AViK source code
 
 SLOC      Directory            SLOC-by-Language (Sorted)
 
@@ -964,8 +925,7 @@ Total Physical Source Lines of Code (SLOC) = 33,205
 
 Note that it does not account for HTML, JavaScript or CSS content. This should bring it close to 40k~
 
-                                                                                                                                                 Google Confidential and Proprietary
-“New” AViK Architecture                                Upload Screens                                                   Visualize Screens
+“New” AViK Architecture                                Upload Screens                                                   Visualize Screens
 
 -7k~ LOC (half~ auto gen)
 -Object Oriented                                 -Authentication                                     Dart/ JavaScript                            Web Browsers
@@ -998,8 +958,7 @@ Note that it does not account for HTML, JavaScript or CSS content. This should b
                             Eclipse                         Google Cloud Storage                                   Google Data Store                                         Core
      - Script (IDE)                                                                                                                                                          Bugs
 
-                                                                                                                                           Google Confidential and Proprietary
-“New” AViK Architecture                              Upload Screens                                                   Visualize Screens
+“New” AViK Architecture                              Upload Screens                                                   Visualize Screens
 
 -7k~ LOC (half~ auto gen)
 -Object Oriented                               -Authentication                                     Dart/ JavaScript                            Web Browsers
@@ -1425,8 +1384,7 @@ class MAC extends Cached&lt;String, Integer&gt; implements AuthorizeOperation {
   @Override public Integer get(String hash) {
     return 0;
   }
-}
-</code></pre>
+}</code></pre>
       </article>
       <div class="archive-section-label">doc</div>
       <article class="archive-panel archive-panel--doc">
@@ -1865,8 +1823,7 @@ class RBAC implements Security {
     }
   }
 
-}
-</code></pre>
+}</code></pre>
       </article>
       <div class="archive-section-label">doc</div>
       <article class="archive-panel archive-panel--doc">
@@ -2834,7 +2791,8 @@ Validation
       multiple screens for the same round. The version field does not exist in the database, it is simply a sequential number assigned to screens when they previously exist, when the back-end process copies the files to
       GCS. Furthermore, file versions are only visible to the producer. For example, after an upload, if a screenshot existed for say round 1, and we are submitting for the same round, but the file changed, the new name
       would be something like myfilenameetc_1.png, while the previous one would just be myfilenameetc.png.
-     NOTE: the Borg background process would attempt to find images with high similarity, and the threshold will be configurable, in order to prevent effort duplication.
+
+     NOTE: the Borg background process would attempt to find images with high similarity, and the threshold will be configurable, in order to prevent effort duplication.
 
 Review
 

@@ -273,7 +273,6 @@ void CBaseDevice::Serialize( CArchive&amp; ar )
 	}
 }
 
-
 void CBaseDevice::AddPropertyPages( CPropertySheet&amp; /*Sheet*/ )
 {
 }
@@ -289,7 +288,6 @@ bool CBaseDevice::Configure( void )
 	CString			str;
 	CString			IP;
 	UINT			Port;
-
 
 	RetrieveAddress( IP, Port );
 	GetDeviceName( name );
@@ -336,7 +334,6 @@ bool CBaseDevice::FireEvent( CByteArray&amp; /*baCue*/, LPCTSTR /*lpTriggeringDe
 	return false;
 }
 
-
 void CBaseDevice::SetNotifyWindow( HWND hWnd )
 {
 	m_hWndNotify = hWnd;
@@ -352,14 +349,12 @@ void CBaseDevice::FireTrigger( int iTrigger )
 	SendNotification( DEVNOTIFY_DEVICE_TRIGGER, pN );
 }
 
-
 void CBaseDevice::SendNotification( DeviceNotifyType Mess, void* Data )
 {
 	if( m_hWndNotify ) {
 		::PostMessage( m_hWndNotify, WM_DEVICE_NOTIFY, (WPARAM)Mess, (LPARAM)Data );
 	}
 }
-
 
 void CBaseDevice::SendToLog( LPCTSTR pText, int Level, int Type )
 {
@@ -392,7 +387,6 @@ int	CBaseDevice::GetFirstVariable( void )
 {
 	return 0;
 }
-
 
 … [truncated — 397 lines total]</code></pre>
         <p class="archive-truncated">Showing excerpt of 397 lines.</p>
@@ -5186,7 +5180,6 @@ bool CDeviceSiteLinx::FireEvent( CByteArray&amp; Cue, LPCTSTR lpTriggeringDevice
 
 #include &quot;FileVersion.h&quot;
 
-
 CPlayListCollection::CPlayListCollection()
 {
 }
@@ -5195,7 +5188,6 @@ CPlayListCollection::~CPlayListCollection()
 {
 	DeleteAllPlayLists();
 }
-
 
 CPlayList* CPlayListCollection::CopyPlayList( LPCTSTR pstrCopyTo, LPCTSTR pstrCopyFrom )
 {
@@ -5298,10 +5290,6 @@ void CPlayListCollection::Serialize( CArchive&amp; ar )
 	}
 }
 
-
-
-
-
 PCHAR CDeviceVideoServer::m_DeviceType = &quot;ES VideoServer&quot;;
 
 // Implements the video server device.
@@ -5353,7 +5341,6 @@ int CDeviceVideoServer::GetNextSubItem( int&amp; iPos, CString&amp; szName )
 	}
 }
 
-
 CWnd * CDeviceVideoServer::CreateSubItemView( int /*iType*/, int iId, CWnd* pWndParent )
 {
 	CWnd * pWnd= NULL;
@@ -5380,7 +5367,6 @@ void CDeviceVideoServer::GetDeviceType( CString&amp; str )
 	str = m_DeviceType;
 }
 
-
 void CDeviceVideoServer::Serialize( CArchive&amp; ar )
 {
 	CBaseDevice::Serialize( ar );
@@ -5392,7 +5378,6 @@ void CDeviceVideoServer::Serialize( CArchive&amp; ar )
 		VERSION_CURRENT = VERSION_TRIGGERS,
 	};
 	CVersion V( ar, VERSION_CURRENT );
-
 
 … [truncated — 445 lines total]</code></pre>
         <p class="archive-truncated">Showing excerpt of 445 lines.</p>
@@ -8870,7 +8855,8 @@ If you need help with this document, please contact Electrosonic Systems, Inc. p
 Written By
 Systems Division,
 Burbank CA,
-                                                                                                                    SiteLinx User Guide
+
+                                                                                                                    SiteLinx User Guide
 
 Contents
 Contents..........................................................................................................................................2
@@ -8924,7 +8910,8 @@ Contents........................................................................
     3.7 Edit – Error Notification Addresses, T.............................................................................15
 
                                                                     Page 2
-                                                                                                            SiteLinx User Guide
+
+                                                                                                            SiteLinx User Guide
 
     3.8 Edit – Delete Node, T, Rc................................................................................................15
 
@@ -8959,7 +8946,8 @@ Contents........................................................................
 6          Notes 24
 
                                                                 Page 3
-                                                                               SiteLinx User Guide
+
+                                                                               SiteLinx User Guide
 
 1 Introduction
 SiteLinx is a Windows 95/NT-based network application that integrates LANs (Local Area
@@ -9005,7 +8993,8 @@ supply a list of notification e-mail addresses that will receive messages when S
 errors.
 
                                               Page 4
-                                                                                    SiteLinx User Guide
+
+                                                                                    SiteLinx User Guide
 
 1.5 Node
 A Node is an application that has a LAN connection point to SiteLinx or an application that has a
@@ -9038,7 +9027,8 @@ d) Specific node name, any site, [*:NodeName] Not a very common one, but its the
 NOTE: We use the * asterisk symbol, legacy from MS-DOS, to denote ‘all’, a so called wildcard.
 
                                                  Page 5
-                                                                              SiteLinx User Guide
+
+                                                                              SiteLinx User Guide
 
 2 The Main Display
 The following screen shot shows the SiteLinx screen for a typical installation.
@@ -9059,7 +9049,8 @@ The main SiteLinx screen is split into three main areas.
 The main window has a toolbar that has the most commonly used menu commands. The toolbar
 
                                               Page 6
-                                                                               SiteLinx User Guide
+
+                                                                               SiteLinx User Guide
 
 can be hidden or displayed. At the bottom of the main window is the status bar, which can also be
 hidden or displayed. The status bar contains three sections: a) Command help; b) Transmissions,
@@ -9107,7 +9098,8 @@ to distinguish the messages.
    Error messages are shown in bright Red.
 
                                               Page 7
-                                                                              SiteLinx User Guide
+
+                                                                              SiteLinx User Guide
 
 2.4 Settings Dialog Box
 
@@ -9144,7 +9136,8 @@ is an explanation on each of the settings:
 4. Mail Profile Password must be given only if your profile has one, otherwise leave blank.
 
                                               Page 8
-                                                                               SiteLinx User Guide
+
+                                                                               SiteLinx User Guide
 
 5. Attachments Path must be a valid path in your local hard drive where SiteLinx will save any
    attachments that you receive via regular e-mail. NOTE: SiteLinx was designed to read and
@@ -9197,7 +9190,6 @@ is an explanation on each of the settings:
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
-
 
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
@@ -9393,7 +9385,6 @@ void CSchedulerTreeView::OnViewTriggerGroup()
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
-
 
 void CSchedulerTreeView::OnUpdateAddDevice(CCmdUI* pCmdUI) 
 {
@@ -9672,12 +9663,9 @@ static char THIS_FILE[] = __FILE__;
 // Default size of the Input Buffer used by this code.
 #define INPUTBUFFERSIZE 2048
 
-
 ////////////////////////////////////////////////////
 // Used to write comm data to a disk file in debug mode.
 // #define _DEBUGLOGFILE 1
-
-
 
 ////////////////////////////////////////////////////
 // Constructor for the communication class. Init.members
@@ -9693,7 +9681,6 @@ CCommunicate::CCommunicate( CommSettingsType* pComm )
 {
 	Initialize( pComm );
 }
-
 
 BOOL CCommunicate::Initialize( CommSettingsType* pComm )
 {
@@ -9740,8 +9727,6 @@ BOOL CCommunicate::Initialize( CommSettingsType* pComm )
 	return (m_ErrCode == IDS_SUCCESS);
 }
 
-
-
 ////////////////////////////////////////////////
 // Destructor for the communications class.
 // Take the communications system off-line
@@ -9756,7 +9741,6 @@ CCommunicate::~CCommunicate(  )
 		#endif
 	}
 }
-
 
 //////////////////////////////////////////////////////
 //  StartComm()
@@ -9842,7 +9826,6 @@ void CCommunicate::WaitForRead( int Timeout )
 	// timeout.
 }
 
-
 void CCommunicate::ReceiveData( LPBYTE pDate, int Size )
 {
 }
@@ -9867,7 +9850,6 @@ void CCommunicate::StopComm()
 	//       the class destructor should clean things up for us.
 	CloseReadThread();
 	CloseWriteThread();
-
 
 … [truncated — 1142 lines total]</code></pre>
         <p class="archive-truncated">Showing excerpt of 1142 lines.</p>
@@ -9938,7 +9920,6 @@ ErrorTxtType CWinwallSocket::m_ErrorTable[] = {
 	{ LAST_ERROR,	0 },
 };
 
-
 void GetErrorString ( DWORD dwError, CString&amp; str )
 {
 	LPSTR	pText = NULL;
@@ -9958,7 +9939,6 @@ void GetErrorString ( DWORD dwError, CString&amp; str )
 
 	if ( pText ) LocalFree( pText );
 }
-
 
 void CWinwallSocket::GetErrorMsg( CString&amp; String, int ErrorCode )
 {
@@ -9983,7 +9963,6 @@ CWinwallSocket&amp;	CWinwallSocket::operator=( const CWinwallSocket&amp; pW )
 	return *this;
 }
 
-
 void CWinwallSocket::DisplayError( LPCTSTR pStr )
 {
 	if( m_DeviceName.IsEmpty() ) {
@@ -9999,7 +9978,6 @@ void CWinwallSocket::DisplayError( UINT ResId )
 	VERIFY( str.LoadString( ResId ));
 	DisplayError( str );
 }
-
 
 void CWinwallSocket::DisplayLastError( CString&amp; String, int ErrorCode )
 {
@@ -10024,7 +10002,6 @@ void CWinwallSocket::DisplayLastError( void )
 	DisplayLastError( str, GetLastError() );
 }
 
-
 void CWinwallSocket::SetDeviceName( LPCTSTR pName )
 {
 	m_DeviceName = pName;
@@ -10039,7 +10016,6 @@ LPCTSTR CWinwallSocket::GetDeviceName( void )
 {
 	return m_DeviceName;
 }
-
 
 UDPCommPort::UDPCommPort()
 {
@@ -10069,7 +10045,6 @@ void UDPCommPort::SetReceiveBufferSize( int Size )
 
 	m_pData = new BYTE[ m_ReceivedPacketSize ];
 }
-
 
 BOOL UDPCommPort::OpenListenPort( UINT Port )
 {
@@ -10127,8 +10102,6 @@ typedef struct _MYHOOKDATA
 
 MYHOOKDATA myhookdata[3]; 
 
-
-
 // Shared DATA
 #pragma data_seg(&quot;.SHARDATA&quot;)
 static int MouseCode = 0;
@@ -10142,7 +10115,6 @@ static char	szCode[128];
 
 static HANDLE	hInstance;
 #pragma data_seg()
-
 
 BOOL APIENTRY DllMain( HANDLE hModule, 
                        DWORD  ul_reason_for_call, 
@@ -10164,7 +10136,6 @@ BOOL APIENTRY DllMain( HANDLE hModule,
     }
     return TRUE;
 }
-
 
 /**************************************************************** 
   WH_CBT hook procedure 
@@ -10202,7 +10173,6 @@ LRESULT CALLBACK CBTProc(int nCode, WPARAM wParam, LPARAM lParam)
         lParam);
 }  
 
-
  /**************************************************************** 
   WH_MOUSE hook procedure 
  ****************************************************************/  
@@ -10234,7 +10204,6 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 
 	KeyboardCode ++;
 	if(KeyboardCode &gt; 10) KeyboardCode = 1;
-
 
     return CallNextHookEx(myhookdata[2].hhook, nCode, wParam, 
         lParam);
@@ -10288,8 +10257,7 @@ MONITORDLL_API bool Shutdown( void )
 			UnhookWindowsHookEx(myhookdata[i].hhook); 
 	}
 	return true;
-}
-</code></pre>
+}</code></pre>
       </article>
       <div class="archive-section-label">src / Tools / SiteLinx</div>
       <article class="archive-panel archive-panel--code">
@@ -11047,8 +11015,6 @@ STDMETHODIMP CFTPCopyControl::put_strPassword(BSTR newVal)
 	return S_OK;
 }
 
-
-
 //the following two functions do not need a thread or connection
 STDMETHODIMP CFTPCopyControl::DeleteLocalFile(BSTR strLocalFileName)
 {
@@ -11189,8 +11155,6 @@ STDMETHODIMP CFTPCopyControl::DoesFTPFileExist(BSTR strFTPFileName)
 	return StartCopyWorkerThread();
 }
 
-
-
 HRESULT CFTPCopyControl::StartCopyWorkerThread()
 {
 	HRESULT hr = S_FALSE;
@@ -11204,7 +11168,6 @@ HRESULT CFTPCopyControl::StartCopyWorkerThread()
 		0,							// creation flags
 		&amp;unThreadAddr               // pointer to receive thread ID
 		);
-
 
 … [truncated — 657 lines total]</code></pre>
         <p class="archive-truncated">Showing excerpt of 657 lines.</p>
@@ -11297,8 +11260,7 @@ void CTCPIPClient::ProcessReceivedPacket( PBYTE pBuffer, int iCount )
 		m_baBuffer.RemoveAll();
 		m_iByteLast = 0;
 	}
-}
-</code></pre>
+}</code></pre>
       </article>
       <article class="archive-panel archive-panel--code">
         <div class="archive-panel__header">
@@ -11364,8 +11326,7 @@ inline TCPServerPort* CTCPIPServer::CreateServer( void )
 	CTCPIPClient* pServer = new CTCPIPClient;
 	pServer-&gt;SetSession( m_pSession );
 	return pServer;
-}
-</code></pre>
+}</code></pre>
       </article>
       <article class="archive-panel archive-panel--code">
         <div class="archive-panel__header">
@@ -11611,16 +11572,13 @@ void CVolumeOutMaster::EnableLine( bool bEnable )
 #include &quot;EncoderEventsSink.h&quot;
 #include &quot;EncoderInterface.h&quot;
 
-
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
 
-
 IMPLEMENT_DYNCREATE(CEncoderCtrl, COleControl)
-
 
 /////////////////////////////////////////////////////////////////////////////
 // Message map
@@ -11631,7 +11589,6 @@ BEGIN_MESSAGE_MAP(CEncoderCtrl, COleControl)
 	ON_OLEVERB(AFX_IDS_VERB_EDIT, OnEdit)
 	ON_OLEVERB(AFX_IDS_VERB_PROPERTIES, OnProperties)
 END_MESSAGE_MAP()
-
 
 /////////////////////////////////////////////////////////////////////////////
 // Dispatch map
@@ -11674,7 +11631,6 @@ BEGIN_DISPATCH_MAP(CEncoderCtrl, COleControl)
 	DISP_FUNCTION_ID(CEncoderCtrl, &quot;AboutBox&quot;, DISPID_ABOUTBOX, AboutBox, VT_EMPTY, VTS_NONE)
 END_DISPATCH_MAP()
 
-
 /////////////////////////////////////////////////////////////////////////////
 // Event map
 
@@ -11687,7 +11643,6 @@ BEGIN_EVENT_MAP(CEncoderCtrl, COleControl)
 	//}}AFX_EVENT_MAP
 END_EVENT_MAP()
 
-
 /////////////////////////////////////////////////////////////////////////////
 // Property pages
 
@@ -11696,19 +11651,16 @@ BEGIN_PROPPAGEIDS(CEncoderCtrl, 1)
 	PROPPAGEID(EncoderPropPage::guid)
 END_PROPPAGEIDS(CEncoderCtrl)
 
-
 /////////////////////////////////////////////////////////////////////////////
 // Initialize class factory and guid
 
 IMPLEMENT_OLECREATE_EX(CEncoderCtrl, &quot;MPEG2ENCODER.MPEG2EncoderCtrl.1&quot;,
 	0x485c71a6, 0xbfe, 0x11d5, 0x8b, 0xe8, 0, 0, 0, 0, 0, 0)
 
-
 /////////////////////////////////////////////////////////////////////////////
 // Type library ID and version
 
 IMPLEMENT_OLETYPELIB(CEncoderCtrl, _tlid, _wVerMajor, _wVerMinor)
-
 
 /////////////////////////////////////////////////////////////////////////////
 // Interface IDs
@@ -11717,7 +11669,6 @@ const IID BASED_CODE IID_DMPEG2Encoder =
 		{ 0x485c71a4, 0xbfe, 0x11d5, { 0x8b, 0xe8, 0, 0, 0, 0, 0, 0 } };
 const IID BASED_CODE IID_DMPEG2EncoderEvents =
 		{ 0x485c71a5, 0xbfe, 0x11d5, { 0x8b, 0xe8, 0, 0, 0, 0, 0, 0 } };
-
 
 /////////////////////////////////////////////////////////////////////////////
 // Control type information
@@ -11731,7 +11682,6 @@ static const DWORD BASED_CODE _dwMPEG2EncoderOleMisc =
 	OLEMISC_RECOMPOSEONRESIZE;
 
 IMPLEMENT_OLECTLTYPE(CEncoderCtrl, IDS_MPEG2ENCODER, _dwMPEG2EncoderOleMisc)
-
 
 /////////////////////////////////////////////////////////////////////////////
 // CEncoderCtrl::CEncoderCtrlFactory::UpdateRegistry -
@@ -11845,9 +11795,7 @@ void CEncoderCtrl::InitializeSettings()
 static char THIS_FILE[] = __FILE__;
 #endif
 
-
 IMPLEMENT_DYNCREATE(EncoderPropPage, COlePropertyPage)
-
 
 /////////////////////////////////////////////////////////////////////////////
 // Message map
@@ -11863,13 +11811,11 @@ BEGIN_MESSAGE_MAP(EncoderPropPage, COlePropertyPage)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-
 /////////////////////////////////////////////////////////////////////////////
 // Initialize class factory and guid
 
 IMPLEMENT_OLECREATE_EX(EncoderPropPage, &quot;MPEG2ENCODER.MPEG2EncoderPropPage.1&quot;,
 	0x485c71a7, 0xbfe, 0x11d5, 0x8b, 0xe8, 0, 0, 0, 0, 0, 0)
-
 
 /////////////////////////////////////////////////////////////////////////////
 // EncoderPropPage::EncoderPropPageFactory::UpdateRegistry -
@@ -11884,7 +11830,6 @@ BOOL EncoderPropPage::EncoderPropPageFactory::UpdateRegistry(BOOL bRegister)
 		return AfxOleUnregisterClass(m_clsid, NULL);
 }
 
-
 /////////////////////////////////////////////////////////////////////////////
 // EncoderPropPage::EncoderPropPage - Constructor
 
@@ -11898,7 +11843,6 @@ EncoderPropPage::EncoderPropPage() :
 	m_lngVideoBitRate = 0;
 	//}}AFX_DATA_INIT
 }
-
 
 /////////////////////////////////////////////////////////////////////////////
 // EncoderPropPage::DoDataExchange - Moves data between page and properties
@@ -11923,7 +11867,6 @@ void EncoderPropPage::DoDataExchange(CDataExchange* pDX)
 	DDP_PostProcessing(pDX);
 //	DDX_Control(pDX, IDC_SPIN_BITRATE, m_ctrlSpinBitRate);
 }
-
 
 /////////////////////////////////////////////////////////////////////////////
 // EncoderPropPage message handlers
@@ -12072,14 +12015,12 @@ CHROMA_FORMAT_MAP ChromaFormats[] =
 static char THIS_FILE[] = __FILE__;
 #endif
 
-
 CSQL2XMLApp NEAR theApp;
 
 const GUID CDECL BASED_CODE _tlid =
 		{ 0x703ef6e1, 0x2ce, 0x11d5, { 0xb9, 0x5d, 0, 0x10, 0x4b, 0x6d, 0x42, 0xee } };
 const WORD _wVerMajor = 1;
 const WORD _wVerMinor = 0;
-
 
 ////////////////////////////////////////////////////////////////////////////
 // CSQL2XMLApp::InitInstance - DLL initialization
@@ -12096,7 +12037,6 @@ BOOL CSQL2XMLApp::InitInstance()
 	return bInit;
 }
 
-
 ////////////////////////////////////////////////////////////////////////////
 // CSQL2XMLApp::ExitInstance - DLL termination
 
@@ -12106,7 +12046,6 @@ int CSQL2XMLApp::ExitInstance()
 
 	return COleControlModule::ExitInstance();
 }
-
 
 /////////////////////////////////////////////////////////////////////////////
 // DllRegisterServer - Adds entries to the system registry
@@ -12124,7 +12063,6 @@ STDAPI DllRegisterServer(void)
 	return NOERROR;
 }
 
-
 /////////////////////////////////////////////////////////////////////////////
 // DllUnregisterServer - Removes entries from the system registry
 
@@ -12140,7 +12078,6 @@ STDAPI DllUnregisterServer(void)
 
 	return NOERROR;
 }
-
 
 /////////////////////////////////////////////////////////////////////////////
 // _DSQL2XML properties
@@ -12260,8 +12197,7 @@ void _DSQL2XML::DoClick()
 void _DSQL2XML::AboutBox()
 {
 	InvokeHelper(0xfffffdd8, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
-}
-</code></pre>
+}</code></pre>
       </article>
       <article class="archive-panel archive-panel--code">
         <div class="archive-panel__header">
@@ -12275,16 +12211,13 @@ void _DSQL2XML::AboutBox()
 #include &quot;SQL2XMLCtl.h&quot;
 #include &quot;SQL2XMLPpg.h&quot;
 
-
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
 
-
 IMPLEMENT_DYNCREATE(CSQL2XMLCtrl, COleControl)
-
 
 /////////////////////////////////////////////////////////////////////////////
 // Message map
@@ -12299,7 +12232,6 @@ BEGIN_MESSAGE_MAP(CSQL2XMLCtrl, COleControl)
 	ON_OLEVERB(AFX_IDS_VERB_EDIT, OnEdit)
 	ON_OLEVERB(AFX_IDS_VERB_PROPERTIES, OnProperties)
 END_MESSAGE_MAP()
-
 
 /////////////////////////////////////////////////////////////////////////////
 // Dispatch map
@@ -12321,7 +12253,6 @@ BEGIN_DISPATCH_MAP(CSQL2XMLCtrl, COleControl)
 	DISP_FUNCTION_ID(CSQL2XMLCtrl, &quot;AboutBox&quot;, DISPID_ABOUTBOX, AboutBox, VT_EMPTY, VTS_NONE)
 END_DISPATCH_MAP()
 
-
 /////////////////////////////////////////////////////////////////////////////
 // Event map
 
@@ -12333,7 +12264,6 @@ BEGIN_EVENT_MAP(CSQL2XMLCtrl, COleControl)
 	//}}AFX_EVENT_MAP
 END_EVENT_MAP()
 
-
 /////////////////////////////////////////////////////////////////////////////
 // Property pages
 
@@ -12342,19 +12272,16 @@ BEGIN_PROPPAGEIDS(CSQL2XMLCtrl, 1)
 	PROPPAGEID(CSQL2XMLPropPage::guid)
 END_PROPPAGEIDS(CSQL2XMLCtrl)
 
-
 /////////////////////////////////////////////////////////////////////////////
 // Initialize class factory and guid
 
 IMPLEMENT_OLECREATE_EX(CSQL2XMLCtrl, &quot;SQL2XML.SQL2XMLCtrl.1&quot;,
 	0x3d113c39, 0xfe52, 0x11d4, 0xb9, 0x5a, 0xff, 0xff, 0xff, 0, 0, 0)
 
-
 /////////////////////////////////////////////////////////////////////////////
 // Type library ID and version
 
 IMPLEMENT_OLETYPELIB(CSQL2XMLCtrl, _tlid, _wVerMajor, _wVerMinor)
-
 
 /////////////////////////////////////////////////////////////////////////////
 // Interface IDs
@@ -12363,7 +12290,6 @@ const IID BASED_CODE IID_DSQL2XML =
 		{ 0x703ef6e2, 0x2ce, 0x11d5, { 0xb9, 0x5d, 0, 0x10, 0x4b, 0x6d, 0x42, 0xee } };
 const IID BASED_CODE IID_DSQL2XMLEvents =
 		{ 0x703ef6e3, 0x2ce, 0x11d5, { 0xb9, 0x5d, 0, 0x10, 0x4b, 0x6d, 0x42, 0xee } };
-
 
 /////////////////////////////////////////////////////////////////////////////
 // Control type information
@@ -12377,7 +12303,6 @@ static const DWORD BASED_CODE _dwSQL2XMLOleMisc =
 	OLEMISC_RECOMPOSEONRESIZE;
 
 IMPLEMENT_OLECTLTYPE(CSQL2XMLCtrl, IDS_SQL2XML, _dwSQL2XMLOleMisc)
-
 
 /////////////////////////////////////////////////////////////////////////////
 // CSQL2XMLCtrl::CSQL2XMLCtrlFactory::UpdateRegistry -
@@ -12407,7 +12332,6 @@ BOOL CSQL2XMLCtrl::CSQL2XMLCtrlFactory::UpdateRegistry(BOOL bRegister)
 		return AfxOleUnregisterClass(m_clsid, m_lpszProgID);
 }
 
-
 /////////////////////////////////////////////////////////////////////////////
 // CSQL2XMLCtrl::CSQL2XMLCtrl - Constructor
 
@@ -12420,7 +12344,6 @@ CSQL2XMLCtrl::CSQL2XMLCtrl()
 	// TODO: Initialize your control&#x27;s instance data here.
 }
 
-
 /////////////////////////////////////////////////////////////////////////////
 // CSQL2XMLCtrl::~CSQL2XMLCtrl - Destructor
 
@@ -12428,7 +12351,6 @@ CSQL2XMLCtrl::~CSQL2XMLCtrl()
 {
 	// TODO: Cleanup your control&#x27;s instance data here.
 }
-
 
 /////////////////////////////////////////////////////////////////////////////
 // CSQL2XMLCtrl::OnDraw - Drawing function
@@ -12438,7 +12360,6 @@ void CSQL2XMLCtrl::OnDraw(
 {
 	DoSuperclassPaint(pdc, rcBounds);
 }
-
 
 /////////////////////////////////////////////////////////////////////////////
 // CSQL2XMLCtrl::DoPropExchange - Persistence support
@@ -12452,7 +12373,6 @@ void CSQL2XMLCtrl::DoPropExchange(CPropExchange* pPX)
 
 }
 
-
 /////////////////////////////////////////////////////////////////////////////
 // CSQL2XMLCtrl::OnResetState - Reset control to default state
 
@@ -12463,7 +12383,6 @@ void CSQL2XMLCtrl::OnResetState()
 	// TODO: Reset any other control state here.
 }
 
-
 /////////////////////////////////////////////////////////////////////////////
 // CSQL2XMLCtrl::AboutBox - Display an &quot;About&quot; box to the user
 
@@ -12473,7 +12392,6 @@ void CSQL2XMLCtrl::AboutBox()
 	dlgAbout.DoModal();
 }
 
-
 /////////////////////////////////////////////////////////////////////////////
 // CSQL2XMLCtrl::PreCreateWindow - Modify parameters for CreateWindowEx
 
@@ -12482,7 +12400,6 @@ BOOL CSQL2XMLCtrl::PreCreateWindow(CREATESTRUCT&amp; cs)
 	cs.lpszClass = _T(&quot;BUTTON&quot;);
 	return COleControl::PreCreateWindow(cs);
 }
-
 
 /////////////////////////////////////////////////////////////////////////////
 // CSQL2XMLCtrl::IsSubclassedControl - This is a subclassed control
@@ -12563,8 +12480,7 @@ BOOL CDBLogApp::InitInstance()
 	// Since the dialog has been closed, return FALSE so that we exit the
 	//  application, rather than start the application&#x27;s message pump.
 	return FALSE;
-}
-</code></pre>
+}</code></pre>
       </article>
       <article class="archive-panel archive-panel--code">
         <div class="archive-panel__header">
@@ -12724,9 +12640,7 @@ bool CDBLogger::AddLog( LPDBLOG pDBLog )
 	}
 	return true;
 }
-/////////////////////////////////////////////////////////////////////////////
-
-</code></pre>
+/////////////////////////////////////////////////////////////////////////////</code></pre>
       </article>
       </section>
       <h2>Development archive analysis</h2>
