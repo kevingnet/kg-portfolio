@@ -1,0 +1,483 @@
+{
+  "access": {
+    "folder": "Access!",
+    "display_title": "Access!",
+    "meta": {
+      "status": "Empty placeholder (0 files, mtime 2023-01-02). Likely reserved for Microsoft Access projects; Access work lives under Disney `Access/` and other dirs."
+    },
+    "html": "<p><strong>Status:</strong> Empty placeholder (files, mtime 2023-01-02). Likely reserved for Microsoft Access projects; Access work lives under Disney <code>Access/</code> and other dirs.</p>"
+  },
+  "bumpershop": {
+    "folder": "BumperShop",
+    "display_title": "BumperShop",
+    "meta": {
+      "files": "4 (all Access databases)",
+      "client": "Auto body / bumper shop (precursor to La Bumpers)",
+      "purpose": "Small-shop accounting for bumper reconditioning business.",
+      "technologies": [
+        "Microsoft Access"
+      ]
+    },
+    "html": "<p><strong>Client:</strong> Auto body / bumper shop (precursor to La Bumpers)</p>\n<pre class=\"compilation-tree\"><code>BumperShop/\n├── BumperShop.mdb          (3.3 MB, 2002)\n└── Accounting/\n    ├── AA.MDB, AATABLES.MDB, AA_Backup.MDB</code></pre>\n<p><strong>Technologies:</strong> Microsoft Access</p>\n<p><strong>Purpose:</strong> Small-shop accounting for bumper reconditioning business.</p>"
+  },
+  "disney": {
+    "folder": "Disney",
+    "display_title": "Disney — Walt Disney Studio IT",
+    "meta": {
+      "files": "~1,610",
+      "era": "1990s–2013",
+      "purpose": "Internal studio IT — software deployment, Novell admin, intranet ASP apps, OCX controls, commissary/calendar systems.",
+      "technologies": [
+        "VB6",
+        "VC6 C/C++",
+        "MFC",
+        "ATL/COM/OCX",
+        "Classic ASP",
+        "Access",
+        "SQL Server",
+        "Novell NetWare API"
+      ]
+    },
+    "html": "<p><strong>Purpose:</strong> Internal studio IT — software deployment, Novell admin, intranet ASP apps, OCX controls, commissary/calendar systems.</p>\n<p><strong>Structure:</strong></p>\n<pre class=\"compilation-tree\"><code>Disney/\n├── Access/          Projects.mdb, Menu97, AUTOUSER\n├── C/               Generic Updater (Updater.c), NWConnect\n├── C++/             Generic Updater 32-bit, OCX (MessageBlaster), SendMail (ATL/MFC)\n├── Visual Basic/    apiary (Novell), Calendar/FIS, Commissary, Deployer, HRTS, Updater\n├── WebApps/asp/     CorpPurch, HRTS, IPAging, Studio411, PeopleSoftLoginReq\n├── SQL/             SQL scripts\n└── graphics/        UI assets (2013)</code></pre>\n<p><strong>Key project groups:</strong></p>\n<table class=\"compilation-table\"><tr><th>Group</th><th>Technology</th><th>Purpose</th></tr><tr><td>Generic Updater</td><td>C/C++/VB</td><td>Deploy film studio software via INI/registry; mutex <code>FILMISUPDATER</code></td></tr><tr><td>NetWare Admin (apiary)</td><td>VB6</td><td>Bindery, directory, print queue utilities</td></tr><tr><td>OCX / ActiveX</td><td>ATL/COM</td><td>MessageBlaster controls, SMTP mail OCX</td></tr><tr><td>Intranet WebApps</td><td>Classic ASP</td><td>Corporate purchasing, IP aging, HRTS, PeopleSoft</td></tr><tr><td>Commissary / Calendar</td><td>VB6 + Access</td><td>Studio commissary + FIS calendar</td></tr></table>\n<p><strong>Technologies:</strong> VB6, VC6 C/C++, MFC, ATL/COM/OCX, Classic ASP, Access, SQL Server, Novell NetWare API</p>\n<p><strong>Patterns:</strong> Client/server updater, INI/registry config, producer/consumer (HRTS)</p>"
+  },
+  "electrosonic": {
+    "folder": "Electrosonic",
+    "display_title": "Electrosonic — ESCAN Broadcast Suite",
+    "meta": {
+      "files": "~8,150–13,990",
+      "era": "1990s–2012",
+      "client": "Electrosonic (broadcast systems integrator)",
+      "purpose": "Broadcast/AV facility monitoring, scheduling, and network product distribution (ESCAN ecosystem).",
+      "technologies": [
+        "VC6 MFC C++",
+        "CodeJock CJ60",
+        "MAPI",
+        "TCP/IP",
+        "InstallShield"
+      ]
+    },
+    "html": "<p><strong>Client:</strong> Electrosonic (broadcast systems integrator)</p>\n<p><strong>Purpose:</strong> Broadcast/AV facility monitoring, scheduling, and network product distribution (ESCAN ecosystem).</p>\n<p><strong>Structure:</strong></p>\n<pre class=\"compilation-tree\"><code>Electrosonic/\n├── CJ60 Extension Library/    CodeJock UI framework demos\n├── Clients/                   Client configs\n└── ESCAN/                     Main product (~13K files)\n    ├── In Progress/           Active development\n    │   ├── ESCAN.dsw          Core MDI app\n    │   ├── SiteLinx/          LAN/WAN distributor (TCP/IP + MAPI)\n    │   ├── Scheduler/, schedulerV2/, schedule/\n    │   ├── PC_Monitor/, PC_Server/, MonitorDLL/, Devices/\n    │   └── CommLib/, InstallShield/\n    ├── Docs/SiteLinx/         User guides\n    └── Older/                 Legacy iterations</code></pre>\n<p><strong>Solution clusters:</strong> ESCAN core, SiteLinx (ESCP.dsw), Scheduling, Monitoring (PC_Monitor/Server), CJ60 UI framework.</p>\n<p><strong>Technologies:</strong> VC6 MFC C++, CodeJock CJ60, MAPI, TCP/IP, InstallShield</p>\n<p><strong>Patterns:</strong> MDI desktop apps, DLL shared libs, producer/consumer network messaging, device monitoring</p>\n<p><strong>Docs:</strong> SiteLinx uses ES4000 protocol; addressing <code>[Site Name:Node Name]</code>; author Kevin Guerra @ electrosonic-ca.com</p>\n<p><strong>Related:</strong> <code>graphics/escan/</code> contains duplicate SiteLinx UI assets and user guides.</p>\n<h3>graphics — Design Asset Archive</h3>\n<pre class=\"compilation-tree\"><code>graphics/\n├── FRUITZ*.PSD, flower*.psd, cprts*.psd   Personal art (1997–1998)\n└── escan/                   Electrosonic ESCAN UI assets (files)\n    ├── escan*.psd, sitelinx.psd, pc monitor*.psd\n    ├── SiteLinx User Guide3.doc, SiteLinx User Guide4.doc\n    └── eleclog-120.TIF, elogo.EPS</code></pre>\n<p><strong>Related to:</strong> 04 Electrosonic ESCAN product line.</p>",
+    "extra_sections": [
+      "graphics — Design Asset Archive"
+    ]
+  },
+  "voltdelta": {
+    "folder": "Volt",
+    "display_title": "Volt — X.25 Telecom Gateway",
+    "meta": {
+      "files": "233",
+      "era": "1990s–2009",
+      "purpose": "X.25-to-TCP/IP gateway using Emulex xp8400 + LayGO stack; MFC network management utilities.",
+      "technologies": [
+        "VC6 MFC",
+        "Winsock",
+        "ADO",
+        "LayGO X.25 API",
+        "NT Services"
+      ]
+    },
+    "html": "<p><strong>Purpose:</strong> X.25-to-TCP/IP gateway using Emulex xp8400 + LayGO stack; MFC network management utilities.</p>\n<p><strong>Structure:</strong></p>\n<pre class=\"compilation-tree\"><code>Volt/\n├── X25/\n│   ├── X25Relay/              Main gateway GUI (PVC-per-TCP-port)\n│   ├── X25RelayService/       Windows NT service wrapper\n│   ├── X25TCPClient/          TCP test client + hex editor\n│   ├── CommLib/               CommLib.dll\n│   └── config/                *.cfg, X25Relay.mdb\n├── star/                      Star MDI app + Star.mdb\n└── StarTreeList*, StarStationMgmt/   Tree-view DB utilities</code></pre>\n<p><strong>Technologies:</strong> VC6 MFC, Winsock, ADO, LayGO X.25 API, NT Services</p>\n<p><strong>Patterns:</strong> Gateway/relay, socket listeners per PVC, config-driven stack</p>\n<p><strong>Databases:</strong> Access (X25Relay.mdb, Star.mdb)</p>"
+  },
+  "labumpers": {
+    "folder": "LaBumpers",
+    "display_title": "LaBumpers — Bumper Reconditioning E-Commerce",
+    "meta": {
+      "files": "~6,518–18,425",
+      "era": "2001–2015",
+      "business": "LA Bumpers LLC (labumpers.com) — California bumper reconditioning since 1987",
+      "purpose": "Online catalog, production status tracking, customer portal by repair order number.",
+      "technologies": [
+        "GAE",
+        "Java servlets",
+        "Cloud Endpoints",
+        "Dart",
+        "Python",
+        "Ruby",
+        "Access",
+        "AWS/GCP"
+      ]
+    },
+    "html": "<p><strong>Business:</strong> LA Bumpers LLC (labumpers.com) — California bumper reconditioning since 1987</p>\n<p><strong>Purpose:</strong> Online catalog, production status tracking, customer portal by repair order number.</p>\n<p><strong>Structure:</strong></p>\n<pre class=\"compilation-tree\"><code>LaBumpers/\n├── Bumpers/                   Main GAE application\n│   ├── src/com/la/bumpers/    Java backend (files)\n│   ├── war/                   Dart→JS frontend, Bootstrap\n│   ├── dart/                  Babel, API client generators\n│   └── endpoint-libs/\n├── git/                       Version history (Bumpers, l10n-avik, carlogo)\n├── BumpersReadyingForDeployment/\n├── *.mdb, *.rpt               Legacy Access + Crystal Reports\n├── logos/, pic/, html/        Marketing assets\n└── realestatebyelsa/          Side project</code></pre>\n<p><strong>Application stack:</strong></p>\n<ul>\n<li><strong>Backend:</strong> Google App Engine Java — <code>ControllerImpl</code> (command/strategy), <code>ApiEndpoint</code> (Cloud Endpoints), Task Queue, OAuth</li>\n<li><strong>Frontend:</strong> Dart compiled to JS, Bootstrap CSS</li>\n<li><strong>Legacy:</strong> Access MDB, Crystal Reports, CSV exports</li>\n<li><strong>Security layer:</strong> RBAC/MAC/DAC in BLL</li>\n</ul>\n<p><strong>Technologies:</strong> GAE, Java servlets, Cloud Endpoints, Dart, Python, Ruby, Access, AWS/GCP</p>\n<p><strong>Patterns:</strong> Command/strategy BLL, async task queue, REST API, Guava EventBus</p>\n<p><strong>Related:</strong> <code>git/l10n-avik/</code> connects to Google Antaeus work; shares domain with <code>Google</code></p>"
+  },
+  "posdev": {
+    "folder": "PosDev",
+    "display_title": "PosDev — Positive Developments / Allstate Floral",
+    "meta": {
+      "files": "100",
+      "era": "1999–2012",
+      "purpose": "Palm OS POS for floral retail + Windows GTL file transfer utility.",
+      "technologies": [
+        "Palm OS C (CodeWarrior .mcp)",
+        "MFC VC6",
+        "barcode scanning"
+      ]
+    },
+    "html": "<p><strong>Purpose:</strong> Palm OS POS for floral retail + Windows GTL file transfer utility.</p>\n<p><strong>Structure:</strong></p>\n<pre class=\"compilation-tree\"><code>PosDev/\n├── AllState/Allstate Floral Transmit/    Palm v1\n├── AllState/Allstate Floral V2/          Palm v2 + barcode (ScanMgr.lib)\n├── Allstate Floral V2/                   Expanded v2 tree\n└── SendGTL/                              MFC Windows app (Positive Developments)</code></pre>\n<p><strong>Technologies:</strong> Palm OS C (CodeWarrior .mcp), MFC VC6, barcode scanning</p>\n<p><strong>Patterns:</strong> Screen-based Palm UI, PDI file format, serial comms</p>"
+  },
+  "fotografia": {
+    "folder": "FotografiaBlancarte",
+    "display_title": "FotografiaBlancarte",
+    "meta": {
+      "files": "2 — `Fotografia.mdb` (2.2 MB, 2002), logo JPG",
+      "purpose": "Photography studio business database (Mexican business)"
+    },
+    "html": "<p><strong>Purpose:</strong> Photography studio business database (Mexican business)</p>"
+  },
+  "pleiades": {
+    "folder": "Pleiades",
+    "display_title": "Pleiades — Blind Factory Production",
+    "meta": {
+      "files": "4 Access databases",
+      "purpose": "Window shade / blind factory production tracking (\"Fabrica de Persianas\")"
+    },
+    "html": "<p><strong>Purpose:</strong> Window shade / blind factory production tracking (\"Fabrica de Persianas\")</p>\n<pre class=\"compilation-tree\"><code>Pleiades/\n└── Project 000 - Blind Factory/\n    ├── Data.mdb, Program.mdb\n    ├── Fabrica de Persianas - Produccion.mdb\nSerializer.mdb (root)</code></pre>"
+  },
+  "audiotelco": {
+    "folder": "TelVista",
+    "display_title": "TelVista — Telecom Workflow Consultancy",
+    "meta": {
+      "files": "63",
+      "era": "2003–2023",
+      "purpose": "Business process automation consultancy + reusable workflow engine. Clients: TELMEX, Mexicana Airlines.",
+      "technologies": [
+        "C# WinForms (.NET 1.x)",
+        "MS Application Blocks (Data, Exception Management)",
+        "SQL Server",
+        "Access"
+      ]
+    },
+    "html": "<p><strong>Purpose:</strong> Business process automation consultancy + reusable workflow engine. Clients: TELMEX, Mexicana Airlines.</p>\n<p><strong>Structure:</strong></p>\n<pre class=\"compilation-tree\"><code>TelVista/\n├── WorkFlowApp/               JakeKnowsEngineServices2012-era C# WinForms\n│   ├── WorkFlowApp.sln\n│   ├── WorkFlowEngine.cs      (Visual UML 3.20 generated, Sept 2003)\n│   └── ExceptionManagement/\n├── Project 000 - Test/        TELMEX account processing prototype\n├── Project 001 - Mexicana/    Mexicana Airlines appointment scheduling\n└── Documentation/             Full SDLC doc set (Proposal → Testing, 11 docs)</code></pre>\n<p><strong>Technologies:</strong> C# WinForms (.NET 1.x), MS Application Blocks (Data, Exception Management), SQL Server, Access</p>\n<p><strong>Patterns:</strong> Workflow engine, UML-driven design, timer-driven record processing</p>"
+  },
+  "enigma": {
+    "folder": "Enigma",
+    "display_title": "Enigma — Music Video Production",
+    "meta": {
+      "files": "33 — media only, no source code",
+      "purpose": "Music video edits for Enigma (electronic artist), 2004"
+    },
+    "html": "<p><strong>Content:</strong> 9 Adobe Premiere projects, 15 AVI renders, 7 MP3 stems, 2 3ds Max scenes</p>\n<p><strong>Purpose:</strong> Music video edits for Enigma (electronic artist), 2004</p>\n<p><strong>Tracks referenced:</strong> Orbital, Komodo, Timo Maas, Liquidism, Heiko</p>"
+  },
+  "nokio": {
+    "folder": "Nokio",
+    "display_title": "Nokio — Insurance Quote Forms",
+    "meta": {
+      "files": "22",
+      "era": "2004",
+      "purpose": "Online insurance quote request forms (business, home, auto, motorcycle).",
+      "technologies": [
+        "HTML forms",
+        "PHP mail()",
+        "Windows registry snippet"
+      ]
+    },
+    "html": "<p><strong>Purpose:</strong> Online insurance quote request forms (business, home, auto, motorcycle).</p>\n<p><strong>Structure:</strong></p>\n<pre class=\"compilation-tree\"><code>Nokio/\n├── *.html, *.htm              Static form pages (root)\n└── nokio/                     Deployable PHP version\n    ├── *insurance.php         Mail submission backend\n    └── FIELDS.txt             Field schema (ALL, BUSINESS, AUTO, HOME)</code></pre>\n<p><strong>Technologies:</strong> HTML forms, PHP mail(), Windows registry snippet</p>\n<p><strong>Patterns:</strong> Form → email relay; static + PHP duplicate versions</p>"
+  },
+  "puntabanda": {
+    "folder": "PuntaBandaData",
+    "display_title": "PuntaBandaData — Mexican Retail POS Ecosystem",
+    "meta": {
+      "files": "~950–1,268",
+      "era": "2003–2013",
+      "purpose": "Complete retail POS + customer/associate management for Punta Banda store (Spanish-language retail/cooperative).",
+      "technologies": [
+        "VB.NET",
+        "C#",
+        "WinForms",
+        "ASP.NET samples",
+        "SQL Server",
+        "Access"
+      ]
+    },
+    "html": "<p><strong>Purpose:</strong> Complete retail POS + customer/associate management for Punta Banda store (Spanish-language retail/cooperative).</p>\n<p><strong>Structure:</strong></p>\n<pre class=\"compilation-tree\"><code>PuntaBandaData/\n├── PuntaBanda_Data.MDF        SQL Server 2000 (1.6 GB)\n├── PuntaBanda.sql             Schema scripts\n├── dbPOS.mdb, POS.MDB         Access legacy\n├── SPAPuntaBanda/             VB.NET SPA (address/person/postal codes)\n└── Visual Studio Projects/    55 .sln files\n    ├── POS/, POSvb/, POSCashRegister/\n    ├── BarcodeLabelsPrinter/, Printer/\n    ├── RenameFiles/, ValidationTextControl/\n    └── MS Application Blocks (Data, Exception, Logging, UI Process)</code></pre>\n<p><strong>Solution families:</strong> POS suite, SPAPuntaBanda, Barcode/Printer utilities, MS App Blocks infrastructure.</p>\n<p><strong>Technologies:</strong> VB.NET, C#, WinForms, ASP.NET samples, SQL Server, Access</p>\n<p><strong>Patterns:</strong> Application Blocks, mixed VB/C# class libraries, SPA WinForms navigation</p>\n<p><strong>Database tables:</strong> tbl_Addresses, tbl_PersonContacts, tbl_EmploymentPositions, FK relationships</p>"
+  },
+  "hms": {
+    "folder": "HMS",
+    "display_title": "HMS — Web Application Security",
+    "meta": {
+      "files": "~1,082–1,091",
+      "era": "2003–2012",
+      "domain": "Enterprise web security for HMS / exshot.com",
+      "purpose": "Reusable input validation library, WAF-style filtering, centralized authentication, vulnerability scanning.",
+      "technologies": [
+        "C/C++",
+        "Perl XS",
+        "Java JNI",
+        "PCRE",
+        "FastCGI",
+        "ISAPI",
+        "Xerces XML",
+        "MD5 cookies",
+        "Nikto"
+      ]
+    },
+    "html": "<p><strong>Domain:</strong> Enterprise web security for HMS / exshot.com</p>\n<p><strong>Purpose:</strong> Reusable input validation library, WAF-style filtering, centralized authentication, vulnerability scanning.</p>\n<p><strong>Structure:</strong></p>\n<pre class=\"compilation-tree\"><code>HMS/\n├── src/libinval/              Input Validation Library (primary deliverable)\n│   ├── src/, src2/            C++ core (two generations)\n│   ├── perl/InVal/            Perl XS bindings\n│   └── java/                  JNI Java bindings\n├── src/PCREBinGen/            XML validation rules → binary .pcre\n├── auth-0-7MODIFIED/\n│   ├── neti/                  FastCGI auth handler\n│   ├── netidb/                User DB generator (Oracle/PostgreSQL via Perl)\n│   ├── savitri/               ISAPI HTTP filter + UDP log server\n│   └── ip_blocker/            ISAPI IP blocking filter\n├── nikto-checksites/          Custom Nikto scanner + zeus-rules.txt (900+ rules)\n└── doc/                       Design docs, security guide v2.0 (Nov 2003)</code></pre>\n<p><strong>Technologies:</strong> C/C++, Perl XS, Java JNI, PCRE, FastCGI, ISAPI, Xerces XML, MD5 cookies, Nikto</p>\n<p><strong>Architecture:</strong> Multi-language FFI library; XML→PCRE rule pipeline; pre-fork FastCGI auth; defense in depth (app + edge + audit layers)</p>\n<p><strong>Notable:</strong> 900+ Zeus WAF rules covering shell injection, path traversal, SQLi; static analysis pipeline (flawfinder, splint, ITS4, RATS).</p>"
+  },
+  "spirent": {
+    "folder": "Spirent",
+    "display_title": "Spirent — TestCenter / Phoenix P2",
+    "meta": {
+      "files": "~876–4,169",
+      "era": "2004–2006",
+      "domain": "Network/telecom test equipment automation",
+      "technologies": [
+        "C++",
+        "Tcl/Tk",
+        "COM/DCOM",
+        "CORBA/IDL",
+        "XML/XSD codegen",
+        "Python 2.3 build tools",
+        "ACE",
+        "CppUnit",
+        "SWIG"
+      ]
+    },
+    "html": "<p><strong>Domain:</strong> Network/telecom test equipment automation</p>\n<p><strong>Structure:</strong></p>\n<pre class=\"compilation-tree\"><code>Spirent/\n├── mainline/                  Spirent TestCenter product source\n│   ├── TestCenter.sln         Master VS2005 solution\n│   ├── framework/\n│   │   ├── bll/cmscore/       COM core (colib, HWMgr, Messenger)\n│   │   ├── automation/scripting/stc/  Tcl scripting bridge\n│   │   ├── def/stcFramework.xml     XML-driven BLL object model\n│   │   └── il/                Instrument Layer (HAL, sysmgrd)\n│   └── content/traffic/       L2/L3 traffic, RIP routing plugins\n├── hms/                       Contractor deliverables (Ismael Guerra)\n│   ├── automation/sal/        Scripting Abstraction Layer (C++ DLL)\n│   └── automation/sTcl/       Tcl extension wrapping SAL\n└── p2/                        Phoenix P2 architecture docs (files)</code></pre>\n<p><strong>SAL API (authored by Ismael Guerra):</strong> <code>salCreate</code>, <code>salSet</code>, <code>salGet</code>, <code>salPerform</code>, <code>salReserve</code>, <code>salSubscribe</code></p>\n<p><strong>Technologies:</strong> C++, Tcl/Tk, COM/DCOM, CORBA/IDL, XML/XSD codegen, Python 2.3 build tools, ACE, CppUnit, SWIG</p>\n<p><strong>Patterns:</strong> XML-driven plugin framework, BLL abstraction, MockServer test doubles</p>\n<p><strong>Phoenix P2 docs:</strong> Tcl DSL with create/config/get/perform/reserve/release/connect/subscribe commands.</p>"
+  },
+  "directv": {
+    "folder": "DirecTV",
+    "display_title": "DirecTV — Set-Top Box QA Automation",
+    "meta": {
+      "files": "~2,957–3,087",
+      "era": "2004–2012",
+      "domain": "HR20 HD-DVR functional/regression testing",
+      "technologies": [
+        "C",
+        "C++ ACE Reactor",
+        "Perl dtvrrc",
+        "COM/ATL OCR",
+        "LIRC",
+        "libusb",
+        "ABBYY FineReader",
+        "SSH/Expect"
+      ]
+    },
+    "html": "<p><strong>Domain:</strong> HR20 HD-DVR functional/regression testing</p>\n<p><strong>Structure:</strong></p>\n<pre class=\"compilation-tree\"><code>DirecTV/\n├── redrat/                    RedRat IR remote automation (core)\n│   ├── dtvrr.reactor/         ACE Reactor server (production, port 7070)\n│   ├── dtvrr.ACEReactor/, dtvrr.ACE/, dtvrr.C/\n│   └── DTV_RedRat/            Windows COM wrapper\n├── automation/                19 OCR/screen-reader projects\n│   ├── DTVOCRClient/Server/\n│   ├── AbbyyOCRClient/Server/ (ABBYY FineReader)\n│   └── DTVScreenReader/Scraper/ChannelNumberReader/\n├── lirc/                      Linux LIRC + RedRat3 drivers\n├── rrtests/                   Regression tests (LiveTV, DVR, parental controls)\n├── stb_scripts/               SSH STB management\n└── doc/                       CDI scripting ref, CEA-608/708, UEG UI specs</code></pre>\n<p><strong>RedRat script DSL:</strong> <code>channel 7</code>, <code>sleep 5</code>, <code>loop 10 channel+ endl</code>, <code>keypad ~search_term</code>, <code>setredrat SN</code></p>\n<p><strong>Technologies:</strong> C, C++ ACE Reactor, Perl dtvrrc, COM/ATL OCR, LIRC, libusb, ABBYY FineReader, SSH/Expect</p>\n<p><strong>Regression tests:</strong> LiveTV miniguide/favorites/search, DVR trick-play, parental controls, OSD screensaver, setup.</p>"
+  },
+  "surfware": {
+    "folder": "Surfware",
+    "display_title": "Surfware — SURFCAM Velocity4 CAD/CAM",
+    "meta": {
+      "files": "~28,924–49,000",
+      "era": "2006–2012",
+      "purpose": "Professional CNC programming — 2.5/3/5-axis milling, turning, EDM, post-processing, machine verification.",
+      "technologies": [
+        "C++",
+        "C++/CLI",
+        "MFC",
+        "COM/ATL",
+        "DirectX",
+        "Parasolid",
+        "ModuleWorks MachSim",
+        "Sentinel HASP",
+        "InstallShield",
+        "log4c",
+        "Python post-processors"
+      ]
+    },
+    "html": "<p><strong>Purpose:</strong> Professional CNC programming — 2.5/3/5-axis milling, turning, EDM, post-processing, machine verification.</p>\n<p><strong>Structure:</strong></p>\n<pre class=\"compilation-tree\"><code>Surfware/\n├── Velocity4/                 Main product (ClearCase VOBs)\n│   ├── SCVOB/SCCommon/       surfcam-msc.sln (master)\n│   ├── SCCommonCompVOB/      Math, Dsp, DB, XML, Voronoi, NCData, Patterns\n│   ├── SCGUIVOB/             15+ MFC dialog libraries (NCPost, MachSim, Tooling)\n│   ├── SCMachiningVOB/       Milling/New3Axis, New5Axis, Turning, EDM\n│   └── SCModelingVOB/        Geometry, Wireframe\n├── new feature/Milling/New5Axis/   5-axis development (Ismael Guerra)\n├── translators/               50+ CAD format converters (trnsltrs.sln)\n├── dev/                       LicenseGeneration (Sentinel HASP), TestFarm, Digitizer\n├── thirdparty/                Boost, OpenVRML, ModuleWorks, Vroni\n└── archive/                   Legacy sc2000.1, FlexLM</code></pre>\n<p><strong>5-Axis work (Ismael Guerra):</strong> ToolAxisDirectionLimitsParams, gouge checking, cut control — C++/CLI managed parameter classes.</p>\n<p><strong>Technologies:</strong> C++, C++/CLI, MFC, COM/ATL, DirectX, Parasolid, ModuleWorks MachSim, Sentinel HASP, InstallShield, log4c, Python post-processors</p>\n<p><strong>Patterns:</strong> VOB modular monolith, plugin translators, managed/unmanaged interop, enterprise licensing platform</p>\n<p><strong>955 total .sln/.vcproj files.</strong></p>"
+  },
+  "motorola": {
+    "folder": "Motorola",
+    "display_title": "Motorola — OCAP Closed Captioning",
+    "meta": {
+      "files": "1,071",
+      "era": "2009–2011",
+      "domain": "Motorola/Broadcom set-top platform",
+      "purpose": "OCAP-compliant closed captioning renderer — parse EIA-608/708 from MPEG transport streams, render via KreaTV graphics HAL.",
+      "technologies": [
+        "C++ (-Werror -pedantic)",
+        "KreaTV GFX HAL",
+        "FLTK",
+        "embedded Linux common.mk",
+        "Broadcom Nexus"
+      ]
+    },
+    "html": "<p><strong>Domain:</strong> Motorola/Broadcom set-top platform</p>\n<p><strong>Purpose:</strong> OCAP-compliant closed captioning renderer — parse EIA-608/708 from MPEG transport streams, render via KreaTV graphics HAL.</p>\n<p><strong>Structure:</strong></p>\n<pre class=\"compilation-tree\"><code>Motorola/\n├── ocap/component/            libclosedcaptioningrenderer.so\n│   ├── parser/                Parse608, Parse708, Window*, Commands\n│   ├── eia708/                EIA708Parser, Service, Packet\n│   ├── display/               TDisplay, TWindow\n│   ├── font/                  TFont, TPixmapBuffer\n│   ├── vbi/                   VBIManager\n│   └── xds/                   XDSManager\n├── ocap/tools/                CCParser debug tool (FLTK UI, mock HAL)\n├── refs/                      11 CEA/EIA standard PDFs\n└── streams/                   Test transport streams (.srt, .trp, .ts)</code></pre>\n<p><strong>Technologies:</strong> C++ (-Werror -pedantic), KreaTV GFX HAL, FLTK, embedded Linux common.mk, Broadcom Nexus</p>\n<p><strong>Patterns:</strong> Hysteresis-based DVS-053/157 and 608/708 auto-detection; dual-parser pipeline; mock HAL for desktop dev</p>\n<p><strong>Packet formats:</strong> DVS-157_608, DVS-053_608, DVS-053_708</p>"
+  },
+  "yahoo": {
+    "folder": "Yahoo",
+    "display_title": "Yahoo — Search Engine SQA",
+    "meta": {
+      "files": "~6,269–11,387",
+      "purpose": "Yahoo Search infrastructure — regression testing (Inktest), proxy/cluster configuration, query scraping, secore C++ search engine.",
+      "technologies": [
+        "C/C++",
+        "Make",
+        "TCL",
+        "Perl",
+        "Python",
+        "XML configs"
+      ]
+    },
+    "html": "<p><strong>Purpose:</strong> Yahoo Search infrastructure — regression testing (Inktest), proxy/cluster configuration, query scraping, secore C++ search engine.</p>\n<p><strong>Structure:</strong></p>\n<pre class=\"compilation-tree\"><code>Yahoo/search/\n├── secore/                    Search engine core (C++)\n│   ├── idpd/                  IDP daemon\n│   ├── libs/                  cache, rpc, logging, prisma, datahighway\n│   └── proxy/modules/         blender, spellchecker, normalization\n├── sqa/\n│   ├── inkproxyreg/deploy_config/    50+ cluster config variants\n│   └── secore/inksereg/              Inktest regression harness\n├── clusterConfig-bling/       Production bling proxy configs (*.tcl)\n├── alf/                       ALF framework (base, idp, tagd)\n└── tools/                     scrape-bling.py, analyze-scrape.py</code></pre>\n<p><strong>Technologies:</strong> C/C++, Make, TCL, Perl, Python, XML configs</p>\n<p><strong>Architecture:</strong> Inktest pipeline (deploy → dbconverter → diffreg); TCL cluster globals + per-module .cfg; IDP proxy module pipeline</p>"
+  },
+  "jakeknows": {
+    "folder": "JakeKnows",
+    "display_title": "JakeKnows — Social/Contact Platform",
+    "meta": {
+      "files": "~16,755–29,357",
+      "era": "2010s",
+      "purpose": "Device-centric contact management, group messaging, commerce, profile sharing (\"SWaG\") for mobile clients.",
+      "technologies": [
+        "C# .NET 4.0",
+        "WCF",
+        "ASMX",
+        "SQL Server",
+        "log4net",
+        "ASP.NET WebForms",
+        "PHP reporting",
+        "Twilio SMS"
+      ]
+    },
+    "html": "<p><strong>Purpose:</strong> Device-centric contact management, group messaging, commerce, profile sharing (\"SWaG\") for mobile clients.</p>\n<p><strong>Structure:</strong></p>\n<pre class=\"compilation-tree\"><code>JakeKnows/JakeKnows/\n├── JakeKnowsEngineServices2012.sln    Master solution\n├── JakeKnowsComponent/                Business logic + 100+ strategy operations\n├── JakeKnowsEngineServices/           WCF host (PerCall, Multiple concurrency)\n├── JakeKnowsWebService/               ASMX SOAP facade (~5600+ lines)\n├── JakeKnowsTask*, jakeTask/          Background job processing\n├── JakeKnowsCodeGen/                  Schema→SP/WS/table generator\n├── JakeKnowsDataSP/                   Stored procedures\n├── WindowsServiceWCF/                 Service hosting\n├── ServiceStation0412/                ASMX hosting experiments\n└── work/                              Deployment, headwidget, VJIL, SonyTaleo</code></pre>\n<p><strong>Technologies:</strong> C# .NET 4.0, WCF, ASMX, SQL Server, log4net, ASP.NET WebForms, PHP reporting, Twilio SMS</p>\n<p><strong>Architecture:</strong> Strategy pattern (100+ StrategyOperation enum values); code generation from SQL schema; 46 documented WS calls for mobile app</p>\n<p><strong>Integrations:</strong> Sony Taleo HR, VJIL messaging/video, JulieKnows white-label</p>\n<p><strong>Canonical copy also at:</strong> <code>work/JakeKnows/</code> (see work section).</p>\n<h3>work — JakeKnows Platform + Career Archive</h3>\n<p><strong>Structure:</strong></p>\n<pre class=\"compilation-tree\"><code>work/\n├── JakeKnows/                 Master archive (~22K files in full tree)\n│   └── work/JakeKnows/        JakeKnowsEngineServices2012.sln + full solution\n├── JakeKnowsWebService/       Extracted ASMX subset (files)\n├── JakeKnowsComponent/        Extracted engine component (files)\n├── JakeKnowsEngineServices/   Extracted Windows service (files)\n├── JakeKnowsCodeGen/          Extracted code generator (files)\n└── passport/                  Career + technical reference archive (~975 files)\n    └── files/\n        ├── KGResume.doc\n        ├── career_search_policy.pdf\n        ├── html/              Saved algorithm/CUDA/DSP articles\n        └── pdf/refs/          CEA-608/708 broadcast standards</code></pre>\n<p><strong>passport categories:</strong> Career docs, algorithms (Aggregate Magic, bithacks), DSP/FFT, CUDA/GPU, assembly optimization, computer vision, broadcast standards, networking, kernel dev references.</p>\n<p><strong>Security note:</strong> <code>JakeKnows/labumpers/drupal/labumpers.txt</code> contains plaintext hosting credentials — rotate before publication.</p>\n<p>## Portfolio Highlights (Resume Bullets)</p>\n<p>Use these as starting points; tailor to each job application.</p>",
+    "extra_sections": [
+      "work — JakeKnows Platform + Career Archive"
+    ]
+  },
+  "opentv": {
+    "folder": "OpenTV",
+    "display_title": "OpenTV — TV Ad Scheduling",
+    "meta": {
+      "files": "116",
+      "era": "~2000s",
+      "purpose": "Dynamic scheduling of TV advertising spots into breaks — placement, inventory, manual overrides, customer separation.",
+      "technologies": [
+        "C++ VS6",
+        "STL",
+        "template .inl",
+        "FSM (GroupFSM)"
+      ]
+    },
+    "html": "<p><strong>Purpose:</strong> Dynamic scheduling of TV advertising spots into breaks — placement, inventory, manual overrides, customer separation.</p>\n<p><strong>Structure:</strong></p>\n<pre class=\"compilation-tree\"><code>OpenTV/\n├── DynSchLib/                 VS6 static library (.dsp)\n│   ├── Core2/                 Refactored scheduler (SchedulingCore2, BLLService multiton)\n│   ├── SchedulingCore.*       Legacy core\n│   └── BreakList*, ScheduleGroup*, Finalize*, AllocateInventory*\n└── bk/                        Backup Core2 work-in-progress</code></pre>\n<p><strong>Technologies:</strong> C++ VS6, STL, template .inl, FSM (GroupFSM)</p>\n<p><strong>Patterns:</strong> Multiton BLLService per order line; priority queue spot ordering; conditional DB persistence</p>"
+  },
+  "google": {
+    "folder": "Google",
+    "display_title": "Google — Antaeus / AViK / Babel",
+    "meta": {
+      "files": "~4,529–18,935",
+      "era": "2010s",
+      "purpose": "App Engine application for reviewing mobile app screens across locales (Antaeus) + AViK automated Android screen capture + Dart web clients (Babel).",
+      "technologies": [
+        "Java GAE",
+        "JPA/DataNucleus",
+        "GWT",
+        "Mvp4g",
+        "Dart (pub)",
+        "Android/Java",
+        "Maven",
+        "Python"
+      ]
+    },
+    "html": "<p><strong>Purpose:</strong> App Engine application for reviewing mobile app screens across locales (Antaeus) + AViK automated Android screen capture + Dart web clients (Babel).</p>\n<p><strong>Structure:</strong></p>\n<pre class=\"compilation-tree\"><code>Google/\n├── antaeus/Antaeus/           Main App Engine project\n│   ├── src/                   Java (JPA/DataNucleus, Endpoints)\n│   ├── war/                   Web assets\n│   ├── dart/                  Dart clients, API generators\n│   └── endpoint-libs/libantaeus-v1/\n├── android/AndroidScreenGenerator/   AViK screen capture (avik-2.0.jar)\n├── babel/, dart/              Duplicate Antaeus/Dart client trees\n├── doc/TheProject.arch        Master architecture (RBAC, OAuth2, caching, BLL flow)\n└── other/                     GWT/Mvp4g samples (gwtp-samples, gwtcx, EmployeeAdmin)</code></pre>\n<p><strong>Antaeus architecture (from TheProject.arch):</strong></p>\n<ul>\n<li>App Engine: Endpoints, Memcache, Task Queues, Channels, OAuth, Mail</li>\n<li>BLL: Endpoint → Controller → Authority (auth hash/vector) → CRUDL + validator</li>\n<li>Caching: global (applications/screens/reviews) + transient background refresh</li>\n<li>NEW PARADIGM: simplified schema; \"start a round\"; RBAC with round whitelisting</li>\n</ul>\n<p><strong>Technologies:</strong> Java GAE, JPA/DataNucleus, GWT, Mvp4g, Dart (pub), Android/Java, Maven, Python</p>\n<p><strong>Related:</strong> LaBumpers <code>git/l10n-avik/</code> shares Antaeus/Bumpers1 fork</p>"
+  },
+  "vmware": {
+    "folder": "Vmware",
+    "display_title": "Vmware — Gemini HBR Test Framework",
+    "meta": {
+      "files": "1,569",
+      "purpose": "Python test automation for VMware Host-Based Replication (HBR) — orchestrates ESX hosts, replicators, disks, replication groups.",
+      "technologies": [
+        "Python 2",
+        "YAML config",
+        "unittest",
+        "VMware py.sh",
+        "Doxygen"
+      ]
+    },
+    "html": "<p><strong>Purpose:</strong> Python test automation for VMware Host-Based Replication (HBR) — orchestrates ESX hosts, replicators, disks, replication groups.</p>\n<p><strong>Structure:</strong></p>\n<pre class=\"compilation-tree\"><code>Vmware/\n├── gemini/gemini/             Main framework\n│   ├── configuration.yaml     HBR/ESX credentials, logging, paths\n│   ├── run.py                 Test runner (py.sh)\n│   ├── lib/framework/         Actor model: Machine, ReplicationGroup, Disk, Factory\n│   └── tests/                 host/, replicator/, image/\n├── gemini/g/gemini*           Historical version clones (gemini1–gemini99)\n└── Python_With_Lib/SUITE_HbrApi/   HBR API test suites</code></pre>\n<p><strong>Technologies:</strong> Python 2, YAML config, unittest, VMware py.sh, Doxygen</p>\n<p><strong>Patterns:</strong> Actor model, Factory pattern, proxy layer, configuration-driven YAML anchors</p>"
+  },
+  "knurld": {
+    "folder": "Knurld",
+    "display_title": "Knurld — VIVA Voice Biometrics",
+    "meta": {
+      "files": "1,715",
+      "purpose": "Speaker enrollment, verification, identification, diarization platform.",
+      "technologies": [
+        "Python 2.7",
+        "Flask",
+        "PyQt4",
+        "scikits.audiolab",
+        "nginx/uWSGI",
+        "RabbitMQ",
+        "AngularJS"
+      ]
+    },
+    "html": "<p><strong>Purpose:</strong> Speaker enrollment, verification, identification, diarization platform.</p>\n<p><strong>Structure:</strong></p>\n<pre class=\"compilation-tree\"><code>Knurld/knurld/\n├── viva/                      VIVA platform v1.0.3 (setup.py)\n│   ├── applications/\n│   │   ├── slams_engine.py    Core biometrics engine\n│   │   ├── viva/viva_engine.py   Qt4 desktop GUI\n│   │   ├── server/slams_server.py\n│   │   └── viva_webapp/       AngularJS + bower\n│   ├── audiotools/            Segmentation, activity detection, resample\n│   └── system_tests/nightly/\n├── viva_api/                  Flask REST API 2.0.0\n└── work/flask-inputs/         Flask form validation library</code></pre>\n<p><strong>Technologies:</strong> Python 2.7, Flask, PyQt4, scikits.audiolab, nginx/uWSGI, RabbitMQ, AngularJS</p>\n<p><strong>Architecture:</strong> SLAMS engine factory; layered audio pipeline; multi-app (server/API/GUI/web/PBX)</p>"
+  },
+  "butterfleye": {
+    "folder": "Butterfleye",
+    "display_title": "Butterfleye — IoT Camera Cloud",
+    "meta": {
+      "files": "948",
+      "purpose": "Cloud backend for Butterfleye smart camera — device registration, live streaming, file sync, push notifications.",
+      "technologies": [
+        "Python 2",
+        "PostgreSQL",
+        "SQLAlchemy",
+        "Protocol Buffers",
+        "live555 RTSP",
+        "Ansible",
+        "iOS test app"
+      ]
+    },
+    "html": "<p><strong>Purpose:</strong> Cloud backend for Butterfleye smart camera — device registration, live streaming, file sync, push notifications.</p>\n<p><strong>Structure:</strong></p>\n<pre class=\"compilation-tree\"><code>Butterfleye/butterfleye/\n├── live555itk/                RTSP/media streaming fork (Makefile)\n└── butterfleye-cloud/\n    ├── srv/butterfleye/\n    │   ├── proto/bcam.proto   Camera↔Server↔App protobuf protocol\n    │   ├── cs/                Camera Server (SSL, NodeId, KeepAlive)\n    │   ├── datarpc/           Client API (login, start_stream)\n    │   ├── filesync/          Media upload/transcode\n    │   ├── notifications/     Push notifications RPC\n    │   └── db/sqla/           PostgreSQL + SQLAlchemy migrations\n    ├── ansible/               Deployment automation\n    └── emu/                   Camera emulator</code></pre>\n<p><strong>Technologies:</strong> Python 2, PostgreSQL, SQLAlchemy, Protocol Buffers, live555 RTSP, Ansible, iOS test app</p>\n<p><strong>Protocol:</strong> SSL WAN, 4-byte length-prefixed protobuf; NodeIdRequest/Response, KeepAlive with battery/camera state</p>"
+  },
+  "thuuz": {
+    "folder": "Thuuz",
+    "display_title": "Thuuz — Sports Broadcast Ingest",
+    "meta": {
+      "files": "11 — minimal config snapshot",
+      "purpose": "Broadcast ingest coordinator for sports excitement scoring infrastructure (scoring logic not present in archive).",
+      "technologies": [
+        "Python 2",
+        "SimpleXMLRPCServer",
+        "JSON config",
+        "boto AWS S3"
+      ]
+    },
+    "html": "<p><strong>Purpose:</strong> Broadcast ingest coordinator for sports excitement scoring infrastructure (scoring logic not present in archive).</p>\n<p><strong>Structure:</strong></p>\n<pre class=\"compilation-tree\"><code>Thuuz/\n├── callsigns.json             Channel registry (FS1HD, FS2HD Fox Sports)\n├── director.json, director2.json\n├── callsigns_server.py        XML-RPC on port 8000\n├── callsigns_sync_s3.py       S3 sync stub\n└── test/gets3.py, puts3.py    boto S3 utilities</code></pre>\n<p><strong>Technologies:</strong> Python 2, SimpleXMLRPCServer, JSON config, boto AWS S3</p>"
+  },
+  "chase": {
+    "folder": "Chase",
+    "display_title": "Chase — Conway's Game of Life",
+    "meta": {
+      "files": "573 (mostly Doxygen HTML)",
+      "date": "Dec 2017 | **Context:** Coding interview takehome",
+      "technologies": [
+        "Java Swing",
+        "manual Thread",
+        "JUnit 4",
+        "Eclipse",
+        "Doxygen"
+      ]
+    },
+    "html": "<p><strong>Structure:</strong></p>\n<pre class=\"compilation-tree\"><code>Chase/GameOfLife/\n├── src/                       6 Java files\n│   ├── GameOfLife.java        JFrame + menus\n│   ├── GameGrid.java          JPanel + thread\n│   ├── Cells.java / CellsImpl.java / Cell.java / CellState.java\n├── tests/                     JUnit (CellTest, CellsTest)\n├── gol.jar                    Runnable JAR\n├── README, HOWTO, GameOfLife_Design\n└── html/                      Doxygen docs</code></pre>\n<p><strong>Technologies:</strong> Java Swing, manual Thread, JUnit 4, Eclipse, Doxygen</p>\n<p><strong>Patterns:</strong> Engine/GUI separation (Cells interface); double-buffer swap; precomputed 8-neighbor lists; toroidal wrap toggle</p>\n<p><strong>Performance:</strong> 1,000,000 step benchmark test; early exit neighbor counting</p>"
+  },
+  "hivemapper": {
+    "folder": "HiveMapper",
+    "display_title": "HiveMapper — Drone Airport Navigator",
+    "meta": {
+      "files": "134",
+      "date": "Dec 20, 2017 – Jan 5, 2018 | **Context:** Hivemapper coding interview",
+      "technologies": [
+        "C++",
+        "Boost Graph Library (dijkstra_shortest_paths)",
+        "Boost Lexical Cast",
+        "Graphviz DOT",
+        "Eclipse CDT",
+        "SLOCCount"
+      ]
+    },
+    "html": "<p><strong>Structure:</strong></p>\n<pre class=\"compilation-tree\"><code>HiveMapper/HiveMapper/\n├── src/\n│   ├── DroneNavigator.cpp     main()\n│   ├── parsed/                Input domain (Circle, World, Route) — 296 SLOC\n│   ├── airport/               Graph + planning — 1,440 SLOC\n│   │   ├── Planner.cpp        Dijkstra, BFS, Exhaustive\n│   │   ├── Graph.*            Custom adjacency list\n│   │   └── Step.*             GO/STOP/REVERSE/TRANSFER physics\n│   └── utility/               ParseInputFile, Geometry — 97 SLOC\n├── bin/DroneNavigator         Precompiled binary (4.7 MB)\n├── case/                      LinkedIn thread, SLOCCount billing notes\n└── README, DroneNavigator_Design, test_cases.txt</code></pre>\n<p><strong>Problem:</strong> Navigate drone through circular airport roads in minimum time (accel/decel 1 m/s², max 4 m/s, 8s direction reversal, 0.1s transfer).</p>\n<p><strong>Technologies:</strong> C++, Boost Graph Library (dijkstra_shortest_paths), Boost Lexical Cast, Graphviz DOT, Eclipse CDT, SLOCCount</p>\n<p><strong>Algorithms:</strong> DIJKSTRA (default), BFS (incomplete), EXHAUSTIVE (all paths enumeration)</p>\n<p><strong>Total SLOC:</strong> 1,873 C++</p>\n<p><strong>Note:</strong> <code>Hivemapper-Coding-Question.pdf</code> referenced in case files but not on disk.</p>"
+  },
+  "greenleaf": {
+    "folder": "WEBSITE",
+    "display_title": "WEBSITE — Green Leaf Wellness Brand",
+    "meta": {
+      "files": "16",
+      "era": "2012",
+      "purpose": "Design-only deliverables for Green Leaf wellness/supplements e-commerce brand. No HTML/code — Illustrator + typography assets."
+    },
+    "html": "<pre class=\"compilation-tree\"><code>WEBSITE/\n├── CATEGORIAS                 Product taxonomy (Child Health, Weight Management, etc.)\n├── LOGO GREEN LEAF.jpg\n└── GreenLeaf/GREEN LEAF WEB/\n    ├── WEBSITE GREEN LEAF.ai  Layout design\n    └── Fonts/ (Cantabile, Humanist 521 TTF)</code></pre>\n<p><strong>Purpose:</strong> Design-only deliverables for Green Leaf wellness/supplements e-commerce brand. No HTML/code — Illustrator + typography assets.</p>"
+  }
+}

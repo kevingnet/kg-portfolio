@@ -4,7 +4,10 @@
 import html
 import json
 import os
+import re
 import shutil
+import subprocess
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).parent
@@ -19,8 +22,16 @@ SITE_NAME = "KG PORTFOLIO"
 COPYRIGHT_YEAR = "2026"
 CONTACT_EMAIL = "kevingnet1@gmail.com"
 SITE_BASE_URL = os.getenv("SITE_BASE_URL", "https://kevingnet.github.io/kg-portfolio").rstrip("/")
+DEV_ROOT = Path("/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development")
+DEV_INVENTORY_FILE = ROOT / "data" / "development-inventory.json"
 CATALOG_FILE = ROOT / "data" / "portfolio-catalog.json"
-SKIP_INDEX_SLUGS = frozenset({"hivemapper", "chase", "greenleaf", "opentv"})
+COMPILATION_JSON = ROOT / "data" / "portfolio-compilation.json"
+NNN_ARCHIVE_JSON = ROOT / "data" / "nnn-archive.json"
+CAROUSEL_CHRONOLOGY_FILE = ROOT / "data" / "carousel-chronology.json"
+SKIP_COMPILATION_SLUGS = frozenset({"access"})
+SKIP_INDEX_SLUGS = frozenset({"hivemapper", "chase", "greenleaf", "opentv"})  # index grid + carousel
+DEV_FOLDER_PREFIX_RE = re.compile(r"^\d{1,2}\s+")
+DEV_FOLDER_SORT_RE = re.compile(r"^(\d+)")
 RESUME_HTML_SRC = Path("/home/kg/Jobs/Kevin Guerra - Resume.html")
 SITE_TAGLINE = (
     f"{PROFESSIONAL_TITLE} portfolio — currently Sr. Software Engineer at MAF RODA Agrobotic; "
@@ -60,54 +71,12 @@ SOCIAL = {
     "stackoverflow": "https://stackoverflow.com/users/3828838/kevin-guerra",
 }
 
-# name, image file, ext, slug, card description, skill chips (max ~5 shown on card)
-PORTFOLIO = [
-    ("MAF RODA", "mafroda", "png", "mafroda",
-     "Americas traceability lead — fleet installer, OpenCV on sorters, sample apps.",
-     ["Python", "OpenCV", "C#", ".NET", "Traceability"]),
-    ("Leidos", "leidos", "png", "leidos",
-     "Airport security scanning app (C++, Qt5, Python) and enterprise performance architecture.",
-     ["C++", "Qt5", "Python", "Imaging", "Security"]),
-    ("Google", "google", "jpeg", "google",
-     "Localization, Maps, Hardware Analytics, Speech Ops, YouTube, HR.",
-     ["Java", "Python", "GCP", "Postgres", "Dart"]),
-    ("DirecTV", "directv", "jpeg", "directv",
-     "OCR automation, image processing, and test infrastructure.",
-     ["C++", "Python", "OCR", "Computer Vision"]),
-    ("JakeKnows", "company", "png", "jakeknows",
-     "Distributed identity engine and Sony mobile job-application backend.",
-     ["C#", "Python", "MSSQL", "Web Services"]),
-    ("Disney", "disney", "jpeg", "disney",
-     "Enterprise web apps, deployers, and Novell networking tools.",
-     ["C++", "ASP", "VB", "MSSQL"]),
-    ("Electrosonic", "electrosonic", "jpeg", "electrosonic",
-     "AV scheduling, robotics integration, and remote device control.",
-     ["C++", "COM", "TCP/IP", "Embedded"]),
-    ("VoltDelta", "voltdelta", "jpeg", "voltdelta",
-     "Phone switch simulator and X.25 network connector.",
-     ["C++", "X.25", "TCP/IP", "Win32"]),
-    ("Vmware", "vmware", "jpeg", "vmware",
-     "QA automation framework — 80k LOC legacy replaced with 8k LOC Python.",
-     ["Python", "Perl", "Automation", "Virtualization"]),
-    ("HMS", "hypermedia", "jpeg", "hms",
-     "Input validation library, penetration testing, security audits.",
-     ["C++", "Python", "Security", "Linux"]),
-    ("Surfware", "surfware", "jpeg", "surfware",
-     "CAD/CAM CNC software and SolidWorks / AutoCAD interfaces.",
-     ["C++", "C#", "OpenGL", "CAD/CAM"]),
-    ("Motorola", "motorola", "jpeg", "motorola",
-     "Closed-captioning module for set-top boxes.",
-     ["C++", "Embedded", "OCAP", "Linux"]),
-    ("OpenTV", "opentv", "jpeg", "opentv",
-     "Local advertisement scheduler for major cable operators.",
-     ["C#", "C++", "Python", "Oracle"]),
-    ("Spirent", "spirent", "jpeg", "spirent",
-     "Tcl scripting interface for network test appliances.",
-     ["C++", "Tcl", "SWIG", "Networking"]),
-]
+# Fallback if catalog not built yet — run tools/extract_development.py
+PORTFOLIO_FALLBACK: list[tuple] = []
 
 # (logo stem, extension, display name, slug) — rebuilt in build_carousel_logos()
 CAROUSEL_LOGOS: list[tuple[str, str, str, str]] = []
+
 
 SERVICES = [
     ("Ideation", "Product concepts, architecture options, and rapid prototypes to validate direction before a full build.", "ideation.jpg"),
@@ -163,7 +132,27 @@ TIMELINE = [
     ("Senior Software Developer / Solutions Architect", "VMware · Veritas · HPE", "2015 – 2018",
      "QA framework rewrite (80k→8k LOC, ~8× faster); OSCAP/OWASP hardening on backup appliances."),
     ("Earlier career", "OpenTV, Disney, DirecTV, embedded/AV, and more", "2013 and earlier",
-     "See resume for full Experience History."),
+     "See experience-history.html for full pre-2015 roles."),
+    ("Programmer Analyst — Consultant", "Self Employed", "Apr 2001 – Jul 2023",
+     "Business applications, databases, ActiveX/XML web tools, and client infrastructure."),
+    ("Senior Programmer Analyst", "Electrosonic Systems", "Jan 2000 – Apr 2001",
+     "AV scheduling, remote monitoring, museum deployments — see Electrosonic project page."),
+    ("Network and Programming Support", "Positive Developments", "Oct 1999 – Jan 2000",
+     "Warehouse PalmOS apps, SendGTL Win32 loader, help desk and network support."),
+    ("Network and Telecommunications Support", "Audio Telco", "Mar 1997 – Jun 1997",
+     "MIS/order-entry databases and international office telecom coordination."),
+    ("Network Support", "Wood Technologies International", "Nov 1996 – Mar 1997",
+     "NT/Exchange, BBS file utilities, Netscape server, and executive MIS apps."),
+    ("Installation and Support Associate", "ACCESS! Corporation", "Mar 1995 – Sep 1996",
+     "Predictive dialer installs, Clipper utilities, and mainframe data integration."),
+    ("Computer Support Associate", "The Bumper Shop", "Aug 1994 – Mar 1995",
+     "LAN/WAN setup and MS Access billing, inventory, and MIS databases."),
+    ("Office Manager", "California Plastering", "Feb 1994 – Aug 1994",
+     "Accounting database for customers, payroll, invoicing, and bookkeeping."),
+    ("Software Sales / PC Technician", "Fry's Electronics", "Jan 1993 – Feb 1994",
+     "Demo systems, software sales floor support, and hardware conflict resolution."),
+    ("Network and Debugging Support", "LCS Logical Computer Services", "Sep 1992 – Jan 1993",
+     "Novell NetWare 3.11 installs and VB/Access MIS debugging on LAN/WAN."),
 ]
 
 # metric, title, blurb, optional project slug for "read more" link
@@ -338,35 +327,6 @@ def rel_prefix(depth: int) -> str:
     return "../" * depth if depth else ""
 
 
-def load_catalog() -> dict:
-    if CATALOG_FILE.is_file():
-        try:
-            return json.loads(CATALOG_FILE.read_text(encoding="utf-8"))
-        except (json.JSONDecodeError, OSError):
-            pass
-    return {"portfolio": []}
-
-
-def portfolio_entries() -> list[tuple]:
-    cards = load_catalog().get("portfolio") or []
-    if cards:
-        return [
-            (c["name"], c["logo"], c["ext"], c["slug"], c["desc"], c["skills"])
-            for c in cards
-            if c["slug"] not in SKIP_INDEX_SLUGS
-        ]
-    return list(PORTFOLIO)
-
-
-def build_carousel_logos() -> None:
-    global CAROUSEL_LOGOS
-    entries = portfolio_entries()
-    CAROUSEL_LOGOS = [
-        (logo, ext, name, slug)
-        for name, logo, ext, slug, desc, skills in reversed(entries)
-    ]
-
-
 def carousel(depth: int = 0) -> str:
     p = rel_prefix(depth)
     items = "\n".join(
@@ -402,6 +362,438 @@ def header(active: str, depth: int = 0) -> str:
   </div>
 {carousel(depth)}
   </header>"""
+
+
+def load_catalog() -> dict:
+    if CATALOG_FILE.is_file():
+        try:
+            return json.loads(CATALOG_FILE.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            pass
+    return {"portfolio": []}
+
+
+def display_dev_folder(name: str) -> str:
+    """Strip leading archive numbers (e.g. '03 Disney' → 'Disney')."""
+    if not name:
+        return name
+    return DEV_FOLDER_PREFIX_RE.sub("", name).strip() or name
+
+
+def load_compilation() -> dict[str, dict]:
+    if COMPILATION_JSON.is_file():
+        try:
+            return json.loads(COMPILATION_JSON.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            pass
+    return {}
+
+
+def compilation_block(slug: str) -> str:
+    """HTML from portfolio-compilation.json for this project slug."""
+    if slug in SKIP_COMPILATION_SLUGS:
+        return ""
+    entry = load_compilation().get(slug)
+    if not entry or not entry.get("html"):
+        return ""
+    title = html.escape(entry.get("display_title") or entry.get("folder") or slug)
+    return (
+        '      <h2>Development archive analysis</h2>\n'
+        f'      <p class="compilation-lead"><em>From exhaustive archive review — {title}</em></p>\n'
+        f'      {entry["html"]}'
+    )
+
+
+def project_from_compilation(slug: str, card: dict) -> dict:
+    """Build a project page primarily from compilation data."""
+    entry = load_compilation().get(slug, {})
+    name = card.get("name") or entry.get("folder") or slug
+    title = f"{name} Projects"
+    meta = entry.get("meta") or {}
+    intro_parts = [f"<p><strong>{html.escape(name)}</strong></p>"]
+    if meta.get("purpose"):
+        intro_parts.append(f"<p>{html.escape(meta['purpose'])}</p>")
+    elif card.get("desc"):
+        intro_parts.append(f"<p>{html.escape(card['desc'])}</p>")
+    bits = []
+    if meta.get("era"):
+        bits.append(f"Era: {meta['era']}")
+    if meta.get("domain"):
+        bits.append(meta["domain"])
+    if bits:
+        intro_parts.append(f"<p><em>{html.escape(' · '.join(bits))}</em></p>")
+    folder = card.get("dev_folder") or entry.get("folder") or ""
+    if folder:
+        shown = display_dev_folder(folder)
+        intro_parts.append(
+            f"<p>Development archive (<strong>{html.escape(shown)}</strong>): "
+            f"<code>{html.escape(str(DEV_ROOT / folder))}</code></p>"
+        )
+    tech = ", ".join(meta.get("technologies") or card.get("skills") or [])
+    return {
+        "title": title,
+        "intro": "\n".join(intro_parts),
+        "tech": tech or ", ".join(card.get("skills") or []),
+    }
+
+
+def portfolio_entries() -> list[tuple]:
+    """(name, logo, ext, slug, desc, skills) from Development catalog."""
+    cards = load_catalog().get("portfolio") or []
+    if not cards:
+        return PORTFOLIO_FALLBACK
+    return [
+        (c["name"], c["logo"], c["ext"], c["slug"], c["desc"], c["skills"])
+        for c in cards
+        if c["slug"] not in SKIP_INDEX_SLUGS
+    ]
+
+
+def dev_folder_sort_key(folder: str) -> tuple:
+    m = DEV_FOLDER_SORT_RE.match(folder or "")
+    return (int(m.group(1)) if m else 999, folder or "")
+
+
+def load_carousel_chronology() -> list[str]:
+    if CAROUSEL_CHRONOLOGY_FILE.is_file():
+        try:
+            data = json.loads(CAROUSEL_CHRONOLOGY_FILE.read_text(encoding="utf-8"))
+            order = data.get("order")
+            if isinstance(order, list) and order:
+                return [str(s) for s in order]
+        except (json.JSONDecodeError, OSError):
+            pass
+    return []
+
+
+def report_carousel_discrepancies(cards_by_slug: dict[str, dict], resume_order: list[str]) -> None:
+    """Log Development-folder vs resume-order inversions (resume wins in the carousel)."""
+    dev_slugs = [
+        c["slug"] for c in sorted(
+            cards_by_slug.values(),
+            key=lambda c: dev_folder_sort_key(c.get("dev_folder") or ""),
+        )
+        if c.get("dev_folder")
+    ]
+    resume_rank = {slug: i for i, slug in enumerate(resume_order)}
+    dev_rank = {slug: i for i, slug in enumerate(dev_slugs)}
+    shared = [s for s in resume_order if s in dev_rank]
+    inversions: list[str] = []
+    for i, a in enumerate(shared):
+        for b in shared[i + 1:]:
+            if dev_rank[a] > dev_rank[b] and resume_rank[a] < resume_rank[b]:
+                fa = cards_by_slug[a].get("dev_folder", a)
+                fb = cards_by_slug[b].get("dev_folder", b)
+                inversions.append(f"{fa} after {fb} in Development, but resume places {a} before {b}")
+    if inversions:
+        print("Carousel order: resume overrides Development folder numbering for:")
+        for line in inversions[:12]:
+            print(f"  · {line}")
+        if len(inversions) > 12:
+            print(f"  · … +{len(inversions) - 12} more")
+
+
+def build_carousel_logos() -> None:
+    """Oldest → newest (left to right): reverse of portfolio grid order."""
+    global CAROUSEL_LOGOS
+    entries = portfolio_entries()
+    CAROUSEL_LOGOS = [
+        (logo, ext, name, slug)
+        for name, logo, ext, slug, desc, skills in reversed(entries)
+    ]
+    sync_carousel_chronology_json([slug for _, _, _, slug in CAROUSEL_LOGOS])
+
+
+def sync_carousel_chronology_json(slugs: list[str]) -> None:
+    """Keep carousel-chronology.json aligned with portfolio-derived order."""
+    data: dict = {}
+    if CAROUSEL_CHRONOLOGY_FILE.is_file():
+        try:
+            data = json.loads(CAROUSEL_CHRONOLOGY_FILE.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            pass
+    data["description"] = (
+        "Carousel logo order oldest → newest (left to right). "
+        "Auto-synced from portfolio grid order on each build."
+    )
+    data["order"] = slugs
+    CAROUSEL_CHRONOLOGY_FILE.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+
+
+def sync_static_page_carousels() -> None:
+    """Keep manually maintained pages using the same carousel as generated headers."""
+    block = carousel(0)
+    pattern = re.compile(
+        r'  <div class="logo-carousel"[^>]*>\s*<div class="logo-carousel-track">.*?</div>\s*</div>',
+        re.DOTALL,
+    )
+    for rel in ("experience-history.html", "resume.html"):
+        path = ROOT / rel
+        if not path.is_file():
+            continue
+        text = path.read_text(encoding="utf-8")
+        if not pattern.search(text):
+            continue
+        path.write_text(pattern.sub(block, text, count=1), encoding="utf-8")
+
+
+def auto_project(slug: str, card: dict) -> dict:
+    """Generate project page from catalog + Development inventory."""
+    tags = []
+    if card.get("portfolio_only"):
+        tags.append("Portfolio only — not on resume")
+    elif card.get("in_current_resume"):
+        tags.append("Current resume")
+    elif card.get("in_old_resume"):
+        tags.append("Generic Resume")
+    tag_html = ""
+    if tags:
+        tag_html = f'<p class="portfolio-tag"><em>{html.escape(" · ".join(tags))}</em></p>'
+    folder = card.get("dev_folder") or ""
+    intro_parts = [
+        f"<p><strong>{html.escape(card['name'])}</strong></p>",
+        tag_html,
+        f"<p>{html.escape(card['desc'])}</p>",
+    ]
+    if folder:
+        shown = display_dev_folder(folder)
+        intro_parts.append(
+            f"<p>Development archive (<strong>{html.escape(shown)}</strong>): "
+            f"<code>{html.escape(str(DEV_ROOT / folder))}</code></p>"
+        )
+    return {
+        "title": f"{card['name']} Projects",
+        "intro": "\n".join(intro_parts),
+        "tech": ", ".join(card.get("skills", [])),
+    }
+
+
+def ensure_all_projects() -> None:
+    compilation = load_compilation()
+    for card in load_catalog().get("portfolio", []):
+        slug = card["slug"]
+        if slug not in PROJECTS:
+            if slug in compilation:
+                PROJECTS[slug] = project_from_compilation(slug, card)
+            else:
+                PROJECTS[slug] = auto_project(slug, card)
+
+
+def load_dev_inventory() -> dict:
+    if DEV_INVENTORY_FILE.is_file():
+        try:
+            return json.loads(DEV_INVENTORY_FILE.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            pass
+    return {"employers": {}}
+
+
+def load_nnn_archive() -> dict:
+    if NNN_ARCHIVE_JSON.is_file():
+        try:
+            return json.loads(NNN_ARCHIVE_JSON.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            pass
+    return {}
+
+
+def render_doc_figures(images: list[dict]) -> str:
+    if not images:
+        return ""
+    cells = []
+    for img in images:
+        src = html.escape(img.get("src") or "")
+        alt = html.escape(img.get("alt") or "Figure")
+        w = img.get("width")
+        h = img.get("height")
+        dim = ""
+        try:
+            if int(w) > 0 and int(h) > 0:
+                dim = f' width="{int(w)}" height="{int(h)}"'
+        except (TypeError, ValueError):
+            dim = ""
+        cap = html.escape(img.get("caption") or "")
+        cap_html = f'<figcaption>{cap}</figcaption>' if cap else ""
+        cells.append(
+            '          <figure class="archive-doc-figure">\n'
+            f'            <img src="../{src}" alt="{alt}" loading="eager" decoding="async"{dim}>\n'
+            f"            {cap_html}\n"
+            "          </figure>"
+        )
+    grid_class = "archive-doc-figures__grid"
+    if len(images) == 1:
+        grid_class += " archive-doc-figures__grid--solo"
+    return (
+        '        <div class="archive-doc-segment archive-doc-segment--figures">\n'
+        f'          <div class="{grid_class}">\n'
+        + "\n".join(cells)
+        + "\n          </div>\n        </div>"
+    )
+
+
+def render_doc_segments(segments: list[dict]) -> str:
+    parts = ['        <div class="archive-doc-body">']
+    for seg in segments:
+        kind = seg.get("kind")
+        if kind == "text":
+            content = html.escape(seg.get("content") or "")
+            if not content.strip():
+                continue
+            parts.append(
+                '        <div class="archive-doc-segment archive-doc-segment--text">'
+                f"{content}</div>"
+            )
+        elif kind == "figures":
+            fig_html = render_doc_figures(seg.get("images") or [])
+            if fig_html:
+                parts.append(fig_html)
+    parts.append("        </div>")
+    return "\n".join(parts)
+
+
+def render_nnn_block(block: dict) -> str:
+    """Render one showcase block from nnn-archive.json."""
+    btype = block.get("type")
+    if btype == "section":
+        return f'      <div class="archive-section-label">{html.escape(block.get("title") or "")}</div>'
+    title = html.escape(block.get("title") or "Untitled")
+    rel = block.get("rel") or ""
+    path_hint = html.escape(rel) if rel else ""
+
+    if btype == "image":
+        src = html.escape(block.get("src") or "")
+        alt = html.escape(block.get("alt") or title)
+        cap = f'<figcaption class="archive-figure__caption"><span class="archive-filename">{title}</span>'
+        if path_hint:
+            cap += f'<span class="archive-path">{path_hint}</span>'
+        cap += "</figcaption>"
+        return (
+            '      <figure class="archive-figure">\n'
+            f'        <div class="archive-figure__frame"><img src="../{src}" alt="{alt}" loading="lazy" decoding="async"></div>\n'
+            f"        {cap}\n"
+            "      </figure>"
+        )
+
+    badge = {"code": "CODE", "text": "TEXT", "document": "DOC"}.get(btype, btype.upper() if btype else "")
+    header = (
+        f'        <div class="archive-panel__header">\n'
+        f'          <span class="archive-badge-type">{badge}</span>\n'
+        f'          <span class="archive-filename">{title}</span>\n'
+    )
+    if path_hint:
+        header += f'          <span class="archive-path">{path_hint}</span>\n'
+    header += "        </div>"
+
+    content = block.get("content") or ""
+    truncated = block.get("truncated")
+    meta = ""
+    if truncated:
+        if btype == "code" and block.get("line_count"):
+            meta = f'        <p class="archive-truncated">Showing excerpt of {block["line_count"]} lines.</p>\n'
+        else:
+            meta = '        <p class="archive-truncated">Excerpt shown — full document in archive.</p>\n'
+
+    if btype == "code":
+        lang = html.escape(block.get("lang") or "text")
+        body = (
+            f'        <pre class="archive-code"><code class="language-{lang}">'
+            f"{html.escape(content)}</code></pre>\n"
+        )
+        panel_class = "archive-panel archive-panel--code"
+    elif btype == "document":
+        segments = block.get("segments") or []
+        if segments:
+            body = render_doc_segments(segments) + "\n"
+            if truncated and content:
+                body += (
+                    '        <details class="archive-doc-fulltext">\n'
+                    '          <summary>Full extracted text</summary>\n'
+                    f'          <div class="archive-doc">{html.escape(content)}</div>\n'
+                    "        </details>\n"
+                )
+        else:
+            body = f'        <div class="archive-doc">{html.escape(content)}</div>\n'
+        panel_class = "archive-panel archive-panel--doc"
+    elif btype == "text":
+        body = f'        <pre class="archive-text"><code>{html.escape(content)}</code></pre>\n'
+        panel_class = "archive-panel archive-panel--text"
+    else:
+        return ""
+
+    return (
+        f'      <article class="{panel_class}">\n'
+        f"{header}"
+        f"{body}"
+        f"{meta}"
+        "      </article>"
+    )
+
+
+def nnn_archive_block(slug: str) -> str:
+    """HTML showcase from nnn professional archive."""
+    entry = load_nnn_archive().get("employers", {}).get(slug)
+    if not entry or not entry.get("blocks"):
+        return ""
+    stats = entry.get("stats") or {}
+    bits = []
+    if stats.get("code"):
+        bits.append(f"{stats['code']} source file{'s' if stats['code'] != 1 else ''}")
+    if stats.get("document"):
+        bits.append(f"{stats['document']} document{'s' if stats['document'] != 1 else ''}")
+    if stats.get("text"):
+        bits.append(f"{stats['text']} note{'s' if stats['text'] != 1 else ''}")
+    if stats.get("image"):
+        bits.append(f"{stats['image']} image{'s' if stats['image'] != 1 else ''}")
+    if stats.get("figures"):
+        bits.append(f"{stats['figures']} embedded figure{'s' if stats['figures'] != 1 else ''}")
+    summary = ", ".join(bits) if bits else "archive materials"
+    name = html.escape(entry.get("name") or slug)
+    parts = [
+        '      <section class="archive-showcase">',
+        "      <h2>Archive showcase</h2>",
+        f'      <p class="archive-lead"><em>{name}</em> — {html.escape(summary)} from the professional archive.</p>',
+    ]
+    for block in entry["blocks"]:
+        parts.append(render_nnn_block(block))
+    parts.append("      </section>")
+    return "\n".join(parts)
+
+
+def head_meta(
+    full_title: str,
+    desc: str,
+    p: str,
+    slug_path: str,
+    og_image: str | None,
+) -> str:
+    """Local-first head tags — no absolute canonical/OG URLs unless SITE_BASE_URL is set."""
+    lines = [
+        f"  <title>{full_title}</title>",
+        f'  <meta name="description" content="{desc}">',
+        f'  <link rel="icon" href="{p}assets/favicon.svg" type="image/svg+xml">',
+        f'  <meta name="theme-color" content="#0e1014">',
+        f'  <link rel="stylesheet" href="{p}css/style.css">',
+    ]
+    if SITE_BASE_URL:
+        canon = f"{SITE_BASE_URL}/{slug_path.replace('index.html', '').rstrip('/')}"
+        if slug_path == "index.html":
+            canon = f"{SITE_BASE_URL}/"
+        img_rel = (og_image or DEFAULT_OG_IMAGE).removeprefix("../")
+        og_img = f"{SITE_BASE_URL}/{img_rel}"
+        lines[2:2] = [
+            f'  <link rel="canonical" href="{canon}">',
+            '  <meta property="og:type" content="website">',
+            f'  <meta property="og:site_name" content="{SITE_NAME}">',
+            f'  <meta property="og:title" content="{full_title}">',
+            f'  <meta property="og:description" content="{desc}">',
+            f'  <meta property="og:url" content="{canon}">',
+            f'  <meta property="og:image" content="{og_img}">',
+            '  <meta name="twitter:card" content="summary">',
+            f'  <meta name="twitter:title" content="{full_title}">',
+            f'  <meta name="twitter:description" content="{desc}">',
+            f'  <meta name="twitter:image" content="{og_img}">',
+        ]
+    return "\n".join(lines)
 
 
 def social_icon_links(depth: int = 0) -> str:
@@ -446,37 +838,17 @@ def page(
             "Portfolio": "index.html",
             "Services": "services.html",
             "Samples": "samples.html",
+            "History": "experience-history.html",
             "About": "about.html",
         }.get(active, "index.html")
-    canon = f"{SITE_BASE_URL}/{slug_path.replace('index.html', '').rstrip('/')}"
-    if canon.endswith("/") and slug_path != "index.html":
-        canon = canon.rstrip("/")
-    if slug_path == "index.html":
-        canon = f"{SITE_BASE_URL}/"
-    img_rel = (og_image or DEFAULT_OG_IMAGE).removeprefix("../")
-    og_img = f"{SITE_BASE_URL}/{img_rel}"
     full_title = f"{title} | {SITE_NAME}"
+    meta = head_meta(full_title, desc, p, slug_path, og_image)
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{full_title}</title>
-  <meta name="description" content="{desc}">
-  <link rel="canonical" href="{canon}">
-  <link rel="icon" href="{p}assets/favicon.svg" type="image/svg+xml">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="{SITE_NAME}">
-  <meta property="og:title" content="{full_title}">
-  <meta property="og:description" content="{desc}">
-  <meta property="og:url" content="{canon}">
-  <meta property="og:image" content="{og_img}">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="{full_title}">
-  <meta name="twitter:description" content="{desc}">
-  <meta name="twitter:image" content="{og_img}">
-  <meta name="theme-color" content="#0e1014">
-  <link rel="stylesheet" href="{p}css/style.css">
+{meta}
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -800,6 +1172,129 @@ PROJECTS = {
 <p>Developed new commands for the network testing system.</p>
 <p>Re-factored code to later reuse for the new design. Network Programming, ACE Framework, OOD, Visual Studio.</p>""",
     },
+    "posdev": {
+        "title": "Positive Developments",
+        "intro": """<p><strong>Network and Programming Support</strong> · Oct 1999 – Jan 2000 · Anaheim, CA</p>
+<p>Positive Developments — network support and warehouse-industry programming for PalmOS and handheld devices.</p>
+<ul>
+<li><strong>SendGTL:</strong> Win32 MFC utility that loads firmware and data files to warehouse handhelds over serial — parameterized via <code>SendGTL.txt</code> with manufacturer/model lists, comm settings, and custom bitmap dialogs</li>
+<li><strong>Allstate Floral (PalmOS):</strong> order and item scanning on Palm/Symbol hardware — barcode scan screens, PDI file import, order index navigation (source tree: <code>Allstate Floral V2</code>)</li>
+<li>Help desk and phone support for in-house staff and warehouse clients</li>
+</ul>""",
+        "tech": "C++, MFC, Win32, PalmOS, C, Serial Communications, Warehouse, Barcode Scanning, Help Desk, Networking",
+        "work": """<h2>Work Performed</h2>
+<p>Programmed warehouse applications for PalmOS and other handheld devices; maintained and extended the Allstate Floral order-entry scanner (v2.07 bug fixes and UI adjustments).</p>
+<p>Built <strong>SendGTL</strong> — a configurable loader that reads pipe-delimited parameter rows, validates file paths, and drives serial transfer dialogs with registry persistence (<code>Positive Developments</code> registry key).</p>
+<p>Provided network support and help desk coverage for employees and warehouse clients by phone.</p>""",
+    },
+    "audiotelco": {
+        "title": "Audio Telco Projects",
+        "intro": """<p><strong>Network and Telecommunications Support</strong> · Mar 1997 – Jun 1997 · Los Angeles, CA</p>
+<p>Audio Telco (TelVista project archive) — MIS databases, order entry, and telecom equipment coordination for local and international offices.</p>
+<ul>
+<li><strong>MIS database:</strong> MS Access and Visual Basic with high-volume data entry forms, validation, and time-saving workflows</li>
+<li><strong>Order entry database:</strong> customer and order tracking for telecommunications services</li>
+<li><strong>TELMEX Account Processing:</strong> account workflow prototype (<code>Project 000 - Test</code>)</li>
+<li><strong>Mexicana appointment scheduling:</strong> appointment database with feasibility analysis notes on routing and daily capacity (<code>Project 001 - Mexicana</code>)</li>
+</ul>""",
+        "tech": "MS Access, Visual Basic, MIS, Order Entry, Telecommunications, Network Administration, Database Design",
+        "work": """<h2>Work Performed</h2>
+<p>Designed and coded MIS and order-entry databases in MS Access and Visual Basic — forms optimized for large-volume entry with validation rules.</p>
+<p>Administered and configured office networks; provided in-house tech support.</p>
+<p>Setup, configured, programmed, and coordinated telephone equipment for local and international offices.</p>
+<p>Documented requirements and QA processes for TelVista client projects (TELMEX and Mexicana airline scheduling).</p>""",
+    },
+    "woodtech": {
+        "title": "Wood Technologies International",
+        "intro": """<p><strong>Network Support</strong> · Nov 1996 – Mar 1997 · Long Beach, CA</p>
+<ul>
+<li>Network support and help desk for in-house employees and phone clients</li>
+<li>Installation of NT, Windows 95, Exchange, BBS, and related software</li>
+<li>Netscape Internet Server setup and maintenance</li>
+<li>MIS database applications for executives</li>
+<li>Programming support for SQL data-loading procedures</li>
+<li>BBS upload utilities — file processing, archival, and database import</li>
+</ul>""",
+        "tech": "Windows NT, Exchange, Netscape Server, BBS, MS Access, SQL Server, Novell, Help Desk, MIS",
+        "work": """<h2>Work Performed</h2>
+<p>Network support and help desk for in-house employees and remote clients.</p>
+<p>Installed and maintained NT, Windows 95, Exchange, and BBS systems; configured Netscape Internet Server.</p>
+<p>Developed MIS database applications for executives and utilities to process files uploaded through the BBS into SQL databases.</p>""",
+    },
+    "access": {
+        "title": "ACCESS! Corporation",
+        "intro": """<p><strong>Installation and Support Associate</strong> · Mar 1995 – Sep 1996 · Playa Del Rey, CA</p>
+<p>ACCESS! — predictive dialer systems for collection and telemarketing agencies (PC/Dialogic).</p>
+<ul>
+<li>On-site installation and hardware/software support for administrators and clients nationwide</li>
+<li>Trained system administrators at customer sites</li>
+<li>Analyzed client databases to recommend integration paths with ACCESS! systems</li>
+<li><strong>Data manager</strong> and utilities in Clipper/xBase</li>
+<li>Mainframe data-sharing methods — communication scripts for file transfers across heterogeneous systems</li>
+</ul>""",
+        "tech": "Clipper, Dialogic, Predictive Dialer, PC/Dialogic, Databases, Mainframe Integration, Telemarketing, Tech Support",
+        "work": """<h2>Work Performed</h2>
+<p>Installed predictive dialer (PC/Dialogic) systems for collection and telemarketing agencies; heavy travel across multiple states.</p>
+<p>Developed data manager software and Clipper utilities; coordinated data sharing between mainframes and ACCESS! systems.</p>
+<p>Wrote communication scripts for file transfers between several types of mainframes and other computer systems.</p>
+<p>Built strong customer relationships through on-site training and integration analysis.</p>""",
+    },
+    "bumpershop": {
+        "title": "The Bumper Shop",
+        "intro": """<p><strong>Computer Support Associate</strong> · Aug 1994 – Mar 1995 · Los Angeles, CA</p>
+<p>The Bumper Shop — automotive body shop with Los Angeles and San Francisco branches.</p>
+<ul>
+<li>LAN/WAN network design, installation, and configuration</li>
+<li>MS Access MIS: customers, billing, invoicing, inventory, statements, and custom reports</li>
+<li>San Francisco branch network rollout</li>
+</ul>
+<p>Source archive: <code>BumperShop</code> (Access databases) and related accounting MDBs.</p>""",
+        "tech": "MS Access, LAN/WAN, MIS, Billing, Inventory, Network Installation, Windows",
+        "work": """<h2>Work Performed</h2>
+<p>Installed and configured LAN/WAN network systems for the main location and San Francisco branch.</p>
+<p>Designed and coded an MS Access database tracking customers, billing, invoicing, inventory, reports, statements, and management information.</p>""",
+    },
+    "plastering": {
+        "title": "California Plastering",
+        "intro": """<p><strong>Office Manager</strong> · Feb 1994 – Aug 1994 · Inglewood, CA</p>
+<ul>
+<li>Database system for customers, invoicing, payroll, billing, and general accounting</li>
+<li>Bookkeeping and office management duties</li>
+</ul>""",
+        "tech": "MS Access, Accounting, Payroll, Invoicing, Bookkeeping, MIS",
+        "work": """<h2>Work Performed</h2>
+<p>Developed a database system to track customers, invoicing, payroll, billing, and general accounting for a plastering contractor.</p>
+<p>Performed accounting and bookkeeping duties; helped customers with diverse business issues.</p>""",
+    },
+    "frys": {
+        "title": "Fry's Electronics",
+        "intro": """<p><strong>Software Sales Associate / PC Technician</strong> · Jan 1993 – Feb 1994 · Manhattan Beach, CA</p>
+<ul>
+<li>Demonstrated computer software and guided retail customers to appropriate products</li>
+<li>Resolved hardware and software conflicts on demo and customer systems</li>
+<li>Secured and maintained demo systems on the sales floor</li>
+<li>Technical support for walk-in customers and phone inquiries</li>
+</ul>""",
+        "tech": "PC Diagnostics, Retail Software, Hardware Troubleshooting, Customer Support, Windows, DOS",
+        "work": """<h2>Work Performed</h2>
+<p>Combined software sales with hands-on PC technician work on the Fry's sales floor.</p>
+<p>Diagnosed hardware and software conflicts; maintained demo machines for product showcases.</p>""",
+    },
+    "lcs": {
+        "title": "LCS Logical Computer Services",
+        "intro": """<p><strong>Network and Debugging Support Associate</strong> · Sep 1992 – Jan 1993 · Burbank, CA</p>
+<ul>
+<li>Data processing duties for financial and MIS systems</li>
+<li>Hardware installation and troubleshooting</li>
+<li>Novell NetWare 3.11 and Windows for Workgroups network installs</li>
+<li>Debugged Visual Basic and MS Access code for MIS and financial software on LAN/WAN</li>
+</ul>""",
+        "tech": "Novell NetWare, Windows for Workgroups, Visual Basic, MS Access, LAN/WAN, Data Processing",
+        "work": """<h2>Work Performed</h2>
+<p>Executed data processing duties; installed and troubleshot hardware.</p>
+<p>Installed networks using Novell NetWare 3.11 and Windows for Workgroups.</p>
+<p>Debugged Visual Basic and MS Access MIS and financial applications operating across LAN/WAN environments.</p>""",
+    },
 }
 
 
@@ -819,11 +1314,29 @@ def project_body(slug: str) -> str:
             parts.append(content)
     if "work" in p:
         parts.append(p["work"])
+    nnn = nnn_archive_block(slug)
+    if nnn:
+        parts.append(nnn)
+    comp = compilation_block(slug)
+    if comp:
+        parts.append(comp)
     parts.append("    </div>")
     return "\n".join(parts)
 
 
 def main():
+    import_comp = ROOT / "tools" / "import_compilation.py"
+    if import_comp.is_file():
+        subprocess.run([sys.executable, str(import_comp)], check=False)
+
+    extract = ROOT / "tools" / "extract_development.py"
+    if extract.is_file() and DEV_ROOT.is_dir():
+        subprocess.run([sys.executable, str(extract)], check=False)
+
+    nnn_build = ROOT / "tools" / "build_nnn_archive.py"
+    if nnn_build.is_file():
+        subprocess.run([sys.executable, str(nnn_build)], check=False)
+
     assets = ROOT / "assets"
     assets.mkdir(parents=True, exist_ok=True)
     copy_maf_project_images()
@@ -854,7 +1367,8 @@ def main():
         </a>
       </article>"""
 
-    cards = "\n".join(portfolio_card(e) for e in portfolio_entries())
+    entries = portfolio_entries()
+    cards = "\n".join(portfolio_card(e) for e in entries)
     (ROOT / "index.html").write_text(
         page(
             "Portfolio",
@@ -968,7 +1482,7 @@ def main():
             <a class="btn btn-secondary" href="{SOCIAL["github"]}" target="_blank" rel="noopener">GitHub</a>
             <a class="btn btn-secondary" href="{SOCIAL["stackoverflow"]}" target="_blank" rel="noopener">Stack Overflow</a>
             <a class="btn btn-secondary" href="{RESUME_ASSET}">Resume PDF</a>
-            <a class="btn btn-secondary" href="{SITE_BASE_URL}/">Portfolio</a>
+            <a class="btn btn-secondary" href="index.html">Portfolio</a>
           </div>
         </section>
       </div>
@@ -979,8 +1493,14 @@ def main():
         )
     )
 
+    ensure_all_projects()
+
     PROJECTS_DIR.mkdir(exist_ok=True)
-    for slug in PROJECTS:
+    catalog_slugs = [c["slug"] for c in load_catalog().get("portfolio", [])]
+    for slug in catalog_slugs:
+        if slug not in PROJECTS:
+            card = catalog_by_slug.get(slug, {"slug": slug, "name": slug, "desc": "", "skills": []})
+            PROJECTS[slug] = auto_project(slug, card)
         proj = PROJECTS[slug]
         (PROJECTS_DIR / f"{slug}.html").write_text(
             page(
@@ -997,7 +1517,9 @@ def main():
     if stale.exists():
         stale.unlink()
 
-    print(f"Generated {len(PROJECTS) + 4} HTML pages in {ROOT}")
+    sync_static_page_carousels()
+
+    print(f"Generated {len(catalog_slugs) + 4} HTML pages ({len(catalog_slugs)} projects) in {ROOT}")
 
 
 if __name__ == "__main__":
