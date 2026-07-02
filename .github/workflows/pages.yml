@@ -23,11 +23,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build site
-        run: python3 build_site.py
-        env:
-          SITE_BASE_URL: https://kevingnet.github.io/kg-portfolio
-
       - uses: actions/configure-pages@v5
         with:
           enablement: true
