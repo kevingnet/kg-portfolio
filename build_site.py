@@ -19,6 +19,8 @@ SITE_NAME = "KG PORTFOLIO"
 COPYRIGHT_YEAR = "2026"
 CONTACT_EMAIL = "kevingnet1@gmail.com"
 SITE_BASE_URL = os.getenv("SITE_BASE_URL", "https://kevingnet.github.io/kg-portfolio").rstrip("/")
+CATALOG_FILE = ROOT / "data" / "portfolio-catalog.json"
+SKIP_INDEX_SLUGS = frozenset({"hivemapper", "chase", "greenleaf", "opentv"})
 RESUME_HTML_SRC = Path("/home/kg/Jobs/Kevin Guerra - Resume.html")
 SITE_TAGLINE = (
     f"{PROFESSIONAL_TITLE} portfolio — currently Sr. Software Engineer at MAF RODA Agrobotic; "
@@ -104,31 +106,8 @@ PORTFOLIO = [
      ["C++", "Tcl", "SWIG", "Networking"]),
 ]
 
-# (image stem, extension, alt text) — career order, oldest → newest
-CAROUSEL_LOGOS = [
-    ("electrosonic", "jpeg", "Electrosonic"),
-    ("disney", "jpeg", "Walt Disney"),
-    ("voltdelta", "jpeg", "Volt Delta"),
-    ("hypermedia", "jpeg", "Hypermedia Systems"),
-    ("guidance", "jpeg", "Guidance Software"),
-    ("directv", "jpeg", "DirecTV"),
-    ("surfware", "jpeg", "Surfware"),
-    ("dolby", "jpeg", "Dolby"),
-    ("motorola", "jpeg", "Motorola"),
-    ("yahoo", "jpeg", "Yahoo"),
-    ("company", "png", "JakeKnows"),
-    ("opentv", "jpeg", "OpenTV"),
-    ("veritas", "jpeg", "Veritas"),
-    ("vmware", "jpeg", "VMware"),
-    ("butterfleye", "jpeg", "Butterfleye"),
-    ("knulrd", "jpeg", "Knurld"),
-    ("hpe", "jpeg", "HPE"),
-    ("facebook", "jpeg", "Facebook"),
-    ("google", "jpeg", "Google"),
-    ("leidos", "png", "Leidos"),
-    ("mafroda", "png", "MAF RODA"),
-]
-
+# (logo stem, extension, display name, slug) — rebuilt in build_carousel_logos()
+CAROUSEL_LOGOS: list[tuple[str, str, str, str]] = []
 
 SERVICES = [
     ("Ideation", "Product concepts, architecture options, and rapid prototypes to validate direction before a full build.", "ideation.jpg"),
@@ -321,9 +300,12 @@ def tech_to_chips(tech: str, limit: int = 16) -> str:
     return skill_chips(parts, limit)
 
 
-def project_gallery(figures: list[tuple[str, str]], depth: int = 1) -> str:
+def project_gallery(figures: list[tuple[str, str]], depth: int = 1, extra_class: str = "") -> str:
     """figures: list of (filename under projects/mafroda/, caption)"""
     p = rel_prefix(depth)
+    gallery_cls = "project-gallery"
+    if extra_class:
+        gallery_cls += f" {extra_class}"
     items = "\n".join(
         f"""      <figure class="project-figure">
         <img src="{p}assets/images/projects/mafroda/{fname}" alt="{html.escape(caption)}" loading="lazy">
@@ -331,22 +313,23 @@ def project_gallery(figures: list[tuple[str, str]], depth: int = 1) -> str:
       </figure>"""
         for fname, caption in figures
     )
-    return f'      <div class="project-gallery">\n{items}\n      </div>'
+    return f'      <div class="{gallery_cls}">\n{items}\n      </div>'
 
 
 def copy_maf_project_images() -> None:
-    src_dir = Path("/home/kg/Jobs/Graphics/images")
+    trace_src = Path("/home/kg/Jobs/Graphics/Screenshot 2026-06-30 081832")
+    legacy_src = Path("/home/kg/Jobs/Graphics/images")
     dest = ROOT / "assets/images/projects/mafroda"
     dest.mkdir(parents=True, exist_ok=True)
     mapping = [
-        ("traceability-dashboard.png", "Screenshot 2026-06-02 144647.png"),
-        ("traceability-detail.png", "Screenshot 2026-06-02 144820.png"),
-        ("traceability-ui.png", "Screenshot 2026-06-02 141535.png"),
-        ("installer-gui.png", "Screenshot 2025-08-01 131140.png"),
-        ("installer-scripts.png", "ListOfScripts.png"),
+        ("traceability-overview.png", trace_src / "Screenshot 2026-06-25 150107.png"),
+        ("traceability-dashboard.png", trace_src / "Screenshot 2026-06-30 081603.png"),
+        ("traceability-detail.png", trace_src / "Screenshot 2026-06-30 081733.png"),
+        ("traceability-ui.png", trace_src / "Screenshot 2026-06-30 081832.png"),
+        ("installer-gui.png", legacy_src / "Screenshot 2025-08-01 131140.png"),
+        ("installer-scripts.png", legacy_src / "ListOfScripts.png"),
     ]
-    for dest_name, src_name in mapping:
-        src = src_dir / src_name
+    for dest_name, src in mapping:
         if src.is_file():
             shutil.copy2(src, dest / dest_name)
 
@@ -355,15 +338,46 @@ def rel_prefix(depth: int) -> str:
     return "../" * depth if depth else ""
 
 
+def load_catalog() -> dict:
+    if CATALOG_FILE.is_file():
+        try:
+            return json.loads(CATALOG_FILE.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            pass
+    return {"portfolio": []}
+
+
+def portfolio_entries() -> list[tuple]:
+    cards = load_catalog().get("portfolio") or []
+    if cards:
+        return [
+            (c["name"], c["logo"], c["ext"], c["slug"], c["desc"], c["skills"])
+            for c in cards
+            if c["slug"] not in SKIP_INDEX_SLUGS
+        ]
+    return list(PORTFOLIO)
+
+
+def build_carousel_logos() -> None:
+    global CAROUSEL_LOGOS
+    entries = portfolio_entries()
+    CAROUSEL_LOGOS = [
+        (logo, ext, name, slug)
+        for name, logo, ext, slug, desc, skills in reversed(entries)
+    ]
+
+
 def carousel(depth: int = 0) -> str:
     p = rel_prefix(depth)
-    imgs = "\n".join(
-        f'      <img src="{p}assets/images/{name}.{ext}" alt="{html.escape(alt)}">'
-        for name, ext, alt in CAROUSEL_LOGOS
+    items = "\n".join(
+        f'      <a class="logo-carousel-link" href="{p}projects/{html.escape(slug)}.html"'
+        f' title="{html.escape(alt)}">'
+        f'<img src="{p}assets/images/{logo}.{ext}" alt="{html.escape(alt)}" loading="eager" decoding="async"></a>'
+        for logo, ext, alt, slug in CAROUSEL_LOGOS
     )
-    return f"""  <div class="logo-carousel">
+    return f"""  <div class="logo-carousel" aria-label="Career timeline — oldest to newest">
     <div class="logo-carousel-track">
-{imgs}
+{items}
     </div>
   </div>"""
 
@@ -494,10 +508,11 @@ PROJECTS = {
             ("Traceability — Americas", "Current · Regional traceability lead", """<p>Lead traceability systems across the Americas. Apply AI on the engineering side — developer tooling, codebase modernization, and AI-assisted improvements to traceability projects and delivery workflows.</p>
 <p>Screenshots from traceability tooling and web views deployed in the MAF sorting environment.</p>"""
             + project_gallery([
-                ("traceability-dashboard.png", "Traceability dashboard — production sorting overview"),
-                ("traceability-detail.png", "Traceability detail view — lot and lane tracking"),
-                ("traceability-ui.png", "Traceability UI — configuration and monitoring"),
-            ])),
+                ("traceability-overview.png", "Traceability — sorting line overview"),
+                ("traceability-dashboard.png", "Traceability dashboard — production sorting"),
+                ("traceability-detail.png", "Traceability detail — lot and lane tracking"),
+                ("traceability-ui.png", "Traceability UI — monitoring and configuration"),
+            ], extra_class="project-gallery--large")),
             ("Python Fleet Installer", "ORPHEA Operations Framework · Python · YAML · WinRM", """<p>Designed and built the <strong>MAF Silent Install</strong> / ORPHEA operations framework: a layered Python system that provisions fruit-sorting clusters from YAML configuration.</p>
 <ul>
 <li>Multi-tier architecture: high-level modules, operation objects, and support layer (WinRM, PSRP, OpenSSH, PsExec, WMIC, netsh)</li>
@@ -817,18 +832,29 @@ def main():
     elif not (assets / "Kevin-Guerra.pdf").is_file():
         print(f"warn: resume not found at {RESUME_SRC}")
 
-    cards = "\n".join(
-        f"""      <article class="portfolio-item fade-in{" portfolio-item--current" if slug == "mafroda" else ""}">
+    build_carousel_logos()
+    catalog_by_slug = {c["slug"]: c for c in load_catalog().get("portfolio", [])}
+
+    def portfolio_card(entry: tuple) -> str:
+        name, img, ext, slug, desc, skills = entry
+        c = catalog_by_slug.get(slug, {})
+        badge = ""
+        if slug == "mafroda":
+            badge = '<span class="current-badge">Current</span>'
+        elif c.get("portfolio_only"):
+            badge = '<span class="archive-badge">Dev Archive</span>'
+        current_cls = " portfolio-item--current" if slug == "mafroda" else ""
+        return f"""      <article class="portfolio-item fade-in{current_cls}">
         <a href="projects/{slug}.html">
-          {'<span class="current-badge">Current</span>' if slug == "mafroda" else ""}
-          <div class="logo-wrap"><img src="assets/images/{img}.{ext}" alt="{name}"></div>
-          <span class="company-name">{name}</span>
-          <span class="company-desc">{desc}</span>
+          {badge}
+          <div class="logo-wrap"><img src="assets/images/{img}.{ext}" alt="{html.escape(name)}"></div>
+          <span class="company-name">{html.escape(name)}</span>
+          <span class="company-desc">{html.escape(desc)}</span>
           {skill_chips(skills, 5)}
         </a>
       </article>"""
-        for name, img, ext, slug, desc, skills in PORTFOLIO
-    )
+
+    cards = "\n".join(portfolio_card(e) for e in portfolio_entries())
     (ROOT / "index.html").write_text(
         page(
             "Portfolio",
@@ -836,7 +862,7 @@ def main():
             f"""    <section class="hero fade-in">
       <p class="hero-eyebrow">{PROFESSIONAL_TITLE}</p>
       <h1>{OWNER}</h1>
-      <p class="hero-lead">Currently <strong>Sr. Software Engineer at MAF RODA Agrobotic</strong> (Americas traceability). Cloud, distributed systems, performance, and security work across Google, Leidos, VMware, Disney, DirecTV, and more.</p>
+      <p class="hero-lead">Currently <strong>Sr. Software Engineer at MAF RODA Agrobotic</strong> (Americas traceability). Full career arc from 1992 — retail tech support and MIS databases through Google, Leidos, VMware, Disney, DirecTV, museum AV systems, and warehouse handheld apps.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="{RESUME_ASSET}">Download Resume</a>
         <a class="btn btn-secondary" href="mailto:{CONTACT_EMAIL}">Get in Touch</a>
@@ -850,11 +876,11 @@ def main():
     </section>
 {highlights_strip()}
     <h2 class="page-title">Experience</h2>
-    <p class="page-intro">Selected employers and project highlights. Click a card for full detail.</p>
+    <p class="page-intro">Employers and project highlights from 1992 to present — including pre-Electrosonic roles. Click a card for full detail.</p>
     <div class="portfolio-grid">
 {cards}
     </div>""",
-            description=f"{PROFESSIONAL_TITLE} — selected projects at Google, Leidos, VMware, Disney, DirecTV, and other companies.",
+            description=f"{PROFESSIONAL_TITLE} — full career portfolio from 1992 through Google, Leidos, VMware, Disney, DirecTV, and early MIS/warehouse roles.",
         )
     )
 

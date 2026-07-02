@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="LCS Logical Computer">
+  <rect width="200" height="200" rx="12" fill="#ffffff"/>
+  <text x="100" y="98" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#5533cc">LCS</text>
+  <text x="100" y="128" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#5533cc">LOGICAL COMPUTER</text>
+</svg>
