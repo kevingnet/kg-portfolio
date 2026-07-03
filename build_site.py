@@ -120,6 +120,28 @@ def archive_text(text: str) -> str:
     return scrub_legal_boilerplate(text or "")
 
 
+HLJS_LANG_ALIASES = {
+    "csharp": "csharp",
+    "cpp": "cpp",
+    "c": "c",
+    "python": "python",
+    "java": "java",
+    "sql": "sql",
+    "html": "html",
+    "javascript": "javascript",
+    "js": "javascript",
+    "perl": "perl",
+    "yaml": "yaml",
+    "xml": "xml",
+    "text": "plaintext",
+}
+
+
+def highlight_lang(lang: str | None) -> str:
+    key = (lang or "text").strip().lower()
+    return HLJS_LANG_ALIASES.get(key, key or "plaintext")
+
+
 # Archive blocks omitted from portfolio display (junk/reference docs).
 SKIP_ARCHIVE_BLOCKS = frozenset({
     "CEA-CEB-10-A.pdf",
@@ -923,7 +945,7 @@ def render_nnn_block(block: dict) -> str:
             meta = '        <p class="archive-truncated">Excerpt shown — full document in archive.</p>\n'
 
     if btype == "code":
-        lang = html.escape(block.get("lang") or "text")
+        lang = html.escape(highlight_lang(block.get("lang")))
         body = (
             f'        <pre class="archive-code"><code class="language-{lang}">'
             f"{html.escape(content)}</code></pre>\n"
@@ -1002,6 +1024,7 @@ def head_meta(
         f'  <link rel="icon" href="{p}assets/favicon.svg" type="image/svg+xml">',
         f'  <meta name="theme-color" content="#0e1014">',
         f'  <link rel="stylesheet" href="{p}css/style.css">',
+        f'  <link rel="stylesheet" href="{p}assets/vendor/highlight/styles/github-dark.min.css">',
     ]
     if SITE_BASE_URL:
         canon = f"{SITE_BASE_URL}/{slug_path.replace('index.html', '').rstrip('/')}"
@@ -1086,6 +1109,7 @@ def page(
 {body}
   </main>
 {footer(depth)}
+  <script src="{p}assets/vendor/highlight/highlight.min.js"></script>
   <script src="{p}js/carousel.js"></script>
   <script src="{p}js/site.js"></script>
 </body>

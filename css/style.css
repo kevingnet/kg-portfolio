@@ -1227,16 +1227,29 @@ main {
   overflow-x: auto;
   font-size: 0.8rem;
   line-height: 1.55;
+  background: #0d1117;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  tab-size: 4;
+}
+
+.archive-text {
   color: #c5d0e0;
   background: rgba(0, 0, 0, 0.25);
   border: none;
-  tab-size: 4;
 }
 
 .archive-code code,
 .archive-text code {
   font-family: ui-monospace, "Cascadia Code", "Fira Code", "Consolas", monospace;
   white-space: pre;
+}
+
+.archive-code code.hljs {
+  display: block;
+  padding: 0;
+  background: transparent;
+  overflow-x: visible;
 }
 
 .archive-ansi code {
