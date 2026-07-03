@@ -13,6 +13,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ARCHIVE_JSON = ROOT / "data" / "nnn-archive.json"
 ASSETS_ARCHIVE = ROOT / "assets" / "archive"
+SKIP_DOCUMENTS = frozenset({
+    "JakeKnowsTemplate.pdf",
+    "doc/JakeKnowsTemplate.pdf",
+    "JakeKnowsTemplate.dotx",
+})
 DOC_EXTS = {".doc", ".docx"}
 CONVERT_EXTS = {".doc", ".docx", ".rtf", ".dotx", ".odt"}
 PDF_EXT = {".pdf"}
@@ -228,6 +233,8 @@ def main() -> int:
                 continue
             title = block.get("title") or ""
             rel = block.get("rel") or title
+            if title in SKIP_DOCUMENTS or rel in SKIP_DOCUMENTS:
+                continue
             src = resolve_source(nnn_root, slug, rel, folders, employer_name)
             if not is_portfolio_document(title, rel, src):
                 continue
