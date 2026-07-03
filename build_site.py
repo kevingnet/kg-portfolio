@@ -1361,6 +1361,35 @@ PROJECTS = {
 <li>Used OWASP and OSCAP tools with XML lists of items for security compliance. OAuth2 authentication and authorization using SELinux, LDAP, and Active Directory.</li>
 </ul>""",
     },
+    "hpe": {
+        "title": "HPE Projects",
+        "intro": """<p><strong>HPE</strong></p>
+<p>Airwave wireless appliance hardening and Perl→Python port.</p>""",
+        "tech": "Java, Python, Perl, Bash, RegEx, Flask, Celery, JavaScript, OSCAP, OWASP, REST, Microservices, CLI, LDAP, Docker, VMware, Cloud, Wireless, Security",
+        "work": """<h2>Work Performed</h2>
+<ul>
+<li>Analysis and development of solutions to harden Airwave appliance for wireless management.</li>
+<li>Developed solutions to enhance and harden wireless systems.</li>
+<li>Secured compliance with OSCAP security recommendations. Ported Perl to Python code for the new in-the-works architecture.</li>
+<li>Used Java, Python, RegEx, Flask, Celery, Perl, and Bash.</li>
+<li>RESTful web services and microservices, JavaScript, and CLI. Networking, LDAP, NIS/Kerberos, malware detection and elimination. Docker, VMware, and cloud virtualization technologies. Used OWASP and OSCAP tools with XML lists of items for security compliance.</li>
+</ul>""",
+    },
+    "meta": {
+        "title": "Meta Projects",
+        "intro": """<p><strong>Meta</strong></p>
+<p>Privacy audit engineering for M&amp;A — compliance tooling across SQL/NoSQL estates.</p>""",
+        "tech": "C/C++, Java, Perl, Python, SQL, NoSQL, Cassandra, MongoDB, AWS, Privacy, Security, Compliance, Virtual Reality, Graphics, Device Drivers, Camera Imaging, Windows, Linux",
+        "work": """<h2>Work Performed</h2>
+<ul>
+<li>Auditing of systems for companies in the process of being acquired.</li>
+<li>Reviewing systems and data to assess risks and ensure compliance with diverse government bodies and regulations, including international.</li>
+<li>Analyzed databases and other information systems to ensure privacy and security compliance with US and international laws, working in conjunction with attorneys.</li>
+<li>Created tools to aid the teams with analysis and keeping track of work, originally using spreadsheets.</li>
+<li>Devised methods to abstract the analysis of architectures and designs, helping to better keep track of progress in a more standardized way.</li>
+<li>C/C++, Java, Perl, Python, NoSQL, SQL, Cassandra, MongoDB, virtual reality, graphics and device drivers, camera imaging. AWS and other cloud systems, Windows and Linux.</li>
+</ul>""",
+    },
     "vmware": {
         "title": "VMware Projects",
         "intro": """<p><strong>Sr. Member of Technical Staff (MTS)</strong> · 2015 – 2018 · Palo Alto</p>
