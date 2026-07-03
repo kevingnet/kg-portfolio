@@ -103,9 +103,17 @@
       "skills": [
         "Java",
         "Python",
+        "C/C++",
+        "Perl",
+        "Bash",
         "OSCAP",
+        "OWASP",
+        "OAuth2",
+        "LDAP",
         "Security",
-        "Backup"
+        "Backup",
+        "REST",
+        "Microservices"
       ],
       "has_archive": false,
       "portfolio_only": false,
@@ -1061,9 +1069,17 @@
       "skills": [
         "Java",
         "Python",
+        "C/C++",
+        "Perl",
+        "Bash",
         "OSCAP",
+        "OWASP",
+        "OAuth2",
+        "LDAP",
         "Security",
-        "Backup"
+        "Backup",
+        "REST",
+        "Microservices"
       ],
       "has_archive": false,
       "portfolio_only": false,

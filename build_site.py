@@ -1348,6 +1348,19 @@ PROJECTS = {
 <p>Led team developing Telephone Switch Simulator in C++ saving time and money by allowing testing of programs in-house.</p>
 <p>Developed other tools using web technologies, MS SQL, Stored Procedures and Visual Studio.</p>""",
     },
+    "veritas": {
+        "title": "Veritas Projects",
+        "intro": """<p><strong>Veritas</strong></p>
+<p>NetBackup appliance hardening — OSCAP, OAuth2/LDAP, Java/Python refactor.</p>""",
+        "tech": "Java, Python, C/C++, Perl, Bash, OSCAP, OWASP, OAuth2, LDAP, Active Directory, SELinux, REST, Microservices, CLI, Security, Backup",
+        "work": """<h2>Work Performed</h2>
+<ul>
+<li>Developed solutions to enhance and harden NetBackup appliance. Secured compliance with OSCAP security recommendations.</li>
+<li>Refactored Java and Python code for the new in-the-works architecture. Used Java, C/C++, Python, Perl, Bash, RESTful web services, microservices, and CLI.</li>
+<li>Networking, LDAP, NIS/Kerberos, malware detection and elimination.</li>
+<li>Used OWASP and OSCAP tools with XML lists of items for security compliance. OAuth2 authentication and authorization using SELinux, LDAP, and Active Directory.</li>
+</ul>""",
+    },
     "vmware": {
         "title": "VMware Projects",
         "intro": """<p><strong>Sr. Member of Technical Staff (MTS)</strong> · 2015 – 2018 · Palo Alto</p>

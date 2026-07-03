@@ -210,7 +210,7 @@ RESUME_ONLY: list[dict] = [
      "skills": ["Privacy", "Security", "Compliance", "SQL", "NoSQL"]},
     {"slug": "veritas", "name": "Veritas", "logo": "veritas", "ext": "jpeg",
      "desc": "NetBackup appliance hardening — OSCAP, OAuth2/LDAP, Java/Python refactor.",
-     "skills": ["Java", "Python", "OSCAP", "Security", "Backup"]},
+     "skills": ["Java", "Python", "C/C++", "Perl", "Bash", "OSCAP", "OWASP", "OAuth2", "LDAP", "Security", "Backup", "REST", "Microservices"]},
     {"slug": "hpe", "name": "HPE", "logo": "hpe", "ext": "jpeg",
      "desc": "Airwave wireless appliance hardening and Perl→Python port.",
      "skills": ["Python", "Perl", "OSCAP", "Wireless", "Security"]},
