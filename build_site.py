@@ -604,11 +604,11 @@ def header(active: str, depth: int = 0) -> str:
       <img class="profile-thumb" src="{p}assets/images/profile.jpeg" alt="{OWNER}">
     </a>
     <a href="{p}index.html" class="site-brand">{SITE_NAME}</a>
-  </div>
-  <div class="nav-wrap">
-    <ul class="site-nav">
+    <nav class="nav-wrap" aria-label="Primary">
+      <ul class="site-nav">
 {links}
-    </ul>
+      </ul>
+    </nav>
   </div>
 {carousel(depth)}
   </header>"""
