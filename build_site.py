@@ -902,6 +902,22 @@ def render_doc_segments(segments: list[dict]) -> str:
     return "\n".join(parts)
 
 
+def render_pdf_embed(pdf_src: str, title: str, depth: int = 1) -> str:
+    url = html.escape(f"{rel_prefix(depth)}{pdf_src}")
+    safe_title = html.escape(title)
+    return (
+        '        <div class="archive-pdf-embed">\n'
+        f'        <object data="{url}" type="application/pdf" width="100%" height="600px">\n'
+        f'            <iframe src="{url}" width="100%" height="100%" style="border: none;" title="{safe_title}">\n'
+        "                <p>Your browser does not support embedded PDFs.\n"
+        f'                   <a href="{url}">Download the PDF instead</a>.\n'
+        "                </p>\n"
+        "            </iframe>\n"
+        "        </object>\n"
+        "        </div>"
+    )
+
+
 def render_nnn_block(block: dict) -> str:
     """Render one showcase block from nnn-archive.json."""
     btype = block.get("type")
@@ -925,7 +941,11 @@ def render_nnn_block(block: dict) -> str:
             "      </figure>"
         )
 
-    badge = {"code": "CODE", "text": "TEXT", "document": "DOC"}.get(btype, btype.upper() if btype else "")
+    badge = {
+        "code": "CODE",
+        "text": "TEXT",
+        "document": "PDF" if block.get("pdf_src") else "DOC",
+    }.get(btype, btype.upper() if btype else "")
     header = (
         f'        <div class="archive-panel__header">\n'
         f'          <span class="archive-badge-type">{badge}</span>\n'
@@ -952,18 +972,22 @@ def render_nnn_block(block: dict) -> str:
         )
         panel_class = "archive-panel archive-panel--code"
     elif btype == "document":
-        segments = block.get("segments") or []
-        if segments:
-            body = render_doc_segments(segments) + "\n"
-            if truncated and content:
-                body += (
-                    '        <details class="archive-doc-fulltext">\n'
-                    '          <summary>Full extracted text</summary>\n'
-                    f'          <div class="archive-doc">{html.escape(content)}</div>\n'
-                    "        </details>\n"
-                )
+        pdf_src = block.get("pdf_src")
+        if pdf_src:
+            body = render_pdf_embed(pdf_src, block.get("title") or "Document") + "\n"
         else:
-            body = f'        <div class="archive-doc">{html.escape(content)}</div>\n'
+            segments = block.get("segments") or []
+            if segments:
+                body = render_doc_segments(segments) + "\n"
+                if truncated and content:
+                    body += (
+                        '        <details class="archive-doc-fulltext">\n'
+                        '          <summary>Full extracted text</summary>\n'
+                        f'          <div class="archive-doc">{html.escape(content)}</div>\n'
+                        "        </details>\n"
+                    )
+            else:
+                body = f'        <div class="archive-doc">{html.escape(content)}</div>\n'
         panel_class = "archive-panel archive-panel--doc"
     elif btype == "text":
         body = render_archive_text(content)
