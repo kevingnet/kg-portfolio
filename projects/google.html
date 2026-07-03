@@ -60,7 +60,7 @@
       <a class="logo-carousel-link" href="../projects/hpe.html" title="HPE"><img src="../assets/images/hpe.jpeg" alt="HPE" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/butterfleye.html" title="Butterfleye"><img src="../assets/images/butterfleye.jpeg" alt="Butterfleye" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/knurld.html" title="Knurld"><img src="../assets/images/knulrd.jpeg" alt="Knurld" loading="eager" decoding="async"></a>
-      <a class="logo-carousel-link" href="../projects/thuuz.html" title="Thuuz"><img src="../assets/images/thuuz.svg" alt="Thuuz" loading="eager" decoding="async"></a>
+      <a class="logo-carousel-link" href="../projects/thuuz.html" title="Thuuz"><img src="../assets/images/thuuz.png" alt="Thuuz" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/veritas.html" title="Veritas"><img src="../assets/images/veritas.jpeg" alt="Veritas" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/vmware.html" title="VMware"><img src="../assets/images/vmware.jpeg" alt="VMware" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/meta.html" title="Meta"><img src="../assets/images/facebook.jpeg" alt="Meta" loading="eager" decoding="async"></a>
@@ -855,29 +855,6 @@ class RBAC implements Security {
         </div>
       </article>
       </section>
-      <h2>Development archive analysis</h2>
-      <p class="compilation-lead"><em>From exhaustive archive review — Google — Antaeus / AViK / Babel</em></p>
-      <p><strong>Purpose:</strong> App Engine application for reviewing mobile app screens across locales (Antaeus) + AViK automated Android screen capture + Dart web clients (Babel).</p>
-<p><strong>Structure:</strong></p>
-<pre class="compilation-tree"><code>Google/
-├── antaeus/Antaeus/           Main App Engine project
-│   ├── src/                   Java (JPA/DataNucleus, Endpoints)
-│   ├── war/                   Web assets
-│   ├── dart/                  Dart clients, API generators
-│   └── endpoint-libs/libantaeus-v1/
-├── android/AndroidScreenGenerator/   AViK screen capture (avik-2.0.jar)
-├── babel/, dart/              Duplicate Antaeus/Dart client trees
-├── doc/TheProject.arch        Master architecture (RBAC, OAuth2, caching, BLL flow)
-└── other/                     GWT/Mvp4g samples (gwtp-samples, gwtcx, EmployeeAdmin)</code></pre>
-<p><strong>Antaeus architecture (from TheProject.arch):</strong></p>
-<ul>
-<li>App Engine: Endpoints, Memcache, Task Queues, Channels, OAuth, Mail</li>
-<li>BLL: Endpoint → Controller → Authority (auth hash/vector) → CRUDL + validator</li>
-<li>Caching: global (applications/screens/reviews) + transient background refresh</li>
-<li>NEW PARADIGM: simplified schema; "start a round"; RBAC with round whitelisting</li>
-</ul>
-<p><strong>Technologies:</strong> Java GAE, JPA/DataNucleus, GWT, Mvp4g, Dart (pub), Android/Java, Maven, Python</p>
-<p><strong>Related:</strong> LaBumpers <code>git/l10n-avik/</code> shares Antaeus/Bumpers1 fork</p>
     </div>
   </main>
   <footer class="site-footer">

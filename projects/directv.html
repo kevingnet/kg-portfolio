@@ -60,7 +60,7 @@
       <a class="logo-carousel-link" href="../projects/hpe.html" title="HPE"><img src="../assets/images/hpe.jpeg" alt="HPE" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/butterfleye.html" title="Butterfleye"><img src="../assets/images/butterfleye.jpeg" alt="Butterfleye" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/knurld.html" title="Knurld"><img src="../assets/images/knulrd.jpeg" alt="Knurld" loading="eager" decoding="async"></a>
-      <a class="logo-carousel-link" href="../projects/thuuz.html" title="Thuuz"><img src="../assets/images/thuuz.svg" alt="Thuuz" loading="eager" decoding="async"></a>
+      <a class="logo-carousel-link" href="../projects/thuuz.html" title="Thuuz"><img src="../assets/images/thuuz.png" alt="Thuuz" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/veritas.html" title="Veritas"><img src="../assets/images/veritas.jpeg" alt="Veritas" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/vmware.html" title="VMware"><img src="../assets/images/vmware.jpeg" alt="VMware" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/meta.html" title="Meta"><img src="../assets/images/facebook.jpeg" alt="Meta" loading="eager" decoding="async"></a>
@@ -2789,26 +2789,6 @@ void SocketManager::OnConnect()
         <p class="archive-truncated">Showing excerpt of 380 lines.</p>
       </article>
       </section>
-      <h2>Development archive analysis</h2>
-      <p class="compilation-lead"><em>From exhaustive archive review — DirecTV — Set-Top Box QA Automation</em></p>
-      <p><strong>Domain:</strong> HR20 HD-DVR functional/regression testing</p>
-<p><strong>Structure:</strong></p>
-<pre class="compilation-tree"><code>DirecTV/
-├── redrat/                    RedRat IR remote automation (core)
-│   ├── dtvrr.reactor/         ACE Reactor server (production, port 7070)
-│   ├── dtvrr.ACEReactor/, dtvrr.ACE/, dtvrr.C/
-│   └── DTV_RedRat/            Windows COM wrapper
-├── automation/                19 OCR/screen-reader projects
-│   ├── DTVOCRClient/Server/
-│   ├── AbbyyOCRClient/Server/ (ABBYY FineReader)
-│   └── DTVScreenReader/Scraper/ChannelNumberReader/
-├── lirc/                      Linux LIRC + RedRat3 drivers
-├── rrtests/                   Regression tests (LiveTV, DVR, parental controls)
-├── stb_scripts/               SSH STB management
-└── doc/                       CDI scripting ref, CEA-608/708, UEG UI specs</code></pre>
-<p><strong>RedRat script DSL:</strong> <code>channel 7</code>, <code>sleep 5</code>, <code>loop 10 channel+ endl</code>, <code>keypad ~search_term</code>, <code>setredrat SN</code></p>
-<p><strong>Technologies:</strong> C, C++ ACE Reactor, Perl dtvrrc, COM/ATL OCR, LIRC, libusb, ABBYY FineReader, SSH/Expect</p>
-<p><strong>Regression tests:</strong> LiveTV miniguide/favorites/search, DVR trick-play, parental controls, OSD screensaver, setup.</p>
     </div>
   </main>
   <footer class="site-footer">

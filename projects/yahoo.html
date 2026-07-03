@@ -60,7 +60,7 @@
       <a class="logo-carousel-link" href="../projects/hpe.html" title="HPE"><img src="../assets/images/hpe.jpeg" alt="HPE" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/butterfleye.html" title="Butterfleye"><img src="../assets/images/butterfleye.jpeg" alt="Butterfleye" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/knurld.html" title="Knurld"><img src="../assets/images/knulrd.jpeg" alt="Knurld" loading="eager" decoding="async"></a>
-      <a class="logo-carousel-link" href="../projects/thuuz.html" title="Thuuz"><img src="../assets/images/thuuz.svg" alt="Thuuz" loading="eager" decoding="async"></a>
+      <a class="logo-carousel-link" href="../projects/thuuz.html" title="Thuuz"><img src="../assets/images/thuuz.png" alt="Thuuz" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/veritas.html" title="Veritas"><img src="../assets/images/veritas.jpeg" alt="Veritas" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/vmware.html" title="VMware"><img src="../assets/images/vmware.jpeg" alt="VMware" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/meta.html" title="Meta"><img src="../assets/images/facebook.jpeg" alt="Meta" loading="eager" decoding="async"></a>
@@ -76,7 +76,6 @@
     <div class="content-section">
 <p><strong>Yahoo</strong></p>
 <p>Yahoo Search infrastructure — regression testing (Inktest), proxy/cluster configuration, query scraping, secore C++ search engine.</p>
-<p>Development archive (<strong>Yahoo</strong>): <code>/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/23 Yahoo</code></p>
       <div class="tech-tags"><strong>Technologies</strong><div class="skill-row"><span class="skill-chip">C/C++</span><span class="skill-chip">Make</span><span class="skill-chip">TCL</span><span class="skill-chip">Perl</span><span class="skill-chip">Python</span><span class="skill-chip">XML configs</span></div></div>
       <section class="archive-showcase">
       <h2>Archive showcase</h2>
@@ -99,23 +98,6 @@
         <figcaption class="archive-figure__caption"><span class="archive-filename">011_LoggerInit.gif</span><span class="archive-path">011_LoggerInit.gif</span></figcaption>
       </figure>
       </section>
-      <h2>Development archive analysis</h2>
-      <p class="compilation-lead"><em>From exhaustive archive review — Yahoo — Search Engine SQA</em></p>
-      <p><strong>Purpose:</strong> Yahoo Search infrastructure — regression testing (Inktest), proxy/cluster configuration, query scraping, secore C++ search engine.</p>
-<p><strong>Structure:</strong></p>
-<pre class="compilation-tree"><code>Yahoo/search/
-├── secore/                    Search engine core (C++)
-│   ├── idpd/                  IDP daemon
-│   ├── libs/                  cache, rpc, logging, prisma, datahighway
-│   └── proxy/modules/         blender, spellchecker, normalization
-├── sqa/
-│   ├── inkproxyreg/deploy_config/    50+ cluster config variants
-│   └── secore/inksereg/              Inktest regression harness
-├── clusterConfig-bling/       Production bling proxy configs (*.tcl)
-├── alf/                       ALF framework (base, idp, tagd)
-└── tools/                     scrape-bling.py, analyze-scrape.py</code></pre>
-<p><strong>Technologies:</strong> C/C++, Make, TCL, Perl, Python, XML configs</p>
-<p><strong>Architecture:</strong> Inktest pipeline (deploy → dbconverter → diffreg); TCL cluster globals + per-module .cfg; IDP proxy module pipeline</p>
     </div>
   </main>
   <footer class="site-footer">

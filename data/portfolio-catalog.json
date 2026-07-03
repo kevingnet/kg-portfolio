@@ -116,7 +116,7 @@
       "slug": "thuuz",
       "name": "Thuuz",
       "logo": "thuuz",
-      "ext": "svg",
+      "ext": "png",
       "desc": "Callsigns JSON API, S3 sync scripts for sports broadcast metadata.",
       "skills": [
         "Python",
@@ -921,7 +921,7 @@
       "slug": "thuuz",
       "name": "Thuuz",
       "logo": "thuuz",
-      "ext": "svg",
+      "ext": "png",
       "desc": "Callsigns JSON API, S3 sync scripts for sports broadcast metadata.",
       "skills": [
         "Python",

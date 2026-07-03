@@ -147,6 +147,9 @@ SKIP_ARCHIVE_BLOCKS = frozenset({
     "CEA-CEB-10-A.pdf",
     "CEA1.2.new.srt",
     "log.htm",
+    "JakeKnowsTemplate.pdf",
+    "doc/JakeKnowsTemplate.pdf",
+    "JakeKnowsTemplate.dotx",
 })
 
 _ANSI_ESCAPE_RE = re.compile(r"\x1b\[[0-9;]*m")
@@ -638,17 +641,7 @@ def load_compilation() -> dict[str, dict]:
 
 def compilation_block(slug: str) -> str:
     """HTML from portfolio-compilation.json for this project slug."""
-    if slug in SKIP_COMPILATION_SLUGS:
-        return ""
-    entry = load_compilation().get(slug)
-    if not entry or not entry.get("html"):
-        return ""
-    title = html.escape(entry.get("display_title") or entry.get("folder") or slug)
-    return (
-        '      <h2>Development archive analysis</h2>\n'
-        f'      <p class="compilation-lead"><em>From exhaustive archive review — {title}</em></p>\n'
-        f'      {entry["html"]}'
-    )
+    return ""
 
 
 def project_from_compilation(slug: str, card: dict) -> dict:
@@ -669,13 +662,6 @@ def project_from_compilation(slug: str, card: dict) -> dict:
         bits.append(meta["domain"])
     if bits:
         intro_parts.append(f"<p><em>{html.escape(' · '.join(bits))}</em></p>")
-    folder = card.get("dev_folder") or entry.get("folder") or ""
-    if folder:
-        shown = display_dev_folder(folder)
-        intro_parts.append(
-            f"<p>Development archive (<strong>{html.escape(shown)}</strong>): "
-            f"<code>{html.escape(str(DEV_ROOT / folder))}</code></p>"
-        )
     tech = ", ".join(meta.get("technologies") or card.get("skills") or [])
     return {
         "title": title,
@@ -796,18 +782,11 @@ def auto_project(slug: str, card: dict) -> dict:
     tag_html = ""
     if tags:
         tag_html = f'<p class="portfolio-tag"><em>{html.escape(" · ".join(tags))}</em></p>'
-    folder = card.get("dev_folder") or ""
     intro_parts = [
         f"<p><strong>{html.escape(card['name'])}</strong></p>",
         tag_html,
         f"<p>{html.escape(card['desc'])}</p>",
     ]
-    if folder:
-        shown = display_dev_folder(folder)
-        intro_parts.append(
-            f"<p>Development archive (<strong>{html.escape(shown)}</strong>): "
-            f"<code>{html.escape(str(DEV_ROOT / folder))}</code></p>"
-        )
     return {
         "title": f"{card['name']} Projects",
         "intro": "\n".join(intro_parts),

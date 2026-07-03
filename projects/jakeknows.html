@@ -60,7 +60,7 @@
       <a class="logo-carousel-link" href="../projects/hpe.html" title="HPE"><img src="../assets/images/hpe.jpeg" alt="HPE" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/butterfleye.html" title="Butterfleye"><img src="../assets/images/butterfleye.jpeg" alt="Butterfleye" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/knurld.html" title="Knurld"><img src="../assets/images/knulrd.jpeg" alt="Knurld" loading="eager" decoding="async"></a>
-      <a class="logo-carousel-link" href="../projects/thuuz.html" title="Thuuz"><img src="../assets/images/thuuz.svg" alt="Thuuz" loading="eager" decoding="async"></a>
+      <a class="logo-carousel-link" href="../projects/thuuz.html" title="Thuuz"><img src="../assets/images/thuuz.png" alt="Thuuz" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/veritas.html" title="Veritas"><img src="../assets/images/veritas.jpeg" alt="Veritas" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/vmware.html" title="VMware"><img src="../assets/images/vmware.jpeg" alt="VMware" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/meta.html" title="Meta"><img src="../assets/images/facebook.jpeg" alt="Meta" loading="eager" decoding="async"></a>
@@ -82,7 +82,7 @@
 <p>Developed architecture, design and code for the new Identity Engine. The engine is a business core application intended to provide positive identification of an individual via digital activity harvested in diverse ways using patented technologies.</p>
       <section class="archive-showcase">
       <h2>Archive showcase</h2>
-      <p class="archive-lead"><em>JakeKnows</em> — 7 source files, 6 documents, 2 notes, 2 images from the professional archive.</p>
+      <p class="archive-lead"><em>JakeKnows</em> — 7 source files, 5 documents, 2 notes, 2 images from the professional archive.</p>
       <div class="archive-section-label">Project root</div>
       <article class="archive-panel archive-panel--text">
         <div class="archive-panel__header">
@@ -929,22 +929,6 @@ namespace JakeKnowsEngineComponent
     }
 }</code></pre>
       </article>
-      <div class="archive-section-label">doc</div>
-      <article class="archive-panel archive-panel--doc">
-        <div class="archive-panel__header">
-          <span class="archive-badge-type">PDF</span>
-          <span class="archive-filename">JakeKnowsTemplate.pdf</span>
-          <span class="archive-path">doc/JakeKnowsTemplate.pdf</span>
-        </div>        <div class="archive-pdf-embed">
-        <object data="../assets/archive/jakeknows/pdf/JakeKnowsTemplate.pdf" type="application/pdf" width="100%" height="600px">
-            <iframe src="../assets/archive/jakeknows/pdf/JakeKnowsTemplate.pdf" width="100%" height="100%" style="border: none;" title="JakeKnowsTemplate.pdf">
-                <p>Your browser does not support embedded PDFs.
-                   <a href="../assets/archive/jakeknows/pdf/JakeKnowsTemplate.pdf">Download the PDF instead</a>.
-                </p>
-            </iframe>
-        </object>
-        </div>
-      </article>
       <div class="archive-section-label">src / engine</div>
       <article class="archive-panel archive-panel--code">
         <div class="archive-panel__header">
@@ -1550,44 +1534,6 @@ namespace JakeKnowsEngineComponent
         <p class="archive-truncated">Showing excerpt of 1004 lines.</p>
       </article>
       </section>
-      <h2>Development archive analysis</h2>
-      <p class="compilation-lead"><em>From exhaustive archive review — JakeKnows — Social/Contact Platform</em></p>
-      <p><strong>Purpose:</strong> Device-centric contact management, group messaging, commerce, profile sharing ("SWaG") for mobile clients.</p>
-<p><strong>Structure:</strong></p>
-<pre class="compilation-tree"><code>JakeKnows/JakeKnows/
-├── JakeKnowsEngineServices2012.sln    Master solution
-├── JakeKnowsComponent/                Business logic + 100+ strategy operations
-├── JakeKnowsEngineServices/           WCF host (PerCall, Multiple concurrency)
-├── JakeKnowsWebService/               ASMX SOAP facade (~5600+ lines)
-├── JakeKnowsTask*, jakeTask/          Background job processing
-├── JakeKnowsCodeGen/                  Schema→SP/WS/table generator
-├── JakeKnowsDataSP/                   Stored procedures
-├── WindowsServiceWCF/                 Service hosting
-├── ServiceStation0412/                ASMX hosting experiments
-└── work/                              Deployment, headwidget, VJIL, SonyTaleo</code></pre>
-<p><strong>Technologies:</strong> C# .NET 4.0, WCF, ASMX, SQL Server, log4net, ASP.NET WebForms, PHP reporting, Twilio SMS</p>
-<p><strong>Architecture:</strong> Strategy pattern (100+ StrategyOperation enum values); code generation from SQL schema; 46 documented WS calls for mobile app</p>
-<p><strong>Integrations:</strong> Sony Taleo HR, VJIL messaging/video, JulieKnows white-label</p>
-<p><strong>Canonical copy also at:</strong> <code>work/JakeKnows/</code> (see work section).</p>
-<h3>work — JakeKnows Platform + Career Archive</h3>
-<p><strong>Structure:</strong></p>
-<pre class="compilation-tree"><code>work/
-├── JakeKnows/                 Master archive (~22K files in full tree)
-│   └── work/JakeKnows/        JakeKnowsEngineServices2012.sln + full solution
-├── JakeKnowsWebService/       Extracted ASMX subset (files)
-├── JakeKnowsComponent/        Extracted engine component (files)
-├── JakeKnowsEngineServices/   Extracted Windows service (files)
-├── JakeKnowsCodeGen/          Extracted code generator (files)
-└── passport/                  Career + technical reference archive (~975 files)
-    └── files/
-        ├── KGResume.doc
-        ├── career_search_policy.pdf
-        ├── html/              Saved algorithm/CUDA/DSP articles
-        └── pdf/refs/          CEA-608/708 broadcast standards</code></pre>
-<p><strong>passport categories:</strong> Career docs, algorithms (Aggregate Magic, bithacks), DSP/FFT, CUDA/GPU, assembly optimization, computer vision, broadcast standards, networking, kernel dev references.</p>
-<p><strong>Security note:</strong> <code>JakeKnows/labumpers/drupal/labumpers.txt</code> contains plaintext hosting credentials — rotate before publication.</p>
-<p>## Portfolio Highlights (Resume Bullets)</p>
-<p>Use these as starting points; tailor to each job application.</p>
     </div>
   </main>
   <footer class="site-footer">

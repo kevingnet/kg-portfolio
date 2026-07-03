@@ -60,7 +60,7 @@
       <a class="logo-carousel-link" href="../projects/hpe.html" title="HPE"><img src="../assets/images/hpe.jpeg" alt="HPE" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/butterfleye.html" title="Butterfleye"><img src="../assets/images/butterfleye.jpeg" alt="Butterfleye" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/knurld.html" title="Knurld"><img src="../assets/images/knulrd.jpeg" alt="Knurld" loading="eager" decoding="async"></a>
-      <a class="logo-carousel-link" href="../projects/thuuz.html" title="Thuuz"><img src="../assets/images/thuuz.svg" alt="Thuuz" loading="eager" decoding="async"></a>
+      <a class="logo-carousel-link" href="../projects/thuuz.html" title="Thuuz"><img src="../assets/images/thuuz.png" alt="Thuuz" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/veritas.html" title="Veritas"><img src="../assets/images/veritas.jpeg" alt="Veritas" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/vmware.html" title="VMware"><img src="../assets/images/vmware.jpeg" alt="VMware" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/meta.html" title="Meta"><img src="../assets/images/facebook.jpeg" alt="Meta" loading="eager" decoding="async"></a>
@@ -4878,36 +4878,6 @@ bool CDBLogger::AddLog( LPDBLOG pDBLog )
 /////////////////////////////////////////////////////////////////////////////</code></pre>
       </article>
       </section>
-      <h2>Development archive analysis</h2>
-      <p class="compilation-lead"><em>From exhaustive archive review — Electrosonic — ESCAN Broadcast Suite</em></p>
-      <p><strong>Client:</strong> Electrosonic (broadcast systems integrator)</p>
-<p><strong>Purpose:</strong> Broadcast/AV facility monitoring, scheduling, and network product distribution (ESCAN ecosystem).</p>
-<p><strong>Structure:</strong></p>
-<pre class="compilation-tree"><code>Electrosonic/
-├── CJ60 Extension Library/    CodeJock UI framework demos
-├── Clients/                   Client configs
-└── ESCAN/                     Main product (~13K files)
-    ├── In Progress/           Active development
-    │   ├── ESCAN.dsw          Core MDI app
-    │   ├── SiteLinx/          LAN/WAN distributor (TCP/IP + MAPI)
-    │   ├── Scheduler/, schedulerV2/, schedule/
-    │   ├── PC_Monitor/, PC_Server/, MonitorDLL/, Devices/
-    │   └── CommLib/, InstallShield/
-    ├── Docs/SiteLinx/         User guides
-    └── Older/                 Legacy iterations</code></pre>
-<p><strong>Solution clusters:</strong> ESCAN core, SiteLinx (ESCP.dsw), Scheduling, Monitoring (PC_Monitor/Server), CJ60 UI framework.</p>
-<p><strong>Technologies:</strong> VC6 MFC C++, CodeJock CJ60, MAPI, TCP/IP, InstallShield</p>
-<p><strong>Patterns:</strong> MDI desktop apps, DLL shared libs, producer/consumer network messaging, device monitoring</p>
-<p><strong>Docs:</strong> SiteLinx uses ES4000 protocol; addressing <code>[Site Name:Node Name]</code>; author Kevin Guerra @ electrosonic-ca.com</p>
-<p><strong>Related:</strong> <code>graphics/escan/</code> contains duplicate SiteLinx UI assets and user guides.</p>
-<h3>graphics — Design Asset Archive</h3>
-<pre class="compilation-tree"><code>graphics/
-├── FRUITZ*.PSD, flower*.psd, cprts*.psd   Personal art (1997–1998)
-└── escan/                   Electrosonic ESCAN UI assets (files)
-    ├── escan*.psd, sitelinx.psd, pc monitor*.psd
-    ├── SiteLinx User Guide3.doc, SiteLinx User Guide4.doc
-    └── eleclog-120.TIF, elogo.EPS</code></pre>
-<p><strong>Related to:</strong> 04 Electrosonic ESCAN product line.</p>
     </div>
   </main>
   <footer class="site-footer">

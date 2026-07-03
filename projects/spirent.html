@@ -60,7 +60,7 @@
       <a class="logo-carousel-link" href="../projects/hpe.html" title="HPE"><img src="../assets/images/hpe.jpeg" alt="HPE" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/butterfleye.html" title="Butterfleye"><img src="../assets/images/butterfleye.jpeg" alt="Butterfleye" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/knurld.html" title="Knurld"><img src="../assets/images/knulrd.jpeg" alt="Knurld" loading="eager" decoding="async"></a>
-      <a class="logo-carousel-link" href="../projects/thuuz.html" title="Thuuz"><img src="../assets/images/thuuz.svg" alt="Thuuz" loading="eager" decoding="async"></a>
+      <a class="logo-carousel-link" href="../projects/thuuz.html" title="Thuuz"><img src="../assets/images/thuuz.png" alt="Thuuz" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/veritas.html" title="Veritas"><img src="../assets/images/veritas.jpeg" alt="Veritas" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/vmware.html" title="VMware"><img src="../assets/images/vmware.jpeg" alt="VMware" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/meta.html" title="Meta"><img src="../assets/images/facebook.jpeg" alt="Meta" loading="eager" decoding="async"></a>
@@ -625,27 +625,6 @@ SAL_EXPORT void salInit(void)
         </div>
       </article>
       </section>
-      <h2>Development archive analysis</h2>
-      <p class="compilation-lead"><em>From exhaustive archive review — Spirent — TestCenter / Phoenix P2</em></p>
-      <p><strong>Domain:</strong> Network/telecom test equipment automation</p>
-<p><strong>Structure:</strong></p>
-<pre class="compilation-tree"><code>Spirent/
-├── mainline/                  Spirent TestCenter product source
-│   ├── TestCenter.sln         Master VS2005 solution
-│   ├── framework/
-│   │   ├── bll/cmscore/       COM core (colib, HWMgr, Messenger)
-│   │   ├── automation/scripting/stc/  Tcl scripting bridge
-│   │   ├── def/stcFramework.xml     XML-driven BLL object model
-│   │   └── il/                Instrument Layer (HAL, sysmgrd)
-│   └── content/traffic/       L2/L3 traffic, RIP routing plugins
-├── hms/                       Contractor deliverables (Ismael Guerra)
-│   ├── automation/sal/        Scripting Abstraction Layer (C++ DLL)
-│   └── automation/sTcl/       Tcl extension wrapping SAL
-└── p2/                        Phoenix P2 architecture docs (files)</code></pre>
-<p><strong>SAL API (authored by Ismael Guerra):</strong> <code>salCreate</code>, <code>salSet</code>, <code>salGet</code>, <code>salPerform</code>, <code>salReserve</code>, <code>salSubscribe</code></p>
-<p><strong>Technologies:</strong> C++, Tcl/Tk, COM/DCOM, CORBA/IDL, XML/XSD codegen, Python 2.3 build tools, ACE, CppUnit, SWIG</p>
-<p><strong>Patterns:</strong> XML-driven plugin framework, BLL abstraction, MockServer test doubles</p>
-<p><strong>Phoenix P2 docs:</strong> Tcl DSL with create/config/get/perform/reserve/release/connect/subscribe commands.</p>
     </div>
   </main>
   <footer class="site-footer">

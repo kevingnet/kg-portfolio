@@ -172,7 +172,7 @@ FOLDER_META: dict[str, dict] = {
         "portfolio_only": True,
     },
     "30 Thuuz": {
-        "slug": "thuuz", "name": "Thuuz", "logo": "thuuz", "ext": "svg",
+        "slug": "thuuz", "name": "Thuuz", "logo": "thuuz", "ext": "png",
         "desc": "Callsigns JSON API, S3 sync scripts for sports broadcast metadata.",
         "skills": ["Python", "AWS", "S3", "JSON", "API"],
         "portfolio_only": True,

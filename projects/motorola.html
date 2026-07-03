@@ -60,7 +60,7 @@
       <a class="logo-carousel-link" href="../projects/hpe.html" title="HPE"><img src="../assets/images/hpe.jpeg" alt="HPE" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/butterfleye.html" title="Butterfleye"><img src="../assets/images/butterfleye.jpeg" alt="Butterfleye" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/knurld.html" title="Knurld"><img src="../assets/images/knulrd.jpeg" alt="Knurld" loading="eager" decoding="async"></a>
-      <a class="logo-carousel-link" href="../projects/thuuz.html" title="Thuuz"><img src="../assets/images/thuuz.svg" alt="Thuuz" loading="eager" decoding="async"></a>
+      <a class="logo-carousel-link" href="../projects/thuuz.html" title="Thuuz"><img src="../assets/images/thuuz.png" alt="Thuuz" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/veritas.html" title="Veritas"><img src="../assets/images/veritas.jpeg" alt="Veritas" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/vmware.html" title="VMware"><img src="../assets/images/vmware.jpeg" alt="VMware" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/meta.html" title="Meta"><img src="../assets/images/facebook.jpeg" alt="Meta" loading="eager" decoding="async"></a>
@@ -1880,25 +1880,6 @@ void Window608::DefineRollUp()
         <p class="archive-truncated">Showing excerpt of 576 lines.</p>
       </article>
       </section>
-      <h2>Development archive analysis</h2>
-      <p class="compilation-lead"><em>From exhaustive archive review — Motorola — OCAP Closed Captioning</em></p>
-      <p><strong>Domain:</strong> Motorola/Broadcom set-top platform</p>
-<p><strong>Purpose:</strong> OCAP-compliant closed captioning renderer — parse EIA-608/708 from MPEG transport streams, render via KreaTV graphics HAL.</p>
-<p><strong>Structure:</strong></p>
-<pre class="compilation-tree"><code>Motorola/
-├── ocap/component/            libclosedcaptioningrenderer.so
-│   ├── parser/                Parse608, Parse708, Window*, Commands
-│   ├── eia708/                EIA708Parser, Service, Packet
-│   ├── display/               TDisplay, TWindow
-│   ├── font/                  TFont, TPixmapBuffer
-│   ├── vbi/                   VBIManager
-│   └── xds/                   XDSManager
-├── ocap/tools/                CCParser debug tool (FLTK UI, mock HAL)
-├── refs/                      11 CEA/EIA standard PDFs
-└── streams/                   Test transport streams (.srt, .trp, .ts)</code></pre>
-<p><strong>Technologies:</strong> C++ (-Werror -pedantic), KreaTV GFX HAL, FLTK, embedded Linux common.mk, Broadcom Nexus</p>
-<p><strong>Patterns:</strong> Hysteresis-based DVS-053/157 and 608/708 auto-detection; dual-parser pipeline; mock HAL for desktop dev</p>
-<p><strong>Packet formats:</strong> DVS-157_608, DVS-053_608, DVS-053_708</p>
     </div>
   </main>
   <footer class="site-footer">

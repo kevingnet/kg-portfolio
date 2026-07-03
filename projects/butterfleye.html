@@ -60,7 +60,7 @@
       <a class="logo-carousel-link" href="../projects/hpe.html" title="HPE"><img src="../assets/images/hpe.jpeg" alt="HPE" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/butterfleye.html" title="Butterfleye"><img src="../assets/images/butterfleye.jpeg" alt="Butterfleye" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/knurld.html" title="Knurld"><img src="../assets/images/knulrd.jpeg" alt="Knurld" loading="eager" decoding="async"></a>
-      <a class="logo-carousel-link" href="../projects/thuuz.html" title="Thuuz"><img src="../assets/images/thuuz.svg" alt="Thuuz" loading="eager" decoding="async"></a>
+      <a class="logo-carousel-link" href="../projects/thuuz.html" title="Thuuz"><img src="../assets/images/thuuz.png" alt="Thuuz" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/veritas.html" title="Veritas"><img src="../assets/images/veritas.jpeg" alt="Veritas" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/vmware.html" title="VMware"><img src="../assets/images/vmware.jpeg" alt="VMware" loading="eager" decoding="async"></a>
       <a class="logo-carousel-link" href="../projects/meta.html" title="Meta"><img src="../assets/images/facebook.jpeg" alt="Meta" loading="eager" decoding="async"></a>
@@ -76,26 +76,7 @@
     <div class="content-section">
 <p><strong>Butterfleye</strong></p>
 <p>Cloud backend for Butterfleye smart camera — device registration, live streaming, file sync, push notifications.</p>
-<p>Development archive (<strong>Butterfleye</strong>): <code>/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/29 Butterfleye</code></p>
       <div class="tech-tags"><strong>Technologies</strong><div class="skill-row"><span class="skill-chip">Python 2</span><span class="skill-chip">PostgreSQL</span><span class="skill-chip">SQLAlchemy</span><span class="skill-chip">Protocol Buffers</span><span class="skill-chip">live555 RTSP</span><span class="skill-chip">Ansible</span><span class="skill-chip">iOS test app</span></div></div>
-      <h2>Development archive analysis</h2>
-      <p class="compilation-lead"><em>From exhaustive archive review — Butterfleye — IoT Camera Cloud</em></p>
-      <p><strong>Purpose:</strong> Cloud backend for Butterfleye smart camera — device registration, live streaming, file sync, push notifications.</p>
-<p><strong>Structure:</strong></p>
-<pre class="compilation-tree"><code>Butterfleye/butterfleye/
-├── live555itk/                RTSP/media streaming fork (Makefile)
-└── butterfleye-cloud/
-    ├── srv/butterfleye/
-    │   ├── proto/bcam.proto   Camera↔Server↔App protobuf protocol
-    │   ├── cs/                Camera Server (SSL, NodeId, KeepAlive)
-    │   ├── datarpc/           Client API (login, start_stream)
-    │   ├── filesync/          Media upload/transcode
-    │   ├── notifications/     Push notifications RPC
-    │   └── db/sqla/           PostgreSQL + SQLAlchemy migrations
-    ├── ansible/               Deployment automation
-    └── emu/                   Camera emulator</code></pre>
-<p><strong>Technologies:</strong> Python 2, PostgreSQL, SQLAlchemy, Protocol Buffers, live555 RTSP, Ansible, iOS test app</p>
-<p><strong>Protocol:</strong> SSL WAN, 4-byte length-prefixed protobuf; NodeIdRequest/Response, KeepAlive with battery/camera state</p>
     </div>
   </main>
   <footer class="site-footer">
