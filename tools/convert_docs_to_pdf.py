@@ -14,7 +14,38 @@ ROOT = Path(__file__).resolve().parents[1]
 ARCHIVE_JSON = ROOT / "data" / "nnn-archive.json"
 ASSETS_ARCHIVE = ROOT / "assets" / "archive"
 DOC_EXTS = {".doc", ".docx"}
+CONVERT_EXTS = {".doc", ".docx", ".rtf", ".dotx", ".odt"}
 PDF_EXT = {".pdf"}
+
+
+def normalize_pdf_title(title: str) -> str:
+    if title.lower().endswith(",pdf"):
+        return title[:-4] + ".pdf"
+    path = Path(title)
+    if path.suffix.lower() in PDF_EXT | CONVERT_EXTS | DOC_EXTS:
+        return path.with_suffix(".pdf").name
+    return f"{path.stem}.pdf"
+
+
+def is_pdf_source(src: Path) -> bool:
+    if src.suffix.lower() in PDF_EXT or src.name.lower().endswith(",pdf"):
+        return True
+    try:
+        return src.read_bytes()[:4] == b"%PDF"
+    except OSError:
+        return False
+
+
+def is_portfolio_document(title: str, rel: str, src: Path | None) -> bool:
+    for name in (title, rel, src.name if src else ""):
+        if not name:
+            continue
+        lower = name.lower()
+        if lower.endswith(",pdf"):
+            return True
+        if Path(name).suffix.lower() in PDF_EXT | CONVERT_EXTS | DOC_EXTS:
+            return True
+    return bool(src and is_pdf_source(src))
 
 
 def slug_folder_map(nnn_root: Path) -> dict[str, str]:
@@ -57,7 +88,8 @@ def resolve_source(
 
 
 def pdf_asset_name(title: str) -> str:
-    stem = Path(title).stem
+    normalized = normalize_pdf_title(title)
+    stem = Path(normalized).stem
     safe = re.sub(r"[^\w\-+. ]+", "_", stem).strip().replace(" ", "_")
     return f"{safe or 'document'}.pdf"
 
@@ -85,10 +117,10 @@ def convert_with_libreoffice(src: Path, out_dir: Path) -> Path | None:
 
 def copy_or_convert(src: Path, dest: Path) -> bool:
     dest.parent.mkdir(parents=True, exist_ok=True)
-    if src.suffix.lower() in PDF_EXT:
+    if is_pdf_source(src):
         dest.write_bytes(src.read_bytes())
         return True
-    if src.suffix.lower() not in DOC_EXTS:
+    if src.suffix.lower() not in CONVERT_EXTS:
         return False
     with tempfile.TemporaryDirectory() as tmp:
         produced = convert_with_libreoffice(src, Path(tmp))
@@ -148,13 +180,31 @@ def _strip_pdf_document_block(block: dict) -> list[str]:
                     assets.append(src)
     title = block.get("title") or ""
     if title:
-        block["title"] = f"{Path(title).stem}.pdf"
+        block["title"] = normalize_pdf_title(title)
     rel = block.get("rel") or ""
     if rel:
-        block["rel"] = str(Path(rel).with_suffix(".pdf"))
+        rel_path = Path(rel)
+        if rel_path.name.lower().endswith(",pdf"):
+            block["rel"] = str(rel_path.with_name(normalize_pdf_title(rel_path.name)))
+        else:
+            block["rel"] = str(rel_path.with_suffix(".pdf"))
     for key in ("content", "segments", "figure_count", "truncated"):
         block.pop(key, None)
     return assets
+
+
+def audit_documents(data: dict) -> list[str]:
+    problems: list[str] = []
+    for slug, entry in data.get("employers", {}).items():
+        for block in entry.get("blocks") or []:
+            if block.get("type") != "document":
+                continue
+            title = block.get("title") or block.get("rel") or "?"
+            if not block.get("pdf_src"):
+                problems.append(f"{slug}: missing pdf_src for {title}")
+            if block.get("content") or block.get("segments"):
+                problems.append(f"{slug}: leftover extracted text for {title}")
+    return problems
 
 
 def main() -> int:
@@ -174,36 +224,40 @@ def main() -> int:
         for block in entry.get("blocks", []):
             if block.get("type") != "document":
                 continue
+            if block.get("pdf_src") and not block.get("content") and not block.get("segments"):
+                continue
             title = block.get("title") or ""
             rel = block.get("rel") or title
-            ext = Path(title).suffix.lower()
-            if ext not in DOC_EXTS | PDF_EXT:
-                continue
-
             src = resolve_source(nnn_root, slug, rel, folders, employer_name)
+            if not is_portfolio_document(title, rel, src):
+                continue
             asset_rel = pdf_asset_rel(slug, title)
             dest = ROOT / asset_rel
             if not src:
                 missing.append(f"{slug}: {rel}")
                 continue
 
+            ext = Path(title).suffix.lower()
             if copy_or_convert(src, dest):
                 block["pdf_src"] = asset_rel
-                if ext in DOC_EXTS:
-                    converted += 1
-                else:
+                if is_pdf_source(src):
                     copied += 1
+                else:
+                    converted += 1
                 print(f"OK {slug}: {title} -> {asset_rel}")
             else:
                 missing.append(f"{slug}: convert failed for {src}")
 
     stripped, removed = strip_pdf_documents(data)
+    problems = audit_documents(data)
     ARCHIVE_JSON.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Done: {converted} converted, {copied} PDFs copied, {len(missing)} missing/failed")
     print(f"Stripped {stripped} PDF blocks, removed {removed} extracted assets")
     for item in missing:
         print(f"  missing: {item}")
-    return 0 if not missing else 1
+    for item in problems:
+        print(f"  audit: {item}")
+    return 0 if not missing and not problems else 1
 
 
 if __name__ == "__main__":
