@@ -120,6 +120,169 @@ def archive_text(text: str) -> str:
     return scrub_legal_boilerplate(text or "")
 
 
+# Archive blocks omitted from portfolio display (junk/reference docs).
+SKIP_ARCHIVE_BLOCKS = frozenset({
+    "CEA-CEB-10-A.pdf",
+    "CEA1.2.new.srt",
+    "log.htm",
+})
+
+_ANSI_ESCAPE_RE = re.compile(r"\x1b\[[0-9;]*m")
+_ANSI_BASIC = {
+    30: "#000000", 31: "#cd3131", 32: "#0dbc79", 33: "#e5e510",
+    34: "#2472c8", 35: "#bc3fbc", 36: "#11a8cd", 37: "#e5e5e5",
+    90: "#666666", 91: "#f14c4c", 92: "#23d18b", 93: "#f5f543",
+    94: "#3b8eea", 95: "#d670d6", 96: "#29b8db", 97: "#ffffff",
+}
+_ANSI_BASIC_BG = {
+    40: "#000000", 41: "#cd3131", 42: "#0dbc79", 43: "#e5e510",
+    44: "#2472c8", 45: "#bc3fbc", 46: "#11a8cd", 47: "#e5e5e5",
+    100: "#666666", 101: "#f14c4c", 102: "#23d18b", 103: "#f5f543",
+    104: "#3b8eea", 105: "#d670d6", 106: "#29b8db", 107: "#ffffff",
+}
+
+
+def _xterm256_rgb(code: int) -> str:
+    if code < 16:
+        palette = [
+            "#000000", "#800000", "#008000", "#808000", "#000080", "#800080",
+            "#008080", "#c0c0c0", "#808080", "#ff0000", "#00ff00", "#ffff00",
+            "#0000ff", "#ff00ff", "#00ffff", "#ffffff",
+        ]
+        return palette[code]
+    if code < 232:
+        code -= 16
+        r = code // 36
+        code %= 36
+        g = code // 6
+        b = code % 6
+        levels = [0, 95, 135, 175, 215, 255]
+        return f"#{levels[r]:02x}{levels[g]:02x}{levels[b]:02x}"
+    grey = 8 + (code - 232) * 10
+    return f"#{grey:02x}{grey:02x}{grey:02x}"
+
+
+def _ansi_style(fg: str | None, bg: str | None, bold: bool) -> str:
+    parts: list[str] = []
+    if fg:
+        parts.append(f"color:{fg}")
+    if bg:
+        parts.append(f"background-color:{bg}")
+    if bold:
+        parts.append("font-weight:700")
+    return ";".join(parts)
+
+
+def ansi_to_html(text: str) -> str:
+    """Convert ANSI SGR escapes to inline HTML spans."""
+    if not text or "\x1b[" not in text:
+        return html.escape(text or "")
+
+    out: list[str] = []
+    fg = bg = None
+    bold = False
+    open_span = False
+    pos = 0
+
+    def close_span() -> None:
+        nonlocal open_span
+        if open_span:
+            out.append("</span>")
+            open_span = False
+
+    def sync_span() -> None:
+        nonlocal open_span
+        close_span()
+        style = _ansi_style(fg, bg, bold)
+        if style:
+            out.append(f'<span style="{style}">')
+            open_span = True
+
+    for match in _ANSI_ESCAPE_RE.finditer(text):
+        out.append(html.escape(text[pos:match.start()]))
+        pos = match.end()
+        codes = [int(part) if part else 0 for part in match.group()[2:-1].split(";")]
+        i = 0
+        while i < len(codes):
+            code = codes[i]
+            if code == 0:
+                fg = bg = None
+                bold = False
+            elif code == 1:
+                bold = True
+            elif code == 22:
+                bold = False
+            elif 30 <= code <= 37 or 90 <= code <= 97:
+                fg = _ANSI_BASIC.get(code)
+            elif 40 <= code <= 47 or 100 <= code <= 107:
+                bg = _ANSI_BASIC_BG.get(code)
+            elif code == 38 and i + 1 < len(codes):
+                if codes[i + 1] == 5 and i + 2 < len(codes):
+                    fg = _xterm256_rgb(codes[i + 2])
+                    i += 2
+                elif codes[i + 1] == 2 and i + 4 < len(codes):
+                    fg = f"#{codes[i + 2]:02x}{codes[i + 3]:02x}{codes[i + 4]:02x}"
+                    i += 4
+            elif code == 48 and i + 1 < len(codes):
+                if codes[i + 1] == 5 and i + 2 < len(codes):
+                    bg = _xterm256_rgb(codes[i + 2])
+                    i += 2
+                elif codes[i + 1] == 2 and i + 4 < len(codes):
+                    bg = f"#{codes[i + 2]:02x}{codes[i + 3]:02x}{codes[i + 4]:02x}"
+                    i += 4
+            elif code == 39:
+                fg = None
+            elif code == 49:
+                bg = None
+            i += 1
+        sync_span()
+
+    out.append(html.escape(text[pos:]))
+    close_span()
+    return "".join(out)
+
+
+def render_archive_text(content: str) -> str:
+    content = archive_text(content)
+    if "\x1b[" in content:
+        inner = ansi_to_html(content)
+        return (
+            '        <pre class="archive-text archive-ansi"><code>'
+            f"{inner}</code></pre>\n"
+        )
+    return (
+        f'        <pre class="archive-text"><code>{html.escape(content)}</code></pre>\n'
+    )
+
+
+def _archive_block_stats(blocks: list[dict]) -> dict:
+    stats = {"code": 0, "document": 0, "text": 0, "image": 0, "figures": 0}
+    for block in blocks:
+        btype = block.get("type")
+        if btype == "section" or btype not in stats:
+            continue
+        stats[btype] += 1
+        if btype == "document":
+            for seg in block.get("segments") or []:
+                if seg.get("kind") == "figures":
+                    stats["figures"] += len(seg.get("images") or [])
+    return stats
+
+
+def filter_archive_data(data: dict) -> dict:
+    employers = data.get("employers") or {}
+    for entry in employers.values():
+        blocks = entry.get("blocks") or []
+        filtered = [
+            b for b in blocks
+            if b.get("title") not in SKIP_ARCHIVE_BLOCKS
+            and b.get("rel") not in SKIP_ARCHIVE_BLOCKS
+        ]
+        entry["blocks"] = filtered
+        entry["stats"] = _archive_block_stats(filtered)
+    return data
+
+
 NAV = [
     ("Portfolio", "index.html"),
     ("Services", "services.html"),
@@ -653,8 +816,10 @@ def load_dev_inventory() -> dict:
 def load_nnn_archive() -> dict:
     if NNN_ARCHIVE_JSON.is_file():
         try:
-            return scrub_archive_obj(
-                json.loads(NNN_ARCHIVE_JSON.read_text(encoding="utf-8"))
+            return filter_archive_data(
+                scrub_archive_obj(
+                    json.loads(NNN_ARCHIVE_JSON.read_text(encoding="utf-8"))
+                )
             )
         except (json.JSONDecodeError, OSError):
             pass
@@ -779,7 +944,7 @@ def render_nnn_block(block: dict) -> str:
             body = f'        <div class="archive-doc">{html.escape(content)}</div>\n'
         panel_class = "archive-panel archive-panel--doc"
     elif btype == "text":
-        body = f'        <pre class="archive-text"><code>{html.escape(content)}</code></pre>\n'
+        body = render_archive_text(content)
         panel_class = "archive-panel archive-panel--text"
     else:
         return ""

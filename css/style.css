@@ -1239,6 +1239,15 @@ main {
   white-space: pre;
 }
 
+.archive-ansi code {
+  display: block;
+  line-height: 1.45;
+}
+
+.archive-ansi span {
+  display: inline;
+}
+
 .archive-doc {
   padding: 1.15rem 1.25rem 1.25rem;
   font-size: 0.92rem;
