@@ -338,78 +338,6 @@
       "in_current_resume": true
     },
     {
-      "slug": "puntabanda",
-      "name": "Punta Banda Data",
-      "logo": "puntabanda",
-      "ext": "svg",
-      "desc": "SPA PuntaBanda POS, barcode label printers, SQL Server stored procedures.",
-      "skills": [
-        "C#",
-        "ASP.NET",
-        "SQL Server",
-        "POS",
-        "Barcode"
-      ],
-      "dev_folder": "13 PuntaBandaData",
-      "has_archive": true,
-      "portfolio_only": true,
-      "in_old_resume": false,
-      "in_current_resume": false
-    },
-    {
-      "slug": "enigma",
-      "name": "Enigma Video",
-      "logo": "enigma",
-      "ext": "svg",
-      "desc": "Premiere/3ds Max video production projects \u2014 logos, aurora exports, motion composites.",
-      "skills": [
-        "Video",
-        "Premiere",
-        "3ds Max",
-        "Motion Graphics"
-      ],
-      "dev_folder": "11 Enigma",
-      "has_archive": true,
-      "portfolio_only": true,
-      "in_old_resume": false,
-      "in_current_resume": false
-    },
-    {
-      "slug": "pleiades",
-      "name": "Pleiades",
-      "logo": "pleiades",
-      "ext": "svg",
-      "desc": "Blind Factory production MIS \u2014 persiana/window-cover manufacturing databases.",
-      "skills": [
-        "MS Access",
-        "MIS",
-        "Manufacturing"
-      ],
-      "dev_folder": "09 Pleiades",
-      "has_archive": true,
-      "portfolio_only": true,
-      "in_old_resume": false,
-      "in_current_resume": false
-    },
-    {
-      "slug": "nokio",
-      "name": "Nokio Insurance",
-      "logo": "nokio",
-      "ext": "svg",
-      "desc": "Multi-line insurance quote web forms \u2014 home, auto, business HTML workflows.",
-      "skills": [
-        "HTML",
-        "Web Forms",
-        "Insurance",
-        "JavaScript"
-      ],
-      "dev_folder": "12 Nokio",
-      "has_archive": true,
-      "portfolio_only": true,
-      "in_old_resume": false,
-      "in_current_resume": false
-    },
-    {
       "slug": "audiotelco",
       "name": "Audio Telco",
       "logo": "audiotelco",
@@ -425,23 +353,6 @@
       "has_archive": true,
       "portfolio_only": false,
       "in_old_resume": true,
-      "in_current_resume": false
-    },
-    {
-      "slug": "fotografia",
-      "name": "Fotografia Blancarte",
-      "logo": "fotografia",
-      "ext": "jpg",
-      "desc": "Photography studio MIS database and branding assets.",
-      "skills": [
-        "MS Access",
-        "MIS",
-        "Branding"
-      ],
-      "dev_folder": "08 FotografiaBlancarte",
-      "has_archive": true,
-      "portfolio_only": true,
-      "in_old_resume": false,
       "in_current_resume": false
     },
     {
@@ -539,44 +450,6 @@
       "in_current_resume": true
     },
     {
-      "slug": "labumpers",
-      "name": "La Bumpers",
-      "logo": "labumpers",
-      "ext": "jpg",
-      "desc": "E-commerce bumper catalog, EC2/AWS deployment, vehicle-fit databases and web storefront.",
-      "skills": [
-        "Java",
-        "AWS",
-        "EC2",
-        "Drupal",
-        "E-commerce"
-      ],
-      "dev_folder": "06 LaBumpers",
-      "has_archive": true,
-      "portfolio_only": true,
-      "in_old_resume": false,
-      "in_current_resume": false
-    },
-    {
-      "slug": "bumpershop",
-      "name": "The Bumper Shop",
-      "logo": "bumpershop",
-      "ext": "svg",
-      "desc": "MS Access MIS \u2014 billing, inventory, accounting databases and LAN/WAN rollout.",
-      "skills": [
-        "MS Access",
-        "LAN/WAN",
-        "MIS",
-        "Inventory",
-        "Accounting"
-      ],
-      "dev_folder": "02 BumperShop",
-      "has_archive": true,
-      "portfolio_only": false,
-      "in_old_resume": true,
-      "in_current_resume": false
-    },
-    {
       "slug": "access",
       "name": "ACCESS!",
       "logo": "access",
@@ -591,23 +464,6 @@
       ],
       "dev_folder": "01 Access!",
       "has_archive": true,
-      "portfolio_only": false,
-      "in_old_resume": true,
-      "in_current_resume": false
-    },
-    {
-      "slug": "plastering",
-      "name": "California Plastering",
-      "logo": "plastering",
-      "ext": "svg",
-      "desc": "Contractor accounting database \u2014 payroll, invoicing, customer tracking.",
-      "skills": [
-        "MS Access",
-        "Accounting",
-        "Payroll",
-        "MIS"
-      ],
-      "has_archive": false,
       "portfolio_only": false,
       "in_old_resume": true,
       "in_current_resume": false
@@ -740,25 +596,6 @@
       "in_old_resume": true,
       "in_current_resume": false
     },
-    "bumpershop": {
-      "slug": "bumpershop",
-      "name": "The Bumper Shop",
-      "logo": "bumpershop",
-      "ext": "svg",
-      "desc": "MS Access MIS \u2014 billing, inventory, accounting databases and LAN/WAN rollout.",
-      "skills": [
-        "MS Access",
-        "LAN/WAN",
-        "MIS",
-        "Inventory",
-        "Accounting"
-      ],
-      "dev_folder": "02 BumperShop",
-      "has_archive": true,
-      "portfolio_only": false,
-      "in_old_resume": true,
-      "in_current_resume": false
-    },
     "disney": {
       "slug": "disney",
       "name": "Disney",
@@ -816,25 +653,6 @@
       "in_old_resume": true,
       "in_current_resume": true
     },
-    "labumpers": {
-      "slug": "labumpers",
-      "name": "La Bumpers",
-      "logo": "labumpers",
-      "ext": "jpg",
-      "desc": "E-commerce bumper catalog, EC2/AWS deployment, vehicle-fit databases and web storefront.",
-      "skills": [
-        "Java",
-        "AWS",
-        "EC2",
-        "Drupal",
-        "E-commerce"
-      ],
-      "dev_folder": "06 LaBumpers",
-      "has_archive": true,
-      "portfolio_only": true,
-      "in_old_resume": false,
-      "in_current_resume": false
-    },
     "posdev": {
       "slug": "posdev",
       "name": "Positive Developments",
@@ -854,40 +672,6 @@
       "in_old_resume": true,
       "in_current_resume": false
     },
-    "fotografia": {
-      "slug": "fotografia",
-      "name": "Fotografia Blancarte",
-      "logo": "fotografia",
-      "ext": "jpg",
-      "desc": "Photography studio MIS database and branding assets.",
-      "skills": [
-        "MS Access",
-        "MIS",
-        "Branding"
-      ],
-      "dev_folder": "08 FotografiaBlancarte",
-      "has_archive": true,
-      "portfolio_only": true,
-      "in_old_resume": false,
-      "in_current_resume": false
-    },
-    "pleiades": {
-      "slug": "pleiades",
-      "name": "Pleiades",
-      "logo": "pleiades",
-      "ext": "svg",
-      "desc": "Blind Factory production MIS \u2014 persiana/window-cover manufacturing databases.",
-      "skills": [
-        "MS Access",
-        "MIS",
-        "Manufacturing"
-      ],
-      "dev_folder": "09 Pleiades",
-      "has_archive": true,
-      "portfolio_only": true,
-      "in_old_resume": false,
-      "in_current_resume": false
-    },
     "audiotelco": {
       "slug": "audiotelco",
       "name": "Audio Telco",
@@ -904,61 +688,6 @@
       "has_archive": true,
       "portfolio_only": false,
       "in_old_resume": true,
-      "in_current_resume": false
-    },
-    "enigma": {
-      "slug": "enigma",
-      "name": "Enigma Video",
-      "logo": "enigma",
-      "ext": "svg",
-      "desc": "Premiere/3ds Max video production projects \u2014 logos, aurora exports, motion composites.",
-      "skills": [
-        "Video",
-        "Premiere",
-        "3ds Max",
-        "Motion Graphics"
-      ],
-      "dev_folder": "11 Enigma",
-      "has_archive": true,
-      "portfolio_only": true,
-      "in_old_resume": false,
-      "in_current_resume": false
-    },
-    "nokio": {
-      "slug": "nokio",
-      "name": "Nokio Insurance",
-      "logo": "nokio",
-      "ext": "svg",
-      "desc": "Multi-line insurance quote web forms \u2014 home, auto, business HTML workflows.",
-      "skills": [
-        "HTML",
-        "Web Forms",
-        "Insurance",
-        "JavaScript"
-      ],
-      "dev_folder": "12 Nokio",
-      "has_archive": true,
-      "portfolio_only": true,
-      "in_old_resume": false,
-      "in_current_resume": false
-    },
-    "puntabanda": {
-      "slug": "puntabanda",
-      "name": "Punta Banda Data",
-      "logo": "puntabanda",
-      "ext": "svg",
-      "desc": "SPA PuntaBanda POS, barcode label printers, SQL Server stored procedures.",
-      "skills": [
-        "C#",
-        "ASP.NET",
-        "SQL Server",
-        "POS",
-        "Barcode"
-      ],
-      "dev_folder": "13 PuntaBandaData",
-      "has_archive": true,
-      "portfolio_only": true,
-      "in_old_resume": false,
       "in_current_resume": false
     },
     "hms": {
@@ -1384,23 +1113,6 @@
         "BBS",
         "SQL",
         "Netscape"
-      ],
-      "has_archive": false,
-      "portfolio_only": false,
-      "in_old_resume": true,
-      "in_current_resume": false
-    },
-    "plastering": {
-      "slug": "plastering",
-      "name": "California Plastering",
-      "logo": "plastering",
-      "ext": "svg",
-      "desc": "Contractor accounting database \u2014 payroll, invoicing, customer tracking.",
-      "skills": [
-        "MS Access",
-        "Accounting",
-        "Payroll",
-        "MIS"
       ],
       "has_archive": false,
       "portfolio_only": false,

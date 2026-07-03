@@ -29,7 +29,11 @@ COMPILATION_JSON = ROOT / "data" / "portfolio-compilation.json"
 NNN_ARCHIVE_JSON = ROOT / "data" / "nnn-archive.json"
 CAROUSEL_CHRONOLOGY_FILE = ROOT / "data" / "carousel-chronology.json"
 SKIP_COMPILATION_SLUGS = frozenset({"access"})
-SKIP_INDEX_SLUGS = frozenset({"hivemapper", "chase", "greenleaf", "opentv"})  # index grid + carousel
+SKIP_INDEX_SLUGS = frozenset({
+    "hivemapper", "chase", "greenleaf", "opentv",
+    "pleiades", "nokio", "enigma", "plastering",
+    "bumpershop", "labumpers", "fotografia", "puntabanda",
+})  # index grid + carousel (+ project pages via main())
 DEV_FOLDER_PREFIX_RE = re.compile(r"^\d{1,2}\s+")
 DEV_FOLDER_SORT_RE = re.compile(r"^(\d+)")
 RESUME_HTML_SRC = Path("/home/kg/Jobs/Kevin Guerra - Resume.html")
@@ -1558,6 +1562,11 @@ def main():
     PROJECTS_DIR.mkdir(exist_ok=True)
     catalog_slugs = [c["slug"] for c in load_catalog().get("portfolio", [])]
     for slug in catalog_slugs:
+        if slug in SKIP_INDEX_SLUGS:
+            stale_page = PROJECTS_DIR / f"{slug}.html"
+            if stale_page.exists():
+                stale_page.unlink()
+            continue
         if slug not in PROJECTS:
             card = catalog_by_slug.get(slug, {"slug": slug, "name": slug, "desc": "", "skills": []})
             PROJECTS[slug] = auto_project(slug, card)

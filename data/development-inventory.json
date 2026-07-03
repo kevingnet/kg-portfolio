@@ -1,0 +1,3644 @@
+{
+  "dev_root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development",
+  "employers": {
+    "access": {
+      "slug": "access",
+      "folders": [
+        "01 Access!"
+      ],
+      "archive_entries": [
+        {
+          "folder": "01 Access!",
+          "root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/01 Access!",
+          "exists": false,
+          "areas": [],
+          "all_projects": []
+        }
+      ],
+      "all_projects": []
+    },
+    "disney": {
+      "slug": "disney",
+      "folders": [
+        "03 Disney"
+      ],
+      "archive_entries": [
+        {
+          "folder": "03 Disney",
+          "root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/03 Disney",
+          "exists": true,
+          "areas": [
+            {
+              "name": "Access",
+              "projects": [
+                "AUTOUSER",
+                "Menu97",
+                "Projects",
+                "Projectsdata",
+                "menu"
+              ],
+              "subdirs": [
+                "AUTOUSER",
+                "menu"
+              ]
+            },
+            {
+              "name": "C",
+              "projects": [
+                "Makefile",
+                "Updater"
+              ],
+              "subdirs": [
+                "Generic Updater",
+                "NWConnect"
+              ]
+            },
+            {
+              "name": "C++",
+              "projects": [
+                "ATLWinMess",
+                "AddToINI",
+                "Generic Updater",
+                "MAILEXE",
+                "Mailer",
+                "MessageBlaster",
+                "MessageBlasterW",
+                "MsgBlasterW",
+                "NWConnect",
+                "SendMail",
+                "SendWinUserMessage",
+                "Test",
+                "UserMsg",
+                "fw"
+              ],
+              "subdirs": [
+                "AddToINI Project C++",
+                "Generic Updater 32Bit C++",
+                "OCX",
+                "SendMail",
+                "dev"
+              ]
+            },
+            {
+              "name": "Graphics",
+              "projects": [
+                "images"
+              ],
+              "subdirs": [
+                "images"
+              ]
+            },
+            {
+              "name": "SQL",
+              "projects": [],
+              "subdirs": []
+            },
+            {
+              "name": "Visual Basic",
+              "projects": [
+                "CopyApp"
+              ],
+              "subdirs": [
+                "CGI",
+                "Calendar",
+                "Commissary",
+                "Deployer",
+                "HRTS",
+                "Updater",
+                "apiary"
+              ]
+            },
+            {
+              "name": "WebApps",
+              "projects": [
+                "CorpPurch",
+                "CorpPurchOld",
+                "Dial_IN_OUT_RequestPage",
+                "HRTS",
+                "IPAging",
+                "IPListing",
+                "ISTechDBAccess",
+                "PeopleSoftLoginReq",
+                "Studio411",
+                "SuggestionToTechServices",
+                "UpdateStudioDirectory",
+                "asp",
+                "dbProjects"
+              ],
+              "subdirs": [
+                "Studio411",
+                "asp"
+              ]
+            },
+            {
+              "name": "graphics",
+              "projects": [],
+              "subdirs": []
+            }
+          ],
+          "all_projects": [
+            "ATLWinMess",
+            "AUTOUSER",
+            "AddToINI",
+            "CopyApp",
+            "CorpPurch",
+            "CorpPurchOld",
+            "Dial_IN_OUT_RequestPage",
+            "Generic Updater",
+            "HRTS",
+            "IPAging",
+            "IPListing",
+            "ISTechDBAccess",
+            "MAILEXE",
+            "Mailer",
+            "Makefile",
+            "Menu97",
+            "MessageBlaster",
+            "MessageBlasterW",
+            "MsgBlasterW",
+            "NWConnect",
+            "PeopleSoftLoginReq",
+            "Projects",
+            "Projectsdata",
+            "SendMail",
+            "SendWinUserMessage",
+            "Studio411",
+            "SuggestionToTechServices",
+            "Test",
+            "UpdateStudioDirectory",
+            "Updater",
+            "UserMsg",
+            "asp",
+            "dbProjects",
+            "fw",
+            "images",
+            "menu"
+          ]
+        }
+      ],
+      "all_projects": [
+        "ATLWinMess",
+        "AUTOUSER",
+        "AddToINI",
+        "CopyApp",
+        "CorpPurch",
+        "CorpPurchOld",
+        "Dial_IN_OUT_RequestPage",
+        "Generic Updater",
+        "HRTS",
+        "IPAging",
+        "IPListing",
+        "ISTechDBAccess",
+        "MAILEXE",
+        "Mailer",
+        "Makefile",
+        "Menu97",
+        "MessageBlaster",
+        "MessageBlasterW",
+        "MsgBlasterW",
+        "NWConnect",
+        "PeopleSoftLoginReq",
+        "Projects",
+        "Projectsdata",
+        "SendMail",
+        "SendWinUserMessage",
+        "Studio411",
+        "SuggestionToTechServices",
+        "Test",
+        "UpdateStudioDirectory",
+        "Updater",
+        "UserMsg",
+        "asp",
+        "dbProjects",
+        "fw",
+        "images",
+        "menu"
+      ]
+    },
+    "electrosonic": {
+      "slug": "electrosonic",
+      "folders": [
+        "04 Electrosonic"
+      ],
+      "archive_entries": [
+        {
+          "folder": "04 Electrosonic",
+          "root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/04 Electrosonic",
+          "exists": true,
+          "areas": [
+            {
+              "name": "CJ60 Extension Library",
+              "projects": [
+                "CJ60Lib",
+                "CJ60StaticLib",
+                "Demo_Controls",
+                "Demo_DevStudio",
+                "Demo_Explorer",
+                "Demo_Outlook",
+                "StaticTest"
+              ],
+              "subdirs": [
+                "CJ60Lib",
+                "Demo_Controls",
+                "Demo_DevStudio",
+                "Demo_Explorer",
+                "Demo_Outlook",
+                "Include",
+                "StaticTest"
+              ]
+            },
+            {
+              "name": "Clients",
+              "projects": [
+                "DBLog",
+                "ESFTPCopy",
+                "ESSerialCom",
+                "LiquidAudioStreamClient",
+                "MPEG2Encoder",
+                "Mantain",
+                "MoveMouseToLowerRight",
+                "PrintManager",
+                "PrintResults",
+                "SQL2XML",
+                "SetAutoBoot",
+                "TVDinerApp",
+                "Test"
+              ],
+              "subdirs": [
+                "AMNH",
+                "CMHF",
+                "MuseumDiner"
+              ]
+            },
+            {
+              "name": "Company",
+              "projects": [],
+              "subdirs": []
+            },
+            {
+              "name": "ESCAN",
+              "projects": [
+                "BrowseEditDemo",
+                "CJ60Lib",
+                "CJ60StaticLib",
+                "CJLibrary",
+                "CJStaticLibrary",
+                "ClassWiz",
+                "CommLib",
+                "Data",
+                "DevStudioMDI",
+                "DevStudioSDI",
+                "Devices",
+                "Docs",
+                "ESCAN",
+                "ESCP",
+                "Examples",
+                "ExplorerSDI",
+                "FlatButtonDemo",
+                "FlatComboDemo",
+                "MDIDevStudio",
+                "MDIMenu",
+                "MDIRebar",
+                "MaskEditDemo",
+                "MenuMDI",
+                "MenuSDI",
+                "MonitorDLL",
+                "OutlookSDI",
+                "PCMonitor",
+                "PCServer",
+                "PagerDemo",
+                "RebarMDI",
+                "RebarSDI",
+                "SDIDevStudio",
+                "SDIExplorer",
+                "SDIMenu",
+                "SDIOutlook",
+                "SDIRebar",
+                "SDIStaticDemo",
+                "Scheduler",
+                "SchedulerGUI",
+                "SchedulerV2"
+              ],
+              "subdirs": [
+                "CJLib610_817",
+                "CJLibrary v6.09",
+                "Data",
+                "Docs",
+                "ESCAN MDI",
+                "In Progress",
+                "Older"
+              ]
+            }
+          ],
+          "all_projects": [
+            "BrowseEditDemo",
+            "CJ60Lib",
+            "CJ60StaticLib",
+            "CJLibrary",
+            "CJStaticLibrary",
+            "ClassWiz",
+            "CommLib",
+            "DBLog",
+            "Data",
+            "Demo_Controls",
+            "Demo_DevStudio",
+            "Demo_Explorer",
+            "Demo_Outlook",
+            "DevStudioMDI",
+            "DevStudioSDI",
+            "Devices",
+            "Docs",
+            "ESCAN",
+            "ESCP",
+            "ESFTPCopy",
+            "ESSerialCom",
+            "Examples",
+            "ExplorerSDI",
+            "FlatButtonDemo",
+            "FlatComboDemo",
+            "LiquidAudioStreamClient",
+            "MDIDevStudio",
+            "MDIMenu",
+            "MDIRebar",
+            "MPEG2Encoder",
+            "Mantain",
+            "MaskEditDemo",
+            "MenuMDI",
+            "MenuSDI",
+            "MonitorDLL",
+            "MoveMouseToLowerRight",
+            "OutlookSDI",
+            "PCMonitor",
+            "PCServer",
+            "PagerDemo",
+            "PrintManager",
+            "PrintResults",
+            "RebarMDI",
+            "RebarSDI",
+            "SDIDevStudio",
+            "SDIExplorer",
+            "SDIMenu",
+            "SDIOutlook",
+            "SDIRebar",
+            "SDIStaticDemo",
+            "SQL2XML",
+            "Scheduler",
+            "SchedulerGUI",
+            "SchedulerV2",
+            "SetAutoBoot",
+            "StaticTest",
+            "TVDinerApp",
+            "Test"
+          ]
+        }
+      ],
+      "all_projects": [
+        "BrowseEditDemo",
+        "CJ60Lib",
+        "CJ60StaticLib",
+        "CJLibrary",
+        "CJStaticLibrary",
+        "ClassWiz",
+        "CommLib",
+        "DBLog",
+        "Data",
+        "Demo_Controls",
+        "Demo_DevStudio",
+        "Demo_Explorer",
+        "Demo_Outlook",
+        "DevStudioMDI",
+        "DevStudioSDI",
+        "Devices",
+        "Docs",
+        "ESCAN",
+        "ESCP",
+        "ESFTPCopy",
+        "ESSerialCom",
+        "Examples",
+        "ExplorerSDI",
+        "FlatButtonDemo",
+        "FlatComboDemo",
+        "LiquidAudioStreamClient",
+        "MDIDevStudio",
+        "MDIMenu",
+        "MDIRebar",
+        "MPEG2Encoder",
+        "Mantain",
+        "MaskEditDemo",
+        "MenuMDI",
+        "MenuSDI",
+        "MonitorDLL",
+        "MoveMouseToLowerRight",
+        "OutlookSDI",
+        "PCMonitor",
+        "PCServer",
+        "PagerDemo",
+        "PrintManager",
+        "PrintResults",
+        "RebarMDI",
+        "RebarSDI",
+        "SDIDevStudio",
+        "SDIExplorer",
+        "SDIMenu",
+        "SDIOutlook",
+        "SDIRebar",
+        "SDIStaticDemo",
+        "SQL2XML",
+        "Scheduler",
+        "SchedulerGUI",
+        "SchedulerV2",
+        "SetAutoBoot",
+        "StaticTest",
+        "TVDinerApp",
+        "Test"
+      ]
+    },
+    "voltdelta": {
+      "slug": "voltdelta",
+      "folders": [
+        "05 Volt"
+      ],
+      "archive_entries": [
+        {
+          "folder": "05 Volt",
+          "root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/05 Volt",
+          "exists": true,
+          "areas": [
+            {
+              "name": "StarStationMgmt",
+              "projects": [
+                "StarStationMgmt"
+              ],
+              "subdirs": []
+            },
+            {
+              "name": "StarTreeList",
+              "projects": [
+                "Star"
+              ],
+              "subdirs": []
+            },
+            {
+              "name": "StarTreeListDB",
+              "projects": [
+                "Star"
+              ],
+              "subdirs": []
+            },
+            {
+              "name": "X25",
+              "projects": [
+                "CommLib",
+                "MFCService",
+                "X25Relay",
+                "X25TCPClient"
+              ],
+              "subdirs": [
+                "CommLib",
+                "Documents",
+                "Include",
+                "X25Relay",
+                "X25RelayService",
+                "X25TCPClient",
+                "config"
+              ]
+            },
+            {
+              "name": "star",
+              "projects": [
+                "Star"
+              ],
+              "subdirs": []
+            }
+          ],
+          "all_projects": [
+            "CommLib",
+            "MFCService",
+            "Star",
+            "StarStationMgmt",
+            "X25Relay",
+            "X25TCPClient"
+          ]
+        }
+      ],
+      "all_projects": [
+        "CommLib",
+        "MFCService",
+        "Star",
+        "StarStationMgmt",
+        "X25Relay",
+        "X25TCPClient"
+      ]
+    },
+    "posdev": {
+      "slug": "posdev",
+      "folders": [
+        "07 PosDev"
+      ],
+      "archive_entries": [
+        {
+          "folder": "07 PosDev",
+          "root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/07 PosDev",
+          "exists": true,
+          "areas": [
+            {
+              "name": "AllState",
+              "projects": [
+                "Allstate Floral Transmit",
+                "Allstate Floral V2"
+              ],
+              "subdirs": [
+                "Allstate Floral Transmit",
+                "Allstate Floral V2"
+              ]
+            },
+            {
+              "name": "Allstate Floral V2",
+              "projects": [
+                "Allstate_Floral_Data",
+                "Include",
+                "Lib",
+                "Resource.frk",
+                "Src"
+              ],
+              "subdirs": [
+                "Allstate_Floral_Data",
+                "Include",
+                "Lib",
+                "Resource.frk",
+                "Src"
+              ]
+            },
+            {
+              "name": "Data",
+              "projects": [],
+              "subdirs": []
+            },
+            {
+              "name": "SendGTL",
+              "projects": [
+                "SendGTL"
+              ],
+              "subdirs": []
+            }
+          ],
+          "all_projects": [
+            "Allstate Floral Transmit",
+            "Allstate Floral V2",
+            "Allstate_Floral_Data",
+            "Include",
+            "Lib",
+            "Resource.frk",
+            "SendGTL",
+            "Src"
+          ]
+        }
+      ],
+      "all_projects": [
+        "Allstate Floral Transmit",
+        "Allstate Floral V2",
+        "Allstate_Floral_Data",
+        "Include",
+        "Lib",
+        "Resource.frk",
+        "SendGTL",
+        "Src"
+      ]
+    },
+    "audiotelco": {
+      "slug": "audiotelco",
+      "folders": [
+        "10 TelVista"
+      ],
+      "archive_entries": [
+        {
+          "folder": "10 TelVista",
+          "root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/10 TelVista",
+          "exists": true,
+          "areas": [
+            {
+              "name": "Documentation",
+              "projects": [],
+              "subdirs": []
+            },
+            {
+              "name": "Project 000 - Test",
+              "projects": [
+                "TELMEX Account Processing"
+              ],
+              "subdirs": []
+            },
+            {
+              "name": "Project 001 - Mexicana",
+              "projects": [
+                "Backup",
+                "Mexicana - Appointment Scheduling Application"
+              ],
+              "subdirs": [
+                "Backup"
+              ]
+            },
+            {
+              "name": "WorkFlowApp",
+              "projects": [
+                "WorkFlowApp"
+              ],
+              "subdirs": [
+                "ExceptionManagement",
+                "WorkFlow"
+              ]
+            }
+          ],
+          "all_projects": [
+            "Backup",
+            "Mexicana - Appointment Scheduling Application",
+            "TELMEX Account Processing",
+            "WorkFlowApp"
+          ]
+        }
+      ],
+      "all_projects": [
+        "Backup",
+        "Mexicana - Appointment Scheduling Application",
+        "TELMEX Account Processing",
+        "WorkFlowApp"
+      ]
+    },
+    "hms": {
+      "slug": "hms",
+      "folders": [
+        "15 HMS"
+      ],
+      "archive_entries": [
+        {
+          "folder": "15 HMS",
+          "root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/15 HMS",
+          "exists": true,
+          "areas": [
+            {
+              "name": "auth-0-7MODIFIED",
+              "projects": [
+                "cgi_findings",
+                "ip",
+                "ip_blocker",
+                "neti",
+                "netidb",
+                "savitri"
+              ],
+              "subdirs": [
+                "cgi_findings",
+                "ip",
+                "ip_blocker",
+                "neti",
+                "netidb",
+                "savitri"
+              ]
+            },
+            {
+              "name": "dns_lists",
+              "projects": [
+                "ext",
+                "int",
+                "report"
+              ],
+              "subdirs": [
+                "ext",
+                "int",
+                "report"
+              ]
+            },
+            {
+              "name": "doc",
+              "projects": [
+                "UIColors"
+              ],
+              "subdirs": []
+            },
+            {
+              "name": "nikto-checksites",
+              "projects": [
+                "t"
+              ],
+              "subdirs": [
+                "t"
+              ]
+            },
+            {
+              "name": "src",
+              "projects": [
+                "PCREBinGen",
+                "libinval",
+                "test"
+              ],
+              "subdirs": [
+                "PCREBinGen",
+                "libinval",
+                "test"
+              ]
+            }
+          ],
+          "all_projects": [
+            "PCREBinGen",
+            "UIColors",
+            "cgi_findings",
+            "ext",
+            "int",
+            "ip",
+            "ip_blocker",
+            "libinval",
+            "neti",
+            "netidb",
+            "report",
+            "savitri",
+            "t",
+            "test"
+          ]
+        }
+      ],
+      "all_projects": [
+        "PCREBinGen",
+        "UIColors",
+        "cgi_findings",
+        "ext",
+        "int",
+        "ip",
+        "ip_blocker",
+        "libinval",
+        "neti",
+        "netidb",
+        "report",
+        "savitri",
+        "t",
+        "test"
+      ]
+    },
+    "spirent": {
+      "slug": "spirent",
+      "folders": [
+        "16 Spirent"
+      ],
+      "archive_entries": [
+        {
+          "folder": "16 Spirent",
+          "root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/16 Spirent",
+          "exists": true,
+          "areas": [
+            {
+              "name": "hms",
+              "projects": [
+                "SAL",
+                "sTcl"
+              ],
+              "subdirs": [
+                "automation",
+                "desktop",
+                "doc"
+              ]
+            },
+            {
+              "name": "mainline",
+              "projects": [
+                "CoClient",
+                "CoServer",
+                "Components",
+                "DOMReplacement",
+                "HWMgr",
+                "Results",
+                "TestCenter",
+                "TestCenter.Automation.Gen",
+                "TestCenter.BLL.Gen",
+                "TestCenter.UI",
+                "TestCenter.UI.Gen",
+                "TestHWMgr",
+                "colib",
+                "framework",
+                "regsvr32",
+                "scripting",
+                "test",
+                "xsdValidator"
+              ],
+              "subdirs": [
+                "common",
+                "content",
+                "framework"
+              ]
+            },
+            {
+              "name": "p2",
+              "projects": [],
+              "subdirs": []
+            }
+          ],
+          "all_projects": [
+            "CoClient",
+            "CoServer",
+            "Components",
+            "DOMReplacement",
+            "HWMgr",
+            "Results",
+            "SAL",
+            "TestCenter",
+            "TestCenter.Automation.Gen",
+            "TestCenter.BLL.Gen",
+            "TestCenter.UI",
+            "TestCenter.UI.Gen",
+            "TestHWMgr",
+            "colib",
+            "framework",
+            "regsvr32",
+            "sTcl",
+            "scripting",
+            "test",
+            "xsdValidator"
+          ]
+        }
+      ],
+      "all_projects": [
+        "CoClient",
+        "CoServer",
+        "Components",
+        "DOMReplacement",
+        "HWMgr",
+        "Results",
+        "SAL",
+        "TestCenter",
+        "TestCenter.Automation.Gen",
+        "TestCenter.BLL.Gen",
+        "TestCenter.UI",
+        "TestCenter.UI.Gen",
+        "TestHWMgr",
+        "colib",
+        "framework",
+        "regsvr32",
+        "sTcl",
+        "scripting",
+        "test",
+        "xsdValidator"
+      ]
+    },
+    "directv": {
+      "slug": "directv",
+      "folders": [
+        "18 DirecTV"
+      ],
+      "archive_entries": [
+        {
+          "folder": "18 DirecTV",
+          "root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/18 DirecTV",
+          "exists": true,
+          "areas": [
+            {
+              "name": "automation",
+              "projects": [
+                "ATLCli",
+                "AbbyyOCRClient",
+                "AbbyyOCRClientBlaster",
+                "AbbyyOCRClientSetup",
+                "AbbyyOCRServer",
+                "AbbyyOCRServerTestLogs",
+                "DTVAbbyyReader",
+                "DTVChannelNumberReader",
+                "DTVChannelNumberReaderSetup",
+                "DTVDSOCR",
+                "DTVOCRClient",
+                "DTVOCRClientBlaster",
+                "DTVOCRClientSetup",
+                "DTVOCRServer",
+                "DTVOCRServerSetup",
+                "DTVScreenReader",
+                "DTVScreenScraper",
+                "OCRSocketServer"
+              ],
+              "subdirs": [
+                "ATLCli",
+                "AbbyyOCRClient",
+                "AbbyyOCRClientBlaster",
+                "AbbyyOCRClientSetup",
+                "AbbyyOCRServer",
+                "AbbyyOCRServerTestLogs",
+                "DTVAbbyyReader",
+                "DTVChannelNumberReader",
+                "DTVChannelNumberReaderSetup",
+                "DTVDSOCR",
+                "DTVDSOCR.VidDiff",
+                "DTVOCRClient"
+              ]
+            },
+            {
+              "name": "data",
+              "projects": [
+                "UIAtt",
+                "db"
+              ],
+              "subdirs": [
+                "UIAtt",
+                "db"
+              ]
+            },
+            {
+              "name": "doc",
+              "projects": [
+                "UEG_WC_Graphics_v1.04.9"
+              ],
+              "subdirs": [
+                "UEG_WC_Graphics_v1.04.9"
+              ]
+            },
+            {
+              "name": "info",
+              "projects": [],
+              "subdirs": []
+            },
+            {
+              "name": "lirc",
+              "projects": [
+                "lirc",
+                "rr3_0_0_2",
+                "rr3_xml_02",
+                "rr3lirc0.2"
+              ],
+              "subdirs": [
+                "lirc",
+                "rr3_0_0_2",
+                "rr3_xml_02",
+                "rr3lirc0.2"
+              ]
+            },
+            {
+              "name": "other",
+              "projects": [
+                "AVCaptureSvc",
+                "DTVTest",
+                "PicTest"
+              ],
+              "subdirs": [
+                "AVCapSvc",
+                "DTVTest",
+                "NI-488.2",
+                "OrigClientCode",
+                "PicTest",
+                "rrlirc",
+                "src"
+              ]
+            },
+            {
+              "name": "redrat",
+              "projects": [
+                "C++NPv2_Select_Reactor_RedRat_Server",
+                "C++NPv2_Select_Reactor_RedRat_Server_Static",
+                "DTV_RedRat",
+                "dtvrr.ACE",
+                "dtvrr.C",
+                "dtvrrs",
+                "redrat",
+                "rr"
+              ],
+              "subdirs": [
+                "DTV_RedRat",
+                "dtvrr",
+                "dtvrr.ACE",
+                "dtvrr.ACEOpt",
+                "dtvrr.ACEReactor",
+                "dtvrr.C",
+                "dtvrr.Signaled",
+                "dtvrr.reactor",
+                "redrat",
+                "rr"
+              ]
+            },
+            {
+              "name": "redrat.jnk",
+              "projects": [
+                "DTV_RedRat"
+              ],
+              "subdirs": [
+                "DTV_RedRat",
+                "bak",
+                "dtvrrBAK"
+              ]
+            },
+            {
+              "name": "rrtests",
+              "projects": [
+                "01",
+                "02",
+                "04-LiveTV_Miniguide",
+                "05-LiveTV_Favorites",
+                "07-LiveTV-Search",
+                "20-Purchase_with_parental_controls-Ratings_Limit",
+                "26-OSD-ScreenSaver",
+                "31-Review_Buffer-Trick_Play_in_full_screen",
+                "59-Setup-Tests",
+                "old"
+              ],
+              "subdirs": [
+                "01",
+                "02",
+                "04-LiveTV_Miniguide",
+                "05-LiveTV_Favorites",
+                "07-LiveTV-Search",
+                "20-Purchase_with_parental_controls-Ratings_Limit",
+                "26-OSD-ScreenSaver",
+                "31-Review_Buffer-Trick_Play_in_full_screen",
+                "59-Setup-Tests",
+                "old"
+              ]
+            },
+            {
+              "name": "stb_scripts",
+              "projects": [
+                "scripts"
+              ],
+              "subdirs": [
+                "scripts"
+              ]
+            },
+            {
+              "name": "zip",
+              "projects": [
+                "bak",
+                "directx",
+                "image",
+                "lib",
+                "mfc",
+                "ocr",
+                "other",
+                "src",
+                "unused",
+                "utility",
+                "vision"
+              ],
+              "subdirs": [
+                "bak",
+                "directx",
+                "image",
+                "lib",
+                "mfc",
+                "ocr",
+                "other",
+                "src",
+                "unused",
+                "utility",
+                "vision"
+              ]
+            }
+          ],
+          "all_projects": [
+            "01",
+            "02",
+            "04-LiveTV_Miniguide",
+            "05-LiveTV_Favorites",
+            "07-LiveTV-Search",
+            "20-Purchase_with_parental_controls-Ratings_Limit",
+            "26-OSD-ScreenSaver",
+            "31-Review_Buffer-Trick_Play_in_full_screen",
+            "59-Setup-Tests",
+            "ATLCli",
+            "AVCaptureSvc",
+            "AbbyyOCRClient",
+            "AbbyyOCRClientBlaster",
+            "AbbyyOCRClientSetup",
+            "AbbyyOCRServer",
+            "AbbyyOCRServerTestLogs",
+            "C++NPv2_Select_Reactor_RedRat_Server",
+            "C++NPv2_Select_Reactor_RedRat_Server_Static",
+            "DTVAbbyyReader",
+            "DTVChannelNumberReader",
+            "DTVChannelNumberReaderSetup",
+            "DTVDSOCR",
+            "DTVOCRClient",
+            "DTVOCRClientBlaster",
+            "DTVOCRClientSetup",
+            "DTVOCRServer",
+            "DTVOCRServerSetup",
+            "DTVScreenReader",
+            "DTVScreenScraper",
+            "DTVTest",
+            "DTV_RedRat",
+            "OCRSocketServer",
+            "PicTest",
+            "UEG_WC_Graphics_v1.04.9",
+            "UIAtt",
+            "bak",
+            "db",
+            "directx",
+            "dtvrr.ACE",
+            "dtvrr.C",
+            "dtvrrs",
+            "image",
+            "lib",
+            "lirc",
+            "mfc",
+            "ocr",
+            "old",
+            "other",
+            "redrat",
+            "rr",
+            "rr3_0_0_2",
+            "rr3_xml_02",
+            "rr3lirc0.2",
+            "scripts",
+            "src",
+            "unused",
+            "utility",
+            "vision"
+          ]
+        }
+      ],
+      "all_projects": [
+        "01",
+        "02",
+        "04-LiveTV_Miniguide",
+        "05-LiveTV_Favorites",
+        "07-LiveTV-Search",
+        "20-Purchase_with_parental_controls-Ratings_Limit",
+        "26-OSD-ScreenSaver",
+        "31-Review_Buffer-Trick_Play_in_full_screen",
+        "59-Setup-Tests",
+        "ATLCli",
+        "AVCaptureSvc",
+        "AbbyyOCRClient",
+        "AbbyyOCRClientBlaster",
+        "AbbyyOCRClientSetup",
+        "AbbyyOCRServer",
+        "AbbyyOCRServerTestLogs",
+        "C++NPv2_Select_Reactor_RedRat_Server",
+        "C++NPv2_Select_Reactor_RedRat_Server_Static",
+        "DTVAbbyyReader",
+        "DTVChannelNumberReader",
+        "DTVChannelNumberReaderSetup",
+        "DTVDSOCR",
+        "DTVOCRClient",
+        "DTVOCRClientBlaster",
+        "DTVOCRClientSetup",
+        "DTVOCRServer",
+        "DTVOCRServerSetup",
+        "DTVScreenReader",
+        "DTVScreenScraper",
+        "DTVTest",
+        "DTV_RedRat",
+        "OCRSocketServer",
+        "PicTest",
+        "UEG_WC_Graphics_v1.04.9",
+        "UIAtt",
+        "bak",
+        "db",
+        "directx",
+        "dtvrr.ACE",
+        "dtvrr.C",
+        "dtvrrs",
+        "image",
+        "lib",
+        "lirc",
+        "mfc",
+        "ocr",
+        "old",
+        "other",
+        "redrat",
+        "rr",
+        "rr3_0_0_2",
+        "rr3_xml_02",
+        "rr3lirc0.2",
+        "scripts",
+        "src",
+        "unused",
+        "utility",
+        "vision"
+      ]
+    },
+    "surfware": {
+      "slug": "surfware",
+      "folders": [
+        "19 Surfware"
+      ],
+      "archive_entries": [
+        {
+          "folder": "19 Surfware",
+          "root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/19 Surfware",
+          "exists": true,
+          "areas": [
+            {
+              "name": "(root files)",
+              "projects": [
+                "Enhancements (2).doc",
+                "asp.filters.txt",
+                "langs.txt",
+                "sentinel sn.txt",
+                "sis pwd.txt"
+              ],
+              "subdirs": []
+            },
+            {
+              "name": "NetworkLmInstall",
+              "projects": [
+                "File Groups",
+                "NetworkSim",
+                "Script Files",
+                "String Tables"
+              ],
+              "subdirs": [
+                "File Groups",
+                "NetworkSim",
+                "Script Files",
+                "String Tables"
+              ]
+            },
+            {
+              "name": "Velocity4",
+              "projects": [
+                "ApiSamples",
+                "Ball3D",
+                "Geometry",
+                "Lserv9x",
+                "Lservnt",
+                "MachSimIntegration",
+                "MwVerify",
+                "NCPostDLL",
+                "NCPostDlgs",
+                "NCVerify",
+                "NcProcess",
+                "New5Axis",
+                "SCAux",
+                "SCDialog",
+                "SCRDWTLIB",
+                "ScCustom",
+                "ScRdWtLib",
+                "Splash",
+                "SurfcamVerify",
+                "TemplateConvert",
+                "ToolDlgs",
+                "ToolLib",
+                "UserApp2",
+                "VRMLRead",
+                "VistaDisplay",
+                "Voronoi",
+                "echoid",
+                "fileopsv",
+                "fontdlg",
+                "mwMSimDefGui",
+                "mwMSimParamsUI",
+                "scutil",
+                "surfcam",
+                "surfcam-alone",
+                "surfcam-alone-intel",
+                "surfcam-intelc",
+                "surfcam-msc",
+                "surfcam-msc-New5AxisBitmaps-only",
+                "surfcam-msc-icl",
+                "surfcam-msc_NoTruemill",
+                "test",
+                "util",
+                "wechoid"
+              ],
+              "subdirs": [
+                "SCCommonCompVOB",
+                "SCGUIVOB",
+                "SCMachiningVOB",
+                "SCModelingVOB",
+                "SCVOB"
+              ]
+            },
+            {
+              "name": "Velocity5",
+              "projects": [],
+              "subdirs": []
+            },
+            {
+              "name": "_dev",
+              "projects": [
+                "DMS_PSWks",
+                "SW_ExtractBitmap"
+              ],
+              "subdirs": [
+                "Parasolid Examples",
+                "doxy",
+                "sw_examples",
+                "v4b"
+              ]
+            },
+            {
+              "name": "archive",
+              "projects": [
+                "ArcFltr",
+                "LmTest",
+                "NurbFltr",
+                "PostProcessor Configuration",
+                "SCLic",
+                "SCMan",
+                "SCPlay",
+                "SCRdWtLib",
+                "SCRemove",
+                "SCRepairInstall",
+                "ScCustom",
+                "SetRegistry",
+                "Splash",
+                "TPSmoother",
+                "TestWrt",
+                "ToolLib",
+                "UserApp2",
+                "ZRangeFltr",
+                "dfview",
+                "incmodule",
+                "sclic",
+                "scutil",
+                "surfcam",
+                "wechoid"
+              ],
+              "subdirs": [
+                "3rdpartytools",
+                "C++ Coding Standard",
+                "FlexLm",
+                "NCFILTER",
+                "PostProcessor Configuration",
+                "PstWizard",
+                "PythonPost",
+                "SCLic",
+                "SCMan",
+                "SCPlay",
+                "SCRdWtLib",
+                "SCRemove"
+              ]
+            },
+            {
+              "name": "dev",
+              "projects": [
+                "Copy of SrfWorks60",
+                "Faro32",
+                "INC2APT",
+                "InstallManager",
+                "PerfConsole",
+                "PortHPTemplates",
+                "RegressionTestFarm",
+                "SCLic",
+                "SCMan",
+                "SCRdWtLib",
+                "Sim",
+                "Sim60",
+                "SrfWorks",
+                "SrfWorks60",
+                "TestWrt",
+                "ToolpathGenerator",
+                "VistaComposing",
+                "sclic",
+                "stream"
+              ],
+              "subdirs": [
+                "API",
+                "Digitizer",
+                "Inc2Apt",
+                "InstallManager",
+                "NetworkLmInstall",
+                "SCLic",
+                "SolidWorksOneStep",
+                "TestFarm",
+                "Tools",
+                "VistaDLL"
+              ]
+            },
+            {
+              "name": "glut-3.7.6-bin",
+              "projects": [
+                "GL"
+              ],
+              "subdirs": [
+                "GL"
+              ]
+            },
+            {
+              "name": "new feature",
+              "projects": [
+                "New5Axis"
+              ],
+              "subdirs": [
+                "Milling",
+                "New Folder"
+              ]
+            },
+            {
+              "name": "thirdparty",
+              "projects": [
+                "BoostSerializationLibrary",
+                "DotZLib",
+                "Library",
+                "OpenVRML",
+                "OpenVRMLzz",
+                "SCThirdParty",
+                "SCVroni",
+                "SCZlib",
+                "Sample",
+                "Statechart",
+                "TMCalc",
+                "TMCalcDll",
+                "TMCalcSetup",
+                "VRMLX3D",
+                "WindowsApplication1",
+                "X3DBrowser",
+                "X3DBrowser8",
+                "X3DBrowserGLUT",
+                "auto_unit_test_test",
+                "bench1",
+                "bench2",
+                "bench3",
+                "bench4",
+                "boost_python",
+                "boost_test_library",
+                "concepts",
+                "demo",
+                "demo_auto_ptr",
+                "demo_exception",
+                "demo_fast_binary_archive",
+                "demo_mi",
+                "demo_pimpl",
+                "demo_plugin",
+                "demo_portable_archive",
+                "demo_shared_ptr",
+                "demo_xml",
+                "demo_xml_load",
+                "demo_xml_save",
+                "dll",
+                "errors_handling_test",
+                "examples",
+                "log4cxx",
+                "logging",
+                "minimal_test",
+                "minizip",
+                "online_test",
+                "output_test_stream_test",
+                "parameterized_test_test",
+                "prg_exec_example",
+                "prg_exec_fail1",
+                "prg_exec_fail2",
+                "prg_exec_fail3",
+                "prg_exec_monitor",
+                "process_jam_log",
+                "result_report_test",
+                "serialization",
+                "shortsocketserver",
+                "simplesocketserver",
+                "sproeval",
+                "static",
+                "test1",
+                "test2",
+                "test3",
+                "test4",
+                "test5",
+                "test6",
+                "test7",
+                "test_array",
+                "test_binary",
+                "test_case_template_example",
+                "test_codecvt_null",
+                "test_constructor",
+                "test_contained_class",
+                "test_cyclic_ptrs",
+                "test_delete_pointer",
+                "test_deque",
+                "test_derived",
+                "test_derived_class_ptr",
+                "test_diamond",
+                "test_exec_example",
+                "test_exec_fail1",
+                "test_exec_fail2",
+                "test_exec_fail3",
+                "test_exec_fail4",
+                "test_exec_monitor",
+                "test_exported",
+                "test_fp_comparisons",
+                "test_iterattors",
+                "test_iterattors_base64",
+                "test_level_class_info_load",
+                "test_level_class_info_save",
+                "test_level_not_serializable",
+                "test_level_object",
+                "test_level_primitive",
+                "test_list",
+                "test_list_ptrs",
+                "test_map",
+                "test_mi",
+                "test_mult_archive_types",
+                "test_multiple_ptrs",
+                "test_no_rtti",
+                "test_non_default_ctor",
+                "test_non_intrusive",
+                "test_null_ptr",
+                "test_nvp",
+                "test_optional",
+                "test_polymorphic_archive",
+                "test_private_ctor",
+                "test_recursion",
+                "test_registered",
+                "test_set",
+                "test_shared_ptr",
+                "test_simple_class",
+                "test_simple_class_ptr",
+                "test_simple_derived_class",
+                "test_smart_cast",
+                "test_split",
+                "test_static_warning",
+                "test_tools_test",
+                "test_tracking",
+                "test_traits_fail",
+                "test_traits_pass",
+                "test_unregistered",
+                "test_utf8_codecvt",
+                "test_vector",
+                "test_void_cast",
+                "testsuite",
+                "testzlib",
+                "ublas",
+                "unit_test_example1",
+                "unit_test_example2",
+                "unit_test_example3",
+                "unit_test_example4",
+                "unit_test_example5",
+                "unit_test_framework",
+                "unit_test_suite_ex_test",
+                "vrml2x3d",
+                "vrml2x3d8",
+                "x3d2vrml",
+                "zlibvc"
+              ],
+              "subdirs": [
+                "SCBoostVOB",
+                "SCTMCalculator",
+                "SCThirdPartyVOB",
+                "TMCalculator"
+              ]
+            },
+            {
+              "name": "translators",
+              "projects": [
+                "2DSN",
+                "2DSN71",
+                "AcisImport",
+                "AcisImport_vc8",
+                "AllExamples",
+                "AllExamplesDll",
+                "ApiSamples",
+                "AssemblyInfo",
+                "AutoSurfServices",
+                "AutoSurfServices_dll",
+                "BRepInfo",
+                "CatV2dsn",
+                "DD_BmpExport",
+                "DD_BmpExport_dll",
+                "DD_Dwf7Export",
+                "DD_Dwf7Export_dll",
+                "DD_Dwf7Import",
+                "DD_Dwf7Import_dll",
+                "DD_OLEItemHandler",
+                "DD_OLEItemHandler_dll",
+                "DD_PdfExport",
+                "DD_PdfExport_dll",
+                "DD_SvgExport",
+                "DD_SvgExport_dll",
+                "DSN2DWG",
+                "DocumentInfo",
+                "DwgVersion",
+                "ExCustObjs",
+                "ExCustObjs_dll",
+                "ExDynamicBlocks",
+                "ExDynamicBlocks_dll",
+                "ExEvalWatchers",
+                "ExEvalWatchers_dll",
+                "ExRaster",
+                "ExRasterDLL",
+                "Ex_Alloc",
+                "Ex_Alloc_dll",
+                "Exe2Dsn",
+                "GearInc",
+                "GeomDiffSample",
+                "GripPoints",
+                "GripPoints_dll",
+                "Gs_WinGDI",
+                "Gs_WinOpenGL",
+                "Gs_WinOpenGL_WithWorldDispList",
+                "Invt2scprt",
+                "LmSim",
+                "LogFile",
+                "ModelessApp",
+                "MultiModelDocumentInfo",
+                "OdAveEx",
+                "OdBagFiler",
+                "OdBagFilerEx_dll",
+                "OdBagFiler_dll",
+                "OdBrEx",
+                "OdConvert14",
+                "OdCopyEx",
+                "OdCurveFunctions",
+                "OdCurveFunctions_dll",
+                "OdDwfExportEx",
+                "OdDwfImportEx",
+                "OdGetGeomEx_dll",
+                "OdPC3Read",
+                "OdReadEx",
+                "OdReadExDLL",
+                "OdSheetSet",
+                "OdVectorizeEx",
+                "OdVectorizeEx_dll",
+                "OdWriteEx",
+                "OdWriteExDll",
+                "OdWriteEx_dll",
+                "OdaMfcApp",
+                "OdaMfcAppDLL",
+                "Options",
+                "PlotSettingsValidator",
+                "PlotSettingsValidator_dll",
+                "ProgressCallback",
+                "RecomputeDimBlock",
+                "RecomputeDimBlock_dll",
+                "Representation",
+                "SATBrepSample",
+                "SATConverter",
+                "SATGeomTracer",
+                "SCAux2",
+                "ScProe2Scprt",
+                "Simple",
+                "Simple_kanji",
+                "SingleDoc",
+                "Step2Scprt",
+                "SurfcamAddin",
+                "TestExe",
+                "Unit",
+                "WinBitmap",
+                "WinBitmap_dll",
+                "WinDirectX",
+                "WinDirectX_dll",
+                "WinGDI",
+                "WinOpenGL",
+                "WinOpenGL_WithWorldDispList",
+                "cadkey2dsn60",
+                "cadl2dsn",
+                "cadl2dsn60",
+                "cam",
+                "cativ2Scprt",
+                "cativ2scprt",
+                "catv2dsn",
+                "classes",
+                "csf2dsn",
+                "des2dsn",
+                "dig_dll",
+                "dll_io",
+                "dll_io60",
+                "dsn2cadl",
+                "dsn2csf",
+                "dsn2des",
+                "dsn2dxf",
+                "dsn2fst",
+                "dsn2igs",
+                "dsn2igs60",
+                "dsn2sat",
+                "dsn2stl",
+                "dsn2vda",
+                "dxf2dsn",
+                "exe2dsn",
+                "fst2dsn",
+                "igs2dsn",
+                "invt2scprt",
+                "mesh2dsn",
+                "ncal2dsn",
+                "prsd2dsn",
+                "prsd2scprt",
+                "s2d_v60",
+                "scproe2scprt",
+                "scsimlib",
+                "spac2dsn",
+                "step2scprt",
+                "sup2dsn",
+                "testA3ds",
+                "testcatia",
+                "testpost",
+                "trnsltrs",
+                "ug2dsn",
+                "ug2dsn60",
+                "ugf2dsn",
+                "vda2dsn"
+              ],
+              "subdirs": [
+                "2DSN",
+                "Cadkey2dsn",
+                "DwgTrans",
+                "DwgVersion",
+                "Exe2Dsn",
+                "GearInc",
+                "GeomDiff",
+                "ModelessApp",
+                "ScApiHeaders",
+                "SurfcamAddin",
+                "TestExe",
+                "cadl2dsn"
+              ]
+            },
+            {
+              "name": "vroni",
+              "projects": [
+                "v_engine"
+              ],
+              "subdirs": [
+                "Surfcam_Patch_Sentinel8.2",
+                "headers",
+                "source"
+              ]
+            }
+          ],
+          "all_projects": [
+            "2DSN",
+            "2DSN71",
+            "AcisImport",
+            "AcisImport_vc8",
+            "AllExamples",
+            "AllExamplesDll",
+            "ApiSamples",
+            "ArcFltr",
+            "AssemblyInfo",
+            "AutoSurfServices",
+            "AutoSurfServices_dll",
+            "BRepInfo",
+            "Ball3D",
+            "BoostSerializationLibrary",
+            "CatV2dsn",
+            "Copy of SrfWorks60",
+            "DD_BmpExport",
+            "DD_BmpExport_dll",
+            "DD_Dwf7Export",
+            "DD_Dwf7Export_dll",
+            "DD_Dwf7Import",
+            "DD_Dwf7Import_dll",
+            "DD_OLEItemHandler",
+            "DD_OLEItemHandler_dll",
+            "DD_PdfExport",
+            "DD_PdfExport_dll",
+            "DD_SvgExport",
+            "DD_SvgExport_dll",
+            "DMS_PSWks",
+            "DSN2DWG",
+            "DocumentInfo",
+            "DotZLib",
+            "DwgVersion",
+            "Enhancements (2).doc",
+            "ExCustObjs",
+            "ExCustObjs_dll",
+            "ExDynamicBlocks",
+            "ExDynamicBlocks_dll",
+            "ExEvalWatchers",
+            "ExEvalWatchers_dll",
+            "ExRaster",
+            "ExRasterDLL",
+            "Ex_Alloc",
+            "Ex_Alloc_dll",
+            "Exe2Dsn",
+            "Faro32",
+            "File Groups",
+            "GL",
+            "GearInc",
+            "GeomDiffSample",
+            "Geometry",
+            "GripPoints",
+            "GripPoints_dll",
+            "Gs_WinGDI",
+            "Gs_WinOpenGL",
+            "Gs_WinOpenGL_WithWorldDispList",
+            "INC2APT",
+            "InstallManager",
+            "Invt2scprt",
+            "Library",
+            "LmSim",
+            "LmTest",
+            "LogFile",
+            "Lserv9x",
+            "Lservnt",
+            "MachSimIntegration",
+            "ModelessApp",
+            "MultiModelDocumentInfo",
+            "MwVerify",
+            "NCPostDLL",
+            "NCPostDlgs",
+            "NCVerify",
+            "NcProcess",
+            "NetworkSim",
+            "New5Axis",
+            "NurbFltr",
+            "OdAveEx",
+            "OdBagFiler",
+            "OdBagFilerEx_dll",
+            "OdBagFiler_dll",
+            "OdBrEx",
+            "OdConvert14",
+            "OdCopyEx",
+            "OdCurveFunctions",
+            "OdCurveFunctions_dll",
+            "OdDwfExportEx",
+            "OdDwfImportEx",
+            "OdGetGeomEx_dll",
+            "OdPC3Read",
+            "OdReadEx",
+            "OdReadExDLL",
+            "OdSheetSet",
+            "OdVectorizeEx",
+            "OdVectorizeEx_dll",
+            "OdWriteEx",
+            "OdWriteExDll",
+            "OdWriteEx_dll",
+            "OdaMfcApp",
+            "OdaMfcAppDLL",
+            "OpenVRML",
+            "OpenVRMLzz",
+            "Options",
+            "PerfConsole",
+            "PlotSettingsValidator",
+            "PlotSettingsValidator_dll",
+            "PortHPTemplates",
+            "PostProcessor Configuration",
+            "ProgressCallback",
+            "RecomputeDimBlock",
+            "RecomputeDimBlock_dll",
+            "RegressionTestFarm",
+            "Representation",
+            "SATBrepSample",
+            "SATConverter",
+            "SATGeomTracer",
+            "SCAux",
+            "SCAux2",
+            "SCDialog",
+            "SCLic",
+            "SCMan",
+            "SCPlay",
+            "SCRDWTLIB",
+            "SCRdWtLib",
+            "SCRemove",
+            "SCRepairInstall",
+            "SCThirdParty",
+            "SCVroni",
+            "SCZlib",
+            "SW_ExtractBitmap",
+            "Sample",
+            "ScCustom",
+            "ScProe2Scprt",
+            "ScRdWtLib",
+            "Script Files",
+            "SetRegistry",
+            "Sim",
+            "Sim60",
+            "Simple",
+            "Simple_kanji",
+            "SingleDoc",
+            "Splash",
+            "SrfWorks",
+            "SrfWorks60",
+            "Statechart",
+            "Step2Scprt",
+            "String Tables",
+            "SurfcamAddin",
+            "SurfcamVerify",
+            "TMCalc",
+            "TMCalcDll",
+            "TMCalcSetup",
+            "TPSmoother",
+            "TemplateConvert",
+            "TestExe",
+            "TestWrt",
+            "ToolDlgs",
+            "ToolLib",
+            "ToolpathGenerator",
+            "Unit",
+            "UserApp2",
+            "VRMLRead",
+            "VRMLX3D",
+            "VistaComposing",
+            "VistaDisplay",
+            "Voronoi",
+            "WinBitmap",
+            "WinBitmap_dll",
+            "WinDirectX",
+            "WinDirectX_dll",
+            "WinGDI",
+            "WinOpenGL",
+            "WinOpenGL_WithWorldDispList",
+            "WindowsApplication1",
+            "X3DBrowser",
+            "X3DBrowser8",
+            "X3DBrowserGLUT",
+            "ZRangeFltr",
+            "asp.filters.txt",
+            "auto_unit_test_test",
+            "bench1",
+            "bench2",
+            "bench3",
+            "bench4",
+            "boost_python",
+            "boost_test_library",
+            "cadkey2dsn60",
+            "cadl2dsn",
+            "cadl2dsn60",
+            "cam",
+            "cativ2Scprt",
+            "cativ2scprt",
+            "catv2dsn",
+            "classes",
+            "concepts",
+            "csf2dsn",
+            "demo",
+            "demo_auto_ptr",
+            "demo_exception",
+            "demo_fast_binary_archive",
+            "demo_mi",
+            "demo_pimpl",
+            "demo_plugin",
+            "demo_portable_archive",
+            "demo_shared_ptr",
+            "demo_xml",
+            "demo_xml_load",
+            "demo_xml_save",
+            "des2dsn",
+            "dfview",
+            "dig_dll",
+            "dll",
+            "dll_io",
+            "dll_io60",
+            "dsn2cadl",
+            "dsn2csf",
+            "dsn2des",
+            "dsn2dxf",
+            "dsn2fst",
+            "dsn2igs",
+            "dsn2igs60",
+            "dsn2sat",
+            "dsn2stl",
+            "dsn2vda",
+            "dxf2dsn",
+            "echoid",
+            "errors_handling_test",
+            "examples",
+            "exe2dsn",
+            "fileopsv",
+            "fontdlg",
+            "fst2dsn",
+            "igs2dsn",
+            "incmodule",
+            "invt2scprt",
+            "langs.txt",
+            "log4cxx",
+            "logging",
+            "mesh2dsn",
+            "minimal_test",
+            "minizip",
+            "mwMSimDefGui",
+            "mwMSimParamsUI",
+            "ncal2dsn",
+            "online_test",
+            "output_test_stream_test",
+            "parameterized_test_test",
+            "prg_exec_example",
+            "prg_exec_fail1",
+            "prg_exec_fail2",
+            "prg_exec_fail3",
+            "prg_exec_monitor",
+            "process_jam_log",
+            "prsd2dsn",
+            "prsd2scprt",
+            "result_report_test",
+            "s2d_v60",
+            "sclic",
+            "scproe2scprt",
+            "scsimlib",
+            "scutil",
+            "sentinel sn.txt",
+            "serialization",
+            "shortsocketserver",
+            "simplesocketserver",
+            "sis pwd.txt",
+            "spac2dsn",
+            "sproeval",
+            "static",
+            "step2scprt",
+            "stream",
+            "sup2dsn",
+            "surfcam",
+            "surfcam-alone",
+            "surfcam-alone-intel",
+            "surfcam-intelc",
+            "surfcam-msc",
+            "surfcam-msc-New5AxisBitmaps-only",
+            "surfcam-msc-icl",
+            "surfcam-msc_NoTruemill",
+            "test",
+            "test1",
+            "test2",
+            "test3",
+            "test4",
+            "test5",
+            "test6",
+            "test7",
+            "testA3ds",
+            "test_array",
+            "test_binary",
+            "test_case_template_example",
+            "test_codecvt_null",
+            "test_constructor",
+            "test_contained_class",
+            "test_cyclic_ptrs",
+            "test_delete_pointer",
+            "test_deque",
+            "test_derived",
+            "test_derived_class_ptr",
+            "test_diamond",
+            "test_exec_example",
+            "test_exec_fail1",
+            "test_exec_fail2",
+            "test_exec_fail3",
+            "test_exec_fail4",
+            "test_exec_monitor",
+            "test_exported",
+            "test_fp_comparisons",
+            "test_iterattors",
+            "test_iterattors_base64",
+            "test_level_class_info_load",
+            "test_level_class_info_save",
+            "test_level_not_serializable",
+            "test_level_object",
+            "test_level_primitive",
+            "test_list",
+            "test_list_ptrs",
+            "test_map",
+            "test_mi",
+            "test_mult_archive_types",
+            "test_multiple_ptrs",
+            "test_no_rtti",
+            "test_non_default_ctor",
+            "test_non_intrusive",
+            "test_null_ptr",
+            "test_nvp",
+            "test_optional",
+            "test_polymorphic_archive",
+            "test_private_ctor",
+            "test_recursion",
+            "test_registered",
+            "test_set",
+            "test_shared_ptr",
+            "test_simple_class",
+            "test_simple_class_ptr",
+            "test_simple_derived_class",
+            "test_smart_cast",
+            "test_split",
+            "test_static_warning",
+            "test_tools_test",
+            "test_tracking",
+            "test_traits_fail",
+            "test_traits_pass",
+            "test_unregistered",
+            "test_utf8_codecvt",
+            "test_vector",
+            "test_void_cast",
+            "testcatia",
+            "testpost",
+            "testsuite",
+            "testzlib",
+            "trnsltrs",
+            "ublas",
+            "ug2dsn",
+            "ug2dsn60",
+            "ugf2dsn",
+            "unit_test_example1",
+            "unit_test_example2",
+            "unit_test_example3",
+            "unit_test_example4",
+            "unit_test_example5",
+            "unit_test_framework",
+            "unit_test_suite_ex_test",
+            "util",
+            "v_engine",
+            "vda2dsn",
+            "vrml2x3d",
+            "vrml2x3d8",
+            "wechoid",
+            "x3d2vrml",
+            "zlibvc"
+          ]
+        }
+      ],
+      "all_projects": [
+        "2DSN",
+        "2DSN71",
+        "AcisImport",
+        "AcisImport_vc8",
+        "AllExamples",
+        "AllExamplesDll",
+        "ApiSamples",
+        "ArcFltr",
+        "AssemblyInfo",
+        "AutoSurfServices",
+        "AutoSurfServices_dll",
+        "BRepInfo",
+        "Ball3D",
+        "BoostSerializationLibrary",
+        "CatV2dsn",
+        "Copy of SrfWorks60",
+        "DD_BmpExport",
+        "DD_BmpExport_dll",
+        "DD_Dwf7Export",
+        "DD_Dwf7Export_dll",
+        "DD_Dwf7Import",
+        "DD_Dwf7Import_dll",
+        "DD_OLEItemHandler",
+        "DD_OLEItemHandler_dll",
+        "DD_PdfExport",
+        "DD_PdfExport_dll",
+        "DD_SvgExport",
+        "DD_SvgExport_dll",
+        "DMS_PSWks",
+        "DSN2DWG",
+        "DocumentInfo",
+        "DotZLib",
+        "DwgVersion",
+        "Enhancements (2).doc",
+        "ExCustObjs",
+        "ExCustObjs_dll",
+        "ExDynamicBlocks",
+        "ExDynamicBlocks_dll",
+        "ExEvalWatchers",
+        "ExEvalWatchers_dll",
+        "ExRaster",
+        "ExRasterDLL",
+        "Ex_Alloc",
+        "Ex_Alloc_dll",
+        "Exe2Dsn",
+        "Faro32",
+        "File Groups",
+        "GL",
+        "GearInc",
+        "GeomDiffSample",
+        "Geometry",
+        "GripPoints",
+        "GripPoints_dll",
+        "Gs_WinGDI",
+        "Gs_WinOpenGL",
+        "Gs_WinOpenGL_WithWorldDispList",
+        "INC2APT",
+        "InstallManager",
+        "Invt2scprt",
+        "Library",
+        "LmSim",
+        "LmTest",
+        "LogFile",
+        "Lserv9x",
+        "Lservnt",
+        "MachSimIntegration",
+        "ModelessApp",
+        "MultiModelDocumentInfo",
+        "MwVerify",
+        "NCPostDLL",
+        "NCPostDlgs",
+        "NCVerify",
+        "NcProcess",
+        "NetworkSim",
+        "New5Axis",
+        "NurbFltr",
+        "OdAveEx",
+        "OdBagFiler",
+        "OdBagFilerEx_dll",
+        "OdBagFiler_dll",
+        "OdBrEx",
+        "OdConvert14",
+        "OdCopyEx",
+        "OdCurveFunctions",
+        "OdCurveFunctions_dll",
+        "OdDwfExportEx",
+        "OdDwfImportEx",
+        "OdGetGeomEx_dll",
+        "OdPC3Read",
+        "OdReadEx",
+        "OdReadExDLL",
+        "OdSheetSet",
+        "OdVectorizeEx",
+        "OdVectorizeEx_dll",
+        "OdWriteEx",
+        "OdWriteExDll",
+        "OdWriteEx_dll",
+        "OdaMfcApp",
+        "OdaMfcAppDLL",
+        "OpenVRML",
+        "OpenVRMLzz",
+        "Options",
+        "PerfConsole",
+        "PlotSettingsValidator",
+        "PlotSettingsValidator_dll",
+        "PortHPTemplates",
+        "PostProcessor Configuration",
+        "ProgressCallback",
+        "RecomputeDimBlock",
+        "RecomputeDimBlock_dll",
+        "RegressionTestFarm",
+        "Representation",
+        "SATBrepSample",
+        "SATConverter",
+        "SATGeomTracer",
+        "SCAux",
+        "SCAux2",
+        "SCDialog",
+        "SCLic",
+        "SCMan",
+        "SCPlay",
+        "SCRDWTLIB",
+        "SCRdWtLib",
+        "SCRemove",
+        "SCRepairInstall",
+        "SCThirdParty",
+        "SCVroni",
+        "SCZlib",
+        "SW_ExtractBitmap",
+        "Sample",
+        "ScCustom",
+        "ScProe2Scprt",
+        "ScRdWtLib",
+        "Script Files",
+        "SetRegistry",
+        "Sim",
+        "Sim60",
+        "Simple",
+        "Simple_kanji",
+        "SingleDoc",
+        "Splash",
+        "SrfWorks",
+        "SrfWorks60",
+        "Statechart",
+        "Step2Scprt",
+        "String Tables",
+        "SurfcamAddin",
+        "SurfcamVerify",
+        "TMCalc",
+        "TMCalcDll",
+        "TMCalcSetup",
+        "TPSmoother",
+        "TemplateConvert",
+        "TestExe",
+        "TestWrt",
+        "ToolDlgs",
+        "ToolLib",
+        "ToolpathGenerator",
+        "Unit",
+        "UserApp2",
+        "VRMLRead",
+        "VRMLX3D",
+        "VistaComposing",
+        "VistaDisplay",
+        "Voronoi",
+        "WinBitmap",
+        "WinBitmap_dll",
+        "WinDirectX",
+        "WinDirectX_dll",
+        "WinGDI",
+        "WinOpenGL",
+        "WinOpenGL_WithWorldDispList",
+        "WindowsApplication1",
+        "X3DBrowser",
+        "X3DBrowser8",
+        "X3DBrowserGLUT",
+        "ZRangeFltr",
+        "asp.filters.txt",
+        "auto_unit_test_test",
+        "bench1",
+        "bench2",
+        "bench3",
+        "bench4",
+        "boost_python",
+        "boost_test_library",
+        "cadkey2dsn60",
+        "cadl2dsn",
+        "cadl2dsn60",
+        "cam",
+        "cativ2Scprt",
+        "cativ2scprt",
+        "catv2dsn",
+        "classes",
+        "concepts",
+        "csf2dsn",
+        "demo",
+        "demo_auto_ptr",
+        "demo_exception",
+        "demo_fast_binary_archive",
+        "demo_mi",
+        "demo_pimpl",
+        "demo_plugin",
+        "demo_portable_archive",
+        "demo_shared_ptr",
+        "demo_xml",
+        "demo_xml_load",
+        "demo_xml_save",
+        "des2dsn",
+        "dfview",
+        "dig_dll",
+        "dll",
+        "dll_io",
+        "dll_io60",
+        "dsn2cadl",
+        "dsn2csf",
+        "dsn2des",
+        "dsn2dxf",
+        "dsn2fst",
+        "dsn2igs",
+        "dsn2igs60",
+        "dsn2sat",
+        "dsn2stl",
+        "dsn2vda",
+        "dxf2dsn",
+        "echoid",
+        "errors_handling_test",
+        "examples",
+        "exe2dsn",
+        "fileopsv",
+        "fontdlg",
+        "fst2dsn",
+        "igs2dsn",
+        "incmodule",
+        "invt2scprt",
+        "langs.txt",
+        "log4cxx",
+        "logging",
+        "mesh2dsn",
+        "minimal_test",
+        "minizip",
+        "mwMSimDefGui",
+        "mwMSimParamsUI",
+        "ncal2dsn",
+        "online_test",
+        "output_test_stream_test",
+        "parameterized_test_test",
+        "prg_exec_example",
+        "prg_exec_fail1",
+        "prg_exec_fail2",
+        "prg_exec_fail3",
+        "prg_exec_monitor",
+        "process_jam_log",
+        "prsd2dsn",
+        "prsd2scprt",
+        "result_report_test",
+        "s2d_v60",
+        "sclic",
+        "scproe2scprt",
+        "scsimlib",
+        "scutil",
+        "sentinel sn.txt",
+        "serialization",
+        "shortsocketserver",
+        "simplesocketserver",
+        "sis pwd.txt",
+        "spac2dsn",
+        "sproeval",
+        "static",
+        "step2scprt",
+        "stream",
+        "sup2dsn",
+        "surfcam",
+        "surfcam-alone",
+        "surfcam-alone-intel",
+        "surfcam-intelc",
+        "surfcam-msc",
+        "surfcam-msc-New5AxisBitmaps-only",
+        "surfcam-msc-icl",
+        "surfcam-msc_NoTruemill",
+        "test",
+        "test1",
+        "test2",
+        "test3",
+        "test4",
+        "test5",
+        "test6",
+        "test7",
+        "testA3ds",
+        "test_array",
+        "test_binary",
+        "test_case_template_example",
+        "test_codecvt_null",
+        "test_constructor",
+        "test_contained_class",
+        "test_cyclic_ptrs",
+        "test_delete_pointer",
+        "test_deque",
+        "test_derived",
+        "test_derived_class_ptr",
+        "test_diamond",
+        "test_exec_example",
+        "test_exec_fail1",
+        "test_exec_fail2",
+        "test_exec_fail3",
+        "test_exec_fail4",
+        "test_exec_monitor",
+        "test_exported",
+        "test_fp_comparisons",
+        "test_iterattors",
+        "test_iterattors_base64",
+        "test_level_class_info_load",
+        "test_level_class_info_save",
+        "test_level_not_serializable",
+        "test_level_object",
+        "test_level_primitive",
+        "test_list",
+        "test_list_ptrs",
+        "test_map",
+        "test_mi",
+        "test_mult_archive_types",
+        "test_multiple_ptrs",
+        "test_no_rtti",
+        "test_non_default_ctor",
+        "test_non_intrusive",
+        "test_null_ptr",
+        "test_nvp",
+        "test_optional",
+        "test_polymorphic_archive",
+        "test_private_ctor",
+        "test_recursion",
+        "test_registered",
+        "test_set",
+        "test_shared_ptr",
+        "test_simple_class",
+        "test_simple_class_ptr",
+        "test_simple_derived_class",
+        "test_smart_cast",
+        "test_split",
+        "test_static_warning",
+        "test_tools_test",
+        "test_tracking",
+        "test_traits_fail",
+        "test_traits_pass",
+        "test_unregistered",
+        "test_utf8_codecvt",
+        "test_vector",
+        "test_void_cast",
+        "testcatia",
+        "testpost",
+        "testsuite",
+        "testzlib",
+        "trnsltrs",
+        "ublas",
+        "ug2dsn",
+        "ug2dsn60",
+        "ugf2dsn",
+        "unit_test_example1",
+        "unit_test_example2",
+        "unit_test_example3",
+        "unit_test_example4",
+        "unit_test_example5",
+        "unit_test_framework",
+        "unit_test_suite_ex_test",
+        "util",
+        "v_engine",
+        "vda2dsn",
+        "vrml2x3d",
+        "vrml2x3d8",
+        "wechoid",
+        "x3d2vrml",
+        "zlibvc"
+      ]
+    },
+    "motorola": {
+      "slug": "motorola",
+      "folders": [
+        "22 Motorola"
+      ],
+      "archive_entries": [
+        {
+          "folder": "22 Motorola",
+          "root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/22 Motorola",
+          "exists": true,
+          "areas": [
+            {
+              "name": "(root files)",
+              "projects": [
+                "DVS053.pdf",
+                "DVS157.pdf",
+                "EIA-608b.pdf"
+              ],
+              "subdirs": []
+            },
+            {
+              "name": "ocap",
+              "projects": [
+                "component",
+                "tools"
+              ],
+              "subdirs": [
+                "component",
+                "tools"
+              ]
+            },
+            {
+              "name": "refs",
+              "projects": [],
+              "subdirs": []
+            },
+            {
+              "name": "streams",
+              "projects": [],
+              "subdirs": []
+            }
+          ],
+          "all_projects": [
+            "DVS053.pdf",
+            "DVS157.pdf",
+            "EIA-608b.pdf",
+            "component",
+            "tools"
+          ]
+        }
+      ],
+      "all_projects": [
+        "DVS053.pdf",
+        "DVS157.pdf",
+        "EIA-608b.pdf",
+        "component",
+        "tools"
+      ]
+    },
+    "yahoo": {
+      "slug": "yahoo",
+      "folders": [
+        "23 Yahoo"
+      ],
+      "archive_entries": [
+        {
+          "folder": "23 Yahoo",
+          "root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/23 Yahoo",
+          "exists": true,
+          "areas": [
+            {
+              "name": "search",
+              "projects": [
+                "alf",
+                "clusterConfig-bling",
+                "cluster_mgmt",
+                "common",
+                "contrib",
+                "manifest",
+                "memtrack",
+                "nbproject",
+                "picore",
+                "productionConfigs",
+                "releng",
+                "secore",
+                "sqa",
+                "tools"
+              ],
+              "subdirs": [
+                "alf",
+                "clusterConfig-bling",
+                "cluster_mgmt",
+                "common",
+                "contrib",
+                "manifest",
+                "memtrack",
+                "nbproject",
+                "picore",
+                "productionConfigs",
+                "releng",
+                "secore"
+              ]
+            }
+          ],
+          "all_projects": [
+            "alf",
+            "clusterConfig-bling",
+            "cluster_mgmt",
+            "common",
+            "contrib",
+            "manifest",
+            "memtrack",
+            "nbproject",
+            "picore",
+            "productionConfigs",
+            "releng",
+            "secore",
+            "sqa",
+            "tools"
+          ]
+        }
+      ],
+      "all_projects": [
+        "alf",
+        "clusterConfig-bling",
+        "cluster_mgmt",
+        "common",
+        "contrib",
+        "manifest",
+        "memtrack",
+        "nbproject",
+        "picore",
+        "productionConfigs",
+        "releng",
+        "secore",
+        "sqa",
+        "tools"
+      ]
+    },
+    "jakeknows": {
+      "slug": "jakeknows",
+      "folders": [
+        "24 JakeKnows",
+        "work"
+      ],
+      "archive_entries": [
+        {
+          "folder": "24 JakeKnows",
+          "root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/24 JakeKnows",
+          "exists": true,
+          "areas": [
+            {
+              "name": "(root files)",
+              "projects": [
+                "Code Generator Architecture and Features.docx",
+                "JK-Businesscards_rd4-1.pdf",
+                "Schrenk_edits_20121221_Code Generator Architecture and Features.pdf",
+                "Web Service Architecture.docx"
+              ],
+              "subdirs": []
+            },
+            {
+              "name": "Documents",
+              "projects": [
+                "DOC"
+              ],
+              "subdirs": [
+                "DOC"
+              ]
+            },
+            {
+              "name": "JakeKnows",
+              "projects": [
+                "HostingASMX",
+                "JakeKnowsCodeGen",
+                "JakeKnowsDataSP",
+                "JakeKnowsEngineComponent",
+                "JakeKnowsEngineServices",
+                "JakeKnowsEngineServices2012",
+                "JakeKnowsLibrary",
+                "JakeKnowsTask",
+                "JakeKnowsTaskServices",
+                "JakeKnowsUtilities",
+                "SimpleHost",
+                "WindowsServiceWCF",
+                "jakeTask",
+                "testCompression"
+              ],
+              "subdirs": [
+                "DLL",
+                "JakeKnowsCodeGen",
+                "JakeKnowsCodeGenOrig",
+                "JakeKnowsComponent",
+                "JakeKnowsDataSP",
+                "JakeKnowsEngineComponent",
+                "JakeKnowsEngineServices",
+                "JakeKnowsEngineServicesClientTester",
+                "JakeKnowsEngineServicesTester",
+                "JakeKnowsImportDataFromHeadWidgetMain",
+                "JakeKnowsLibrary",
+                "JakeKnowsTask"
+              ]
+            },
+            {
+              "name": "SonyTaleo",
+              "projects": [
+                "JakeKnowsSonyTaleo"
+              ],
+              "subdirs": [
+                "DLL",
+                "JakeKnowsSonyTaleoComponents",
+                "JakeKnowsSonyTaleoEngine",
+                "JakeKnowsSonyTaleoSetup",
+                "JakeKnowsSonyTaleoTester",
+                "JakeKnowsSonyTaleoWebServices",
+                "JakeKnowsSonyTaleoWebSetup",
+                "sony"
+              ]
+            },
+            {
+              "name": "whitePapers",
+              "projects": [],
+              "subdirs": []
+            },
+            {
+              "name": "work",
+              "projects": [
+                "HeadWidget",
+                "JakeWebService",
+                "jakeCommonLibrary",
+                "jakeDigestNotification",
+                "jakeEmailNotificationService",
+                "jakeGatewayServiceDR",
+                "jakeGatewayServiceQI",
+                "jakeNewContactMerge",
+                "jakeNotificationService",
+                "jakeServerMaintenance",
+                "jakeUpdateContactCheck",
+                "jakeUpdateTargetingCheck",
+                "jakeWebService"
+              ],
+              "subdirs": [
+                "VJIL",
+                "autobuild",
+                "autoincr",
+                "headwidget",
+                "version.jakeknows.com"
+              ]
+            }
+          ],
+          "all_projects": [
+            "Code Generator Architecture and Features.docx",
+            "DOC",
+            "HeadWidget",
+            "HostingASMX",
+            "JK-Businesscards_rd4-1.pdf",
+            "JakeKnowsCodeGen",
+            "JakeKnowsDataSP",
+            "JakeKnowsEngineComponent",
+            "JakeKnowsEngineServices",
+            "JakeKnowsEngineServices2012",
+            "JakeKnowsLibrary",
+            "JakeKnowsSonyTaleo",
+            "JakeKnowsTask",
+            "JakeKnowsTaskServices",
+            "JakeKnowsUtilities",
+            "JakeWebService",
+            "Schrenk_edits_20121221_Code Generator Architecture and Features.pdf",
+            "SimpleHost",
+            "Web Service Architecture.docx",
+            "WindowsServiceWCF",
+            "jakeCommonLibrary",
+            "jakeDigestNotification",
+            "jakeEmailNotificationService",
+            "jakeGatewayServiceDR",
+            "jakeGatewayServiceQI",
+            "jakeNewContactMerge",
+            "jakeNotificationService",
+            "jakeServerMaintenance",
+            "jakeTask",
+            "jakeUpdateContactCheck",
+            "jakeUpdateTargetingCheck",
+            "jakeWebService",
+            "testCompression"
+          ]
+        },
+        {
+          "folder": "work",
+          "root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/work",
+          "exists": true,
+          "areas": [
+            {
+              "name": "32 Chase",
+              "projects": [
+                "GameOfLife",
+                "TODO"
+              ],
+              "subdirs": [
+                "GameOfLife",
+                "TODO"
+              ]
+            },
+            {
+              "name": "33 HiveMapper",
+              "projects": [
+                "HiveMapper",
+                "TODO"
+              ],
+              "subdirs": [
+                "HiveMapper",
+                "TODO"
+              ]
+            },
+            {
+              "name": "JakeKnows",
+              "projects": [
+                "HeadWidget",
+                "JakeKnowsCodeGen",
+                "JakeKnowsEngineComponent",
+                "JakeKnowsEngineServices",
+                "JakeKnowsEngineServices2012",
+                "JakeKnowsSonyTaleo",
+                "JakeKnowsTask",
+                "JakeKnowsTaskServices",
+                "JakeKnowsUtilities",
+                "JakeWebService",
+                "jakeCommonLibrary",
+                "jakeDigestNotification",
+                "jakeEmailNotificationService",
+                "jakeGatewayServiceDR",
+                "jakeGatewayServiceQI",
+                "jakeNewContactMerge",
+                "jakeNotificationService",
+                "jakeServerMaintenance",
+                "jakeUpdateContactCheck",
+                "jakeUpdateTargetingCheck",
+                "jakeWebService"
+              ],
+              "subdirs": [
+                "labumpers",
+                "work"
+              ]
+            },
+            {
+              "name": "JakeKnowsCodeGen",
+              "projects": [
+                "GenCode",
+                "Properties",
+                "frmJakeKnowsCodeGen",
+                "frmJakeKnowsCodeGen.Designer"
+              ],
+              "subdirs": [
+                "GenCode",
+                "Properties"
+              ]
+            },
+            {
+              "name": "JakeKnowsComponent",
+              "projects": [
+                "Database",
+                "InputValidator",
+                "Logging",
+                "Objects",
+                "Operations",
+                "RingBufferDictionary",
+                "Utility",
+                "ValidateInput",
+                "WSCall"
+              ],
+              "subdirs": [
+                "Database",
+                "Objects",
+                "Operations"
+              ]
+            },
+            {
+              "name": "JakeKnowsEngineServices",
+              "projects": [],
+              "subdirs": []
+            },
+            {
+              "name": "JakeKnowsWebService",
+              "projects": [
+                "Helpers",
+                "JakeKnowsWebService.asmx"
+              ],
+              "subdirs": []
+            },
+            {
+              "name": "TODO",
+              "projects": [
+                "doc",
+                "pic"
+              ],
+              "subdirs": [
+                "doc",
+                "pic"
+              ]
+            }
+          ],
+          "all_projects": [
+            "Database",
+            "GameOfLife",
+            "GenCode",
+            "HeadWidget",
+            "Helpers",
+            "HiveMapper",
+            "InputValidator",
+            "JakeKnowsCodeGen",
+            "JakeKnowsEngineComponent",
+            "JakeKnowsEngineServices",
+            "JakeKnowsEngineServices2012",
+            "JakeKnowsSonyTaleo",
+            "JakeKnowsTask",
+            "JakeKnowsTaskServices",
+            "JakeKnowsUtilities",
+            "JakeKnowsWebService.asmx",
+            "JakeWebService",
+            "Logging",
+            "Objects",
+            "Operations",
+            "Properties",
+            "RingBufferDictionary",
+            "TODO",
+            "Utility",
+            "ValidateInput",
+            "WSCall",
+            "doc",
+            "frmJakeKnowsCodeGen",
+            "frmJakeKnowsCodeGen.Designer",
+            "jakeCommonLibrary",
+            "jakeDigestNotification",
+            "jakeEmailNotificationService",
+            "jakeGatewayServiceDR",
+            "jakeGatewayServiceQI",
+            "jakeNewContactMerge",
+            "jakeNotificationService",
+            "jakeServerMaintenance",
+            "jakeUpdateContactCheck",
+            "jakeUpdateTargetingCheck",
+            "jakeWebService",
+            "pic"
+          ]
+        }
+      ],
+      "all_projects": [
+        "Code Generator Architecture and Features.docx",
+        "DOC",
+        "Database",
+        "GameOfLife",
+        "GenCode",
+        "HeadWidget",
+        "Helpers",
+        "HiveMapper",
+        "HostingASMX",
+        "InputValidator",
+        "JK-Businesscards_rd4-1.pdf",
+        "JakeKnowsCodeGen",
+        "JakeKnowsDataSP",
+        "JakeKnowsEngineComponent",
+        "JakeKnowsEngineServices",
+        "JakeKnowsEngineServices2012",
+        "JakeKnowsLibrary",
+        "JakeKnowsSonyTaleo",
+        "JakeKnowsTask",
+        "JakeKnowsTaskServices",
+        "JakeKnowsUtilities",
+        "JakeKnowsWebService.asmx",
+        "JakeWebService",
+        "Logging",
+        "Objects",
+        "Operations",
+        "Properties",
+        "RingBufferDictionary",
+        "Schrenk_edits_20121221_Code Generator Architecture and Features.pdf",
+        "SimpleHost",
+        "TODO",
+        "Utility",
+        "ValidateInput",
+        "WSCall",
+        "Web Service Architecture.docx",
+        "WindowsServiceWCF",
+        "doc",
+        "frmJakeKnowsCodeGen",
+        "frmJakeKnowsCodeGen.Designer",
+        "jakeCommonLibrary",
+        "jakeDigestNotification",
+        "jakeEmailNotificationService",
+        "jakeGatewayServiceDR",
+        "jakeGatewayServiceQI",
+        "jakeNewContactMerge",
+        "jakeNotificationService",
+        "jakeServerMaintenance",
+        "jakeTask",
+        "jakeUpdateContactCheck",
+        "jakeUpdateTargetingCheck",
+        "jakeWebService",
+        "pic",
+        "testCompression"
+      ]
+    },
+    "opentv": {
+      "slug": "opentv",
+      "folders": [
+        "25 OpenTV"
+      ],
+      "archive_entries": [
+        {
+          "folder": "25 OpenTV",
+          "root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/25 OpenTV",
+          "exists": true,
+          "areas": [
+            {
+              "name": "DynSchLib",
+              "projects": [
+                "DynSchLib"
+              ],
+              "subdirs": [
+                "Core2"
+              ]
+            },
+            {
+              "name": "bk",
+              "projects": [
+                "BLLService",
+                "Group",
+                "GroupData",
+                "GroupFSM",
+                "GroupHelpers",
+                "GroupOrbit",
+                "GroupsScheduler",
+                "GroupsSet",
+                "PriorityQueue",
+                "SchedulingCore2",
+                "UnplacedBreakItems"
+              ],
+              "subdirs": []
+            }
+          ],
+          "all_projects": [
+            "BLLService",
+            "DynSchLib",
+            "Group",
+            "GroupData",
+            "GroupFSM",
+            "GroupHelpers",
+            "GroupOrbit",
+            "GroupsScheduler",
+            "GroupsSet",
+            "PriorityQueue",
+            "SchedulingCore2",
+            "UnplacedBreakItems"
+          ]
+        }
+      ],
+      "all_projects": [
+        "BLLService",
+        "DynSchLib",
+        "Group",
+        "GroupData",
+        "GroupFSM",
+        "GroupHelpers",
+        "GroupOrbit",
+        "GroupsScheduler",
+        "GroupsSet",
+        "PriorityQueue",
+        "SchedulingCore2",
+        "UnplacedBreakItems"
+      ]
+    },
+    "google": {
+      "slug": "google",
+      "folders": [
+        "26 Google"
+      ],
+      "archive_entries": [
+        {
+          "folder": "26 Google",
+          "root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/26 Google",
+          "exists": true,
+          "areas": [
+            {
+              "name": "android",
+              "projects": [
+                "AndroidScreenGenerator",
+                "ewBabel"
+              ],
+              "subdirs": [
+                "AndroidScreenGenerator",
+                "ewBabel"
+              ]
+            },
+            {
+              "name": "antaeus",
+              "projects": [
+                "Antaeus",
+                "gwt",
+                "src"
+              ],
+              "subdirs": [
+                "Antaeus",
+                "gwt",
+                "src"
+              ]
+            },
+            {
+              "name": "avik",
+              "projects": [
+                "Documents"
+              ],
+              "subdirs": [
+                "Documents"
+              ]
+            },
+            {
+              "name": "babel",
+              "projects": [
+                "AndroidScreenGenerator",
+                "Antaeus",
+                "babel",
+                "babel9newArch",
+                "dart_antaeus_v1_api_client",
+                "discovery_api_dart_client_generator-master",
+                "ewBabel"
+              ],
+              "subdirs": [
+                "AndroidScreenGenerator",
+                "Antaeus",
+                "babel",
+                "babel9newArch",
+                "dart_antaeus_v1_api_client",
+                "discovery_api_dart_client_generator-master",
+                "ewBabel"
+              ]
+            },
+            {
+              "name": "dart",
+              "projects": [
+                "babel",
+                "babel 1",
+                "babel9newArch",
+                "dart",
+                "dart_antaeus_v1_api_client",
+                "discovery_api_dart_client_generator-master"
+              ],
+              "subdirs": [
+                "babel",
+                "babel 1",
+                "babel9newArch",
+                "dart",
+                "dart_antaeus_v1_api_client",
+                "discovery_api_dart_client_generator-master"
+              ]
+            },
+            {
+              "name": "doc",
+              "projects": [
+                "docs"
+              ],
+              "subdirs": [
+                "docs"
+              ]
+            },
+            {
+              "name": "earth",
+              "projects": [],
+              "subdirs": []
+            },
+            {
+              "name": "info",
+              "projects": [],
+              "subdirs": []
+            },
+            {
+              "name": "other",
+              "projects": [
+                "EmployeeAdmin",
+                "EmployeeAdminWithGXT",
+                "GAEOAuthExample",
+                "MailWithMvp4g",
+                "WBPro_v1.6.0_UpdateSite_for_Eclipse4.3",
+                "gwt-advanced-login-master",
+                "gwtcx",
+                "gwtp-samples",
+                "gwtp-separate-0.7",
+                "mpv4g",
+                "nandroid-2.0"
+              ],
+              "subdirs": [
+                "EmployeeAdmin",
+                "EmployeeAdminWithGXT",
+                "GAEOAuthExample",
+                "MailWithMvp4g",
+                "WBPro_v1.6.0_UpdateSite_for_Eclipse4.3",
+                "gwt-advanced-login-master",
+                "gwtcx",
+                "gwtp-samples",
+                "gwtp-separate-0.7",
+                "mpv4g",
+                "nandroid-2.0"
+              ]
+            },
+            {
+              "name": "pic",
+              "projects": [],
+              "subdirs": []
+            }
+          ],
+          "all_projects": [
+            "AndroidScreenGenerator",
+            "Antaeus",
+            "Documents",
+            "EmployeeAdmin",
+            "EmployeeAdminWithGXT",
+            "GAEOAuthExample",
+            "MailWithMvp4g",
+            "WBPro_v1.6.0_UpdateSite_for_Eclipse4.3",
+            "babel",
+            "babel 1",
+            "babel9newArch",
+            "dart",
+            "dart_antaeus_v1_api_client",
+            "discovery_api_dart_client_generator-master",
+            "docs",
+            "ewBabel",
+            "gwt",
+            "gwt-advanced-login-master",
+            "gwtcx",
+            "gwtp-samples",
+            "gwtp-separate-0.7",
+            "mpv4g",
+            "nandroid-2.0",
+            "src"
+          ]
+        }
+      ],
+      "all_projects": [
+        "AndroidScreenGenerator",
+        "Antaeus",
+        "Documents",
+        "EmployeeAdmin",
+        "EmployeeAdminWithGXT",
+        "GAEOAuthExample",
+        "MailWithMvp4g",
+        "WBPro_v1.6.0_UpdateSite_for_Eclipse4.3",
+        "babel",
+        "babel 1",
+        "babel9newArch",
+        "dart",
+        "dart_antaeus_v1_api_client",
+        "discovery_api_dart_client_generator-master",
+        "docs",
+        "ewBabel",
+        "gwt",
+        "gwt-advanced-login-master",
+        "gwtcx",
+        "gwtp-samples",
+        "gwtp-separate-0.7",
+        "mpv4g",
+        "nandroid-2.0",
+        "src"
+      ]
+    },
+    "vmware": {
+      "slug": "vmware",
+      "folders": [
+        "27 Vmware"
+      ],
+      "archive_entries": [
+        {
+          "folder": "27 Vmware",
+          "root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/27 Vmware",
+          "exists": true,
+          "areas": [
+            {
+              "name": "(root files)",
+              "projects": [
+                "GeminiFramework.doc",
+                "test_arch.txt"
+              ],
+              "subdirs": []
+            },
+            {
+              "name": "Python_With_Lib",
+              "projects": [
+                "Python",
+                "SUITE_HbrApi",
+                "ServerObjectsDataTypes",
+                "ServerObjectsDataTypesFaults",
+                "ServerObjectsEnums",
+                "ServerObjectsManagedTypes"
+              ],
+              "subdirs": [
+                "Python",
+                "SUITE_HbrApi"
+              ]
+            },
+            {
+              "name": "gemini",
+              "projects": [
+                "Python_With_Lib",
+                "data",
+                "g",
+                "gemini",
+                "lib",
+                "tests"
+              ],
+              "subdirs": [
+                "Python_With_Lib",
+                "data",
+                "g",
+                "gemini",
+                "lib",
+                "tests"
+              ]
+            },
+            {
+              "name": "gemini 1",
+              "projects": [
+                ".idea",
+                ".settings",
+                "BAK",
+                "__main__",
+                "lib",
+                "run",
+                "sitecustomize",
+                "suite",
+                "tests",
+                "z"
+              ],
+              "subdirs": [
+                ".idea",
+                ".settings",
+                "BAK",
+                "lib",
+                "tests"
+              ]
+            },
+            {
+              "name": "gemini2",
+              "projects": [
+                "bak",
+                "data",
+                "lib",
+                "tests"
+              ],
+              "subdirs": [
+                "bak",
+                "data",
+                "lib",
+                "tests"
+              ]
+            }
+          ],
+          "all_projects": [
+            ".idea",
+            ".settings",
+            "BAK",
+            "GeminiFramework.doc",
+            "Python",
+            "Python_With_Lib",
+            "SUITE_HbrApi",
+            "ServerObjectsDataTypes",
+            "ServerObjectsDataTypesFaults",
+            "ServerObjectsEnums",
+            "ServerObjectsManagedTypes",
+            "__main__",
+            "bak",
+            "data",
+            "g",
+            "gemini",
+            "lib",
+            "run",
+            "sitecustomize",
+            "suite",
+            "test_arch.txt",
+            "tests",
+            "z"
+          ]
+        }
+      ],
+      "all_projects": [
+        ".idea",
+        ".settings",
+        "BAK",
+        "GeminiFramework.doc",
+        "Python",
+        "Python_With_Lib",
+        "SUITE_HbrApi",
+        "ServerObjectsDataTypes",
+        "ServerObjectsDataTypesFaults",
+        "ServerObjectsEnums",
+        "ServerObjectsManagedTypes",
+        "__main__",
+        "bak",
+        "data",
+        "g",
+        "gemini",
+        "lib",
+        "run",
+        "sitecustomize",
+        "suite",
+        "test_arch.txt",
+        "tests",
+        "z"
+      ]
+    },
+    "knurld": {
+      "slug": "knurld",
+      "folders": [
+        "28 Knurld"
+      ],
+      "archive_entries": [
+        {
+          "folder": "28 Knurld",
+          "root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/28 Knurld",
+          "exists": true,
+          "areas": [
+            {
+              "name": "knurld",
+              "projects": [
+                "viva",
+                "viva_api"
+              ],
+              "subdirs": [
+                "viva",
+                "viva_api"
+              ]
+            },
+            {
+              "name": "work",
+              "projects": [
+                "flask-inputs",
+                "pjsuaBAK",
+                "pjsuaNEW"
+              ],
+              "subdirs": [
+                "flask-inputs",
+                "pjsuaBAK",
+                "pjsuaNEW"
+              ]
+            }
+          ],
+          "all_projects": [
+            "flask-inputs",
+            "pjsuaBAK",
+            "pjsuaNEW",
+            "viva",
+            "viva_api"
+          ]
+        }
+      ],
+      "all_projects": [
+        "flask-inputs",
+        "pjsuaBAK",
+        "pjsuaNEW",
+        "viva",
+        "viva_api"
+      ]
+    },
+    "butterfleye": {
+      "slug": "butterfleye",
+      "folders": [
+        "29 Butterfleye"
+      ],
+      "archive_entries": [
+        {
+          "folder": "29 Butterfleye",
+          "root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/29 Butterfleye",
+          "exists": true,
+          "areas": [
+            {
+              "name": "(root files)",
+              "projects": [
+                "B002-ButtefleyeBackendTechnology.docx",
+                "ButterfleyeTimeline.docx",
+                "System Setup and Installation Procedures.docx"
+              ],
+              "subdirs": []
+            },
+            {
+              "name": "2868",
+              "projects": [
+                "628"
+              ],
+              "subdirs": [
+                "628"
+              ]
+            },
+            {
+              "name": "Architecture",
+              "projects": [],
+              "subdirs": []
+            },
+            {
+              "name": "Doc",
+              "projects": [],
+              "subdirs": []
+            },
+            {
+              "name": "butterfleye",
+              "projects": [
+                ".settings",
+                "butterfleye-cloud",
+                "live555itk"
+              ],
+              "subdirs": [
+                ".settings",
+                "butterfleye-cloud",
+                "live555itk"
+              ]
+            }
+          ],
+          "all_projects": [
+            ".settings",
+            "628",
+            "B002-ButtefleyeBackendTechnology.docx",
+            "ButterfleyeTimeline.docx",
+            "System Setup and Installation Procedures.docx",
+            "butterfleye-cloud",
+            "live555itk"
+          ]
+        }
+      ],
+      "all_projects": [
+        ".settings",
+        "628",
+        "B002-ButtefleyeBackendTechnology.docx",
+        "ButterfleyeTimeline.docx",
+        "System Setup and Installation Procedures.docx",
+        "butterfleye-cloud",
+        "live555itk"
+      ]
+    },
+    "thuuz": {
+      "slug": "thuuz",
+      "folders": [
+        "30 Thuuz"
+      ],
+      "archive_entries": [
+        {
+          "folder": "30 Thuuz",
+          "root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/30 Thuuz",
+          "exists": true,
+          "areas": [
+            {
+              "name": "(root files)",
+              "projects": [
+                "callsigns_server.py",
+                "callsigns_sync_s3.py"
+              ],
+              "subdirs": []
+            },
+            {
+              "name": "test",
+              "projects": [
+                "gets3",
+                "puts3"
+              ],
+              "subdirs": []
+            }
+          ],
+          "all_projects": [
+            "callsigns_server.py",
+            "callsigns_sync_s3.py",
+            "gets3",
+            "puts3"
+          ]
+        }
+      ],
+      "all_projects": [
+        "callsigns_server.py",
+        "callsigns_sync_s3.py",
+        "gets3",
+        "puts3"
+      ]
+    },
+    "chase": {
+      "slug": "chase",
+      "folders": [
+        "32 Chase"
+      ],
+      "archive_entries": [
+        {
+          "folder": "32 Chase",
+          "root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/32 Chase",
+          "exists": false,
+          "areas": [],
+          "all_projects": []
+        }
+      ],
+      "all_projects": []
+    },
+    "hivemapper": {
+      "slug": "hivemapper",
+      "folders": [
+        "33 HiveMapper"
+      ],
+      "archive_entries": [
+        {
+          "folder": "33 HiveMapper",
+          "root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/33 HiveMapper",
+          "exists": false,
+          "areas": [],
+          "all_projects": []
+        }
+      ],
+      "all_projects": []
+    },
+    "greenleaf": {
+      "slug": "greenleaf",
+      "folders": [
+        "WEBSITE"
+      ],
+      "archive_entries": [
+        {
+          "folder": "WEBSITE",
+          "root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development/WEBSITE",
+          "exists": true,
+          "areas": [
+            {
+              "name": "GreenLeaf",
+              "projects": [
+                "GREEN LEAF WEB"
+              ],
+              "subdirs": [
+                "GREEN LEAF WEB"
+              ]
+            },
+            {
+              "name": "TODO",
+              "projects": [
+                "pic"
+              ],
+              "subdirs": [
+                "pic"
+              ]
+            }
+          ],
+          "all_projects": [
+            "GREEN LEAF WEB",
+            "pic"
+          ]
+        }
+      ],
+      "all_projects": [
+        "GREEN LEAF WEB",
+        "pic"
+      ]
+    }
+  }
+}

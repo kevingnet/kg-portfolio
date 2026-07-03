@@ -1,0 +1,32 @@
+{
+  "description": "Carousel logo order oldest \u2192 newest (left to right). Auto-synced from portfolio grid order on each build.",
+  "order": [
+    "lcs",
+    "frys",
+    "access",
+    "electrosonic",
+    "disney",
+    "woodtech",
+    "posdev",
+    "voltdelta",
+    "audiotelco",
+    "hms",
+    "guidance",
+    "directv",
+    "spirent",
+    "surfware",
+    "motorola",
+    "yahoo",
+    "jakeknows",
+    "hpe",
+    "butterfleye",
+    "knurld",
+    "thuuz",
+    "veritas",
+    "vmware",
+    "meta",
+    "google",
+    "leidos",
+    "mafroda"
+  ]
+}

@@ -22,9 +22,14 @@ EXTRA_PATHS: dict[str, list[str]] = {
 
 # Resume correlation (NOT added to resume — portfolio tagging only)
 IN_OLD_RESUME = {
-    "access", "bumpershop", "disney", "electrosonic", "voltdelta", "posdev",
-    "audiotelco", "woodtech", "plastering", "frys", "lcs",
+    "access", "disney", "electrosonic", "voltdelta", "posdev",
+    "audiotelco", "woodtech", "frys", "lcs",
 }
+
+EXCLUDED_SLUGS = frozenset({
+    "pleiades", "nokio", "enigma", "plastering",
+    "bumpershop", "labumpers", "fotografia", "puntabanda",
+})
 IN_CURRENT_RESUME = {
     "mafroda", "leidos", "google", "directv", "vmware", "jakeknows", "disney",
     "electrosonic", "voltdelta", "hms", "surfware", "motorola", "opentv", "spirent",
@@ -215,9 +220,6 @@ RESUME_ONLY: list[dict] = [
     {"slug": "woodtech", "name": "Wood Technologies", "logo": "woodtech", "ext": "svg",
      "desc": "NT/Exchange, BBS utilities, Netscape server, executive MIS databases.",
      "skills": ["NT", "Exchange", "BBS", "SQL", "Netscape"]},
-    {"slug": "plastering", "name": "California Plastering", "logo": "plastering", "ext": "svg",
-     "desc": "Contractor accounting database — payroll, invoicing, customer tracking.",
-     "skills": ["MS Access", "Accounting", "Payroll", "MIS"]},
     {"slug": "frys", "name": "Fry's Electronics", "logo": "frys", "ext": "svg",
      "desc": "Retail software sales, demo systems, PC technical support.",
      "skills": ["PC Support", "Retail", "Diagnostics", "Sales"]},
@@ -230,9 +232,9 @@ RESUME_ONLY: list[dict] = [
 PRIORITY_SLUGS = [
     "mafroda", "leidos", "google", "meta", "vmware",
     "veritas", "thuuz", "knurld", "butterfleye", "hpe", "jakeknows", "yahoo", "motorola", "surfware", "spirent", "directv",
-    "guidance", "hms", "puntabanda", "enigma", "pleiades", "nokio", "audiotelco", "fotografia",
-    "voltdelta", "posdev", "woodtech", "disney", "electrosonic", "labumpers", "bumpershop",
-    "access", "plastering", "frys", "lcs",
+    "guidance", "hms", "audiotelco",
+    "voltdelta", "posdev", "woodtech", "disney", "electrosonic",
+    "access", "frys", "lcs",
     "hivemapper", "chase", "greenleaf",
 ]
 
@@ -324,6 +326,8 @@ def main() -> None:
 
     for folder_name, meta in sorted(FOLDER_META.items(), key=lambda x: folder_sort_key(x[0])):
         slug = meta["slug"]
+        if slug in EXCLUDED_SLUGS:
+            continue
         slug_to_folders.setdefault(slug, []).append(folder_name)
 
     for slug, folders in slug_to_folders.items():
@@ -335,7 +339,7 @@ def main() -> None:
     dev_cards: dict[str, dict] = {}
     for folder_name, meta in FOLDER_META.items():
         slug = meta["slug"]
-        if slug in dev_cards:
+        if slug in EXCLUDED_SLUGS or slug in dev_cards:
             continue
         card = {
             "slug": slug,
@@ -355,9 +359,9 @@ def main() -> None:
     resume_cards = {e["slug"]: {**e, "has_archive": False, "portfolio_only": False,
                                  "in_old_resume": e["slug"] in IN_OLD_RESUME,
                                  "in_current_resume": e["slug"] in IN_CURRENT_RESUME}
-                    for e in RESUME_ONLY}
+                    for e in RESUME_ONLY if e["slug"] not in EXCLUDED_SLUGS}
 
-    all_slugs = set(dev_cards) | set(resume_cards)
+    all_slugs = (set(dev_cards) | set(resume_cards)) - EXCLUDED_SLUGS
     ordered = [s for s in PRIORITY_SLUGS if s in all_slugs]
     ordered += sorted(all_slugs - set(ordered))
 
