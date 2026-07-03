@@ -216,7 +216,7 @@ RESUME_ONLY: list[dict] = [
      "skills": ["Python", "Perl", "OSCAP", "Wireless", "Security"]},
     {"slug": "guidance", "name": "Guidance Software", "logo": "guidance", "ext": "jpeg",
      "desc": "Digital forensics — Symantec Ghost format reverse engineering, Win32 disk imaging.",
-     "skills": ["C++", "Forensics", "IDA Pro", "Win32", "Reverse Engineering"]},
+     "skills": ["C++", "Forensics", "IDA Pro", "Win32", "Reverse Engineering", "Image Processing", "Visual Studio", "WinDbg", "DDK", "SoftICE"]},
     {"slug": "woodtech", "name": "Wood Technologies", "logo": "woodtech", "ext": "svg",
      "desc": "NT/Exchange, BBS utilities, Netscape server, executive MIS databases.",
      "skills": ["NT", "Exchange", "BBS", "SQL", "Netscape"]},

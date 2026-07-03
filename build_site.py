@@ -1388,6 +1388,18 @@ PROJECTS = {
 <p>Developed tools and scripts including an input validation library which uses regular expressions and is assembly optimized for speed, including several automatic features freeing developers from most of the responsibility of input validation.</p>
 <p>Developed interfaces to this library for Java, C and Perl in a Linux environment.</p>""",
     },
+    "guidance": {
+        "title": "Guidance Software Projects",
+        "intro": """<p><strong>Guidance Software</strong></p>
+<p>Digital forensics — Symantec Ghost format reverse engineering, Win32 disk imaging.</p>""",
+        "tech": "C++, Forensics, IDA Pro, Win32, Reverse Engineering, Image Processing, Visual Studio, WinDbg, DDK, SoftICE",
+        "work": """<h2>Work Performed</h2>
+<ul>
+<li>Developed digital forensics tool using Win32. Utilized methods of data extraction for cellular phones and other devices.</li>
+<li>Reverse engineered a commercial application for imaging hard drives to provide support for its file structure. Deciphered obfuscation techniques in the structures through the use of IDA Pro and hex viewers.</li>
+<li>Developed the code to support the new file format using C++, all in approximately 2 months.</li>
+</ul>""",
+    },
     "surfware": {
         "title": "Surfware Projects",
         "intro": """<ul>
