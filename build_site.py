@@ -1819,7 +1819,7 @@ def main():
             f"""    <section class="hero fade-in">
       <p class="hero-eyebrow">{PROFESSIONAL_TITLE}</p>
       <h1>{OWNER}</h1>
-      <p class="hero-lead">Currently <strong>Sr. Software Engineer at MAF RODA Agrobotic</strong> (Americas traceability). Full career arc from 1992 — retail tech support and MIS databases through Google, Leidos, VMware, Disney, DirecTV, museum AV systems, and warehouse handheld apps.</p>
+      <p class="hero-lead">Currently <strong>Sr. Software Engineer at MAF RODA Agrobotic</strong> (Americas traceability). Cloud, enterprise and solutions architecture, design and full development life cycle. AI &amp; ML. Virtualization, machine vision, reverse engineering, privacy &amp; security, digital forensics. Embedded systems, kernel, device and low-level programming. Databases and schema design.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="{RESUME_ASSET}">Download Resume</a>
         <a class="btn btn-secondary" href="mailto:{CONTACT_EMAIL}">Get in Touch</a>
