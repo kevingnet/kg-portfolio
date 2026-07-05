@@ -366,53 +366,146 @@ def load_core_skills() -> list[str]:
             pass
     return list(CORE_SKILLS_FALLBACK)
 
-# role title, organization, dates, summary (matches resume order)
-TIMELINE = [
-    ("Sr. Software Engineer — R&D Staff", "MAF RODA Agrobotic", "Apr 2025 – Present",
-     "Americas traceability lead; Python fleet installer (WMI/WinRM), OpenCV SIMD on production sorters."),
-    ("Senior Solution Architect", "Independent Consultant", "Jul 2023 – Apr 2025",
-     "AWS microservices (EC2, S3, Lambda, API Gateway, CloudFormation) for multiple clients."),
-    ("Sr. Solution Architect", "Leidos · Contractor (KForce)", "Nov 2022 – Jun 2023",
-     "Secure airport scanning app (C++, Qt5, Python); enterprise performance — profiling and caching."),
-    ("Sr. Software Engineer / Solution Architect", "Google · Contractors", "2018 – 2022",
-     "YouTube, Hardware, Devices (2018–2020); Earth Enterprise & L10n (2020–2022); HR microservices (2022)."),
-    ("Solution Architect", "Intelliswift · Contractor (Accenture)", "Mar 2021 – Jan 2022",
-     "AWS serverless/hybrid cloud; Java static-analysis platform with VS Code/PMD integration."),
-    ("Privacy Audit Engineer", "Meta · Contractor (DISYS)", "Oct 2020 – Mar 2021",
-     "Privacy/security assessments for acquisitions; architecture review tooling across SQL/NoSQL estates."),
-    ("Senior Software Developer", "HPE · Contractor", "2017 – 2018",
-     "Airwave wireless appliance hardening; Perl→Python port; OSCAP/OWASP compliance."),
-    ("Senior Software Developer", "Veritas · Contractor", "2016 – 2017",
-     "NetBackup appliance hardening — OSCAP, OAuth2/LDAP, Java/Python refactor."),
-    ("Senior Software Developer / Solutions Architect", "VMware · Contractor", "2015 – 2016",
-     "QA framework rewrite (80k→8k LOC, ~8× faster); ESX/HBR test automation."),
-    ("Contract consulting", "Independent · multiple clients", "Apr 2014 – Jun 2015",
-     "Bridge between OpenTV and VMware — JakeKnows, Surfware, DirecTV-era archives, and related contract work."),
-    ("Earlier career", "OpenTV, Disney, DirecTV, embedded/AV, and more", "2014 and earlier",
-     "See experience-history.html for full pre-2015 roles."),
-    ("Programmer Analyst — Consultant", "Self Employed", "Apr 2001 – Jul 2023",
-     "Business applications, databases, ActiveX/XML web tools, and client infrastructure."),
-    ("Programmer Analyst — Consultant", "TelVista · Contract", "Apr 2001 – Nov 2001",
-     "~8-month engagement — TELMEX/Mexicana MIS and scheduling (see TelVista project page)."),
-    ("Senior Programmer Analyst", "Electrosonic Systems", "Jan 2000 – Apr 2001",
-     "AV scheduling, remote monitoring, museum deployments — see Electrosonic project page."),
-    ("Network and Programming Support", "Positive Developments", "Oct 1999 – Jan 2000",
-     "Warehouse PalmOS apps, SendGTL Win32 loader, help desk and network support."),
-    ("Network and Telecommunications Support", "Audio Telco", "Mar 1997 – Jun 1997",
-     "MIS/order-entry databases and international office telecom coordination."),
-    ("Network Support", "Wood Technologies International", "Nov 1996 – Mar 1997",
-     "NT/Exchange, BBS file utilities, Netscape server, and executive MIS apps."),
-    ("Installation and Support Associate", "ACCESS! Corporation", "Mar 1995 – Sep 1996",
-     "Predictive dialer installs, Clipper utilities, and mainframe data integration."),
-    ("Computer Support Associate", "The Bumper Shop", "Aug 1994 – Mar 1995",
-     "LAN/WAN setup and MS Access billing, inventory, and MIS databases."),
-    ("Office Manager", "California Plastering", "Feb 1994 – Aug 1994",
-     "Accounting database for customers, payroll, invoicing, and bookkeeping."),
-    ("Software Sales / PC Technician", "Fry's Electronics", "Jan 1993 – Feb 1994",
-     "Demo systems, software sales floor support, and hardware conflict resolution."),
-    ("Network and Debugging Support", "LCS Logical Computer Services", "Sep 1992 – Jan 1993",
-     "Novell NetWare 3.11 installs and VB/Access MIS debugging on LAN/WAN."),
-]
+# role, dates, note — org name comes from portfolio grid (portfolio_entries order)
+TIMELINE_BY_SLUG = {
+    "mafroda": (
+        "Sr. Software Engineer — R&D Staff", "Apr 2025 – Present",
+        "Americas traceability lead; Python fleet installer (WMI/WinRM), OpenCV SIMD on production sorters.",
+    ),
+    "leidos": (
+        "Sr. Solution Architect", "Nov 2022 – Jun 2023",
+        "Secure airport scanning app (C++, Qt5, Python); enterprise performance — profiling and caching.",
+    ),
+    "google": (
+        "Sr. Software Engineer / Solution Architect", "2018 – 2022",
+        "YouTube, Hardware, Devices (2018–2020); Earth Enterprise & L10n (2020–2022); HR microservices (2022).",
+    ),
+    "meta": (
+        "Privacy Audit Engineer", "Oct 2020 – Mar 2021",
+        "Privacy/security assessments for acquisitions; architecture review tooling across SQL/NoSQL estates.",
+    ),
+    "vmware": (
+        "Sr. Member of Technical Staff (MTS)", "2015 – 2016",
+        "QA framework rewrite (80k→8k LOC, ~8× faster); ESX/HBR test automation.",
+    ),
+    "veritas": (
+        "Senior Software Developer", "2016 – 2017",
+        "NetBackup appliance hardening — OSCAP, OAuth2/LDAP, Java/Python refactor.",
+    ),
+    "thuuz": (
+        "Contract consulting", "",
+        "Callsigns JSON API, S3 sync scripts for sports broadcast metadata.",
+    ),
+    "knurld": (
+        "Contract consulting", "",
+        "Voice biometric API integration, Apigee, Python ML/scoring pipeline prototypes.",
+    ),
+    "butterfleye": (
+        "Contract consulting", "",
+        "Camera cloud backend — Alembic migrations, timeline events, video segments, streaming.",
+    ),
+    "hpe": (
+        "Senior Software Developer", "2017 – 2018",
+        "Airwave wireless appliance hardening; Perl→Python port; OSCAP/OWASP compliance.",
+    ),
+    "jakeknows": (
+        "Contract consulting", "",
+        "Identity engine, code generators, Sony Taleo mobile job app, WCF engine services.",
+    ),
+    "yahoo": (
+        "Contract consulting", "",
+        "Yahoo-era web and infrastructure contract work — see portfolio archive.",
+    ),
+    "motorola": (
+        "Contract consulting", "2009 – 2011",
+        "Closed-captioning embedded module for set-top boxes — OCAP, zero post-init allocation.",
+    ),
+    "surfware": (
+        "Contract consulting", "2006 – 2012",
+        "Surfcam CAD/CAM features, SolidWorks/AutoCAD import-export, 4/5-axis subsystem.",
+    ),
+    "spirent": (
+        "Senior Software Engineer", "Nov 2005 – Dec 2006",
+        "Tcl→C++ network-testing UI; embedded appliance scripting and instrumentation.",
+    ),
+    "directv": (
+        "Contract consulting", "2007 – 2012",
+        "OCR client/server pipeline rebuilt in under two months — C++, FFT, ActiveX, Perl automation.",
+    ),
+    "guidance": (
+        "Senior Software Engineer", "Nov 2005 – Dec 2006",
+        "Digital forensics — Symantec Ghost format reverse engineering, Win32 disk imaging.",
+    ),
+    "hms": (
+        "Application Security Specialist — Staff", "Mar – Nov 2005",
+        "Input validation library, penetration-testing tools, security reviews for e-commerce apps.",
+    ),
+    "telvista": (
+        "Programmer Analyst — Consultant", "Apr 2001 – Nov 2001",
+        "~8-month contract — TELMEX/Mexicana MIS, order entry, and scheduling databases.",
+    ),
+    "voltdelta": (
+        "Telecommunications / Network Support", "Nov 1998 – Oct 1999",
+        "Phone switch simulator, X.25 relay, and network visualization tools in C++.",
+    ),
+    "posdev": (
+        "Network and Programming Support", "Oct 1999 – Jan 2000",
+        "Warehouse PalmOS apps, SendGTL Win32 loader, help desk and network support.",
+    ),
+    "woodtech": (
+        "Network Support", "Nov 1996 – Mar 1997",
+        "NT/Exchange, BBS file utilities, Netscape server, and executive MIS apps.",
+    ),
+    "disney": (
+        "Network Support / Programmer", "Jul 1997 – Nov 1998",
+        "Novell/Windows connector, commissary menu system, ASP/COM web apps for studio MIS.",
+    ),
+    "electrosonic": (
+        "Senior Programmer Analyst — Staff", "Jan 2000 – Apr 2001",
+        "AV scheduling, remote monitoring, museum deployments — ESCAN and CommLib winsock stack.",
+    ),
+    "access": (
+        "Installation and Support Associate", "Mar 1995 – Sep 1996",
+        "Predictive dialer installs, Clipper utilities, and mainframe data integration.",
+    ),
+    "frys": (
+        "Software Sales Associate / PC Technician", "Jan 1993 – Feb 1994",
+        "Demo systems, software sales floor support, and hardware conflict resolution.",
+    ),
+    "lcs": (
+        "Network and Debugging Support Associate", "Sep 1992 – Jan 1993",
+        "Novell NetWare 3.11 installs and VB/Access MIS debugging on LAN/WAN.",
+    ),
+}
+
+# Non-portfolio-grid roles inserted immediately after the named slug (portfolio order)
+TIMELINE_AFTER_SLUG = {
+    "leidos": [
+        (
+            "Senior Solution Architect", "Independent Consultant", "Jul 2023 – Apr 2025",
+            "AWS microservices (EC2, S3, Lambda, API Gateway, CloudFormation) for multiple clients.",
+        ),
+    ],
+    "google": [
+        (
+            "Solution Architect", "Intelliswift · Contractor (Accenture)", "Mar 2021 – Jan 2022",
+            "AWS serverless/hybrid cloud; Java static-analysis platform with VS Code/PMD integration.",
+        ),
+    ],
+}
+
+
+def build_timeline() -> list[tuple[str, str, str, str]]:
+    """Career timeline in portfolio grid order; dates match project pages."""
+    entries: list[tuple[str, str, str, str]] = []
+    for name, _logo, _ext, slug, desc, _skills in portfolio_entries():
+        if slug in TIMELINE_BY_SLUG:
+            role, dates, note = TIMELINE_BY_SLUG[slug]
+        else:
+            role, dates, note = "Contract consulting", "", desc
+        entries.append((role, name, dates, note))
+        entries.extend(TIMELINE_AFTER_SLUG.get(slug, ()))
+    return entries
 
 # metric, title, blurb, optional project slug for "read more" link
 HIGHLIGHTS = [
@@ -458,17 +551,22 @@ SAMPLES = [
 
 
 def timeline_block() -> str:
-    return "\n".join(
-        f"""          <div class="timeline-item">
+    items = []
+    for role, org, era, note in build_timeline():
+        dates_html = (
+            f'\n              <span class="timeline-dates">{html.escape(era)}</span>'
+            if era else ""
+        )
+        items.append(
+            f"""          <div class="timeline-item">
             <div class="timeline-header">
-              <strong class="timeline-role">{html.escape(role)}</strong>
-              <span class="timeline-dates">{html.escape(era)}</span>
+              <strong class="timeline-role">{html.escape(role)}</strong>{dates_html}
             </div>
             <div class="timeline-org">{html.escape(org)}</div>
             <p>{html.escape(note)}</p>
           </div>"""
-        for role, org, era, note in TIMELINE
-    )
+        )
+    return "\n".join(items)
 
 
 def skill_chips(skills: list[str], limit: int | None = None) -> str:
