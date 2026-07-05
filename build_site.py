@@ -1775,7 +1775,7 @@ def main():
         page(
             "Samples",
             "Samples",
-            f"""    <img class="samples-hero fade-in" src="assets/images/samples/hero-beer.jpg" alt="" loading="lazy">
+            f"""    <img class="samples-hero fade-in" src="assets/images/samples/hero.jpeg" alt="" loading="lazy">
     <h1 class="page-title">Projects Samples</h1>
     <div class="samples-list">
 {samples_html}
