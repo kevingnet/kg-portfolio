@@ -23,7 +23,7 @@ EXTRA_PATHS: dict[str, list[str]] = {
 # Resume correlation (NOT added to resume — portfolio tagging only)
 IN_OLD_RESUME = {
     "access", "disney", "electrosonic", "voltdelta", "posdev",
-    "audiotelco", "woodtech", "frys", "lcs",
+    "telvista", "woodtech", "frys", "lcs",
 }
 
 EXCLUDED_SLUGS = frozenset({
@@ -86,7 +86,7 @@ FOLDER_META: dict[str, dict] = {
         "portfolio_only": True,
     },
     "10 TelVista": {
-        "slug": "audiotelco", "name": "Audio Telco", "logo": "audiotelco", "ext": "jpeg",
+        "slug": "telvista", "name": "TelVista", "logo": "telvista", "ext": "jpeg",
         "desc": "TelVista MIS, TELMEX/Mexicana scheduling, WorkFlowApp .NET solution.",
         "skills": ["MS Access", "Visual Basic", ".NET", "Telecom"],
     },
@@ -232,7 +232,7 @@ RESUME_ONLY: list[dict] = [
 PRIORITY_SLUGS = [
     "mafroda", "leidos", "google", "meta", "vmware",
     "veritas", "thuuz", "knurld", "butterfleye", "hpe", "jakeknows", "yahoo", "motorola", "surfware", "spirent", "directv",
-    "guidance", "hms", "audiotelco",
+    "guidance", "hms", "telvista",
     "voltdelta", "posdev", "woodtech", "disney", "electrosonic",
     "access", "frys", "lcs",
     "hivemapper", "chase", "greenleaf",

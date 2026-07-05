@@ -30,10 +30,11 @@ NNN_ARCHIVE_JSON = ROOT / "data" / "nnn-archive.json"
 CAROUSEL_CHRONOLOGY_FILE = ROOT / "data" / "carousel-chronology.json"
 SKIP_COMPILATION_SLUGS = frozenset({"access"})
 SKIP_INDEX_SLUGS = frozenset({
-    "hivemapper", "chase", "greenleaf", "opentv",
+    "hivemapper", "chase", "greenleaf", "opentv", "audiotelco",
     "pleiades", "nokio", "enigma", "plastering",
     "bumpershop", "labumpers", "fotografia", "puntabanda",
 })  # index grid + carousel (+ project pages via main())
+ARCHIVE_SLUG_ALIASES = {"telvista": "audiotelco"}  # archive assets keep legacy folder name
 DEV_FOLDER_PREFIX_RE = re.compile(r"^\d{1,2}\s+")
 DEV_FOLDER_SORT_RE = re.compile(r"^(\d+)")
 RESUME_HTML_SRC = Path("/home/kg/Jobs/Kevin Guerra - Resume.html")
@@ -379,12 +380,20 @@ TIMELINE = [
      "AWS serverless/hybrid cloud; Java static-analysis platform with VS Code/PMD integration."),
     ("Privacy Audit Engineer", "Meta · Contractor (DISYS)", "Oct 2020 – Mar 2021",
      "Privacy/security assessments for acquisitions; architecture review tooling across SQL/NoSQL estates."),
-    ("Senior Software Developer / Solutions Architect", "VMware · Veritas · HPE", "2015 – 2018",
-     "QA framework rewrite (80k→8k LOC, ~8× faster); OSCAP/OWASP hardening on backup appliances."),
-    ("Earlier career", "OpenTV, Disney, DirecTV, embedded/AV, and more", "2013 and earlier",
+    ("Senior Software Developer", "HPE · Contractor", "2017 – 2018",
+     "Airwave wireless appliance hardening; Perl→Python port; OSCAP/OWASP compliance."),
+    ("Senior Software Developer", "Veritas · Contractor", "2016 – 2017",
+     "NetBackup appliance hardening — OSCAP, OAuth2/LDAP, Java/Python refactor."),
+    ("Senior Software Developer / Solutions Architect", "VMware · Contractor", "2015 – 2016",
+     "QA framework rewrite (80k→8k LOC, ~8× faster); ESX/HBR test automation."),
+    ("Contract consulting", "Independent · multiple clients", "Apr 2014 – Jun 2015",
+     "Bridge between OpenTV and VMware — JakeKnows, Surfware, DirecTV-era archives, and related contract work."),
+    ("Earlier career", "OpenTV, Disney, DirecTV, embedded/AV, and more", "2014 and earlier",
      "See experience-history.html for full pre-2015 roles."),
     ("Programmer Analyst — Consultant", "Self Employed", "Apr 2001 – Jul 2023",
      "Business applications, databases, ActiveX/XML web tools, and client infrastructure."),
+    ("Programmer Analyst — Consultant", "TelVista · Contract", "Apr 2001 – Nov 2001",
+     "~8-month engagement — TELMEX/Mexicana MIS and scheduling (see TelVista project page)."),
     ("Senior Programmer Analyst", "Electrosonic Systems", "Jan 2000 – Apr 2001",
      "AV scheduling, remote monitoring, museum deployments — see Electrosonic project page."),
     ("Network and Programming Support", "Positive Developments", "Oct 1999 – Jan 2000",
@@ -985,7 +994,10 @@ def render_nnn_block(block: dict) -> str:
 
 def nnn_archive_block(slug: str) -> str:
     """HTML showcase from nnn professional archive."""
-    entry = load_nnn_archive().get("employers", {}).get(slug)
+    archive_slug = ARCHIVE_SLUG_ALIASES.get(slug, slug)
+    entry = load_nnn_archive().get("employers", {}).get(archive_slug)
+    if not entry:
+        entry = load_nnn_archive().get("employers", {}).get(slug)
     if not entry or not entry.get("blocks"):
         return ""
     stats = entry.get("stats") or {}
@@ -1249,7 +1261,8 @@ PROJECTS = {
     },
     "directv": {
         "title": "DirecTV Projects",
-        "intro": """<ul>
+        "intro": """<p><strong>Contract consulting</strong> · 2007 – 2012</p>
+<ul>
 <li>redrat_scripter: red rat code for infrared transceiver, usb, perl client that reads scripts and sends commands to server that uses sockets</li>
 <li>redrat_blaster: used in server farm to blast with random IR messages to discover software errors</li>
 <li>USB Device Driver: Modified to minimize memory usage and avoid excess of object recreation</li>
@@ -1266,7 +1279,7 @@ PROJECTS = {
         "tech": "C/C++, JavaScript, Perl, ACE Framework, ActiveX, COM, Win32, USB Device Driver Development, OCR, Machine Vision, Image Processing, FFT, Fast (Discrete) Fourier Transform, Heuristics Methods for Machine Vision, Image Database Retrieval System using above and FFT, Image Binarization, Image Capture, Embedded, Web Based Test: Test Director",
         "work": """<h2>Work Performed</h2>
 <p>Envisioned, promoted, architected, designed and developed software infrastructure for Automation system in C++, ActiveX, COM and Win32. The Client/Server system uses ACE Framework design and architecture patterns and drives video capture devices to acquire and process images, perform OCR and recognition of other artifacts using the Fast Fourier Transform algorithm and other methods in Machine Vision.</p>
-<p>Invented algorithms using kernel methods and decision trees for analysis of image data and comparison for recognition. This was done in an incredible short time working independently, this took about one month of research and implementation.</p>
+<p>Invented algorithms using kernel methods and decision trees for analysis of image data and comparison for recognition. This was done in an incredible short time working independently, this took one month of research and implementation.</p>
 <p>Envisioned, promoted, designed and developed Linux Socket C++ Server and Perl Client script processing Automation application for driving libusb based RedRat infrared Transceiver concurrent multiple devices. A RedRat is a device that can read and replicate remote control signals. ANSI C, C++, OOP, Patterns, Image Processing, JavaScript, Test Director, Visual Studio, DirectX, USB Devices.</p>
 <p>Applications and ActiveX controls were used from Test Directors and instrumented using javascript.</p>""",
     },
@@ -1279,9 +1292,16 @@ PROJECTS = {
 <p>Web Applications Development. Assimilated legacy server application in order to develop new architecture and design. Developed back end server for job application system for mobile devices for iPhone and Android.</p>
 <p>Developed architecture, design and code for the new Identity Engine. The engine is a business core application intended to provide positive identification of an individual via digital activity harvested in diverse ways using patented technologies.</p>""",
     },
+    "yahoo": {
+        "title": "Yahoo Projects",
+        "intro": """<p><strong>Contract consulting</strong></p>
+<p>Yahoo-era web and infrastructure contract work — see portfolio archive for project materials.</p>""",
+        "tech": "Web, Infrastructure, Contract Consulting",
+    },
     "disney": {
         "title": "Disney Projects",
-        "intro": """<ul>
+        "intro": """<p><strong>Network Support / Programmer</strong> · Jul 1997 – Nov 1998 · Walt Disney Studios (CDI contract) · Burbank, CA</p>
+<ul>
 <li>CorpPurch: Request purchases</li>
 <li>DialIn_OutRequest: Request dial in/out access</li>
 <li>HRTS: Request hardware</li>
@@ -1311,7 +1331,8 @@ PROJECTS = {
     },
     "electrosonic": {
         "title": "Electrosonic Projects",
-        "intro": """<ul>
+        "intro": """<p><strong>Senior Programmer Analyst — Staff</strong> · Jan 2000 – Apr 2001 · Burbank, CA</p>
+<ul>
 <li>CommLib: DLL, rewrote winsock to handle double buffering for better performance</li>
 <li>MonitorDLL: DLL to monitor computers, servers or other devices through CommLib Winsock TCP/IP</li>
 <li>LiquidAudio streaming control: Designed as an ActiveX control, used to stream audio</li>
@@ -1336,7 +1357,8 @@ PROJECTS = {
     },
     "voltdelta": {
         "title": "Volt Delta Projects",
-        "intro": """<ul>
+        "intro": """<p><strong>Telecommunications / Network Support</strong> · Nov 1998 – Oct 1999 · Orange, CA</p>
+<ul>
 <li>Phone Switch Simulator: C++ app that was used to test other applications instead of using a real phone switch which cost $1,000/hr at AT&amp;T</li>
 <li>X.25 Relay: C++ app, used special hardware in a computer/server to interface with X.25 networks, it connected TCP/IP networks to them</li>
 <li>StarStationManager: Manage X.25 work stations</li>
@@ -1350,7 +1372,7 @@ PROJECTS = {
     },
     "veritas": {
         "title": "Veritas Projects",
-        "intro": """<p><strong>Veritas</strong></p>
+        "intro": """<p><strong>Senior Software Developer</strong> · 2016 – 2017 · Contractor</p>
 <p>NetBackup appliance hardening — OSCAP, OAuth2/LDAP, Java/Python refactor.</p>""",
         "tech": "Java, Python, C/C++, Perl, Bash, OSCAP, OWASP, OAuth2, LDAP, Active Directory, SELinux, REST, Microservices, CLI, Security, Backup",
         "work": """<h2>Work Performed</h2>
@@ -1363,7 +1385,7 @@ PROJECTS = {
     },
     "hpe": {
         "title": "HPE Projects",
-        "intro": """<p><strong>HPE</strong></p>
+        "intro": """<p><strong>Senior Software Developer</strong> · 2017 – 2018 · Contractor</p>
 <p>Airwave wireless appliance hardening and Perl→Python port.</p>""",
         "tech": "Java, Python, Perl, Bash, RegEx, Flask, Celery, JavaScript, OSCAP, OWASP, REST, Microservices, CLI, LDAP, Docker, VMware, Cloud, Wireless, Security",
         "work": """<h2>Work Performed</h2>
@@ -1377,7 +1399,7 @@ PROJECTS = {
     },
     "meta": {
         "title": "Meta Projects",
-        "intro": """<p><strong>Meta</strong></p>
+        "intro": """<p><strong>Privacy Audit Engineer</strong> · Oct 2020 – Mar 2021 · Contractor (DISYS)</p>
 <p>Privacy audit engineering for M&amp;A — compliance tooling across SQL/NoSQL estates.</p>""",
         "tech": "C/C++, Java, Perl, Python, SQL, NoSQL, Cassandra, MongoDB, AWS, Privacy, Security, Compliance, Virtual Reality, Graphics, Device Drivers, Camera Imaging, Windows, Linux",
         "work": """<h2>Work Performed</h2>
@@ -1392,12 +1414,11 @@ PROJECTS = {
     },
     "vmware": {
         "title": "VMware Projects",
-        "intro": """<p><strong>Sr. Member of Technical Staff (MTS)</strong> · 2015 – 2018 · Palo Alto</p>
+        "intro": """<p><strong>Sr. Member of Technical Staff (MTS)</strong> · 2015 – 2016 · Palo Alto · Contractor</p>
 <p>VMware — virtualization and cloud infrastructure. QA automation for ESX, HBR, and related appliances.</p>
 <ul>
 <li><strong>Gemini framework:</strong> replaced ~80k LOC Perl legacy with ~8k LOC Python — ~8× faster execution</li>
 <li><strong>Paradigms:</strong> object-oriented, functional, and meta-programming patterns in a cohesive test harness</li>
-<li><strong>Veritas / HPE (adjacent):</strong> OSCAP and OWASP hardening on backup appliances (see timeline)</li>
 </ul>""",
         "tech": "Python, Perl, Virtualization, ESX, HBR, SSH, Automation, QA, Framework Development, Test Instrumentation, Networking",
         "sections": [
@@ -1418,7 +1439,8 @@ PROJECTS = {
     },
     "hms": {
         "title": "Hypermedia Projects",
-        "intro": """<ul>
+        "intro": """<p><strong>Application Security Specialist — Staff</strong> · Mar – Nov 2005 · Los Angeles, CA</p>
+<ul>
 <li>Input Validation Library: used by in-house web applications to provide security, prevent sql injection and other exploits</li>
 <li>Tools: For penetration testing, web site accounting and monitoring</li>
 </ul>""",
@@ -1432,7 +1454,7 @@ PROJECTS = {
     },
     "guidance": {
         "title": "Guidance Software Projects",
-        "intro": """<p><strong>Guidance Software</strong></p>
+        "intro": """<p><strong>Senior Software Engineer</strong> · Nov 2005 – Dec 2006 · Consultancy</p>
 <p>Digital forensics — Symantec Ghost format reverse engineering, Win32 disk imaging.</p>""",
         "tech": "C++, Forensics, IDA Pro, Win32, Reverse Engineering, Image Processing, Visual Studio, WinDbg, DDK, SoftICE",
         "work": """<h2>Work Performed</h2>
@@ -1444,7 +1466,8 @@ PROJECTS = {
     },
     "surfware": {
         "title": "Surfware Projects",
-        "intro": """<ul>
+        "intro": """<p><strong>Contract consulting</strong> · 2006 – 2012</p>
+<ul>
 <li>Surfcam: Added features and enhancements</li>
 <li>SolidWorks/Autocad Import/Export App: windows app to export/import data from surfcam files to/from</li>
 </ul>""",
@@ -1457,7 +1480,8 @@ PROJECTS = {
     },
     "motorola": {
         "title": "Motorola Projects",
-        "intro": """<p><strong>Closed Captioning Embedded Module</strong></p>
+        "intro": """<p><strong>Contract consulting</strong> · 2009 – 2011</p>
+<p><strong>Closed Captioning Embedded Module</strong></p>
 <p>C/C++, Closed Captioning, OCAP, Embedded, Set Top Boxes</p>""",
         "tech": "C/C++, Closed Captioning, OCAP, Embedded, Set Top Boxes",
         "work": """<h2>Work Performed</h2>
@@ -1465,14 +1489,16 @@ PROJECTS = {
     },
     "opentv": {
         "title": "OpenTV Projects",
-        "intro": """<p><strong>Dynamic Scheduler:</strong> Resolved Issues and Enhanced Win32 C# App, used for Local Advertisement Scheduling</p>""",
+        "intro": """<p><strong>Software Expert — Staff</strong> · Mar 2013 – Mar 2014 · Mountain View, CA</p>
+<p><strong>Dynamic Scheduler:</strong> Resolved Issues and Enhanced Win32 C# App, used for Local Advertisement Scheduling</p>""",
         "tech": "C#, C/C++, Python, Perl, Oracle, Big Data Import, Win32, Scheduling, Web Services, SOAP, SQL, Stored Procedures, IIS, MVC, .NET, XML",
         "work": """<h2>Work Performed</h2>
 <p>Developed software enhancements and bug fixes for application used by major cable companies worldwide. The application was very complex containing over a million lines of code.</p>""",
     },
     "spirent": {
         "title": "Spirent Projects",
-        "intro": """<ul>
+        "intro": """<p><strong>Senior Software Engineer</strong> · Nov 2005 – Dec 2006 · Consultancy</p>
+<ul>
 <li>Tlc Interface: replaced old Tcl code base and converted it to C++, resulting in only one line of tcl code from several thousands.</li>
 <li>Mainline: Helped to create second version of embedded application that drives a network testing appliance and can be scripted and instrumented using tcl.</li>
 </ul>""",
@@ -1497,22 +1523,22 @@ PROJECTS = {
 <p>Built <strong>SendGTL</strong> — a configurable loader that reads pipe-delimited parameter rows, validates file paths, and drives serial transfer dialogs with registry persistence (<code>Positive Developments</code> registry key).</p>
 <p>Provided network support and help desk coverage for employees and warehouse clients by phone.</p>""",
     },
-    "audiotelco": {
-        "title": "Audio Telco Projects",
-        "intro": """<p><strong>Network and Telecommunications Support</strong> · Mar 1997 – Jun 1997 · Los Angeles, CA</p>
-<p>Audio Telco (TelVista project archive) — MIS databases, order entry, and telecom equipment coordination for local and international offices.</p>
+    "telvista": {
+        "title": "TelVista Projects",
+        "intro": """<p><strong>Programmer Analyst — Consultant</strong> · Apr 2001 – Nov 2001 · ~8 month contract</p>
+<p>TelVista — MIS databases, order entry, and telecom workflow for TELMEX and Mexicana Airlines.</p>
 <ul>
 <li><strong>MIS database:</strong> MS Access and Visual Basic with high-volume data entry forms, validation, and time-saving workflows</li>
 <li><strong>Order entry database:</strong> customer and order tracking for telecommunications services</li>
 <li><strong>TELMEX Account Processing:</strong> account workflow prototype (<code>Project 000 - Test</code>)</li>
 <li><strong>Mexicana appointment scheduling:</strong> appointment database with feasibility analysis notes on routing and daily capacity (<code>Project 001 - Mexicana</code>)</li>
+<li><strong>WorkFlowApp:</strong> reusable .NET workflow engine with full SDLC documentation in archive</li>
 </ul>""",
-        "tech": "MS Access, Visual Basic, MIS, Order Entry, Telecommunications, Network Administration, Database Design",
+        "tech": "MS Access, Visual Basic, .NET, C#, MIS, Order Entry, Telecommunications, Workflow, Database Design",
         "work": """<h2>Work Performed</h2>
 <p>Designed and coded MIS and order-entry databases in MS Access and Visual Basic — forms optimized for large-volume entry with validation rules.</p>
-<p>Administered and configured office networks; provided in-house tech support.</p>
-<p>Setup, configured, programmed, and coordinated telephone equipment for local and international offices.</p>
-<p>Documented requirements and QA processes for TelVista client projects (TELMEX and Mexicana airline scheduling).</p>""",
+<p>Documented requirements and QA processes for TELMEX and Mexicana airline scheduling projects.</p>
+<p>Built workflow automation prototypes and reusable engine components for telecom business processes.</p>""",
     },
     "woodtech": {
         "title": "Wood Technologies International",
@@ -1831,6 +1857,20 @@ def main():
     stale = PROJECTS_DIR / "hypermedia.html"
     if stale.exists():
         stale.unlink()
+
+    redirect = PROJECTS_DIR / "audiotelco.html"
+    redirect.write_text(
+        page(
+            "TelVista Projects",
+            "Portfolio",
+            '    <meta http-equiv="refresh" content="0; url=telvista.html">\n'
+            '    <p>Moved to <a href="telvista.html">TelVista Projects</a>.</p>',
+            depth=1,
+            slug_path="projects/audiotelco.html",
+            description="Redirect to TelVista project page.",
+        ),
+        encoding="utf-8",
+    )
 
     sync_static_page_carousels()
 

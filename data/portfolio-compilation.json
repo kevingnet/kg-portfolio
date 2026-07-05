@@ -132,12 +132,12 @@
     },
     "html": "<p><strong>Purpose:</strong> Window shade / blind factory production tracking (\"Fabrica de Persianas\")</p>\n<pre class=\"compilation-tree\"><code>Pleiades/\n└── Project 000 - Blind Factory/\n    ├── Data.mdb, Program.mdb\n    ├── Fabrica de Persianas - Produccion.mdb\nSerializer.mdb (root)</code></pre>"
   },
-  "audiotelco": {
+  "telvista": {
     "folder": "TelVista",
     "display_title": "TelVista — Telecom Workflow Consultancy",
     "meta": {
       "files": "63",
-      "era": "2003–2023",
+      "era": "Apr 2001 – Nov 2001 · ~8 month contract",
       "purpose": "Business process automation consultancy + reusable workflow engine. Clients: TELMEX, Mexicana Airlines.",
       "technologies": [
         "C# WinForms (.NET 1.x)",

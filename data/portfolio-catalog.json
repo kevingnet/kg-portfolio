@@ -369,9 +369,9 @@
       "in_current_resume": true
     },
     {
-      "slug": "audiotelco",
-      "name": "Audio Telco",
-      "logo": "audiotelco",
+      "slug": "telvista",
+      "name": "TelVista",
+      "logo": "telvista",
       "ext": "jpeg",
       "desc": "TelVista MIS, TELMEX/Mexicana scheduling, WorkFlowApp .NET solution.",
       "skills": [
@@ -703,10 +703,10 @@
       "in_old_resume": true,
       "in_current_resume": false
     },
-    "audiotelco": {
-      "slug": "audiotelco",
-      "name": "Audio Telco",
-      "logo": "audiotelco",
+    "telvista": {
+      "slug": "telvista",
+      "name": "TelVista",
+      "logo": "telvista",
       "ext": "jpeg",
       "desc": "TelVista MIS, TELMEX/Mexicana scheduling, WorkFlowApp .NET solution.",
       "skills": [

@@ -1773,9 +1773,9 @@
         }
       ]
     },
-    "audiotelco": {
+    "telvista": {
       "name": "TelVista",
-      "slug": "audiotelco",
+      "slug": "telvista",
       "stats": {
         "code": 0,
         "document": 10,
