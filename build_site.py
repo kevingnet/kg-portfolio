@@ -343,15 +343,16 @@ SERVICES = [
 ]
 
 CORE_SKILLS_FALLBACK = [
-    "C/C++", "C++", "Python", "Java", "C#", "TypeScript", "Go",
+    "C/C++", "Python", "Java", "C#", "TypeScript", "Go",
     "Postgres", "SQL Server", "NoSQL", "REST", "Microservices",
     "AWS", "GCP", "Docker", "Linux", "Win32", "Embedded",
     "Security", "OAuth2", "RBAC", "Automation", "OCR",
     "OpenCV", "SIMD", "Traceability", "Machine Learning", "AI",
-    "Angular", "Node.js", "Tcl", "CAD/CAM", "Virtualization", "PMD",
+    "Angular", "Node.js", "Tcl", "CAD/CAM", "Virtualization",
 ]
 
 LINKEDIN_SKILLS_FILE = ROOT / "data" / "linkedin-skills.json"
+CORE_SKILLS_EXCLUDE = frozenset({"C++", "PMD", "Telemarketing"})
 CORE_SKILLS_ENSURE = ("NoSQL", "Machine Learning", "AI", "TypeScript")
 
 
@@ -368,6 +369,7 @@ def load_core_skills() -> list[str]:
             pass
     if skills is None:
         skills = list(CORE_SKILLS_FALLBACK)
+    skills = [s for s in skills if s not in CORE_SKILLS_EXCLUDE]
     for skill in CORE_SKILLS_ENSURE:
         if skill not in skills:
             skills.append(skill)
