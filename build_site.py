@@ -344,27 +344,36 @@ SERVICES = [
 
 CORE_SKILLS_FALLBACK = [
     "C/C++", "Python", "Java", "C#", "TypeScript", "Go",
-    "Postgres", "SQL Server", "REST", "Microservices",
+    "Postgres", "SQL Server", "NoSQL", "REST", "Microservices",
     "AWS", "GCP", "Docker", "Linux", "Win32", "Embedded",
     "Security", "OAuth2", "RBAC", "Automation", "OCR",
-    "OpenCV", "SIMD", "Traceability",
+    "OpenCV", "SIMD", "Traceability", "Machine Learning", "AI",
     "Angular", "Node.js", "Tcl", "CAD/CAM", "Virtualization",
 ]
 
 LINKEDIN_SKILLS_FILE = ROOT / "data" / "linkedin-skills.json"
+CORE_SKILLS_EXCLUDE = frozenset({"C++", "PMD", "Telemarketing"})
+CORE_SKILLS_ENSURE = ("NoSQL", "Machine Learning", "AI", "TypeScript")
 
 
 def load_core_skills() -> list[str]:
     """About-page skill chips — prefer LinkedIn sync (data/linkedin-skills.json)."""
+    skills: list[str] | None = None
     if LINKEDIN_SKILLS_FILE.is_file():
         try:
             data = json.loads(LINKEDIN_SKILLS_FILE.read_text(encoding="utf-8"))
-            skills = data.get("display_skills")
-            if isinstance(skills, list) and skills:
-                return [str(s) for s in skills]
+            raw = data.get("display_skills")
+            if isinstance(raw, list) and raw:
+                skills = [str(s) for s in raw]
         except (json.JSONDecodeError, OSError):
             pass
-    return list(CORE_SKILLS_FALLBACK)
+    if skills is None:
+        skills = list(CORE_SKILLS_FALLBACK)
+    skills = [s for s in skills if s not in CORE_SKILLS_EXCLUDE]
+    for skill in CORE_SKILLS_ENSURE:
+        if skill not in skills:
+            skills.append(skill)
+    return skills
 
 # role, dates, note — org name comes from portfolio grid (portfolio_entries order)
 TIMELINE_BY_SLUG = {
