@@ -271,6 +271,13 @@
           "title": "WebApps"
         },
         {
+          "type": "image",
+          "title": "Screenshot from 2026-06-27 10-38-31.png",
+          "rel": "Screenshot from 2026-06-27 10-38-31.png",
+          "src": "assets/archive/disney/images/Screenshot from 2026-06-27 10-38-31.png",
+          "alt": "Disney — Screenshot from 2026-06-27 10-38-31.png"
+        },
+        {
           "type": "code",
           "title": "PurchReq.sql",
           "rel": "WebApps/PurchReq.sql",
@@ -495,13 +502,6 @@
           "title": "Project root"
         },
         {
-          "type": "image",
-          "title": "Screenshot from 2026-06-27 10-38-31.png",
-          "rel": "Screenshot from 2026-06-27 10-38-31.png",
-          "src": "assets/archive/disney/images/Screenshot from 2026-06-27 10-38-31.png",
-          "alt": "Disney — Screenshot from 2026-06-27 10-38-31.png"
-        },
-        {
           "type": "section",
           "title": "WebApps / CorpPurch"
         },
@@ -535,13 +535,6 @@
           "rel": "WebApps/CorpPurch/Images/CoolBar3.jpg",
           "src": "assets/archive/disney/images/WebApps/CorpPurch/Images/CoolBar3.jpg",
           "alt": "Disney — CoolBar3.jpg"
-        },
-        {
-          "type": "image",
-          "title": "CorpPurchBanner.gif",
-          "rel": "WebApps/CorpPurch/Images/CorpPurchBanner.gif",
-          "src": "assets/archive/disney/images/WebApps/CorpPurch/Images/CorpPurchBanner.gif",
-          "alt": "Disney — CorpPurchBanner.gif"
         }
       ]
     },

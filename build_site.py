@@ -1245,10 +1245,10 @@ PROJECTS = {
 <p>MAF RODA Agrobotic — global leader in post-harvest fruit and vegetable automation (sorting, grading, packaging, palletizing). Current role (3rd at MAF RODA): <strong>Americas traceability lead</strong>.</p>
 <ul>
 <li><strong>Traceability — Americas:</strong> lead regional traceability systems; AI-assisted tooling and codebase modernization</li>
+<li><strong>OpenCV:</strong> SIMD + startup buffer pre-allocation on production sorters</li>
 <li><strong>Python fleet installer (ORPHEA):</strong> YAML-driven operations framework — WMI/WinRM discovery, network config, remote provisioning of sorting clusters</li>
 <li><strong>UiSettingsEditor:</strong> WinForms C# tool for production HMI skin / Figma palette settings (JSON appsettings)</li>
-<li><strong>JsonWebApi:</strong> ASP.NET Core REST API backing traceability and packing web views</li>
-<li><strong>OpenCV:</strong> SIMD + startup buffer pre-allocation on production sorters</li>
+<li><strong>OrpheaSimulator:</strong> ASP.NET Core REST API backing traceability and packing web views</li>
 </ul>""",
         "tech": "Python, OpenCV, SIMD, C++, C#, ASP.NET Core, WinForms, WMI, WinRM, YAML, JSON, Windows, Image Processing, Traceability, Fleet Deployment, Network Provisioning, AI-Assisted Development",
         "sections": [
@@ -1260,6 +1260,8 @@ PROJECTS = {
                 ("traceability-detail.png", "Traceability detail — lot and lane tracking"),
                 ("traceability-ui.png", "Traceability UI — monitoring and configuration"),
             ], extra_class="project-gallery--large")),
+            ("OpenCV Performance", "SIMD · Buffer pre-allocation · Production sorters", """<p>Optimized OpenCV image-processing paths on production fruit sorters using SIMD intrinsics and an allocation strategy that pre-allocates buffers at startup.</p>
+<p>Result: reduced runtime memory footprint and buffer churn during high-throughput sorting operations on the line.</p>"""),
             ("Python Fleet Installer", "ORPHEA Operations Framework · Python · YAML · WinRM", """<p>Designed and built the <strong>MAF Silent Install</strong> / ORPHEA operations framework: a layered Python system that provisions fruit-sorting clusters from YAML configuration.</p>
 <ul>
 <li>Multi-tier architecture: high-level modules, operation objects, and support layer (WinRM, PSRP, OpenSSH, PsExec, WMIC, netsh)</li>
@@ -1278,15 +1280,13 @@ PROJECTS = {
 <li>Validates combinations and syncs palette slots for article / outlet configurations</li>
 </ul>
 <p>Stack: .NET WinForms, System.Text.Json, custom color-swatch controls.</p>"""),
-            ("JsonWebApi", "ASP.NET Core · REST · JSON", """<p>Sample web API supporting traceability and packing workflows — serves JSON to Angular / web front ends in the MAF ecosystem.</p>
+            ("OrpheaSimulator", "ASP.NET Core · REST · JSON", """<p>Sample web API supporting traceability and packing workflows — serves JSON to Angular / web front ends in the MAF ecosystem.</p>
 <ul>
 <li>ASP.NET Core minimal hosting with controllers and OpenAPI</li>
 <li>JSON serialization with explicit property naming for legacy client compatibility</li>
 <li>CORS-enabled development mode; integrates with ArticlesImg XML and web view projects</li>
 </ul>
 <p>Companion to web modules (WebPacking, WebViewBinFillers, LindaVista) in the Graphics tree.</p>"""),
-            ("OpenCV Performance", "SIMD · Buffer pre-allocation · Production sorters", """<p>Optimized OpenCV image-processing paths on production fruit sorters using SIMD intrinsics and an allocation strategy that pre-allocates buffers at startup.</p>
-<p>Result: reduced runtime memory footprint and buffer churn during high-throughput sorting operations on the line.</p>"""),
         ],
     },
     "leidos": {

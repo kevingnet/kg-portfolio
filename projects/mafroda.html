@@ -78,10 +78,10 @@
 <p>MAF RODA Agrobotic — global leader in post-harvest fruit and vegetable automation (sorting, grading, packaging, palletizing). Current role (3rd at MAF RODA): <strong>Americas traceability lead</strong>.</p>
 <ul>
 <li><strong>Traceability — Americas:</strong> lead regional traceability systems; AI-assisted tooling and codebase modernization</li>
+<li><strong>OpenCV:</strong> SIMD + startup buffer pre-allocation on production sorters</li>
 <li><strong>Python fleet installer (ORPHEA):</strong> YAML-driven operations framework — WMI/WinRM discovery, network config, remote provisioning of sorting clusters</li>
 <li><strong>UiSettingsEditor:</strong> WinForms C# tool for production HMI skin / Figma palette settings (JSON appsettings)</li>
-<li><strong>JsonWebApi:</strong> ASP.NET Core REST API backing traceability and packing web views</li>
-<li><strong>OpenCV:</strong> SIMD + startup buffer pre-allocation on production sorters</li>
+<li><strong>OrpheaSimulator:</strong> ASP.NET Core REST API backing traceability and packing web views</li>
 </ul>
       <div class="tech-tags"><strong>Technologies</strong><div class="skill-row"><span class="skill-chip">Python</span><span class="skill-chip">OpenCV</span><span class="skill-chip">SIMD</span><span class="skill-chip">C++</span><span class="skill-chip">C#</span><span class="skill-chip">ASP.NET Core</span><span class="skill-chip">WinForms</span><span class="skill-chip">WMI</span><span class="skill-chip">WinRM</span><span class="skill-chip">YAML</span><span class="skill-chip">JSON</span><span class="skill-chip">Windows</span><span class="skill-chip">Image Processing</span><span class="skill-chip">Traceability</span><span class="skill-chip">Fleet Deployment</span><span class="skill-chip">Network Provisioning</span></div></div>
       <h2>Traceability — Americas</h2>
@@ -105,6 +105,10 @@
         <figcaption>Traceability UI — monitoring and configuration</figcaption>
       </figure>
       </div>
+      <h2>OpenCV Performance</h2>
+      <h3>SIMD · Buffer pre-allocation · Production sorters</h3>
+<p>Optimized OpenCV image-processing paths on production fruit sorters using SIMD intrinsics and an allocation strategy that pre-allocates buffers at startup.</p>
+<p>Result: reduced runtime memory footprint and buffer churn during high-throughput sorting operations on the line.</p>
       <h2>Python Fleet Installer</h2>
       <h3>ORPHEA Operations Framework · Python · YAML · WinRM</h3>
 <p>Designed and built the <strong>MAF Silent Install</strong> / ORPHEA operations framework: a layered Python system that provisions fruit-sorting clusters from YAML configuration.</p>
@@ -132,7 +136,7 @@
 <li>Validates combinations and syncs palette slots for article / outlet configurations</li>
 </ul>
 <p>Stack: .NET WinForms, System.Text.Json, custom color-swatch controls.</p>
-      <h2>JsonWebApi</h2>
+      <h2>OrpheaSimulator</h2>
       <h3>ASP.NET Core · REST · JSON</h3>
 <p>Sample web API supporting traceability and packing workflows — serves JSON to Angular / web front ends in the MAF ecosystem.</p>
 <ul>
@@ -141,10 +145,6 @@
 <li>CORS-enabled development mode; integrates with ArticlesImg XML and web view projects</li>
 </ul>
 <p>Companion to web modules (WebPacking, WebViewBinFillers, LindaVista) in the Graphics tree.</p>
-      <h2>OpenCV Performance</h2>
-      <h3>SIMD · Buffer pre-allocation · Production sorters</h3>
-<p>Optimized OpenCV image-processing paths on production fruit sorters using SIMD intrinsics and an allocation strategy that pre-allocates buffers at startup.</p>
-<p>Result: reduced runtime memory footprint and buffer churn during high-throughput sorting operations on the line.</p>
     </div>
   </main>
   <footer class="site-footer">
