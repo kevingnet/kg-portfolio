@@ -462,11 +462,11 @@ TIMELINE_BY_SLUG = {
         "Warehouse PalmOS apps, SendGTL Win32 loader, help desk and network support.",
     ),
     "woodtech": (
-        "Network Support", "Nov 1996 – Mar 1997",
+        "Senior Software Engineer", "Nov 1996 – Mar 1997",
         "NT/Exchange, BBS file utilities, Netscape server, and executive MIS apps.",
     ),
     "disney": (
-        "Network Support / Programmer", "Jul 1997 – Nov 1998",
+        "Senior Software Engineer", "Jul 1997 – Nov 1998",
         "Novell/Windows connector, commissary menu system, ASP/COM web apps for studio MIS.",
     ),
     "electrosonic": (
@@ -474,7 +474,7 @@ TIMELINE_BY_SLUG = {
         "AV scheduling, remote monitoring, museum deployments — ESCAN and CommLib winsock stack.",
     ),
     "access": (
-        "Installation and Support Associate", "Mar 1995 – Sep 1996",
+        "Programmer and Support Associate", "Mar 1995 – Sep 1996",
         "Predictive dialer installs, Clipper utilities, and mainframe data integration.",
     ),
     "frys": (
@@ -1407,7 +1407,7 @@ PROJECTS = {
     },
     "disney": {
         "title": "Disney Projects",
-        "intro": """<p><strong>Network Support / Programmer</strong> · Jul 1997 – Nov 1998 · Walt Disney Studios (CDI contract) · Burbank, CA</p>
+        "intro": """<p><strong>Senior Software Engineer</strong> · Jul 1997 – Nov 1998 · Walt Disney Studios (CDI contract) · Burbank, CA</p>
 <ul>
 <li>CorpPurch: Request purchases</li>
 <li>DialIn_OutRequest: Request dial in/out access</li>
@@ -1649,7 +1649,7 @@ PROJECTS = {
     },
     "woodtech": {
         "title": "Wood Technologies International",
-        "intro": """<p><strong>Network Support</strong> · Nov 1996 – Mar 1997 · Long Beach, CA</p>
+        "intro": """<p><strong>Senior Software Engineer</strong> · Nov 1996 – Mar 1997 · Long Beach, CA</p>
 <ul>
 <li>Network support and help desk for in-house employees and phone clients</li>
 <li>Installation of NT, Windows 95, Exchange, BBS, and related software</li>
@@ -1666,7 +1666,7 @@ PROJECTS = {
     },
     "access": {
         "title": "ACCESS! Corporation",
-        "intro": """<p><strong>Installation and Support Associate</strong> · Mar 1995 – Sep 1996 · Playa Del Rey, CA</p>
+        "intro": """<p><strong>Programmer and Support Associate</strong> · Mar 1995 – Sep 1996 · Playa Del Rey, CA</p>
 <p>ACCESS! — predictive dialer systems for collection and telemarketing agencies (PC/Dialogic).</p>
 <ul>
 <li>On-site installation and hardware/software support for administrators and clients nationwide</li>
