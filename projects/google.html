@@ -214,104 +214,6 @@ YouTube:
 Human Resources (Finance Department):
     - Designed, Developed and tested the new version of application for HR Team. Java and Micro-Services. Heavy use of dependency injection, patterns, Guice, protobuf, and other internal and open source tools. Application was highly secure and addressed privacy concerns.</code></pre>
       </article>
-      <div class="archive-section-label">src / babel</div>
-      <article class="archive-panel archive-panel--code">
-        <div class="archive-panel__header">
-          <span class="archive-badge-type">CODE</span>
-          <span class="archive-filename">DAC.java</span>
-          <span class="archive-path">src/babel/DAC.java</span>
-        </div>        <pre class="archive-code"><code class="language-java">package com.google.l10n.security;
-
-import com.google.appengine.api.users.User;
-import com.google.common.collect.ImmutableList;
-
-import java.net.InetAddress;
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * &lt;b&gt;Purpose&lt;/b&gt;: Authorizes a User to a Resource
- - Has a list of objects capable of answering the question weather a user is authorized a certain
- resource
- - Caches Q&amp;A
- */
-class DAC extends Cached&lt;String, Integer&gt; implements AuthorizeResource {
-  private final QueryRole resolver;
-  private final IpAddressGuard ipAddressGuard;
-  private final ImmutableList&lt;AuthorizeResource&gt; authorizers;
-
-  public static final DAC build(QueryRole rr, Iterable&lt;AuthorizeResource&gt; providers,
-      IpAddressGuard ipGuard, Cache&lt;String, Integer&gt; cache) {
-    return new DAC(rr, providers, ipGuard, cache);
-  }
-
-  private DAC(QueryRole rr, Iterable&lt;AuthorizeResource&gt; providers, 
-      IpAddressGuard ipGuard, Cache&lt;String, Integer&gt; cache) {
-    super(cache);
-    this.resolver = rr;
-    this.authorizers = ImmutableList.copyOf(providers);
-    this.ipAddressGuard = ipGuard;
-  }
-
-  @Override public boolean authorize(InetAddress ipAddress, User user, Resource resource) {
-    String principal = user.getEmail();
-    Role role = this.resolver.getRole(principal);
-    return authorize(ipAddress, principal, role, resource);
-  }
-
-  @Override public final boolean authorize(InetAddress ipAddress, String principal, 
-      Role role, Resource resource) {
-    final Integer hash = hash(role, resource);
-    if (exists(principal, hash)) {
-      return true;
-    }
-    for (AuthorizeResource auth : this.authorizers) {
-      if (auth.authorize(ipAddress, principal, role, resource)) {
-        set(principal, hash);
-        return true;
-      }
-    }
-    this.ipAddressGuard.block(ipAddress, principal);
-    return false;
-  }
-
-  @Override public Iterable&lt;Resource&gt; listAuthorizedResources(String principal, ResourceType resourceType) {
-    List&lt;Resource&gt; resources = new ArrayList&lt;&gt;();
-    for (AuthorizeResource auth : this.authorizers) {
-      for (Resource resource: auth.listAuthorizedResources(principal, resourceType)) {
-        resources.add(resource);
-      }
-    }
-    Iterable&lt;Resource&gt; iterable = resources;
-    return iterable;
-  }
-
-  private final static Integer hash(Role role, Resource resource) {
-    final String data = String.valueOf(role.toInt()) + resource.toString();
-    return data.hashCode();
-  }
-
-  @Override public Integer get(String hash) {
-    return 0;
-  }
-}</code></pre>
-      </article>
-      <div class="archive-section-label">doc</div>
-      <article class="archive-panel archive-panel--doc">
-        <div class="archive-panel__header">
-          <span class="archive-badge-type">PDF</span>
-          <span class="archive-filename">Antaeus Architecture.pdf</span>
-          <span class="archive-path">doc/Antaeus Architecture.pdf</span>
-        </div>        <div class="archive-pdf-embed">
-        <object data="../assets/archive/google/pdf/Antaeus_Architecture.pdf" type="application/pdf" width="100%" height="600px">
-            <iframe src="../assets/archive/google/pdf/Antaeus_Architecture.pdf" width="100%" height="100%" style="border: none;" title="Antaeus Architecture.pdf">
-                <p>Your browser does not support embedded PDFs.
-                   <a href="../assets/archive/google/pdf/Antaeus_Architecture.pdf">Download the PDF instead</a>.
-                </p>
-            </iframe>
-        </object>
-        </div>
-      </article>
       <figure class="archive-figure">
         <div class="archive-figure__frame"><img src="../assets/archive/google/images/doc/ERD.png" alt="Google — ERD.png" loading="lazy" decoding="async"></div>
         <figcaption class="archive-figure__caption"><span class="archive-filename">ERD.png</span><span class="archive-path">doc/ERD.png</span></figcaption>
@@ -632,6 +534,108 @@ Au
 … [truncated for display]</code></pre>
         <p class="archive-truncated">Excerpt shown — full document in archive.</p>
       </article>
+      <figure class="archive-figure">
+        <div class="archive-figure__frame"><img src="../assets/archive/google/images/doc/security.png" alt="Google — security.png" loading="lazy" decoding="async"></div>
+        <figcaption class="archive-figure__caption"><span class="archive-filename">security.png</span><span class="archive-path">doc/security.png</span></figcaption>
+      </figure>
+      <div class="archive-section-label">src / babel</div>
+      <article class="archive-panel archive-panel--code">
+        <div class="archive-panel__header">
+          <span class="archive-badge-type">CODE</span>
+          <span class="archive-filename">DAC.java</span>
+          <span class="archive-path">src/babel/DAC.java</span>
+        </div>        <pre class="archive-code"><code class="language-java">package com.google.l10n.security;
+
+import com.google.appengine.api.users.User;
+import com.google.common.collect.ImmutableList;
+
+import java.net.InetAddress;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * &lt;b&gt;Purpose&lt;/b&gt;: Authorizes a User to a Resource
+ - Has a list of objects capable of answering the question weather a user is authorized a certain
+ resource
+ - Caches Q&amp;A
+ */
+class DAC extends Cached&lt;String, Integer&gt; implements AuthorizeResource {
+  private final QueryRole resolver;
+  private final IpAddressGuard ipAddressGuard;
+  private final ImmutableList&lt;AuthorizeResource&gt; authorizers;
+
+  public static final DAC build(QueryRole rr, Iterable&lt;AuthorizeResource&gt; providers,
+      IpAddressGuard ipGuard, Cache&lt;String, Integer&gt; cache) {
+    return new DAC(rr, providers, ipGuard, cache);
+  }
+
+  private DAC(QueryRole rr, Iterable&lt;AuthorizeResource&gt; providers, 
+      IpAddressGuard ipGuard, Cache&lt;String, Integer&gt; cache) {
+    super(cache);
+    this.resolver = rr;
+    this.authorizers = ImmutableList.copyOf(providers);
+    this.ipAddressGuard = ipGuard;
+  }
+
+  @Override public boolean authorize(InetAddress ipAddress, User user, Resource resource) {
+    String principal = user.getEmail();
+    Role role = this.resolver.getRole(principal);
+    return authorize(ipAddress, principal, role, resource);
+  }
+
+  @Override public final boolean authorize(InetAddress ipAddress, String principal, 
+      Role role, Resource resource) {
+    final Integer hash = hash(role, resource);
+    if (exists(principal, hash)) {
+      return true;
+    }
+    for (AuthorizeResource auth : this.authorizers) {
+      if (auth.authorize(ipAddress, principal, role, resource)) {
+        set(principal, hash);
+        return true;
+      }
+    }
+    this.ipAddressGuard.block(ipAddress, principal);
+    return false;
+  }
+
+  @Override public Iterable&lt;Resource&gt; listAuthorizedResources(String principal, ResourceType resourceType) {
+    List&lt;Resource&gt; resources = new ArrayList&lt;&gt;();
+    for (AuthorizeResource auth : this.authorizers) {
+      for (Resource resource: auth.listAuthorizedResources(principal, resourceType)) {
+        resources.add(resource);
+      }
+    }
+    Iterable&lt;Resource&gt; iterable = resources;
+    return iterable;
+  }
+
+  private final static Integer hash(Role role, Resource resource) {
+    final String data = String.valueOf(role.toInt()) + resource.toString();
+    return data.hashCode();
+  }
+
+  @Override public Integer get(String hash) {
+    return 0;
+  }
+}</code></pre>
+      </article>
+      <div class="archive-section-label">doc</div>
+      <article class="archive-panel archive-panel--doc">
+        <div class="archive-panel__header">
+          <span class="archive-badge-type">PDF</span>
+          <span class="archive-filename">Antaeus Architecture.pdf</span>
+          <span class="archive-path">doc/Antaeus Architecture.pdf</span>
+        </div>        <div class="archive-pdf-embed">
+        <object data="../assets/archive/google/pdf/Antaeus_Architecture.pdf" type="application/pdf" width="100%" height="600px">
+            <iframe src="../assets/archive/google/pdf/Antaeus_Architecture.pdf" width="100%" height="100%" style="border: none;" title="Antaeus Architecture.pdf">
+                <p>Your browser does not support embedded PDFs.
+                   <a href="../assets/archive/google/pdf/Antaeus_Architecture.pdf">Download the PDF instead</a>.
+                </p>
+            </iframe>
+        </object>
+        </div>
+      </article>
       <div class="archive-section-label">src / babel</div>
       <article class="archive-panel archive-panel--code">
         <div class="archive-panel__header">
@@ -730,10 +734,6 @@ class MAC extends Cached&lt;String, Integer&gt; implements AuthorizeOperation {
         </object>
         </div>
       </article>
-      <figure class="archive-figure">
-        <div class="archive-figure__frame"><img src="../assets/archive/google/images/doc/security.png" alt="Google — security.png" loading="lazy" decoding="async"></div>
-        <figcaption class="archive-figure__caption"><span class="archive-filename">security.png</span><span class="archive-path">doc/security.png</span></figcaption>
-      </figure>
       <div class="archive-section-label">src / babel</div>
       <article class="archive-panel archive-panel--code">
         <div class="archive-panel__header">

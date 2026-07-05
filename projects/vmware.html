@@ -131,218 +131,6 @@ WORK PERFORMED:
     - Architected, designed and implemented a new testing framework for the QA department.
     - Replaced old framework mostly perl based with a lot of python. Original framework was over 80kloc, new framework is 8kloc, 8 times faster. Used object orientation, functional and meta programming as paradigms.</code></pre>
       </article>
-      <div class="archive-section-label">src / gemini</div>
-      <article class="archive-panel archive-panel--text">
-        <div class="archive-panel__header">
-          <span class="archive-badge-type">TEXT</span>
-          <span class="archive-filename">readme.txt</span>
-          <span class="archive-path">src/gemini/readme.txt</span>
-        </div>        <pre class="archive-text"><code>Replacement architecture for ~60k loc
-
-System to allow writing of tests for most functionality of vmware esx server
-
-Features yaml configuration files, colorful logs, encapsulation of functionality, 
-
-There are two folders with very similar structure, the reason for that is so that
-control can be exercized over what the user(developer) has access to, and otherwise
-make things that aren&#x27;t supposed to be accessed obviously difficult, this ironically
-with the intent for better usability, so the user sees less code, although, in reality
-everything should happen in the test file and the rest is framework background functionality.
-
-Please ask me for any other details.</code></pre>
-      </article>
-      <div class="archive-section-label">src / gemini / lib</div>
-      <article class="archive-panel archive-panel--code">
-        <div class="archive-panel__header">
-          <span class="archive-badge-type">CODE</span>
-          <span class="archive-filename">base_test.py</span>
-          <span class="archive-path">src/gemini/lib/base_test.py</span>
-        </div>        <pre class="archive-code"><code class="language-python">import unittest
-import sys
-import ssl
-from lib.base_test_helper.utility import *
-from lib.base_test_helper.directories import *
-from lib.utility import log
-from lib.utility import configuration
-from lib.utility import add_unittest_asserts
-from lib.utility.configuration import consolidate_files
-from lib.utility.current_class import CurrentClass
-from lib.framework.factory import Factory
-from lib.framework.controller import Controller
-from lib.lwrdo.factory import Factory as VMTFactory
-from lib.service.wait import wait
-from lib.service.events import Events
-from lib.utility.log import clear_tabs
-from lib.base_test_helper.unhandled_exception_handler import all_exceptions_hander
-
-@log.class_logger
-class BaseTest(unittest.TestCase, configuration.Configuration):
-    setattr(CurrentClass(), &#x27;name&#x27;, &#x27;None&#x27;)
-    delete = None
-    deleteCalled = False
-    isPythonVersion2_6 = False
-    if sys.version_info[:2] == (2, 6):
-        isPythonVersion2_6 = True
-
-    @log.test_class_function
-    def run(self, result=None):
-        self.currentResult = clearCounters(result)
-        unittest.TestCase.run(self, result)
-
-    @log.test_class_function
-    def __init__(self, testFile, *args, **kwargs):
-        sys.excepthook = all_exceptions_hander
-        log.testCase = self
-        BaseTest.delete = self._delete
-        self._fixPython3SslIssue()
-        self.wait = wait
-
-        self.currentResult = None
-        self.startDate = datetime.datetime.today()
-        self.startTime = int(time.time())
-
-        unittest.TestCase.__init__(self, *args, **kwargs)
-        add_unittest_asserts.global_test_case = self
-        add_unittest_asserts.isPythonVersion2_6 = BaseTest.isPythonVersion2_6
-
-        self._calcTestFileInformation(testFile)
-        yamlFile = consolidate_files(self.path)
-        configuration.Configuration.__init__(self, yamlFile)
-        self._calcTestDirectory()
-
-        self.logger = setupLogger(self, self.config, self.testDirectory)
-
-        printHeader(self.name, self.startDate, self.logger)
-
-        self.preConfigure()
-        self.writeConfiguration()
-
-        self.logger.note(&#x27;Build phase&#x27;)
-        self.actors = Factory.addActorsNames()
-        self.mediators = Factory.addMediatorsNames()
-        clear_tabs()
-        Factory.build(self)
-        Events().actors = self.actors
-        Controller.setActors(self.actors)
-
-        self.logger.note(&#x27;Post build phase&#x27;)
-        clear_tabs()
-        self.postConfigure()
-
-        self.logger.note(&#x27;Initialization phase&#x27;)
-        clear_tabs()
-        VMTFactory.build(self.actors)
-
-        self.logger.note(&#x27;Configuration phase&#x27;)
-        # assert 1==0
-        clear_tabs()
-        self._configure()
-        # assert 1==0
-        self.logger.note(&#x27;Post-Initialization phase&#x27;)
-        clear_tabs()
-        self.postInitialize()
-
-        self.logger.note(&#x27;Verification phase&#x27;)
-        clear_tabs()
-        Controller.check()
-        self.logger.note(&#x27;Object creation phase&#x27;)
-        clear_tabs()
-        Controller.create()
-
-        self.logger.note(&#x27;Starting test run&#x27;)
-        printTestHeader(self.name)
-
-    def preConfigure(self):
-        pass
-
-    def postConfigure(self):
-        pass
-
-    def postInitialize(self):
-        pass
-
-    def cleanup(self):
-        pass
-
-    @classmethod
-    @log.test_class_function
-    def tearDownClass(cls):
-        clear_tabs()
-        # only available in 2.7, solves the above issue
-        if not BaseTest.isPythonVersion2_6:
-            cls.logger.note(&#x27;tearDownClass&#x27;)
-            BaseTest.delete()
-
-    @classmethod
-    @log.test_class_function
-    def __del__(self):
-        clear_tabs()
-        # this method causes issues in 2.7, the logger gets deleted first
-        if BaseTest.isPythonVersion2_6:
-            self.logger.note(&#x27;__del__&#x27;)
-            BaseTest.delete()
-
-    @log.test_class_function
-    def _configure(self):
-        clear_tabs()
-        Controller.configure()
-
-    @log.test_class_function
-    def _delete(self):
-        clear_tabs()
-        if BaseTest.deleteCalled:
-            self.logger.info(&#x27;Delete already performed, exiting...&#x27;)
-            return
-        BaseTest.deleteCalled = True
-        self.logger.note(&#x27;Cleanup phase&#x27;)
-        Events().ee.emit(&quot;terminate&quot;, self)
-        self.cleanup()
-        Controller.cleanup()
-        cleanupEmptyDirectories(self.config)
-        printFooter(self.name, self.testDirectory,
-                    self.startTime, self.currentResult, self.logger)
-        Events().ee.emit(&quot;at_end&quot;)
-        createColorlessLog(self.testDirectory)
-        createHtmlLog(self.testDirectory)
-
-    def _calcTestFileInformation(self, testFile):
-        testFile = os.path.splitext(testFile)[0]
-        if testFile.startswith(&#x27;./&#x27;):
-            testFile = testFile[2:]
-        testName = testFile.split(&#x27;/&#x27;)
-        self.name = testName[-1]
-        self.path = testFile
-
-    def _calcTestDirectory(self):
-        self.testDirectory = os.path.join(
-                self.config.framework.resultsPath,
-                os.path.splitext(self.path)[0])
-        if not os.path.exists(self.testDirectory):
-            os.makedirs(self.testDirectory)
-        makeDirectories(self.name, self.testDirectory, self.config)
-
-    def _fixPython3SslIssue(self):
-        try:
-            ssl._create_default_https_context = ssl._create_unverified_context
-        except Exception, e:
-            self.logger.warning(&#x27;Exception:%s&#x27; % str(e))</code></pre>
-      </article>
-      <div class="archive-section-label">doc</div>
-      <article class="archive-panel archive-panel--doc">
-        <div class="archive-panel__header">
-          <span class="archive-badge-type">PDF</span>
-          <span class="archive-filename">GeminiFramework.pdf</span>
-          <span class="archive-path">doc/GeminiFramework.pdf</span>
-        </div>        <div class="archive-pdf-embed">
-        <object data="../assets/archive/vmware/pdf/GeminiFramework.pdf" type="application/pdf" width="100%" height="600px">
-            <iframe src="../assets/archive/vmware/pdf/GeminiFramework.pdf" width="100%" height="100%" style="border: none;" title="GeminiFramework.pdf">
-                <p>Your browser does not support embedded PDFs.
-                   <a href="../assets/archive/vmware/pdf/GeminiFramework.pdf">Download the PDF instead</a>.
-                </p>
-            </iframe>
-        </object>
-        </div>
-      </article>
       <article class="archive-panel archive-panel--text">
         <div class="archive-panel__header">
           <span class="archive-badge-type">TEXT</span>
@@ -752,184 +540,259 @@ FindDisk
 … [truncated for display]</code></pre>
         <p class="archive-truncated">Excerpt shown — full document in archive.</p>
       </article>
-      <div class="archive-section-label">src / gemini / tests</div>
-      <article class="archive-panel archive-panel--code">
+      <article class="archive-panel archive-panel--text">
         <div class="archive-panel__header">
-          <span class="archive-badge-type">CODE</span>
-          <span class="archive-filename">TestHostRemove.py</span>
-          <span class="archive-path">src/gemini/tests/TestHostRemove.py</span>
-        </div>        <pre class="archive-code"><code class="language-python">#!/usr/bin/python
-import unittest
-from lib.utility import log
-from lib.base_test import BaseTest
+          <span class="archive-badge-type">TEXT</span>
+          <span class="archive-filename">configuration.yaml</span>
+          <span class="archive-path">src/gemini/configuration.yaml</span>
+        </div>        <pre class="archive-text"><code>#╔════════════════════════════════════════════════════════════════════╗
+#║                           L O G G I N G                            ║
+#╚════════════════════════════════════════════════════════════════════╝
+logging: &amp;id_logging
+    # do not remove lines, comment out a line to disable
+    levels:
+      # should be used
+      - LOGGING_LEVEL_FOOTER
+      - LOGGING_LEVEL_HEADER
+      - LOGGING_LEVEL_NOTE
+      - LOGGING_LEVEL_TEST
+      - LOGGING_LEVEL_TRACE
+      # 
+      - LOGGING_LEVEL_FUNCTION
+      - LOGGING_LEVEL_VERBOSE
+      - LOGGING_LEVEL_VVERBOSE
+      # optional
+      - LOGGING_LEVEL_REMOTE_OUTPUT
+      - LOGGING_LEVEL_REMOTE_VITALS
+      - LOGGING_LEVEL_REMOTE_LOGS
+      - LOGGING_LEVEL_ESX
+      - LOGGING_LEVEL_HBR
+      - LOGGING_LEVEL_MACHINE
+      #- LOGGING_LEVEL_ESX_LOG
+      #- LOGGING_LEVEL_HBR_LOG
+      #- LOGGING_LEVEL_IGNORED_ERROR
+    format: &#x27;[%(asctime)s] %(levelname)s [%(module)s:%(funcName)s()@%(lineno)d] %(message)s&#x27;
+    format_simple: &#x27;[%(asctime)s] %(levelname)s %(message)s&#x27;
+    format_date: &#x27;%H:%M:%S&#x27;
 
-@log.class_logger
-class TestHostRemove(BaseTest):
+#╔════════════════════════════════════════════════════════════════════╗
+#║                         F R A M E W O R K                          ║
+#╚════════════════════════════════════════════════════════════════════╝
+framework: &amp;id_framework
+  resultsPath: /tmp/resultsZZZ
+  files: files
+  logs: logs
+  tmp: tmp
+  logFile: testcase.log
+  tools:
+    path: /automation/framework/launch/Tools
+    spaz: checkablespaz.py
+  vmtree: $VMTREE
+  
+#╔════════════════════════════════════════════════════════════════════╗
+#║                            S Y S T E M                             ║
+#╚════════════════════════════════════════════════════════════════════╝
+system: &amp;id_system
+  enableNetworkCompression: False
+  
+#╔════════════════════════════════════════════════════════════════════╗
+#║                              H  B  R                               ║
+#╚════════════════════════════════════════════════════════════════════╝
+Hbr_credentials: &amp;id_Hbr_credentials 
+  user: root
+  password: pwd
+ 
+HbrControl: &amp;id_HbrControl
+    certificateGenerationScript: fakehms-generate-certificate.sh
+    certificateFile: fakehms.crt
+    keyFile: fakehms.key
 
-    def __init__(self, *args, **kwargs):
-        BaseTest.__init__(self, __file__, *args, **kwargs)
+Hbr: &amp;id_Hbr
+  Esx: 0
+  authentication:
+    certificate: 
+    key:
+    thumbprint: 
+  tools:
+    ioctl: /sbin/hbrfilterctl
+    hbrpsftool: /sbin/hbrpsftool
+  filter:
+    replicator: hbr_filter
+    sample: vscsi_example_filter
+  ip: 10.20.109.62
+  port: 8123
+  credentials: *id_Hbr_credentials
+  Machine:
+    name: hmsva
+  logs:
+    - /var/log/messages
+    - /var/log/hbrsrv.log
+  
+#╔════════════════════════════════════════════════════════════════════╗
+#║                              E  S  X                               ║
+#╚════════════════════════════════════════════════════════════════════╝
+Esx_credentials: &amp;id_Esx_credentials 
+  user: root
+  password: ca$hc0w
+ 
+datastore: &amp;id_datastore
+  name: $DATASTORE
+  uuid: $DATASTORE_UUID
+  root: &#x27;HBRQA/Gemini&#x27;
+  machineSources: HBRQA/Gemini/Sources
+datastore0: &amp;id_datastore0
+  name: $DATASTORE0
+  uuid: $DATASTORE_UUID0
+  root: &#x27;HBRQA/Gemini&#x27;
+  machineSources: HBRQA/Gemini/Sources
+datastore1: &amp;id_datastore1
+  name: $DATASTORE1
+  uuid: $DATASTORE_UUID1
+  root: &#x27;HBRQA/Gemini&#x27;
+  machineSources: HBRQA/Gemini/Sources
 
-    @log.test_class_function
-    def test_HostRemove(self):
-        self.logger.test(&#x27;Hbr: %s&#x27; % self.Hbr)
-        self.logger.test(&#x27;esxs: %s&#x27; % str(self.Esxs))
+Esxs_defaults: &amp;id_Esxs_defaults
+  tools:
+    disk_create: /sbin/diskCreate
+    disk_tool: /sbin/diskTool
+    hbrpsftool: /sbin/hbrpsftool
+  logs:
+    - /scratch/log/syslog.log
+    - /scratch/log/hostd.log
+    - /scratch/log/vobd.log
+    - /scratch/log/vmkernel.log
+Esxs: &amp;id_Esxs
+  - Esx: &amp;id_Esx0
+    ip: 10.20.108.246
+    datastore: *id_datastore
+    credentials: *id_Esx_credentials 
+    Hbr: *id_Hbr
+#  - Esx: &amp;id_Esx1
+#    name: eng_vadpqe_us_1-2015.08.03-12.26.33.esx.0
+#    enabled: False
+#    ip: 10.161.60.71
+#    datastore: *id_datastore0
+#    credentials: *id_Esx_credentials 
+#    Hbr: *id_Hbr
+#  - Esx: &amp;id_Esx2
+#    name: eng_vadpqe_us_1-2015.08.03-12.26.33.esx.1
+#    enabled: False
+#    ip: 10.161.32.166
+#    datastore: *id_datastore1
+#    credentials: *id_Esx_credentials 
+#    Hbr: *id_Hbr
 
-        esxToBeRemoved = self.Esxs[0]
-        self.logger.test(&#x27;esxToBeRemoved: %s&#x27; % str(esxToBeRemoved))
-        self.assertTrue(self.Hosts.exist(esxToBeRemoved),
-                        &#x27;Host %s does not exist&#x27; % esxToBeRemoved.ip)
+#╔════════════════════════════════════════════════════════════════════╗
+#║                  R E P L I C A T I O N   G R O U P                 ║
+#╚════════════════════════════════════════════════════════════════════╝
+ReplicationGroups_defaults:  
+  rpo: 30
+  lwdPort: 31031
+  enableQuiescing: False
+  enableOpportunistic: False
+  enableNetworkCompression: False
+  autoStart: True
+  Esx: 0
+  
+ReplicationGroups:
+  - ReplicationGroup:
+    enabled: True
+    
+#╔════════════════════════════════════════════════════════════════════╗
+#║                               D I S K                              ║
+#╚════════════════════════════════════════════════════════════════════╝
+# 1gb=1073741824 1tb=1099511627776 2tb=2199023255552
+Disks_defaults:  
+  isBaseDisk: False
+  size: 1073741824
+  format: thick #formats: thick zeroedthick
+  controllerType: scsi
+  adapterType: lsiLogic
+    
+#╔════════════════════════════════════════════════════════════════════╗
+#║                            M A C H I N E                           ║
+#╚════════════════════════════════════════════════════════════════════╝
+Machines_defaults:  
+      
+#╔════════════════════════════════════════════════════════════════════╗
+#║                            R E P L I C A                           ║
+#╚════════════════════════════════════════════════════════════════════╝
+Replicas_defaults:  
+      
+#╔════════════════════════════════════════════════════════════════════╗
+#║                              I M A G E                             ║
+#╚════════════════════════════════════════════════════════════════════╝
+Images_defaults:  
+  # failOver, testBubble
+  type: failOver
+  enabled: False
+  autoStart: False
+      
+#╔════════════════════════════════════════════════════════════════════╗
+#║                 P R O T E C T E D   M A C H I N E                  ║
+#╚════════════════════════════════════════════════════════════════════╝
+ProtectedMachines_defaults:  
+  autoStart: True
+  credentials:
+    user: root
+    password: ca$hc0w
+  ReplicationGroup: 0
+  Esx: 0
+      
+ProtectedMachines:
+  - ProtectedMachine:
+      attributes: #SpazWriter TestDataWriter
+      Machine:
+        initialPowerState: PoweredOn
+        ip: None
+        Disks:
+          - Disk:
+            name: ProtectedMachine0-basedisk
+            isBaseDisk: True
+          - Disk:
+      Replica:
+      Image:
+  - ProtectedMachine:
+      enabled: False
+      Esx: 1
+      ReplicationGroup: 1
+      Machine:
+        initialPowerState: PoweredOff
+        ip: None
+        Disks:
+          - Disk:
+            name: ProtectedMachine0-basedisk
+            isBaseDisk: True
+          - Disk:
+            size: 1073741824
+          - Disk:
+            size: 1073741824
+      Replica:
+      Image:
 
-        hostCountBefore = self.Hosts.count()
-        self.logger.test(&#x27;hostCountBefore: %d&#x27; % hostCountBefore)
-
-        self.Hosts.remove(esxToBeRemoved)
-
-        hostCountAfter = self.Hosts.count()
-        self.logger.test(&#x27;hostCountAfter: %d&#x27; % hostCountAfter)
-        self.logger.test(&#x27;esxs: %s&#x27; % str(self.Esxs))
-
-        self.assertEqual(hostCountBefore - 1, hostCountAfter,
-                         &#x27;Total number of hosts should have decreased &#x27;
-                         &#x27;by one, number of hosts changed from %d to %d&#x27;
-                         % (hostCountBefore, hostCountAfter))
-
-        self.assertFalse(self.Hosts.exist(esxToBeRemoved),
-                         &#x27;After removing, host %s, it should not exist&#x27;
-                         % esxToBeRemoved.ip)
-
-if __name__ == &#x27;__main__&#x27;:
-    unittest.main()</code></pre>
+#╔════════════════════════════════════════════════════════════════════╗
+#║                       S P A Z   W R I T E R                        ║
+#╚════════════════════════════════════════════════════════════════════╝
+SpazWriter_defaults:
+  script1: checkablespaz.py  
+  script2: checkablespaz2.py  
+  script3: checkablespaz3.py  
+  checksum: True
+  killRunningSpazOnStart: True
+  blocks:
+    bytes: 8192
+    kilobytes: 8
+      
+      
+#╔════════════════════════════════════════════════════════════════════╗
+#║                  T E S T   D A T A   W R I T E R                   ║
+#╚════════════════════════════════════════════════════════════════════╝
+TestDataWriter_defaults:
+  writeCounts: 10
+  pageSize: 8192
+  checksumPages: False
+  checksumDisk: True</code></pre>
       </article>
-      <div class="archive-section-label">doc</div>
-      <div class="archive-section-label">src / gemini / lib / framework</div>
-      <article class="archive-panel archive-panel--code">
-        <div class="archive-panel__header">
-          <span class="archive-badge-type">CODE</span>
-          <span class="archive-filename">controller.py</span>
-          <span class="archive-path">src/gemini/lib/framework/controller.py</span>
-        </div>        <pre class="archive-code"><code class="language-python">from . import *
-from lib.utility import log
-from lib.utility.log import clear_tabs
-from lib.service.events import ee
-
-logger = log.default_logger
-
-@ee.on(&quot;onMachineIp&quot;)
-def handler_onMachineIp(machineName):
-    Controller.onMachineIp(machineName)
-
-@log.class_logger
-class Controller():
-    actors = None
-
-    @classmethod
-    def setActors(cls, actors):
-        cls.actors = actors
-
-    @classmethod
-    @log.high_class_static_function(&#x27;lib.framework.Controller.configure&#x27;)
-    def configure(cls):
-        execute(configure, cls.actors)
-
-    @classmethod
-    @log.high_class_static_function(&#x27;lib.framework.Controller.check&#x27;)
-    def check(cls):
-        execute(check, cls.actors)
-
-    @classmethod
-    @log.high_class_static_function(&#x27;lib.framework.Controller.create&#x27;)
-    def create(cls):
-        execute(create, cls.actors)
-
-    @classmethod
-    @log.high_class_static_function(&#x27;lib.framework.Controller.start&#x27;)
-    def start(cls):
-        execute(start, cls.actors)
-
-    @classmethod
-    @log.high_class_static_function(&#x27;lib.framework.Controller.stop&#x27;)
-    def stop(cls):
-        execute(stop, cls.actors)
-
-    @classmethod
-    @log.high_class_static_function(&#x27;lib.framework.Controller.cleanup&#x27;)
-    def cleanup(cls):
-        executeCleanup(cleanup, cls.actors)
-
-    @classmethod
-    @log.high_class_static_function(&#x27;lib.framework.Controller.onMachineIp&#x27;)
-    def onMachineIp(cls, machineName):
-        for pm in cls.actors.ProtectedMachines:
-            if pm.enabled and pm.name == machineName:
-                pm.onMachineIp()
-
-def _clearFunctionTabs():
-    clear_tabs()
-
-def execute(function, actors):
-    _clearFunctionTabs()
-    function(actors.Esxs, &#x27;Esxs&#x27;)
-    function(actors.Hbr, &#x27;Hbr&#x27;)
-    function(actors.ProtectedMachines, &#x27;ProtectedMachines&#x27;)
-    function(actors.ReplicationGroups, &#x27;ReplicationGroups&#x27;)
-
-def executeCleanup(function, actors):
-    _clearFunctionTabs()
-    function(actors.ProtectedMachines, &#x27;ProtectedMachines&#x27;)
-    function(actors.ReplicationGroups, &#x27;ReplicationGroups&#x27;)
-    function(actors.Esxs, &#x27;Esxs&#x27;)
-    function(actors.Hbr, &#x27;Hbr&#x27;)
-
-def configure(items, text):
-    if not items:
-        return
-    message(&#x27;Configuring&#x27;, items, text)
-    items.configure()
-
-def check(items, text):
-    if not items:
-        return
-    message(&#x27;Checking&#x27;, items, text)
-    items.check()
-
-def create(items, text):
-    if not items:
-        return
-    message(&#x27;Creating dependent objects for&#x27;, items, text)
-    items.create()
-
-def start(items, text):
-    if not items:
-        return
-    message(&#x27;Starting&#x27;, items, text)
-    items.start()
-
-def stop(items, text):
-    if not items:
-        return
-    message(&#x27;Stopping&#x27;, items, text)
-    items.stop()
-
-def cleanup(items, text):
-    if not items:
-        return
-    message(&#x27;Unloading&#x27;, items, text)
-    if items and items.cleanup:
-        items.cleanup()
-
-def onMachineIp(items, text):
-    if not items:
-        return
-    message(&#x27;onMachineIp&#x27;, items, text)
-    items.onMachineIp()
-
-def message(operation, items, text):
-    if isinstance(items, list):
-        logger.note(&#x27;%s %s, count:%d&#x27; % (operation, text, len(items)))
-    else:
-        logger.note(&#x27;%s %s&#x27; % (operation, text))</code></pre>
-      </article>
-      <div class="archive-section-label">doc</div>
       <article class="archive-panel archive-panel--text">
         <div class="archive-panel__header">
           <span class="archive-badge-type">TEXT</span>
@@ -1201,6 +1064,396 @@ ______________________________________________________________________
 … [truncated for display]</span></code></pre>
         <p class="archive-truncated">Excerpt shown — full document in archive.</p>
       </article>
+      <div class="archive-section-label">src / gemini</div>
+      <article class="archive-panel archive-panel--text">
+        <div class="archive-panel__header">
+          <span class="archive-badge-type">TEXT</span>
+          <span class="archive-filename">readme.txt</span>
+          <span class="archive-path">src/gemini/readme.txt</span>
+        </div>        <pre class="archive-text"><code>Replacement architecture for ~60k loc
+
+System to allow writing of tests for most functionality of vmware esx server
+
+Features yaml configuration files, colorful logs, encapsulation of functionality, 
+
+There are two folders with very similar structure, the reason for that is so that
+control can be exercized over what the user(developer) has access to, and otherwise
+make things that aren&#x27;t supposed to be accessed obviously difficult, this ironically
+with the intent for better usability, so the user sees less code, although, in reality
+everything should happen in the test file and the rest is framework background functionality.
+
+Please ask me for any other details.</code></pre>
+      </article>
+      <div class="archive-section-label">src / gemini / lib</div>
+      <article class="archive-panel archive-panel--code">
+        <div class="archive-panel__header">
+          <span class="archive-badge-type">CODE</span>
+          <span class="archive-filename">base_test.py</span>
+          <span class="archive-path">src/gemini/lib/base_test.py</span>
+        </div>        <pre class="archive-code"><code class="language-python">import unittest
+import sys
+import ssl
+from lib.base_test_helper.utility import *
+from lib.base_test_helper.directories import *
+from lib.utility import log
+from lib.utility import configuration
+from lib.utility import add_unittest_asserts
+from lib.utility.configuration import consolidate_files
+from lib.utility.current_class import CurrentClass
+from lib.framework.factory import Factory
+from lib.framework.controller import Controller
+from lib.lwrdo.factory import Factory as VMTFactory
+from lib.service.wait import wait
+from lib.service.events import Events
+from lib.utility.log import clear_tabs
+from lib.base_test_helper.unhandled_exception_handler import all_exceptions_hander
+
+@log.class_logger
+class BaseTest(unittest.TestCase, configuration.Configuration):
+    setattr(CurrentClass(), &#x27;name&#x27;, &#x27;None&#x27;)
+    delete = None
+    deleteCalled = False
+    isPythonVersion2_6 = False
+    if sys.version_info[:2] == (2, 6):
+        isPythonVersion2_6 = True
+
+    @log.test_class_function
+    def run(self, result=None):
+        self.currentResult = clearCounters(result)
+        unittest.TestCase.run(self, result)
+
+    @log.test_class_function
+    def __init__(self, testFile, *args, **kwargs):
+        sys.excepthook = all_exceptions_hander
+        log.testCase = self
+        BaseTest.delete = self._delete
+        self._fixPython3SslIssue()
+        self.wait = wait
+
+        self.currentResult = None
+        self.startDate = datetime.datetime.today()
+        self.startTime = int(time.time())
+
+        unittest.TestCase.__init__(self, *args, **kwargs)
+        add_unittest_asserts.global_test_case = self
+        add_unittest_asserts.isPythonVersion2_6 = BaseTest.isPythonVersion2_6
+
+        self._calcTestFileInformation(testFile)
+        yamlFile = consolidate_files(self.path)
+        configuration.Configuration.__init__(self, yamlFile)
+        self._calcTestDirectory()
+
+        self.logger = setupLogger(self, self.config, self.testDirectory)
+
+        printHeader(self.name, self.startDate, self.logger)
+
+        self.preConfigure()
+        self.writeConfiguration()
+
+        self.logger.note(&#x27;Build phase&#x27;)
+        self.actors = Factory.addActorsNames()
+        self.mediators = Factory.addMediatorsNames()
+        clear_tabs()
+        Factory.build(self)
+        Events().actors = self.actors
+        Controller.setActors(self.actors)
+
+        self.logger.note(&#x27;Post build phase&#x27;)
+        clear_tabs()
+        self.postConfigure()
+
+        self.logger.note(&#x27;Initialization phase&#x27;)
+        clear_tabs()
+        VMTFactory.build(self.actors)
+
+        self.logger.note(&#x27;Configuration phase&#x27;)
+        # assert 1==0
+        clear_tabs()
+        self._configure()
+        # assert 1==0
+        self.logger.note(&#x27;Post-Initialization phase&#x27;)
+        clear_tabs()
+        self.postInitialize()
+
+        self.logger.note(&#x27;Verification phase&#x27;)
+        clear_tabs()
+        Controller.check()
+        self.logger.note(&#x27;Object creation phase&#x27;)
+        clear_tabs()
+        Controller.create()
+
+        self.logger.note(&#x27;Starting test run&#x27;)
+        printTestHeader(self.name)
+
+    def preConfigure(self):
+        pass
+
+    def postConfigure(self):
+        pass
+
+    def postInitialize(self):
+        pass
+
+    def cleanup(self):
+        pass
+
+    @classmethod
+    @log.test_class_function
+    def tearDownClass(cls):
+        clear_tabs()
+        # only available in 2.7, solves the above issue
+        if not BaseTest.isPythonVersion2_6:
+            cls.logger.note(&#x27;tearDownClass&#x27;)
+            BaseTest.delete()
+
+    @classmethod
+    @log.test_class_function
+    def __del__(self):
+        clear_tabs()
+        # this method causes issues in 2.7, the logger gets deleted first
+        if BaseTest.isPythonVersion2_6:
+            self.logger.note(&#x27;__del__&#x27;)
+            BaseTest.delete()
+
+    @log.test_class_function
+    def _configure(self):
+        clear_tabs()
+        Controller.configure()
+
+    @log.test_class_function
+    def _delete(self):
+        clear_tabs()
+        if BaseTest.deleteCalled:
+            self.logger.info(&#x27;Delete already performed, exiting...&#x27;)
+            return
+        BaseTest.deleteCalled = True
+        self.logger.note(&#x27;Cleanup phase&#x27;)
+        Events().ee.emit(&quot;terminate&quot;, self)
+        self.cleanup()
+        Controller.cleanup()
+        cleanupEmptyDirectories(self.config)
+        printFooter(self.name, self.testDirectory,
+                    self.startTime, self.currentResult, self.logger)
+        Events().ee.emit(&quot;at_end&quot;)
+        createColorlessLog(self.testDirectory)
+        createHtmlLog(self.testDirectory)
+
+    def _calcTestFileInformation(self, testFile):
+        testFile = os.path.splitext(testFile)[0]
+        if testFile.startswith(&#x27;./&#x27;):
+            testFile = testFile[2:]
+        testName = testFile.split(&#x27;/&#x27;)
+        self.name = testName[-1]
+        self.path = testFile
+
+    def _calcTestDirectory(self):
+        self.testDirectory = os.path.join(
+                self.config.framework.resultsPath,
+                os.path.splitext(self.path)[0])
+        if not os.path.exists(self.testDirectory):
+            os.makedirs(self.testDirectory)
+        makeDirectories(self.name, self.testDirectory, self.config)
+
+    def _fixPython3SslIssue(self):
+        try:
+            ssl._create_default_https_context = ssl._create_unverified_context
+        except Exception, e:
+            self.logger.warning(&#x27;Exception:%s&#x27; % str(e))</code></pre>
+      </article>
+      <div class="archive-section-label">doc</div>
+      <article class="archive-panel archive-panel--doc">
+        <div class="archive-panel__header">
+          <span class="archive-badge-type">PDF</span>
+          <span class="archive-filename">GeminiFramework.pdf</span>
+          <span class="archive-path">doc/GeminiFramework.pdf</span>
+        </div>        <div class="archive-pdf-embed">
+        <object data="../assets/archive/vmware/pdf/GeminiFramework.pdf" type="application/pdf" width="100%" height="600px">
+            <iframe src="../assets/archive/vmware/pdf/GeminiFramework.pdf" width="100%" height="100%" style="border: none;" title="GeminiFramework.pdf">
+                <p>Your browser does not support embedded PDFs.
+                   <a href="../assets/archive/vmware/pdf/GeminiFramework.pdf">Download the PDF instead</a>.
+                </p>
+            </iframe>
+        </object>
+        </div>
+      </article>
+      <div class="archive-section-label">src / gemini / tests</div>
+      <article class="archive-panel archive-panel--code">
+        <div class="archive-panel__header">
+          <span class="archive-badge-type">CODE</span>
+          <span class="archive-filename">TestHostRemove.py</span>
+          <span class="archive-path">src/gemini/tests/TestHostRemove.py</span>
+        </div>        <pre class="archive-code"><code class="language-python">#!/usr/bin/python
+import unittest
+from lib.utility import log
+from lib.base_test import BaseTest
+
+@log.class_logger
+class TestHostRemove(BaseTest):
+
+    def __init__(self, *args, **kwargs):
+        BaseTest.__init__(self, __file__, *args, **kwargs)
+
+    @log.test_class_function
+    def test_HostRemove(self):
+        self.logger.test(&#x27;Hbr: %s&#x27; % self.Hbr)
+        self.logger.test(&#x27;esxs: %s&#x27; % str(self.Esxs))
+
+        esxToBeRemoved = self.Esxs[0]
+        self.logger.test(&#x27;esxToBeRemoved: %s&#x27; % str(esxToBeRemoved))
+        self.assertTrue(self.Hosts.exist(esxToBeRemoved),
+                        &#x27;Host %s does not exist&#x27; % esxToBeRemoved.ip)
+
+        hostCountBefore = self.Hosts.count()
+        self.logger.test(&#x27;hostCountBefore: %d&#x27; % hostCountBefore)
+
+        self.Hosts.remove(esxToBeRemoved)
+
+        hostCountAfter = self.Hosts.count()
+        self.logger.test(&#x27;hostCountAfter: %d&#x27; % hostCountAfter)
+        self.logger.test(&#x27;esxs: %s&#x27; % str(self.Esxs))
+
+        self.assertEqual(hostCountBefore - 1, hostCountAfter,
+                         &#x27;Total number of hosts should have decreased &#x27;
+                         &#x27;by one, number of hosts changed from %d to %d&#x27;
+                         % (hostCountBefore, hostCountAfter))
+
+        self.assertFalse(self.Hosts.exist(esxToBeRemoved),
+                         &#x27;After removing, host %s, it should not exist&#x27;
+                         % esxToBeRemoved.ip)
+
+if __name__ == &#x27;__main__&#x27;:
+    unittest.main()</code></pre>
+      </article>
+      <div class="archive-section-label">doc</div>
+      <div class="archive-section-label">src / gemini / lib / framework</div>
+      <article class="archive-panel archive-panel--code">
+        <div class="archive-panel__header">
+          <span class="archive-badge-type">CODE</span>
+          <span class="archive-filename">controller.py</span>
+          <span class="archive-path">src/gemini/lib/framework/controller.py</span>
+        </div>        <pre class="archive-code"><code class="language-python">from . import *
+from lib.utility import log
+from lib.utility.log import clear_tabs
+from lib.service.events import ee
+
+logger = log.default_logger
+
+@ee.on(&quot;onMachineIp&quot;)
+def handler_onMachineIp(machineName):
+    Controller.onMachineIp(machineName)
+
+@log.class_logger
+class Controller():
+    actors = None
+
+    @classmethod
+    def setActors(cls, actors):
+        cls.actors = actors
+
+    @classmethod
+    @log.high_class_static_function(&#x27;lib.framework.Controller.configure&#x27;)
+    def configure(cls):
+        execute(configure, cls.actors)
+
+    @classmethod
+    @log.high_class_static_function(&#x27;lib.framework.Controller.check&#x27;)
+    def check(cls):
+        execute(check, cls.actors)
+
+    @classmethod
+    @log.high_class_static_function(&#x27;lib.framework.Controller.create&#x27;)
+    def create(cls):
+        execute(create, cls.actors)
+
+    @classmethod
+    @log.high_class_static_function(&#x27;lib.framework.Controller.start&#x27;)
+    def start(cls):
+        execute(start, cls.actors)
+
+    @classmethod
+    @log.high_class_static_function(&#x27;lib.framework.Controller.stop&#x27;)
+    def stop(cls):
+        execute(stop, cls.actors)
+
+    @classmethod
+    @log.high_class_static_function(&#x27;lib.framework.Controller.cleanup&#x27;)
+    def cleanup(cls):
+        executeCleanup(cleanup, cls.actors)
+
+    @classmethod
+    @log.high_class_static_function(&#x27;lib.framework.Controller.onMachineIp&#x27;)
+    def onMachineIp(cls, machineName):
+        for pm in cls.actors.ProtectedMachines:
+            if pm.enabled and pm.name == machineName:
+                pm.onMachineIp()
+
+def _clearFunctionTabs():
+    clear_tabs()
+
+def execute(function, actors):
+    _clearFunctionTabs()
+    function(actors.Esxs, &#x27;Esxs&#x27;)
+    function(actors.Hbr, &#x27;Hbr&#x27;)
+    function(actors.ProtectedMachines, &#x27;ProtectedMachines&#x27;)
+    function(actors.ReplicationGroups, &#x27;ReplicationGroups&#x27;)
+
+def executeCleanup(function, actors):
+    _clearFunctionTabs()
+    function(actors.ProtectedMachines, &#x27;ProtectedMachines&#x27;)
+    function(actors.ReplicationGroups, &#x27;ReplicationGroups&#x27;)
+    function(actors.Esxs, &#x27;Esxs&#x27;)
+    function(actors.Hbr, &#x27;Hbr&#x27;)
+
+def configure(items, text):
+    if not items:
+        return
+    message(&#x27;Configuring&#x27;, items, text)
+    items.configure()
+
+def check(items, text):
+    if not items:
+        return
+    message(&#x27;Checking&#x27;, items, text)
+    items.check()
+
+def create(items, text):
+    if not items:
+        return
+    message(&#x27;Creating dependent objects for&#x27;, items, text)
+    items.create()
+
+def start(items, text):
+    if not items:
+        return
+    message(&#x27;Starting&#x27;, items, text)
+    items.start()
+
+def stop(items, text):
+    if not items:
+        return
+    message(&#x27;Stopping&#x27;, items, text)
+    items.stop()
+
+def cleanup(items, text):
+    if not items:
+        return
+    message(&#x27;Unloading&#x27;, items, text)
+    if items and items.cleanup:
+        items.cleanup()
+
+def onMachineIp(items, text):
+    if not items:
+        return
+    message(&#x27;onMachineIp&#x27;, items, text)
+    items.onMachineIp()
+
+def message(operation, items, text):
+    if isinstance(items, list):
+        logger.note(&#x27;%s %s, count:%d&#x27; % (operation, text, len(items)))
+    else:
+        logger.note(&#x27;%s %s&#x27; % (operation, text))</code></pre>
+      </article>
+      <div class="archive-section-label">doc</div>
       <div class="archive-section-label">src / gemini / lib / lwrdo</div>
       <article class="archive-panel archive-panel--code">
         <div class="archive-panel__header">
@@ -1430,259 +1683,6 @@ class Esx(Actor):
         <p class="archive-truncated">Showing excerpt of 232 lines.</p>
       </article>
       <div class="archive-section-label">src / gemini</div>
-      <article class="archive-panel archive-panel--text">
-        <div class="archive-panel__header">
-          <span class="archive-badge-type">TEXT</span>
-          <span class="archive-filename">configuration.yaml</span>
-          <span class="archive-path">src/gemini/configuration.yaml</span>
-        </div>        <pre class="archive-text"><code>#╔════════════════════════════════════════════════════════════════════╗
-#║                           L O G G I N G                            ║
-#╚════════════════════════════════════════════════════════════════════╝
-logging: &amp;id_logging
-    # do not remove lines, comment out a line to disable
-    levels:
-      # should be used
-      - LOGGING_LEVEL_FOOTER
-      - LOGGING_LEVEL_HEADER
-      - LOGGING_LEVEL_NOTE
-      - LOGGING_LEVEL_TEST
-      - LOGGING_LEVEL_TRACE
-      # 
-      - LOGGING_LEVEL_FUNCTION
-      - LOGGING_LEVEL_VERBOSE
-      - LOGGING_LEVEL_VVERBOSE
-      # optional
-      - LOGGING_LEVEL_REMOTE_OUTPUT
-      - LOGGING_LEVEL_REMOTE_VITALS
-      - LOGGING_LEVEL_REMOTE_LOGS
-      - LOGGING_LEVEL_ESX
-      - LOGGING_LEVEL_HBR
-      - LOGGING_LEVEL_MACHINE
-      #- LOGGING_LEVEL_ESX_LOG
-      #- LOGGING_LEVEL_HBR_LOG
-      #- LOGGING_LEVEL_IGNORED_ERROR
-    format: &#x27;[%(asctime)s] %(levelname)s [%(module)s:%(funcName)s()@%(lineno)d] %(message)s&#x27;
-    format_simple: &#x27;[%(asctime)s] %(levelname)s %(message)s&#x27;
-    format_date: &#x27;%H:%M:%S&#x27;
-
-#╔════════════════════════════════════════════════════════════════════╗
-#║                         F R A M E W O R K                          ║
-#╚════════════════════════════════════════════════════════════════════╝
-framework: &amp;id_framework
-  resultsPath: /tmp/resultsZZZ
-  files: files
-  logs: logs
-  tmp: tmp
-  logFile: testcase.log
-  tools:
-    path: /automation/framework/launch/Tools
-    spaz: checkablespaz.py
-  vmtree: $VMTREE
-  
-#╔════════════════════════════════════════════════════════════════════╗
-#║                            S Y S T E M                             ║
-#╚════════════════════════════════════════════════════════════════════╝
-system: &amp;id_system
-  enableNetworkCompression: False
-  
-#╔════════════════════════════════════════════════════════════════════╗
-#║                              H  B  R                               ║
-#╚════════════════════════════════════════════════════════════════════╝
-Hbr_credentials: &amp;id_Hbr_credentials 
-  user: root
-  password: pwd
- 
-HbrControl: &amp;id_HbrControl
-    certificateGenerationScript: fakehms-generate-certificate.sh
-    certificateFile: fakehms.crt
-    keyFile: fakehms.key
-
-Hbr: &amp;id_Hbr
-  Esx: 0
-  authentication:
-    certificate: 
-    key:
-    thumbprint: 
-  tools:
-    ioctl: /sbin/hbrfilterctl
-    hbrpsftool: /sbin/hbrpsftool
-  filter:
-    replicator: hbr_filter
-    sample: vscsi_example_filter
-  ip: 10.20.109.62
-  port: 8123
-  credentials: *id_Hbr_credentials
-  Machine:
-    name: hmsva
-  logs:
-    - /var/log/messages
-    - /var/log/hbrsrv.log
-  
-#╔════════════════════════════════════════════════════════════════════╗
-#║                              E  S  X                               ║
-#╚════════════════════════════════════════════════════════════════════╝
-Esx_credentials: &amp;id_Esx_credentials 
-  user: root
-  password: ca$hc0w
- 
-datastore: &amp;id_datastore
-  name: $DATASTORE
-  uuid: $DATASTORE_UUID
-  root: &#x27;HBRQA/Gemini&#x27;
-  machineSources: HBRQA/Gemini/Sources
-datastore0: &amp;id_datastore0
-  name: $DATASTORE0
-  uuid: $DATASTORE_UUID0
-  root: &#x27;HBRQA/Gemini&#x27;
-  machineSources: HBRQA/Gemini/Sources
-datastore1: &amp;id_datastore1
-  name: $DATASTORE1
-  uuid: $DATASTORE_UUID1
-  root: &#x27;HBRQA/Gemini&#x27;
-  machineSources: HBRQA/Gemini/Sources
-
-Esxs_defaults: &amp;id_Esxs_defaults
-  tools:
-    disk_create: /sbin/diskCreate
-    disk_tool: /sbin/diskTool
-    hbrpsftool: /sbin/hbrpsftool
-  logs:
-    - /scratch/log/syslog.log
-    - /scratch/log/hostd.log
-    - /scratch/log/vobd.log
-    - /scratch/log/vmkernel.log
-Esxs: &amp;id_Esxs
-  - Esx: &amp;id_Esx0
-    ip: 10.20.108.246
-    datastore: *id_datastore
-    credentials: *id_Esx_credentials 
-    Hbr: *id_Hbr
-#  - Esx: &amp;id_Esx1
-#    name: eng_vadpqe_us_1-2015.08.03-12.26.33.esx.0
-#    enabled: False
-#    ip: 10.161.60.71
-#    datastore: *id_datastore0
-#    credentials: *id_Esx_credentials 
-#    Hbr: *id_Hbr
-#  - Esx: &amp;id_Esx2
-#    name: eng_vadpqe_us_1-2015.08.03-12.26.33.esx.1
-#    enabled: False
-#    ip: 10.161.32.166
-#    datastore: *id_datastore1
-#    credentials: *id_Esx_credentials 
-#    Hbr: *id_Hbr
-
-#╔════════════════════════════════════════════════════════════════════╗
-#║                  R E P L I C A T I O N   G R O U P                 ║
-#╚════════════════════════════════════════════════════════════════════╝
-ReplicationGroups_defaults:  
-  rpo: 30
-  lwdPort: 31031
-  enableQuiescing: False
-  enableOpportunistic: False
-  enableNetworkCompression: False
-  autoStart: True
-  Esx: 0
-  
-ReplicationGroups:
-  - ReplicationGroup:
-    enabled: True
-    
-#╔════════════════════════════════════════════════════════════════════╗
-#║                               D I S K                              ║
-#╚════════════════════════════════════════════════════════════════════╝
-# 1gb=1073741824 1tb=1099511627776 2tb=2199023255552
-Disks_defaults:  
-  isBaseDisk: False
-  size: 1073741824
-  format: thick #formats: thick zeroedthick
-  controllerType: scsi
-  adapterType: lsiLogic
-    
-#╔════════════════════════════════════════════════════════════════════╗
-#║                            M A C H I N E                           ║
-#╚════════════════════════════════════════════════════════════════════╝
-Machines_defaults:  
-      
-#╔════════════════════════════════════════════════════════════════════╗
-#║                            R E P L I C A                           ║
-#╚════════════════════════════════════════════════════════════════════╝
-Replicas_defaults:  
-      
-#╔════════════════════════════════════════════════════════════════════╗
-#║                              I M A G E                             ║
-#╚════════════════════════════════════════════════════════════════════╝
-Images_defaults:  
-  # failOver, testBubble
-  type: failOver
-  enabled: False
-  autoStart: False
-      
-#╔════════════════════════════════════════════════════════════════════╗
-#║                 P R O T E C T E D   M A C H I N E                  ║
-#╚════════════════════════════════════════════════════════════════════╝
-ProtectedMachines_defaults:  
-  autoStart: True
-  credentials:
-    user: root
-    password: ca$hc0w
-  ReplicationGroup: 0
-  Esx: 0
-      
-ProtectedMachines:
-  - ProtectedMachine:
-      attributes: #SpazWriter TestDataWriter
-      Machine:
-        initialPowerState: PoweredOn
-        ip: None
-        Disks:
-          - Disk:
-            name: ProtectedMachine0-basedisk
-            isBaseDisk: True
-          - Disk:
-      Replica:
-      Image:
-  - ProtectedMachine:
-      enabled: False
-      Esx: 1
-      ReplicationGroup: 1
-      Machine:
-        initialPowerState: PoweredOff
-        ip: None
-        Disks:
-          - Disk:
-            name: ProtectedMachine0-basedisk
-            isBaseDisk: True
-          - Disk:
-            size: 1073741824
-          - Disk:
-            size: 1073741824
-      Replica:
-      Image:
-
-#╔════════════════════════════════════════════════════════════════════╗
-#║                       S P A Z   W R I T E R                        ║
-#╚════════════════════════════════════════════════════════════════════╝
-SpazWriter_defaults:
-  script1: checkablespaz.py  
-  script2: checkablespaz2.py  
-  script3: checkablespaz3.py  
-  checksum: True
-  killRunningSpazOnStart: True
-  blocks:
-    bytes: 8192
-    kilobytes: 8
-      
-      
-#╔════════════════════════════════════════════════════════════════════╗
-#║                  T E S T   D A T A   W R I T E R                   ║
-#╚════════════════════════════════════════════════════════════════════╝
-TestDataWriter_defaults:
-  writeCounts: 10
-  pageSize: 8192
-  checksumPages: False
-  checksumDisk: True</code></pre>
-      </article>
       <div class="archive-section-label">src / gemini / lib / lwrdo</div>
       <article class="archive-panel archive-panel--code">
         <div class="archive-panel__header">
