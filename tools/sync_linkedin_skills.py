@@ -231,10 +231,8 @@ TITLE_OVERRIDES = {
     "privacy security": "Privacy & Security",
 }
 
-NEVER_DISPLAY = frozenset({"C++", "PMD", "Telemarketing"})
-
 DISPLAY_PRIORITY = [
-    "C/C++", "Python", "Java", "C#", "JavaScript", "TypeScript", "Perl", "Dart", "Go",
+    "C/C++", "C++", "Python", "Java", "C#", "JavaScript", "TypeScript", "Perl", "Dart", "Go",
     "Angular", "Node.js", ".NET", "HTML5", "REST", "Microservices", "Web Services",
     "Postgres", "SQL Server", "Oracle", "MySQL", "BigQuery", "NoSQL", "Database Design",
     "Machine Learning", "AI",
@@ -246,7 +244,7 @@ DISPLAY_PRIORITY = [
     "Geospatial", "Google Earth Enterprise", "FFT", "Video Capture", "SIMD", "Traceability",
     "Qt", "OpenGL", "COM", "ActiveX", "CAD/CAM", "SolidWorks", "IoT",
     "Automation", "Test Automation", "Distributed Systems", "Virtualization",
-    "Reverse Engineering", "Code Analysis",
+    "Reverse Engineering", "Code Analysis", "PMD",
     "Networking", "Wireless", "Telephony", "Streaming", "Accessibility",
     "Tcl", "SWIG", "YAML", "Protobuf", "App Engine", "Data Pipelines",
     "Solution Architecture", "Mentoring", "Agile", "Consulting",
@@ -325,9 +323,9 @@ def pick_display(all_skills: list[str]) -> list[str]:
     for s in extras:
         if len(display) >= 58:
             break
-        if s not in display and s not in NEVER_DISPLAY:
+        if s not in display:
             display.append(s)
-    return [s for s in display if s not in NEVER_DISPLAY]
+    return display
 
 
 def main() -> None:
