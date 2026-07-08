@@ -1832,7 +1832,7 @@ def main():
     <div class="portfolio-grid">
 {cards}
     </div>""",
-            description=f"{PROFESSIONAL_TITLE} — full career portfolio from 1992 through Google, Leidos, VMware, Disney, DirecTV, and early MIS/warehouse roles.",
+            description=f"{PROFESSIONAL_TITLE} — portfolio spanning Google, Leidos, VMware, Disney, DirecTV, and current work at MAF RODA.",
         )
     )
 
