@@ -1239,7 +1239,7 @@ def page(
 PROJECTS = {
     "mafroda": {
         "title": "MAF RODA Agrobotic",
-        "intro": """<p><strong>Sr. Software Engineer — R&amp;D Staff</strong> · Apr 2025 – Present · Remote / Americas</p>
+        "intro": """<p><strong>Sr. Software Engineer — R&amp;D Staff</strong> · Apr 2025 – Present · Traver, CA</p>
 <p>MAF RODA Agrobotic — global leader in post-harvest fruit and vegetable automation (sorting, grading, packaging, palletizing). Current role (3rd at MAF RODA): <strong>Americas traceability lead</strong>.</p>
 <ul>
 <li><strong>Traceability — Americas:</strong> lead regional traceability systems; AI-assisted tooling and codebase modernization</li>
