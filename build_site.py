@@ -889,9 +889,7 @@ def sync_static_page_carousels() -> None:
 def auto_project(slug: str, card: dict) -> dict:
     """Generate project page from catalog + Development inventory."""
     tags = []
-    if card.get("portfolio_only"):
-        tags.append("Portfolio only — not on resume")
-    elif card.get("in_current_resume"):
+    if card.get("in_current_resume"):
         tags.append("Current resume")
     elif card.get("in_old_resume"):
         tags.append("Generic Resume")
@@ -1797,13 +1795,11 @@ def main():
         badge = ""
         if slug == "mafroda":
             badge = '<span class="current-badge">Current</span>'
-        elif c.get("portfolio_only"):
-            badge = '<span class="archive-badge">Dev Archive</span>'
+        badge_line = f"          {badge}\n" if badge else ""
         current_cls = " portfolio-item--current" if slug == "mafroda" else ""
         return f"""      <article class="portfolio-item fade-in{current_cls}">
         <a href="projects/{slug}.html">
-          {badge}
-          <div class="logo-wrap"><img src="assets/images/{img}.{ext}" alt="{html.escape(name)}"></div>
+{badge_line}          <div class="logo-wrap"><img src="assets/images/{img}.{ext}" alt="{html.escape(name)}"></div>
           <span class="company-name">{html.escape(name)}</span>
           <span class="company-desc">{html.escape(desc)}</span>
           {skill_chips(skills, 5)}
