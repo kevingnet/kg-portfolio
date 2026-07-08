@@ -1833,7 +1833,6 @@ def main():
     </section>
 {highlights_strip()}
     <h2 class="page-title">Experience</h2>
-    <p class="page-intro">Employers and project highlights from 1992 to present — including pre-Electrosonic roles. Click a card for full detail.</p>
     <div class="portfolio-grid">
 {cards}
     </div>""",
