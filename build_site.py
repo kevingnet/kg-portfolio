@@ -1724,7 +1724,7 @@ PROJECTS = {
 <p>Diagnosed hardware and software conflicts; maintained demo machines for product showcases.</p>""",
     },
     "lcs": {
-        "title": "LCS Logical Computer Services",
+        "title": "Logical Computer Services",
         "intro": """<p><strong>Network and Debugging Support Associate</strong> · Sep 1992 – Jan 1993 · Burbank, CA</p>
 <ul>
 <li>Data processing duties for financial and MIS systems</li>

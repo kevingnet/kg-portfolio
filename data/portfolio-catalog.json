@@ -518,7 +518,7 @@
     },
     {
       "slug": "lcs",
-      "name": "LCS Logical Computer",
+      "name": "Logical Computer Services",
       "logo": "lcs",
       "ext": "svg",
       "desc": "Novell NetWare 3.11 installs, VB/Access MIS debugging on LAN/WAN.",
@@ -1200,7 +1200,7 @@
     },
     "lcs": {
       "slug": "lcs",
-      "name": "LCS Logical Computer",
+      "name": "Logical Computer Services",
       "logo": "lcs",
       "ext": "svg",
       "desc": "Novell NetWare 3.11 installs, VB/Access MIS debugging on LAN/WAN.",

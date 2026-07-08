@@ -223,7 +223,7 @@ RESUME_ONLY: list[dict] = [
     {"slug": "frys", "name": "Fry's Electronics", "logo": "frys", "ext": "svg",
      "desc": "Retail software sales, demo systems, PC technical support.",
      "skills": ["PC Support", "Retail", "Diagnostics", "Sales"]},
-    {"slug": "lcs", "name": "LCS Logical Computer", "logo": "lcs", "ext": "svg",
+    {"slug": "lcs", "name": "Logical Computer Services", "logo": "lcs", "ext": "svg",
      "desc": "Novell NetWare 3.11 installs, VB/Access MIS debugging on LAN/WAN.",
      "skills": ["Novell", "NetWare", "Visual Basic", "MS Access"]},
 ]
