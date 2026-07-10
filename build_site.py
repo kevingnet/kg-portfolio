@@ -720,6 +720,10 @@ def header(active: str, depth: int = 0) -> str:
       <img class="profile-thumb" src="{p}assets/images/profile.jpeg" alt="{OWNER}">
     </a>
     <a href="{p}index.html" class="site-brand">{SITE_NAME}</a>
+    <a href="https://www.recordholders.org/en/list/rubik.html" class="rubiks-link" target="_blank" rel="noopener noreferrer" title="Rubik's Cube">
+      <img src="{p}assets/images/rubiks-cube.png" alt="" width="31" height="31" loading="lazy" decoding="async">
+      <span>11.2s average  (80s)</span>
+    </a>
     <nav class="nav-wrap" aria-label="Primary">
       <ul class="site-nav">
 {links}

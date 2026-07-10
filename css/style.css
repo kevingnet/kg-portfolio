@@ -107,6 +107,31 @@ a:hover {
   opacity: 1;
 }
 
+.rubiks-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-left: 0.15rem;
+}
+
+.rubiks-link:hover {
+  color: var(--accent);
+  opacity: 1;
+}
+
+.rubiks-link img {
+  width: 31px;
+  height: 31px;
+  display: block;
+  flex-shrink: 0;
+}
+
 .nav-wrap {
   margin-left: auto;
   padding: 0;
