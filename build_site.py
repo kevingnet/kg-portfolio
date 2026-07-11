@@ -672,15 +672,18 @@ def project_gallery(figures: list[tuple[str, str]], depth: int = 1, extra_class:
 
 
 def copy_maf_project_images() -> None:
-    trace_src = Path("/home/kg/Jobs/Graphics/Screenshot 2026-06-30 081832")
+    shot_src = Path("/home/kg/Jobs/Graphics/screenshots")
     legacy_src = Path("/home/kg/Jobs/Graphics/images")
     dest = ROOT / "assets/images/projects/mafroda"
     dest.mkdir(parents=True, exist_ok=True)
     mapping = [
-        ("traceability-overview.png", trace_src / "Screenshot 2026-06-25 150107.png"),
-        ("traceability-dashboard.png", trace_src / "Screenshot 2026-06-30 081603.png"),
-        ("traceability-detail.png", trace_src / "Screenshot 2026-06-30 081733.png"),
-        ("traceability-ui.png", trace_src / "Screenshot 2026-06-30 081832.png"),
+        ("main-display-normal.png", shot_src / "main-display-normal.png"),
+        ("main-display-status1.png", shot_src / "main-display-status1.png"),
+        ("main-picker.png", shot_src / "main-picker.png"),
+        ("maint-outlets-selected.png", shot_src / "maint-outlets-selected.png"),
+        ("sim-overview.png", shot_src / "sim-overview.png"),
+        ("uieditor-color-dialog.png", shot_src / "uieditor-color-dialog.png"),
+        ("uieditor-figma-combination9.png", shot_src / "uieditor-figma-combination9.png"),
         ("installer-gui.png", legacy_src / "Screenshot 2025-08-01 131140.png"),
         ("installer-scripts.png", legacy_src / "ListOfScripts.png"),
     ]
@@ -695,8 +698,15 @@ def rel_prefix(depth: int) -> str:
 
 def carousel(depth: int = 0) -> str:
     p = rel_prefix(depth)
+    # 2px accent borders on selected carousel logos
+    border_slugs = {
+        "vmware", "google", "mafroda", "electrosonic", "disney", "voltdelta",
+        "spirent", "hms", "surfware", "motorola", "jakeknows", "directv",
+    }
     items = "\n".join(
-        f'      <a class="logo-carousel-link" href="{p}projects/{html.escape(slug)}.html"'
+        f'      <a class="logo-carousel-link'
+        f'{" logo-carousel-link--" + html.escape(slug) if slug in border_slugs else ""}"'
+        f' href="{p}projects/{html.escape(slug)}.html"'
         f' title="{html.escape(alt)}">'
         f'<img src="{p}assets/images/{logo}.{ext}" alt="{html.escape(alt)}" loading="eager" decoding="async"></a>'
         for logo, ext, alt, slug in CAROUSEL_LOGOS
@@ -1254,13 +1264,16 @@ PROJECTS = {
 </ul>""",
         "tech": "Python, OpenCV, SIMD, C++, C#, ASP.NET Core, WinForms, WMI, WinRM, YAML, JSON, Windows, Image Processing, Traceability, Fleet Deployment, Network Provisioning, AI-Assisted Development",
         "sections": [
-            ("Traceability — Americas", "Current · Regional traceability lead", """<p>Lead traceability systems across the Americas. Apply AI on the engineering side — developer tooling, codebase modernization, and AI-assisted improvements to traceability projects and delivery workflows.</p>
+            ("Traceability — Americas", 'Current · Regional traceability lead · <a href="https://kevingnet.github.io/maf-traceability-demo/" target="_blank" rel="noopener">Live Demo</a>', """<p>Lead traceability systems across the Americas. Apply AI on the engineering side — developer tooling, codebase modernization, and AI-assisted improvements to traceability projects and delivery workflows.</p>
 <p>Screenshots from traceability tooling and web views deployed in the MAF sorting environment.</p>"""
             + project_gallery([
-                ("traceability-overview.png", "Traceability — sorting line overview"),
-                ("traceability-dashboard.png", "Traceability dashboard — production sorting"),
-                ("traceability-detail.png", "Traceability detail — lot and lane tracking"),
-                ("traceability-ui.png", "Traceability UI — monitoring and configuration"),
+                ("main-display-normal.png", "Floor display — dual-outlet packing view"),
+                ("main-display-status1.png", "Floor display — error / status highlight"),
+                ("main-picker.png", "Main controls — Setup, Import, Maintenance, Theme"),
+                ("maint-outlets-selected.png", "Maintenance — outlets configuration"),
+                ("sim-overview.png", "OrpheaSimulator — overview"),
+                ("uieditor-color-dialog.png", "UiSettingsEditor — color dialog"),
+                ("uieditor-figma-combination9.png", "UiSettingsEditor — Figma palette combination"),
             ], extra_class="project-gallery--large")),
             ("OpenCV Performance", "SIMD · Buffer pre-allocation · Production sorters", """<p>Optimized OpenCV image-processing paths on production fruit sorters using SIMD intrinsics and an allocation strategy that pre-allocates buffers at startup.</p>
 <p>Result: reduced runtime memory footprint and buffer churn during high-throughput sorting operations on the line.</p>"""),

@@ -231,6 +231,43 @@ a:hover {
   transition: filter 0.18s ease;
 }
 
+/* Rubik-cube accent borders — each color on exactly two icons */
+.logo-carousel-link--vmware img,
+.logo-carousel-link--disney img {
+  border: 3px solid #FFD500;
+  box-sizing: border-box;
+}
+
+.logo-carousel-link--google img,
+.logo-carousel-link--hms img {
+  border: 3px solid #E60012;
+  box-sizing: border-box;
+}
+
+.logo-carousel-link--mafroda img,
+.logo-carousel-link--surfware img {
+  border: 3px solid #FF5800;
+  box-sizing: border-box;
+}
+
+.logo-carousel-link--electrosonic img,
+.logo-carousel-link--spirent img {
+  border: 3px solid #FFFFFF;
+  box-sizing: border-box;
+}
+
+.logo-carousel-link--voltdelta img,
+.logo-carousel-link--jakeknows img {
+  border: 3px solid #009E60;
+  box-sizing: border-box;
+}
+
+.logo-carousel-link--motorola img,
+.logo-carousel-link--directv img {
+  border: 3px solid #0051BA;
+  box-sizing: border-box;
+}
+
 /* Main */
 main {
   max-width: var(--max-width);
