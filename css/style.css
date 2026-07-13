@@ -240,13 +240,13 @@ a:hover {
 
 .logo-carousel-link--google img,
 .logo-carousel-link--hms img {
-  border: 3px solid #E60012;
+  border: 3px solid #ff0000;
   box-sizing: border-box;
 }
 
 .logo-carousel-link--mafroda img,
 .logo-carousel-link--surfware img {
-  border: 3px solid #FF5800;
+  border: 3px solid #ff8833;
   box-sizing: border-box;
 }
 
@@ -264,7 +264,7 @@ a:hover {
 
 .logo-carousel-link--motorola img,
 .logo-carousel-link--directv img {
-  border: 3px solid #0051BA;
+  border: 3px solid #0000FF;
   box-sizing: border-box;
 }
 
