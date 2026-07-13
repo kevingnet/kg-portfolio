@@ -231,7 +231,7 @@ a:hover {
   transition: filter 0.18s ease;
 }
 
-/* Rubik-cube accent borders — each color on exactly two icons */
+/* Rubik-cube accent borders */
 .logo-carousel-link--vmware img,
 .logo-carousel-link--disney img {
   border: 3px solid #FFD500;
@@ -245,7 +245,8 @@ a:hover {
 }
 
 .logo-carousel-link--mafroda img,
-.logo-carousel-link--surfware img {
+.logo-carousel-link--surfware img,
+.logo-carousel-link--posdev img {
   border: 3px solid #ff8833;
   box-sizing: border-box;
 }
@@ -530,6 +531,39 @@ main {
   border: 1px solid var(--border);
   margin-bottom: 1rem;
   overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Match carousel Rubik accent borders on portfolio circles */
+.portfolio-item--vmware .logo-wrap,
+.portfolio-item--disney .logo-wrap {
+  border: 3px solid #FFD500;
+}
+
+.portfolio-item--google .logo-wrap,
+.portfolio-item--hms .logo-wrap {
+  border: 3px solid #ff0000;
+}
+
+.portfolio-item--mafroda .logo-wrap,
+.portfolio-item--surfware .logo-wrap,
+.portfolio-item--posdev .logo-wrap {
+  border: 3px solid #ff8833;
+}
+
+.portfolio-item--electrosonic .logo-wrap,
+.portfolio-item--spirent .logo-wrap {
+  border: 3px solid #FFFFFF;
+}
+
+.portfolio-item--voltdelta .logo-wrap,
+.portfolio-item--jakeknows .logo-wrap {
+  border: 3px solid #009E60;
+}
+
+.portfolio-item--motorola .logo-wrap,
+.portfolio-item--directv .logo-wrap {
+  border: 3px solid #0000FF;
 }
 
 .portfolio-item .logo-wrap img {

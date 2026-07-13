@@ -1,5 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Positive Developments">
   <rect width="200" height="200" rx="12" fill="#02403a"/>
-  <text x="100" y="92" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="36" font-weight="900" fill="#14fca0">Positive</text>
-  <text x="100" y="128" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#14fca0">Developments</text>
+  <rect x="88" y="28" width="24" height="52" rx="4" fill="#14fca0"/>
+  <rect x="73" y="43" width="54" height="22" rx="4" fill="#14fca0"/>
+  <text x="100" y="120" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="22" font-weight="900" fill="#14fca0">Positive</text>
+  <text x="100" y="152" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="22" font-weight="900" fill="#14fca0">Developments</text>
 </svg>
