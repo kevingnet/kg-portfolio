@@ -1,0 +1,1445 @@
+{
+  "dev_root": "/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development",
+  "portfolio": [
+    {
+      "slug": "mafroda",
+      "name": "MAF RODA",
+      "logo": "mafroda",
+      "ext": "png",
+      "current": true,
+      "desc": "Americas traceability lead \u2014 fleet installer, OpenCV on sorters, sample apps.",
+      "skills": [
+        "Python",
+        "OpenCV",
+        "C#",
+        ".NET",
+        "Traceability"
+      ],
+      "has_archive": false,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": true
+    },
+    {
+      "slug": "leidos",
+      "name": "Leidos",
+      "logo": "leidos",
+      "ext": "png",
+      "desc": "Airport security scanning app (C++, Qt5, Python) and enterprise performance architecture.",
+      "skills": [
+        "C++",
+        "Qt5",
+        "Python",
+        "Imaging",
+        "Security"
+      ],
+      "has_archive": false,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": true
+    },
+    {
+      "slug": "google",
+      "name": "Google",
+      "logo": "google",
+      "ext": "jpeg",
+      "desc": "Earth Enterprise, Avik/Babel L10n, Antaeus, Android tooling \u2014 archived contractor trees.",
+      "skills": [
+        "Java",
+        "Python",
+        "Dart",
+        "GCP",
+        "Android"
+      ],
+      "dev_folder": "26 Google",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": true
+    },
+    {
+      "slug": "meta",
+      "name": "Meta",
+      "logo": "facebook",
+      "ext": "jpeg",
+      "desc": "Privacy audit engineering for M&A \u2014 compliance tooling across SQL/NoSQL estates.",
+      "skills": [
+        "Privacy",
+        "Security",
+        "Compliance",
+        "SQL",
+        "NoSQL"
+      ],
+      "has_archive": false,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    {
+      "slug": "vmware",
+      "name": "VMware",
+      "logo": "vmware",
+      "ext": "jpeg",
+      "desc": "Gemini Python QA framework, gemini2 automation, CLIInfo test harness.",
+      "skills": [
+        "Python",
+        "Perl",
+        "Virtualization",
+        "Automation",
+        "ESX"
+      ],
+      "dev_folder": "27 Vmware",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": true
+    },
+    {
+      "slug": "veritas",
+      "name": "Veritas",
+      "logo": "veritas",
+      "ext": "jpeg",
+      "desc": "NetBackup appliance hardening \u2014 OSCAP, OAuth2/LDAP, Java/Python refactor.",
+      "skills": [
+        "Java",
+        "Python",
+        "OSCAP",
+        "Security",
+        "Backup"
+      ],
+      "has_archive": false,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    {
+      "slug": "thuuz",
+      "name": "Thuuz",
+      "logo": "thuuz",
+      "ext": "svg",
+      "desc": "Callsigns JSON API, S3 sync scripts for sports broadcast metadata.",
+      "skills": [
+        "Python",
+        "AWS",
+        "S3",
+        "JSON",
+        "API"
+      ],
+      "dev_folder": "30 Thuuz",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    {
+      "slug": "knurld",
+      "name": "Knurld",
+      "logo": "knulrd",
+      "ext": "jpeg",
+      "desc": "Voice biometric API integration, Apigee, Python ML/scoring pipeline prototypes.",
+      "skills": [
+        "Python",
+        "API",
+        "ML",
+        "Voice Biometrics",
+        "Apigee"
+      ],
+      "dev_folder": "28 Knurld",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    {
+      "slug": "butterfleye",
+      "name": "Butterfleye",
+      "logo": "butterfleye",
+      "ext": "jpeg",
+      "desc": "Camera cloud backend \u2014 Alembic migrations, timeline events, video segments, streaming.",
+      "skills": [
+        "Python",
+        "SQL",
+        "AWS",
+        "IoT",
+        "Video"
+      ],
+      "dev_folder": "29 Butterfleye",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    {
+      "slug": "hpe",
+      "name": "HPE",
+      "logo": "hpe",
+      "ext": "jpeg",
+      "desc": "Airwave wireless appliance hardening and Perl\u2192Python port.",
+      "skills": [
+        "Python",
+        "Perl",
+        "OSCAP",
+        "Wireless",
+        "Security"
+      ],
+      "has_archive": false,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    {
+      "slug": "jakeknows",
+      "name": "JakeKnows",
+      "logo": "company",
+      "ext": "png",
+      "desc": "Identity engine, code generators, Sony Taleo mobile job app, WCF engine services.",
+      "skills": [
+        "C#",
+        "Python",
+        "MSSQL",
+        "WCF",
+        "Code Generation"
+      ],
+      "dev_folder": "24 JakeKnows",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": true
+    },
+    {
+      "slug": "yahoo",
+      "name": "Yahoo",
+      "logo": "yahoo",
+      "ext": "jpeg",
+      "desc": "Search infrastructure C++ modules \u2014 alf* networking, I/O, and server components.",
+      "skills": [
+        "C++",
+        "Search",
+        "Networking",
+        "Linux"
+      ],
+      "dev_folder": "23 Yahoo",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    {
+      "slug": "motorola",
+      "name": "Motorola",
+      "logo": "motorola",
+      "ext": "jpeg",
+      "desc": "OCAP closed-captioning renderer for set-top boxes \u2014 zero post-init allocation.",
+      "skills": [
+        "C++",
+        "Embedded",
+        "OCAP",
+        "Linux",
+        "DTV"
+      ],
+      "dev_folder": "22 Motorola",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": true
+    },
+    {
+      "slug": "surfware",
+      "name": "Surfware",
+      "logo": "surfware",
+      "ext": "jpeg",
+      "desc": "Surfcam Velocity4/5, INC2APT, SolidWorks translators, InstallManager.",
+      "skills": [
+        "C++",
+        "C#",
+        "OpenGL",
+        "CAD/CAM",
+        "Parasolid"
+      ],
+      "dev_folder": "19 Surfware",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": true
+    },
+    {
+      "slug": "spirent",
+      "name": "Spirent",
+      "logo": "spirent",
+      "ext": "jpeg",
+      "desc": "TestCenter Tcl/SWIG UI, mainline network-test appliance automation.",
+      "skills": [
+        "C++",
+        "Tcl",
+        "SWIG",
+        "Networking",
+        ".NET"
+      ],
+      "dev_folder": "16 Spirent",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": true
+    },
+    {
+      "slug": "directv",
+      "name": "DirecTV",
+      "logo": "directv",
+      "ext": "jpeg",
+      "desc": "OCR client/server, RedRat IR automation, STB test scripts, screen capture pipeline.",
+      "skills": [
+        "C++",
+        "OCR",
+        "ACE",
+        "Computer Vision",
+        "Perl"
+      ],
+      "dev_folder": "18 DirecTV",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": true
+    },
+    {
+      "slug": "guidance",
+      "name": "Guidance Software",
+      "logo": "guidance",
+      "ext": "jpeg",
+      "desc": "Digital forensics \u2014 Symantec Ghost format reverse engineering, Win32 disk imaging.",
+      "skills": [
+        "C++",
+        "Forensics",
+        "IDA Pro",
+        "Win32",
+        "Reverse Engineering"
+      ],
+      "has_archive": false,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    {
+      "slug": "hms",
+      "name": "HMS",
+      "logo": "hypermedia",
+      "ext": "jpeg",
+      "desc": "Assembly-optimized input validation library, auth/netidb, penetration testing tools.",
+      "skills": [
+        "C++",
+        "Python",
+        "Security",
+        "Linux",
+        "Perl"
+      ],
+      "dev_folder": "15 HMS",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": true
+    },
+    {
+      "slug": "puntabanda",
+      "name": "Punta Banda Data",
+      "logo": "puntabanda",
+      "ext": "svg",
+      "desc": "SPA PuntaBanda POS, barcode label printers, SQL Server stored procedures.",
+      "skills": [
+        "C#",
+        "ASP.NET",
+        "SQL Server",
+        "POS",
+        "Barcode"
+      ],
+      "dev_folder": "13 PuntaBandaData",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    {
+      "slug": "enigma",
+      "name": "Enigma Video",
+      "logo": "enigma",
+      "ext": "svg",
+      "desc": "Premiere/3ds Max video production projects \u2014 logos, aurora exports, motion composites.",
+      "skills": [
+        "Video",
+        "Premiere",
+        "3ds Max",
+        "Motion Graphics"
+      ],
+      "dev_folder": "11 Enigma",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    {
+      "slug": "pleiades",
+      "name": "Pleiades",
+      "logo": "pleiades",
+      "ext": "svg",
+      "desc": "Blind Factory production MIS \u2014 persiana/window-cover manufacturing databases.",
+      "skills": [
+        "MS Access",
+        "MIS",
+        "Manufacturing"
+      ],
+      "dev_folder": "09 Pleiades",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    {
+      "slug": "nokio",
+      "name": "Nokio Insurance",
+      "logo": "nokio",
+      "ext": "svg",
+      "desc": "Multi-line insurance quote web forms \u2014 home, auto, business HTML workflows.",
+      "skills": [
+        "HTML",
+        "Web Forms",
+        "Insurance",
+        "JavaScript"
+      ],
+      "dev_folder": "12 Nokio",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    {
+      "slug": "audiotelco",
+      "name": "Audio Telco",
+      "logo": "audiotelco",
+      "ext": "jpeg",
+      "desc": "TelVista MIS, TELMEX/Mexicana scheduling, WorkFlowApp .NET solution.",
+      "skills": [
+        "MS Access",
+        "Visual Basic",
+        ".NET",
+        "Telecom"
+      ],
+      "dev_folder": "10 TelVista",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": true,
+      "in_current_resume": false
+    },
+    {
+      "slug": "fotografia",
+      "name": "Fotografia Blancarte",
+      "logo": "fotografia",
+      "ext": "jpg",
+      "desc": "Photography studio MIS database and branding assets.",
+      "skills": [
+        "MS Access",
+        "MIS",
+        "Branding"
+      ],
+      "dev_folder": "08 FotografiaBlancarte",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    {
+      "slug": "voltdelta",
+      "name": "VoltDelta",
+      "logo": "voltdelta",
+      "ext": "jpeg",
+      "desc": "X.25/TCP/IP relay, StarTreeList DB, phone switch simulator.",
+      "skills": [
+        "C++",
+        "X.25",
+        "TCP/IP",
+        "Win32",
+        "MSSQL"
+      ],
+      "dev_folder": "05 Volt",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": true,
+      "in_current_resume": true
+    },
+    {
+      "slug": "posdev",
+      "name": "Positive Developments",
+      "logo": "posdev",
+      "ext": "svg",
+      "desc": "SendGTL Win32 loader, Allstate Floral PalmOS warehouse scanner.",
+      "skills": [
+        "C++",
+        "PalmOS",
+        "MFC",
+        "Warehouse",
+        "Serial I/O"
+      ],
+      "dev_folder": "07 PosDev",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": true,
+      "in_current_resume": false
+    },
+    {
+      "slug": "woodtech",
+      "name": "Wood Technologies",
+      "logo": "woodtech",
+      "ext": "svg",
+      "desc": "NT/Exchange, BBS utilities, Netscape server, executive MIS databases.",
+      "skills": [
+        "NT",
+        "Exchange",
+        "BBS",
+        "SQL",
+        "Netscape"
+      ],
+      "has_archive": false,
+      "portfolio_only": false,
+      "in_old_resume": true,
+      "in_current_resume": false
+    },
+    {
+      "slug": "disney",
+      "name": "Disney",
+      "logo": "disney",
+      "ext": "jpeg",
+      "desc": "NWConnect deployer, SendMail ActiveX, IIS/ASP enterprise web apps, Commissary menu system.",
+      "skills": [
+        "C++",
+        "ASP",
+        "VB",
+        "MSSQL",
+        "ActiveX"
+      ],
+      "dev_folder": "03 Disney",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": true,
+      "in_current_resume": true
+    },
+    {
+      "slug": "electrosonic",
+      "name": "Electrosonic",
+      "logo": "electrosonic",
+      "ext": "jpeg",
+      "desc": "ESCAN scheduler, museum client apps (AMNH, CMHF), remote AV device control.",
+      "skills": [
+        "C++",
+        "COM",
+        "TCP/IP",
+        "Embedded",
+        "MPEG"
+      ],
+      "dev_folder": "04 Electrosonic",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": true,
+      "in_current_resume": true
+    },
+    {
+      "slug": "labumpers",
+      "name": "La Bumpers",
+      "logo": "labumpers",
+      "ext": "jpg",
+      "desc": "E-commerce bumper catalog, EC2/AWS deployment, vehicle-fit databases and web storefront.",
+      "skills": [
+        "Java",
+        "AWS",
+        "EC2",
+        "Drupal",
+        "E-commerce"
+      ],
+      "dev_folder": "06 LaBumpers",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    {
+      "slug": "bumpershop",
+      "name": "The Bumper Shop",
+      "logo": "bumpershop",
+      "ext": "svg",
+      "desc": "MS Access MIS \u2014 billing, inventory, accounting databases and LAN/WAN rollout.",
+      "skills": [
+        "MS Access",
+        "LAN/WAN",
+        "MIS",
+        "Inventory",
+        "Accounting"
+      ],
+      "dev_folder": "02 BumperShop",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": true,
+      "in_current_resume": false
+    },
+    {
+      "slug": "access",
+      "name": "ACCESS!",
+      "logo": "access",
+      "ext": "svg",
+      "desc": "Predictive dialer installs, Clipper data manager, mainframe file-transfer integration.",
+      "skills": [
+        "Clipper",
+        "Dialogic",
+        "Databases",
+        "Telemarketing",
+        "Mainframe"
+      ],
+      "dev_folder": "01 Access!",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": true,
+      "in_current_resume": false
+    },
+    {
+      "slug": "plastering",
+      "name": "California Plastering",
+      "logo": "plastering",
+      "ext": "svg",
+      "desc": "Contractor accounting database \u2014 payroll, invoicing, customer tracking.",
+      "skills": [
+        "MS Access",
+        "Accounting",
+        "Payroll",
+        "MIS"
+      ],
+      "has_archive": false,
+      "portfolio_only": false,
+      "in_old_resume": true,
+      "in_current_resume": false
+    },
+    {
+      "slug": "frys",
+      "name": "Fry's Electronics",
+      "logo": "frys",
+      "ext": "svg",
+      "desc": "Retail software sales, demo systems, PC technical support.",
+      "skills": [
+        "PC Support",
+        "Retail",
+        "Diagnostics",
+        "Sales"
+      ],
+      "has_archive": false,
+      "portfolio_only": false,
+      "in_old_resume": true,
+      "in_current_resume": false
+    },
+    {
+      "slug": "lcs",
+      "name": "LCS Logical Computer",
+      "logo": "lcs",
+      "ext": "svg",
+      "desc": "Novell NetWare 3.11 installs, VB/Access MIS debugging on LAN/WAN.",
+      "skills": [
+        "Novell",
+        "NetWare",
+        "Visual Basic",
+        "MS Access"
+      ],
+      "has_archive": false,
+      "portfolio_only": false,
+      "in_old_resume": true,
+      "in_current_resume": false
+    },
+    {
+      "slug": "hivemapper",
+      "name": "HiveMapper",
+      "logo": "hivemapper",
+      "ext": "svg",
+      "desc": "Drone airport navigation \u2014 C++ geometry graph, shortest-path planner.",
+      "skills": [
+        "C++",
+        "Graph",
+        "Geometry",
+        "Algorithms",
+        "Drones"
+      ],
+      "dev_folder": "33 HiveMapper",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    {
+      "slug": "chase",
+      "name": "Chase (Game of Life)",
+      "logo": "chase",
+      "ext": "svg",
+      "desc": "Conway Game of Life Java grid implementation \u2014 portfolio sample project.",
+      "skills": [
+        "Java",
+        "Algorithms",
+        "Grid",
+        "Simulation"
+      ],
+      "dev_folder": "32 Chase",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    {
+      "slug": "greenleaf",
+      "name": "Green Leaf Website",
+      "logo": "greenleaf",
+      "ext": "svg",
+      "desc": "Green Leaf branding site assets and category catalog.",
+      "skills": [
+        "Web",
+        "Branding",
+        "HTML"
+      ],
+      "dev_folder": "WEBSITE",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    {
+      "slug": "opentv",
+      "name": "OpenTV",
+      "logo": "opentv",
+      "ext": "jpeg",
+      "desc": "DynSchLib dynamic ad scheduler \u2014 Core2 scheduling engine for cable head-ends.",
+      "skills": [
+        "C#",
+        "C++",
+        "Scheduling",
+        "Oracle",
+        "Cable"
+      ],
+      "dev_folder": "25 OpenTV",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": true
+    }
+  ],
+  "dev_cards": {
+    "access": {
+      "slug": "access",
+      "name": "ACCESS!",
+      "logo": "access",
+      "ext": "svg",
+      "desc": "Predictive dialer installs, Clipper data manager, mainframe file-transfer integration.",
+      "skills": [
+        "Clipper",
+        "Dialogic",
+        "Databases",
+        "Telemarketing",
+        "Mainframe"
+      ],
+      "dev_folder": "01 Access!",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": true,
+      "in_current_resume": false
+    },
+    "bumpershop": {
+      "slug": "bumpershop",
+      "name": "The Bumper Shop",
+      "logo": "bumpershop",
+      "ext": "svg",
+      "desc": "MS Access MIS \u2014 billing, inventory, accounting databases and LAN/WAN rollout.",
+      "skills": [
+        "MS Access",
+        "LAN/WAN",
+        "MIS",
+        "Inventory",
+        "Accounting"
+      ],
+      "dev_folder": "02 BumperShop",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": true,
+      "in_current_resume": false
+    },
+    "disney": {
+      "slug": "disney",
+      "name": "Disney",
+      "logo": "disney",
+      "ext": "jpeg",
+      "desc": "NWConnect deployer, SendMail ActiveX, IIS/ASP enterprise web apps, Commissary menu system.",
+      "skills": [
+        "C++",
+        "ASP",
+        "VB",
+        "MSSQL",
+        "ActiveX"
+      ],
+      "dev_folder": "03 Disney",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": true,
+      "in_current_resume": true
+    },
+    "electrosonic": {
+      "slug": "electrosonic",
+      "name": "Electrosonic",
+      "logo": "electrosonic",
+      "ext": "jpeg",
+      "desc": "ESCAN scheduler, museum client apps (AMNH, CMHF), remote AV device control.",
+      "skills": [
+        "C++",
+        "COM",
+        "TCP/IP",
+        "Embedded",
+        "MPEG"
+      ],
+      "dev_folder": "04 Electrosonic",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": true,
+      "in_current_resume": true
+    },
+    "voltdelta": {
+      "slug": "voltdelta",
+      "name": "VoltDelta",
+      "logo": "voltdelta",
+      "ext": "jpeg",
+      "desc": "X.25/TCP/IP relay, StarTreeList DB, phone switch simulator.",
+      "skills": [
+        "C++",
+        "X.25",
+        "TCP/IP",
+        "Win32",
+        "MSSQL"
+      ],
+      "dev_folder": "05 Volt",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": true,
+      "in_current_resume": true
+    },
+    "labumpers": {
+      "slug": "labumpers",
+      "name": "La Bumpers",
+      "logo": "labumpers",
+      "ext": "jpg",
+      "desc": "E-commerce bumper catalog, EC2/AWS deployment, vehicle-fit databases and web storefront.",
+      "skills": [
+        "Java",
+        "AWS",
+        "EC2",
+        "Drupal",
+        "E-commerce"
+      ],
+      "dev_folder": "06 LaBumpers",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    "posdev": {
+      "slug": "posdev",
+      "name": "Positive Developments",
+      "logo": "posdev",
+      "ext": "svg",
+      "desc": "SendGTL Win32 loader, Allstate Floral PalmOS warehouse scanner.",
+      "skills": [
+        "C++",
+        "PalmOS",
+        "MFC",
+        "Warehouse",
+        "Serial I/O"
+      ],
+      "dev_folder": "07 PosDev",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": true,
+      "in_current_resume": false
+    },
+    "fotografia": {
+      "slug": "fotografia",
+      "name": "Fotografia Blancarte",
+      "logo": "fotografia",
+      "ext": "jpg",
+      "desc": "Photography studio MIS database and branding assets.",
+      "skills": [
+        "MS Access",
+        "MIS",
+        "Branding"
+      ],
+      "dev_folder": "08 FotografiaBlancarte",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    "pleiades": {
+      "slug": "pleiades",
+      "name": "Pleiades",
+      "logo": "pleiades",
+      "ext": "svg",
+      "desc": "Blind Factory production MIS \u2014 persiana/window-cover manufacturing databases.",
+      "skills": [
+        "MS Access",
+        "MIS",
+        "Manufacturing"
+      ],
+      "dev_folder": "09 Pleiades",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    "audiotelco": {
+      "slug": "audiotelco",
+      "name": "Audio Telco",
+      "logo": "audiotelco",
+      "ext": "jpeg",
+      "desc": "TelVista MIS, TELMEX/Mexicana scheduling, WorkFlowApp .NET solution.",
+      "skills": [
+        "MS Access",
+        "Visual Basic",
+        ".NET",
+        "Telecom"
+      ],
+      "dev_folder": "10 TelVista",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": true,
+      "in_current_resume": false
+    },
+    "enigma": {
+      "slug": "enigma",
+      "name": "Enigma Video",
+      "logo": "enigma",
+      "ext": "svg",
+      "desc": "Premiere/3ds Max video production projects \u2014 logos, aurora exports, motion composites.",
+      "skills": [
+        "Video",
+        "Premiere",
+        "3ds Max",
+        "Motion Graphics"
+      ],
+      "dev_folder": "11 Enigma",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    "nokio": {
+      "slug": "nokio",
+      "name": "Nokio Insurance",
+      "logo": "nokio",
+      "ext": "svg",
+      "desc": "Multi-line insurance quote web forms \u2014 home, auto, business HTML workflows.",
+      "skills": [
+        "HTML",
+        "Web Forms",
+        "Insurance",
+        "JavaScript"
+      ],
+      "dev_folder": "12 Nokio",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    "puntabanda": {
+      "slug": "puntabanda",
+      "name": "Punta Banda Data",
+      "logo": "puntabanda",
+      "ext": "svg",
+      "desc": "SPA PuntaBanda POS, barcode label printers, SQL Server stored procedures.",
+      "skills": [
+        "C#",
+        "ASP.NET",
+        "SQL Server",
+        "POS",
+        "Barcode"
+      ],
+      "dev_folder": "13 PuntaBandaData",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    "hms": {
+      "slug": "hms",
+      "name": "HMS",
+      "logo": "hypermedia",
+      "ext": "jpeg",
+      "desc": "Assembly-optimized input validation library, auth/netidb, penetration testing tools.",
+      "skills": [
+        "C++",
+        "Python",
+        "Security",
+        "Linux",
+        "Perl"
+      ],
+      "dev_folder": "15 HMS",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": true
+    },
+    "spirent": {
+      "slug": "spirent",
+      "name": "Spirent",
+      "logo": "spirent",
+      "ext": "jpeg",
+      "desc": "TestCenter Tcl/SWIG UI, mainline network-test appliance automation.",
+      "skills": [
+        "C++",
+        "Tcl",
+        "SWIG",
+        "Networking",
+        ".NET"
+      ],
+      "dev_folder": "16 Spirent",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": true
+    },
+    "directv": {
+      "slug": "directv",
+      "name": "DirecTV",
+      "logo": "directv",
+      "ext": "jpeg",
+      "desc": "OCR client/server, RedRat IR automation, STB test scripts, screen capture pipeline.",
+      "skills": [
+        "C++",
+        "OCR",
+        "ACE",
+        "Computer Vision",
+        "Perl"
+      ],
+      "dev_folder": "18 DirecTV",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": true
+    },
+    "surfware": {
+      "slug": "surfware",
+      "name": "Surfware",
+      "logo": "surfware",
+      "ext": "jpeg",
+      "desc": "Surfcam Velocity4/5, INC2APT, SolidWorks translators, InstallManager.",
+      "skills": [
+        "C++",
+        "C#",
+        "OpenGL",
+        "CAD/CAM",
+        "Parasolid"
+      ],
+      "dev_folder": "19 Surfware",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": true
+    },
+    "motorola": {
+      "slug": "motorola",
+      "name": "Motorola",
+      "logo": "motorola",
+      "ext": "jpeg",
+      "desc": "OCAP closed-captioning renderer for set-top boxes \u2014 zero post-init allocation.",
+      "skills": [
+        "C++",
+        "Embedded",
+        "OCAP",
+        "Linux",
+        "DTV"
+      ],
+      "dev_folder": "22 Motorola",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": true
+    },
+    "yahoo": {
+      "slug": "yahoo",
+      "name": "Yahoo",
+      "logo": "yahoo",
+      "ext": "jpeg",
+      "desc": "Search infrastructure C++ modules \u2014 alf* networking, I/O, and server components.",
+      "skills": [
+        "C++",
+        "Search",
+        "Networking",
+        "Linux"
+      ],
+      "dev_folder": "23 Yahoo",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    "jakeknows": {
+      "slug": "jakeknows",
+      "name": "JakeKnows",
+      "logo": "company",
+      "ext": "png",
+      "desc": "Identity engine, code generators, Sony Taleo mobile job app, WCF engine services.",
+      "skills": [
+        "C#",
+        "Python",
+        "MSSQL",
+        "WCF",
+        "Code Generation"
+      ],
+      "dev_folder": "24 JakeKnows",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": true
+    },
+    "opentv": {
+      "slug": "opentv",
+      "name": "OpenTV",
+      "logo": "opentv",
+      "ext": "jpeg",
+      "desc": "DynSchLib dynamic ad scheduler \u2014 Core2 scheduling engine for cable head-ends.",
+      "skills": [
+        "C#",
+        "C++",
+        "Scheduling",
+        "Oracle",
+        "Cable"
+      ],
+      "dev_folder": "25 OpenTV",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": true
+    },
+    "google": {
+      "slug": "google",
+      "name": "Google",
+      "logo": "google",
+      "ext": "jpeg",
+      "desc": "Earth Enterprise, Avik/Babel L10n, Antaeus, Android tooling \u2014 archived contractor trees.",
+      "skills": [
+        "Java",
+        "Python",
+        "Dart",
+        "GCP",
+        "Android"
+      ],
+      "dev_folder": "26 Google",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": true
+    },
+    "vmware": {
+      "slug": "vmware",
+      "name": "VMware",
+      "logo": "vmware",
+      "ext": "jpeg",
+      "desc": "Gemini Python QA framework, gemini2 automation, CLIInfo test harness.",
+      "skills": [
+        "Python",
+        "Perl",
+        "Virtualization",
+        "Automation",
+        "ESX"
+      ],
+      "dev_folder": "27 Vmware",
+      "has_archive": true,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": true
+    },
+    "knurld": {
+      "slug": "knurld",
+      "name": "Knurld",
+      "logo": "knulrd",
+      "ext": "jpeg",
+      "desc": "Voice biometric API integration, Apigee, Python ML/scoring pipeline prototypes.",
+      "skills": [
+        "Python",
+        "API",
+        "ML",
+        "Voice Biometrics",
+        "Apigee"
+      ],
+      "dev_folder": "28 Knurld",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    "butterfleye": {
+      "slug": "butterfleye",
+      "name": "Butterfleye",
+      "logo": "butterfleye",
+      "ext": "jpeg",
+      "desc": "Camera cloud backend \u2014 Alembic migrations, timeline events, video segments, streaming.",
+      "skills": [
+        "Python",
+        "SQL",
+        "AWS",
+        "IoT",
+        "Video"
+      ],
+      "dev_folder": "29 Butterfleye",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    "thuuz": {
+      "slug": "thuuz",
+      "name": "Thuuz",
+      "logo": "thuuz",
+      "ext": "svg",
+      "desc": "Callsigns JSON API, S3 sync scripts for sports broadcast metadata.",
+      "skills": [
+        "Python",
+        "AWS",
+        "S3",
+        "JSON",
+        "API"
+      ],
+      "dev_folder": "30 Thuuz",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    "chase": {
+      "slug": "chase",
+      "name": "Chase (Game of Life)",
+      "logo": "chase",
+      "ext": "svg",
+      "desc": "Conway Game of Life Java grid implementation \u2014 portfolio sample project.",
+      "skills": [
+        "Java",
+        "Algorithms",
+        "Grid",
+        "Simulation"
+      ],
+      "dev_folder": "32 Chase",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    "hivemapper": {
+      "slug": "hivemapper",
+      "name": "HiveMapper",
+      "logo": "hivemapper",
+      "ext": "svg",
+      "desc": "Drone airport navigation \u2014 C++ geometry graph, shortest-path planner.",
+      "skills": [
+        "C++",
+        "Graph",
+        "Geometry",
+        "Algorithms",
+        "Drones"
+      ],
+      "dev_folder": "33 HiveMapper",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    "greenleaf": {
+      "slug": "greenleaf",
+      "name": "Green Leaf Website",
+      "logo": "greenleaf",
+      "ext": "svg",
+      "desc": "Green Leaf branding site assets and category catalog.",
+      "skills": [
+        "Web",
+        "Branding",
+        "HTML"
+      ],
+      "dev_folder": "WEBSITE",
+      "has_archive": true,
+      "portfolio_only": true,
+      "in_old_resume": false,
+      "in_current_resume": false
+    }
+  },
+  "resume_only_cards": {
+    "mafroda": {
+      "slug": "mafroda",
+      "name": "MAF RODA",
+      "logo": "mafroda",
+      "ext": "png",
+      "current": true,
+      "desc": "Americas traceability lead \u2014 fleet installer, OpenCV on sorters, sample apps.",
+      "skills": [
+        "Python",
+        "OpenCV",
+        "C#",
+        ".NET",
+        "Traceability"
+      ],
+      "has_archive": false,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": true
+    },
+    "leidos": {
+      "slug": "leidos",
+      "name": "Leidos",
+      "logo": "leidos",
+      "ext": "png",
+      "desc": "Airport security scanning app (C++, Qt5, Python) and enterprise performance architecture.",
+      "skills": [
+        "C++",
+        "Qt5",
+        "Python",
+        "Imaging",
+        "Security"
+      ],
+      "has_archive": false,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": true
+    },
+    "meta": {
+      "slug": "meta",
+      "name": "Meta",
+      "logo": "facebook",
+      "ext": "jpeg",
+      "desc": "Privacy audit engineering for M&A \u2014 compliance tooling across SQL/NoSQL estates.",
+      "skills": [
+        "Privacy",
+        "Security",
+        "Compliance",
+        "SQL",
+        "NoSQL"
+      ],
+      "has_archive": false,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    "veritas": {
+      "slug": "veritas",
+      "name": "Veritas",
+      "logo": "veritas",
+      "ext": "jpeg",
+      "desc": "NetBackup appliance hardening \u2014 OSCAP, OAuth2/LDAP, Java/Python refactor.",
+      "skills": [
+        "Java",
+        "Python",
+        "OSCAP",
+        "Security",
+        "Backup"
+      ],
+      "has_archive": false,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    "hpe": {
+      "slug": "hpe",
+      "name": "HPE",
+      "logo": "hpe",
+      "ext": "jpeg",
+      "desc": "Airwave wireless appliance hardening and Perl\u2192Python port.",
+      "skills": [
+        "Python",
+        "Perl",
+        "OSCAP",
+        "Wireless",
+        "Security"
+      ],
+      "has_archive": false,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    "guidance": {
+      "slug": "guidance",
+      "name": "Guidance Software",
+      "logo": "guidance",
+      "ext": "jpeg",
+      "desc": "Digital forensics \u2014 Symantec Ghost format reverse engineering, Win32 disk imaging.",
+      "skills": [
+        "C++",
+        "Forensics",
+        "IDA Pro",
+        "Win32",
+        "Reverse Engineering"
+      ],
+      "has_archive": false,
+      "portfolio_only": false,
+      "in_old_resume": false,
+      "in_current_resume": false
+    },
+    "woodtech": {
+      "slug": "woodtech",
+      "name": "Wood Technologies",
+      "logo": "woodtech",
+      "ext": "svg",
+      "desc": "NT/Exchange, BBS utilities, Netscape server, executive MIS databases.",
+      "skills": [
+        "NT",
+        "Exchange",
+        "BBS",
+        "SQL",
+        "Netscape"
+      ],
+      "has_archive": false,
+      "portfolio_only": false,
+      "in_old_resume": true,
+      "in_current_resume": false
+    },
+    "plastering": {
+      "slug": "plastering",
+      "name": "California Plastering",
+      "logo": "plastering",
+      "ext": "svg",
+      "desc": "Contractor accounting database \u2014 payroll, invoicing, customer tracking.",
+      "skills": [
+        "MS Access",
+        "Accounting",
+        "Payroll",
+        "MIS"
+      ],
+      "has_archive": false,
+      "portfolio_only": false,
+      "in_old_resume": true,
+      "in_current_resume": false
+    },
+    "frys": {
+      "slug": "frys",
+      "name": "Fry's Electronics",
+      "logo": "frys",
+      "ext": "svg",
+      "desc": "Retail software sales, demo systems, PC technical support.",
+      "skills": [
+        "PC Support",
+        "Retail",
+        "Diagnostics",
+        "Sales"
+      ],
+      "has_archive": false,
+      "portfolio_only": false,
+      "in_old_resume": true,
+      "in_current_resume": false
+    },
+    "lcs": {
+      "slug": "lcs",
+      "name": "LCS Logical Computer",
+      "logo": "lcs",
+      "ext": "svg",
+      "desc": "Novell NetWare 3.11 installs, VB/Access MIS debugging on LAN/WAN.",
+      "skills": [
+        "Novell",
+        "NetWare",
+        "Visual Basic",
+        "MS Access"
+      ],
+      "has_archive": false,
+      "portfolio_only": false,
+      "in_old_resume": true,
+      "in_current_resume": false
+    }
+  }
+}

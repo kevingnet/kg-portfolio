@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Kevin Guerra — Resume</title>
+  <style>
+    @page { size: letter; margin: 0.5in 0.6in; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", Calibri, Arial, sans-serif;
+      font-size: 10pt;
+      line-height: 1.28;
+      color: #1a1a1a;
+      max-width: 7.3in;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 20pt;
+      font-weight: 700;
+      margin: 0 0 2px;
+      letter-spacing: -0.3px;
+    }
+    .tagline {
+      font-size: 11pt;
+      font-weight: 600;
+      color: #2c5282;
+      margin: 0 0 6px;
+    }
+    .contact {
+      font-size: 9.5pt;
+      color: #444;
+      margin-bottom: 10px;
+    }
+    .contact a { color: #2c5282; text-decoration: none; }
+    h2 {
+      font-size: 10.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: #2c5282;
+      border-bottom: 1.5px solid #cbd5e0;
+      padding-bottom: 2px;
+      margin: 11px 0 6px;
+    }
+    ul { margin: 0 0 6px; padding-left: 1.15em; }
+    li { margin-bottom: 3px; }
+    .role { margin-bottom: 8px; }
+    .role-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .role-title { font-weight: 700; }
+    .role-org { font-weight: 600; }
+    .role-dates { font-size: 9.5pt; color: #555; white-space: nowrap; }
+    .role-meta { font-size: 9.5pt; color: #555; font-style: italic; margin-bottom: 3px; }
+    .skills { font-size: 10pt; margin-bottom: 4px; }
+    .skills strong { color: #333; }
+    .note { font-size: 9pt; color: #555; margin-top: 8px; font-style: italic; }
+    .highlights li { margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+
+<h1>Kevin Guerra</h1>
+<p class="tagline">Senior Solution Architect · Cloud, Distributed Systems, Performance &amp; Security</p>
+<p class="contact">
+  Fresno, CA (Remote) · (559) 487-5870 ·
+  <a href="mailto:kevingnet1@gmail.com">kevingnet1@gmail.com</a> ·
+  <a href="https://www.linkedin.com/in/kevin-guerra-36151446/">linkedin.com/in/kevin-guerra-36151446</a> ·
+  <a href="https://kevingnet.github.io/kg-portfolio/">kevingnet.github.io/kg-portfolio</a>
+</p>
+
+<h2>Selected Highlights</h2>
+<ul class="highlights">
+  <li><strong>Performance:</strong> Cut geospatial pipeline from ~2 hours to 11 minutes (Google Earth) via branch reordering, invariant caching, and parallel Postgres import.</li>
+  <li><strong>Architecture:</strong> Replaced stalled ~45k LOC system with ~24k LOC greenfield stack + 2k LOC RBAC module; shipped in 7 months after two years of stagnation.</li>
+  <li><strong>Automation &amp; vision:</strong> VMware QA framework 80k→8k LOC (~8× faster); rebuilt failed OCR pipeline (6-person/4-year prior effort) in &lt;2 months.</li>
+  <li><strong>Reverse engineering:</strong> Decoded Symantec Ghost disk format (IDA Pro); production support in ~2 weeks.</li>
+  <li><strong>Security:</strong> OSCAP/OWASP hardening (Veritas, HPE); privacy/M&amp;A audits at Meta-scale environments.</li>
+</ul>
+
+<h2>Core Skills</h2>
+<p class="skills">
+  <strong>Languages:</strong> Python, C/C++, Java, C#, JavaScript/TypeScript, SQL &nbsp;|&nbsp;
+  <strong>Cloud &amp; infra:</strong> AWS (EC2, S3, Lambda, RDS, API Gateway, CloudFormation), GCP, Docker, Kubernetes, VMware &nbsp;|&nbsp;
+  <strong>Data:</strong> PostgreSQL, Oracle, MongoDB, Cassandra, Redis, BigQuery &nbsp;|&nbsp;
+  <strong>Domains:</strong> Microservices, REST/API design, OpenCV &amp; image processing, OAuth2/RBAC, OWASP, digital forensics, embedded &amp; kernel-level systems
+</p>
+
+<h2>Professional Experience</h2>
+
+<div class="role">
+  <div class="role-header">
+    <span class="role-title">Sr. Software Engineer — R&amp;D Staff</span>
+    <span class="role-dates">Apr 2025 – Present</span>
+  </div>
+  <div class="role-org">MAF RODA Agrobotic</div>
+  <div class="role-meta">Current role (3rd at MAF RODA): Americas traceability lead</div>
+  <ul>
+    <li><strong>Traceability — Americas (current):</strong> Lead traceability systems across the Americas; apply AI heavily on the engineering side — developer tooling, codebase modernization, and AI-assisted improvements to traceability projects and delivery workflows.</li>
+    <li>Designed and built Python-based installer automating fleet deployment for fruit-sorting systems: WMI discovery, network configuration, and end-to-end software provisioning across local machine clusters.</li>
+    <li>Optimized OpenCV image-processing paths with SIMD and allocation strategy that pre-allocates buffers at startup — reduced runtime memory footprint and buffer churn on production sorters.</li>
+  </ul>
+</div>
+
+<div class="role">
+  <div class="role-header">
+    <span class="role-title">Senior Solution Architect</span>
+    <span class="role-dates">Jul 2023 – Apr 2025</span>
+  </div>
+  <div class="role-org">Independent Consultant</div>
+  <ul>
+    <li>Architected AWS microservice systems (EC2, S3, Lambda, API Gateway, CloudFormation) with REST integration for multiple clients.</li>
+    <li>End-to-end delivery in C++, Java, C#, Python, .NET, and JavaScript — design through deployment and performance tuning.</li>
+  </ul>
+</div>
+
+<div class="role">
+  <div class="role-header">
+    <span class="role-title">Sr. Solution Architect</span>
+    <span class="role-dates">Nov 2022 – Jun 2023</span>
+  </div>
+  <div class="role-org">Leidos · Contractor (KForce) · Remote</div>
+  <ul>
+    <li>Secure airport scanning application (C++, Qt5, Python) with imaging pipeline for high-assurance environments.</li>
+    <li>Enterprise architecture and performance work (profiling, caching) for high-transaction systems.</li>
+  </ul>
+</div>
+
+<div class="role">
+  <div class="role-header">
+    <span class="role-title">Sr. Software Engineer / Solution Architect</span>
+    <span class="role-dates">2018 – 2022</span>
+  </div>
+  <div class="role-org">Google — multiple teams · Contractors · Remote / Mountain View</div>
+  <ul>
+    <li><strong>YouTube, Hardware, Devices (2018–2020):</strong> Java/C++/Python microservices; Python/Angular/TypeScript on Borg; authN/authZ, audit tooling, BigQuery pipelines.</li>
+    <li><strong>HR (2022):</strong> Java microservices (Guice, Protobuf) for privacy-conscious internal tooling.</li>
+    <li><strong>Earth Enterprise &amp; L10n (2020–2022):</strong> See highlights — geospatial speedup; greenfield replacement of legacy web platform with OWASP-aligned RBAC.</li>
+  </ul>
+</div>
+
+<div class="role">
+  <div class="role-header">
+    <span class="role-title">Solution Architect</span>
+    <span class="role-dates">Mar 2021 – Jan 2022</span>
+  </div>
+  <div class="role-org">Intelliswift · Contractor (Accenture) · Remote</div>
+  <ul>
+    <li>AWS serverless and hybrid cloud architectures (Lambda, EC2, S3, RDS, CloudFormation, API Gateway).</li>
+    <li>Multi-language static-analysis platform (Java) with VS Code/PMD integration; built test harness and mentored delivery team.</li>
+  </ul>
+</div>
+
+<div class="role">
+  <div class="role-header">
+    <span class="role-title">Privacy Audit Engineer</span>
+    <span class="role-dates">Oct 2020 – Mar 2021</span>
+  </div>
+  <div class="role-org">Meta (Facebook) · Contractor (DISYS)</div>
+  <ul>
+    <li>Privacy/security assessments for acquisitions; tooling to standardize architecture reviews across SQL/NoSQL estates.</li>
+  </ul>
+</div>
+
+<div class="role">
+  <div class="role-header">
+    <span class="role-title">Senior Software Developer / Solutions Architect</span>
+    <span class="role-dates">2015 – 2018</span>
+  </div>
+  <div class="role-org">VMware · Veritas · HPE · Contractors</div>
+  <ul>
+    <li>See highlight — VMware QA framework (80k→8k LOC, ~8× faster).</li>
+    <li>OSCAP/OWASP hardening and OAuth2/LDAP integration on NetBackup and Airwave appliances.</li>
+  </ul>
+</div>
+
+<p class="note">Roles from 2013 and earlier — OpenTV, digital forensics, embedded/AV systems — see <a href="Kevin-Guerra-Experience-History.html">Kevin Guerra — Experience History</a>.</p>
+
+<h2>Education</h2>
+<p><strong>El Camino College</strong> — Redondo Beach, CA · Computer Science · 2000</p>
+
+</body>
+</html>
