@@ -231,10 +231,13 @@ TITLE_OVERRIDES = {
     "privacy security": "Privacy & Security",
 }
 
+NEVER_DISPLAY = frozenset({"C++", "PMD", "Telemarketing"})
+
 DISPLAY_PRIORITY = [
-    "C/C++", "C++", "Python", "Java", "C#", "JavaScript", "TypeScript", "Perl", "Dart", "Go",
+    "C/C++", "Python", "Java", "C#", "JavaScript", "TypeScript", "Perl", "Dart", "Go",
     "Angular", "Node.js", ".NET", "HTML5", "REST", "Microservices", "Web Services",
-    "Postgres", "SQL Server", "Oracle", "MySQL", "BigQuery", "Database Design",
+    "Postgres", "SQL Server", "Oracle", "MySQL", "BigQuery", "NoSQL", "Database Design",
+    "Machine Learning", "AI",
     "AWS", "GCP", "Docker", "Kubernetes", "Cloud", "VMware", "ESXi",
     "Linux", "Win32", "Embedded", "Embedded Linux", "Bash", "Kernel",
     "Security", "OAuth2", "RBAC", "Authorization", "Authentication",
@@ -243,7 +246,7 @@ DISPLAY_PRIORITY = [
     "Geospatial", "Google Earth Enterprise", "FFT", "Video Capture", "SIMD", "Traceability",
     "Qt", "OpenGL", "COM", "ActiveX", "CAD/CAM", "SolidWorks", "IoT",
     "Automation", "Test Automation", "Distributed Systems", "Virtualization",
-    "Reverse Engineering", "Code Analysis", "PMD",
+    "Reverse Engineering", "Code Analysis",
     "Networking", "Wireless", "Telephony", "Streaming", "Accessibility",
     "Tcl", "SWIG", "YAML", "Protobuf", "App Engine", "Data Pipelines",
     "Solution Architecture", "Mentoring", "Agile", "Consulting",
@@ -253,7 +256,7 @@ DISPLAY_PRIORITY = [
 ALWAYS_INCLUDE = [
     "C/C++", "Go", "GCP", "Node.js", "OAuth2", "RBAC", "OpenCV", "SIMD",
     "Traceability", "Win32", "Tcl", "SQL Server", "LDAP", "YAML", "Protobuf",
-    "Machine Vision", "Kubernetes",
+    "Machine Vision", "Kubernetes", "NoSQL", "Machine Learning", "AI", "TypeScript",
 ]
 
 
@@ -322,9 +325,9 @@ def pick_display(all_skills: list[str]) -> list[str]:
     for s in extras:
         if len(display) >= 58:
             break
-        if s not in display:
+        if s not in display and s not in NEVER_DISPLAY:
             display.append(s)
-    return display
+    return [s for s in display if s not in NEVER_DISPLAY]
 
 
 def main() -> None:

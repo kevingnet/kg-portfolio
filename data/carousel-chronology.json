@@ -3,21 +3,13 @@
   "order": [
     "lcs",
     "frys",
-    "plastering",
     "access",
-    "bumpershop",
-    "labumpers",
     "electrosonic",
     "disney",
     "woodtech",
     "posdev",
     "voltdelta",
-    "fotografia",
-    "audiotelco",
-    "nokio",
-    "pleiades",
-    "enigma",
-    "puntabanda",
+    "telvista",
     "hms",
     "guidance",
     "directv",
@@ -36,32 +28,5 @@
     "google",
     "leidos",
     "mafroda"
-  ],
-  "discrepancies_vs_development_folders": [
-    {
-      "issue": "Electrosonic (04) is numbered before VoltDelta (05) and PosDev (07)",
-      "resume": "VoltDelta 1998\u20131999 \u2192 PosDev 1999\u20132000 \u2192 Electrosonic 2000\u20132001",
-      "resolution": "Resume order used"
-    },
-    {
-      "issue": "Disney (03) is numbered before Audio Telco (10)",
-      "resume": "Audio Telco Mar\u2013Jun 1997 \u2192 Disney Jul 1997\u2013Nov 1998",
-      "resolution": "Resume order used"
-    },
-    {
-      "issue": "JakeKnows (24) is numbered after Yahoo (23) and before OpenTV (25)",
-      "resume": "Independent consultancy from 2001; OpenTV Mar 2013\u2013Mar 2014; Yahoo archive is a later SQA engagement",
-      "resolution": "Resume order used (JakeKnows with early consultancy block)"
-    },
-    {
-      "issue": "Google (26) is numbered before VMware (27)",
-      "resume": "VMware 2015\u20132018 \u2192 Google 2018\u20132022",
-      "resolution": "Resume order used"
-    },
-    {
-      "issue": "Development numbering mixes client/portfolio-only folders (La Bumpers 06, Chase 32, HiveMapper 33) with employers",
-      "resume": "Side projects placed by archive era among consultancy and interview-sample dates",
-      "resolution": "Resume dates + archive era; folder number used only as tiebreaker"
-    }
   ]
 }

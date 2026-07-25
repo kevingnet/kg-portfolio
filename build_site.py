@@ -21,7 +21,7 @@ PROFESSIONAL_TITLE = "Senior Solution Architect"
 SITE_NAME = "KG PORTFOLIO"
 COPYRIGHT_YEAR = "2026"
 CONTACT_EMAIL = "kevingnet1@gmail.com"
-SITE_BASE_URL = os.getenv("SITE_BASE_URL", "").rstrip("/")  # empty = local file://, no remote canonicals
+SITE_BASE_URL = os.getenv("SITE_BASE_URL", "https://kevingnet.github.io/kg-portfolio").rstrip("/")
 DEV_ROOT = Path("/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development")
 DEV_INVENTORY_FILE = ROOT / "data" / "development-inventory.json"
 CATALOG_FILE = ROOT / "data" / "portfolio-catalog.json"
@@ -29,7 +29,12 @@ COMPILATION_JSON = ROOT / "data" / "portfolio-compilation.json"
 NNN_ARCHIVE_JSON = ROOT / "data" / "nnn-archive.json"
 CAROUSEL_CHRONOLOGY_FILE = ROOT / "data" / "carousel-chronology.json"
 SKIP_COMPILATION_SLUGS = frozenset({"access"})
-SKIP_INDEX_SLUGS = frozenset({"hivemapper", "chase", "greenleaf", "opentv"})  # index grid + carousel
+SKIP_INDEX_SLUGS = frozenset({
+    "hivemapper", "chase", "greenleaf", "opentv", "audiotelco",
+    "pleiades", "nokio", "enigma", "plastering",
+    "bumpershop", "labumpers", "fotografia", "puntabanda",
+})  # index grid + carousel (+ project pages via main())
+ARCHIVE_SLUG_ALIASES = {"telvista": "audiotelco"}  # archive assets keep legacy folder name
 DEV_FOLDER_PREFIX_RE = re.compile(r"^\d{1,2}\s+")
 DEV_FOLDER_SORT_RE = re.compile(r"^(\d+)")
 RESUME_HTML_SRC = Path("/home/kg/Jobs/Kevin Guerra - Resume.html")
@@ -58,11 +63,256 @@ def apply_branding(text: str) -> str:
         text = text.replace(old, new)
     return text
 
+
+# Legal / distribution boilerplate stripped from extracted archive text (not resume prose).
+_LEGAL_INLINE_RE = re.compile(
+    r"\s*(?:Google\s+Confidential\s+and\s+Proprietary|and\s+Proprietary\s+Information)\s*",
+    re.IGNORECASE,
+)
+_LEGAL_LINE_RE = re.compile(
+    r"^\s*(?:"
+    r"Google\s+Confidential\s+and\s+Proprietary|"
+    r"and\s+Proprietary\s+Information|"
+    r"Copyright\s+Consumer\s+Electronics\s+Association.*|"
+    r"Document\s+provided\s+by\s+IHS\s+Licensee=.*|"
+    r"Reproduced\s+by\s+IHS\s+under\s+license.*|"
+    r"Questions\s+or\s+comments\s+about\s+this\s+message.*|"
+    r"This\s+document\s+is\s+copyrighted\s+by\s+CEA.*|"
+    r".*\bAll\s+Rights\s+Reserved\b.*|"
+    r"CONFIDENTIAL|"
+    r"Proprietary\s+and\s+Confidential"
+    r")\s*$",
+    re.IGNORECASE,
+)
+
+
+def scrub_legal_boilerplate(text: str) -> str:
+    if not text:
+        return text
+    lines = []
+    for line in text.splitlines():
+        stripped = line.strip()
+        if not stripped:
+            lines.append(line)
+            continue
+        if _LEGAL_LINE_RE.match(stripped):
+            continue
+        lines.append(_LEGAL_INLINE_RE.sub("", line))
+    cleaned = "\n".join(lines)
+    cleaned = re.sub(r"\n{3,}", "\n\n", cleaned)
+    return cleaned.strip()
+
+
+def scrub_archive_obj(obj):
+    if isinstance(obj, dict):
+        out = {}
+        for key, val in obj.items():
+            if key == "content" and isinstance(val, str):
+                out[key] = scrub_legal_boilerplate(val)
+            else:
+                out[key] = scrub_archive_obj(val)
+        return out
+    if isinstance(obj, list):
+        return [scrub_archive_obj(item) for item in obj]
+    return obj
+
+
+def archive_text(text: str) -> str:
+    return scrub_legal_boilerplate(text or "")
+
+
+HLJS_LANG_ALIASES = {
+    "csharp": "csharp",
+    "cpp": "cpp",
+    "c": "c",
+    "python": "python",
+    "java": "java",
+    "sql": "sql",
+    "html": "html",
+    "javascript": "javascript",
+    "js": "javascript",
+    "perl": "perl",
+    "yaml": "yaml",
+    "xml": "xml",
+    "text": "plaintext",
+}
+
+
+def highlight_lang(lang: str | None) -> str:
+    key = (lang or "text").strip().lower()
+    return HLJS_LANG_ALIASES.get(key, key or "plaintext")
+
+
+# Archive blocks omitted from portfolio display (junk/reference docs).
+SKIP_ARCHIVE_BLOCKS = frozenset({
+    "CEA-CEB-10-A.pdf",
+    "CEA1.2.new.srt",
+    "log.htm",
+    "JakeKnowsTemplate.pdf",
+    "doc/JakeKnowsTemplate.pdf",
+    "JakeKnowsTemplate.dotx",
+})
+
+_ANSI_ESCAPE_RE = re.compile(r"\x1b\[[0-9;]*m")
+_ANSI_BASIC = {
+    30: "#000000", 31: "#cd3131", 32: "#0dbc79", 33: "#e5e510",
+    34: "#2472c8", 35: "#bc3fbc", 36: "#11a8cd", 37: "#e5e5e5",
+    90: "#666666", 91: "#f14c4c", 92: "#23d18b", 93: "#f5f543",
+    94: "#3b8eea", 95: "#d670d6", 96: "#29b8db", 97: "#ffffff",
+}
+_ANSI_BASIC_BG = {
+    40: "#000000", 41: "#cd3131", 42: "#0dbc79", 43: "#e5e510",
+    44: "#2472c8", 45: "#bc3fbc", 46: "#11a8cd", 47: "#e5e5e5",
+    100: "#666666", 101: "#f14c4c", 102: "#23d18b", 103: "#f5f543",
+    104: "#3b8eea", 105: "#d670d6", 106: "#29b8db", 107: "#ffffff",
+}
+
+
+def _xterm256_rgb(code: int) -> str:
+    if code < 16:
+        palette = [
+            "#000000", "#800000", "#008000", "#808000", "#000080", "#800080",
+            "#008080", "#c0c0c0", "#808080", "#ff0000", "#00ff00", "#ffff00",
+            "#0000ff", "#ff00ff", "#00ffff", "#ffffff",
+        ]
+        return palette[code]
+    if code < 232:
+        code -= 16
+        r = code // 36
+        code %= 36
+        g = code // 6
+        b = code % 6
+        levels = [0, 95, 135, 175, 215, 255]
+        return f"#{levels[r]:02x}{levels[g]:02x}{levels[b]:02x}"
+    grey = 8 + (code - 232) * 10
+    return f"#{grey:02x}{grey:02x}{grey:02x}"
+
+
+def _ansi_style(fg: str | None, bg: str | None, bold: bool) -> str:
+    parts: list[str] = []
+    if fg:
+        parts.append(f"color:{fg}")
+    if bg:
+        parts.append(f"background-color:{bg}")
+    if bold:
+        parts.append("font-weight:700")
+    return ";".join(parts)
+
+
+def ansi_to_html(text: str) -> str:
+    """Convert ANSI SGR escapes to inline HTML spans."""
+    if not text or "\x1b[" not in text:
+        return html.escape(text or "")
+
+    out: list[str] = []
+    fg = bg = None
+    bold = False
+    open_span = False
+    pos = 0
+
+    def close_span() -> None:
+        nonlocal open_span
+        if open_span:
+            out.append("</span>")
+            open_span = False
+
+    def sync_span() -> None:
+        nonlocal open_span
+        close_span()
+        style = _ansi_style(fg, bg, bold)
+        if style:
+            out.append(f'<span style="{style}">')
+            open_span = True
+
+    for match in _ANSI_ESCAPE_RE.finditer(text):
+        out.append(html.escape(text[pos:match.start()]))
+        pos = match.end()
+        codes = [int(part) if part else 0 for part in match.group()[2:-1].split(";")]
+        i = 0
+        while i < len(codes):
+            code = codes[i]
+            if code == 0:
+                fg = bg = None
+                bold = False
+            elif code == 1:
+                bold = True
+            elif code == 22:
+                bold = False
+            elif 30 <= code <= 37 or 90 <= code <= 97:
+                fg = _ANSI_BASIC.get(code)
+            elif 40 <= code <= 47 or 100 <= code <= 107:
+                bg = _ANSI_BASIC_BG.get(code)
+            elif code == 38 and i + 1 < len(codes):
+                if codes[i + 1] == 5 and i + 2 < len(codes):
+                    fg = _xterm256_rgb(codes[i + 2])
+                    i += 2
+                elif codes[i + 1] == 2 and i + 4 < len(codes):
+                    fg = f"#{codes[i + 2]:02x}{codes[i + 3]:02x}{codes[i + 4]:02x}"
+                    i += 4
+            elif code == 48 and i + 1 < len(codes):
+                if codes[i + 1] == 5 and i + 2 < len(codes):
+                    bg = _xterm256_rgb(codes[i + 2])
+                    i += 2
+                elif codes[i + 1] == 2 and i + 4 < len(codes):
+                    bg = f"#{codes[i + 2]:02x}{codes[i + 3]:02x}{codes[i + 4]:02x}"
+                    i += 4
+            elif code == 39:
+                fg = None
+            elif code == 49:
+                bg = None
+            i += 1
+        sync_span()
+
+    out.append(html.escape(text[pos:]))
+    close_span()
+    return "".join(out)
+
+
+def render_archive_text(content: str) -> str:
+    content = archive_text(content)
+    if "\x1b[" in content:
+        inner = ansi_to_html(content)
+        return (
+            '        <pre class="archive-text archive-ansi"><code>'
+            f"{inner}</code></pre>\n"
+        )
+    return (
+        f'        <pre class="archive-text"><code>{html.escape(content)}</code></pre>\n'
+    )
+
+
+def _archive_block_stats(blocks: list[dict]) -> dict:
+    stats = {"code": 0, "document": 0, "text": 0, "image": 0, "figures": 0}
+    for block in blocks:
+        btype = block.get("type")
+        if btype == "section" or btype not in stats:
+            continue
+        stats[btype] += 1
+        if btype == "document":
+            for seg in block.get("segments") or []:
+                if seg.get("kind") == "figures":
+                    stats["figures"] += len(seg.get("images") or [])
+    return stats
+
+
+def filter_archive_data(data: dict) -> dict:
+    employers = data.get("employers") or {}
+    for entry in employers.values():
+        blocks = entry.get("blocks") or []
+        filtered = [
+            b for b in blocks
+            if b.get("title") not in SKIP_ARCHIVE_BLOCKS
+            and b.get("rel") not in SKIP_ARCHIVE_BLOCKS
+        ]
+        entry["blocks"] = filtered
+        entry["stats"] = _archive_block_stats(filtered)
+    return data
+
+
 NAV = [
     ("Portfolio", "index.html"),
     ("Services", "services.html"),
     ("Samples", "samples.html"),
-    ("History", "experience-history.html"),
     ("About", "about.html"),
 ]
 
@@ -94,67 +344,177 @@ SERVICES = [
 
 CORE_SKILLS_FALLBACK = [
     "C/C++", "Python", "Java", "C#", "TypeScript", "Go",
-    "Postgres", "SQL Server", "REST", "Microservices",
+    "Postgres", "SQL Server", "NoSQL", "REST", "Microservices",
     "AWS", "GCP", "Docker", "Linux", "Win32", "Embedded",
     "Security", "OAuth2", "RBAC", "Automation", "OCR",
-    "OpenCV", "SIMD", "Traceability",
+    "OpenCV", "SIMD", "Traceability", "Machine Learning", "AI",
     "Angular", "Node.js", "Tcl", "CAD/CAM", "Virtualization",
 ]
 
 LINKEDIN_SKILLS_FILE = ROOT / "data" / "linkedin-skills.json"
+CORE_SKILLS_EXCLUDE = frozenset({"C++", "PMD", "Telemarketing"})
+CORE_SKILLS_ENSURE = ("NoSQL", "Machine Learning", "AI", "TypeScript")
 
 
 def load_core_skills() -> list[str]:
     """About-page skill chips — prefer LinkedIn sync (data/linkedin-skills.json)."""
+    skills: list[str] | None = None
     if LINKEDIN_SKILLS_FILE.is_file():
         try:
             data = json.loads(LINKEDIN_SKILLS_FILE.read_text(encoding="utf-8"))
-            skills = data.get("display_skills")
-            if isinstance(skills, list) and skills:
-                return [str(s) for s in skills]
+            raw = data.get("display_skills")
+            if isinstance(raw, list) and raw:
+                skills = [str(s) for s in raw]
         except (json.JSONDecodeError, OSError):
             pass
-    return list(CORE_SKILLS_FALLBACK)
+    if skills is None:
+        skills = list(CORE_SKILLS_FALLBACK)
+    skills = [s for s in skills if s not in CORE_SKILLS_EXCLUDE]
+    for skill in CORE_SKILLS_ENSURE:
+        if skill not in skills:
+            skills.append(skill)
+    return skills
 
-# role title, organization, dates, summary (matches resume order)
-TIMELINE = [
-    ("Sr. Software Engineer — R&D Staff", "MAF RODA Agrobotic", "Apr 2025 – Present",
-     "Americas traceability lead; Python fleet installer (WMI/WinRM), OpenCV SIMD on production sorters."),
-    ("Senior Solution Architect", "Independent Consultant", "Jul 2023 – Apr 2025",
-     "AWS microservices (EC2, S3, Lambda, API Gateway, CloudFormation) for multiple clients."),
-    ("Sr. Solution Architect", "Leidos · Contractor (KForce)", "Nov 2022 – Jun 2023",
-     "Secure airport scanning app (C++, Qt5, Python); enterprise performance — profiling and caching."),
-    ("Sr. Software Engineer / Solution Architect", "Google · Contractors", "2018 – 2022",
-     "YouTube, Hardware, Devices (2018–2020); Earth Enterprise & L10n (2020–2022); HR microservices (2022)."),
-    ("Solution Architect", "Intelliswift · Contractor (Accenture)", "Mar 2021 – Jan 2022",
-     "AWS serverless/hybrid cloud; Java static-analysis platform with VS Code/PMD integration."),
-    ("Privacy Audit Engineer", "Meta · Contractor (DISYS)", "Oct 2020 – Mar 2021",
-     "Privacy/security assessments for acquisitions; architecture review tooling across SQL/NoSQL estates."),
-    ("Senior Software Developer / Solutions Architect", "VMware · Veritas · HPE", "2015 – 2018",
-     "QA framework rewrite (80k→8k LOC, ~8× faster); OSCAP/OWASP hardening on backup appliances."),
-    ("Earlier career", "OpenTV, Disney, DirecTV, embedded/AV, and more", "2013 and earlier",
-     "See experience-history.html for full pre-2015 roles."),
-    ("Programmer Analyst — Consultant", "Self Employed", "Apr 2001 – Jul 2023",
-     "Business applications, databases, ActiveX/XML web tools, and client infrastructure."),
-    ("Senior Programmer Analyst", "Electrosonic Systems", "Jan 2000 – Apr 2001",
-     "AV scheduling, remote monitoring, museum deployments — see Electrosonic project page."),
-    ("Network and Programming Support", "Positive Developments", "Oct 1999 – Jan 2000",
-     "Warehouse PalmOS apps, SendGTL Win32 loader, help desk and network support."),
-    ("Network and Telecommunications Support", "Audio Telco", "Mar 1997 – Jun 1997",
-     "MIS/order-entry databases and international office telecom coordination."),
-    ("Network Support", "Wood Technologies International", "Nov 1996 – Mar 1997",
-     "NT/Exchange, BBS file utilities, Netscape server, and executive MIS apps."),
-    ("Installation and Support Associate", "ACCESS! Corporation", "Mar 1995 – Sep 1996",
-     "Predictive dialer installs, Clipper utilities, and mainframe data integration."),
-    ("Computer Support Associate", "The Bumper Shop", "Aug 1994 – Mar 1995",
-     "LAN/WAN setup and MS Access billing, inventory, and MIS databases."),
-    ("Office Manager", "California Plastering", "Feb 1994 – Aug 1994",
-     "Accounting database for customers, payroll, invoicing, and bookkeeping."),
-    ("Software Sales / PC Technician", "Fry's Electronics", "Jan 1993 – Feb 1994",
-     "Demo systems, software sales floor support, and hardware conflict resolution."),
-    ("Network and Debugging Support", "LCS Logical Computer Services", "Sep 1992 – Jan 1993",
-     "Novell NetWare 3.11 installs and VB/Access MIS debugging on LAN/WAN."),
-]
+# role, dates, note — org name comes from portfolio grid (portfolio_entries order)
+TIMELINE_BY_SLUG = {
+    "mafroda": (
+        "Sr. Software Engineer — R&D Staff", "Apr 2025 – Present",
+        "Americas traceability lead; Python fleet installer (WMI/WinRM), OpenCV SIMD on production sorters.",
+    ),
+    "leidos": (
+        "Sr. Solution Architect", "Nov 2022 – Jun 2023",
+        "Secure airport scanning app (C++, Qt5, Python); enterprise performance — profiling and caching.",
+    ),
+    "google": (
+        "Sr. Software Engineer / Solution Architect", "2018 – 2022",
+        "YouTube, Hardware, Devices (2018–2020); Earth Enterprise & L10n (2020–2022); HR microservices (2022).",
+    ),
+    "meta": (
+        "Privacy Audit Engineer", "Oct 2020 – Mar 2021",
+        "Privacy/security assessments for acquisitions; architecture review tooling across SQL/NoSQL estates.",
+    ),
+    "vmware": (
+        "Sr. Member of Technical Staff (MTS)", "2015 – 2016",
+        "QA framework rewrite (80k→8k LOC, ~8× faster); ESX/HBR test automation.",
+    ),
+    "veritas": (
+        "Senior Software Developer", "2016 – 2017",
+        "NetBackup appliance hardening — OSCAP, OAuth2/LDAP, Java/Python refactor.",
+    ),
+    "thuuz": (
+        "Contract consulting", "",
+        "Callsigns JSON API, S3 sync scripts for sports broadcast metadata.",
+    ),
+    "knurld": (
+        "Contract consulting", "",
+        "Voice biometric API integration, Apigee, Python ML/scoring pipeline prototypes.",
+    ),
+    "butterfleye": (
+        "Contract consulting", "",
+        "Camera cloud backend — Alembic migrations, timeline events, video segments, streaming.",
+    ),
+    "hpe": (
+        "Senior Software Developer", "2017 – 2018",
+        "Airwave wireless appliance hardening; Perl→Python port; OSCAP/OWASP compliance.",
+    ),
+    "jakeknows": (
+        "Contract consulting", "",
+        "Identity engine, code generators, Sony Taleo mobile job app, WCF engine services.",
+    ),
+    "yahoo": (
+        "Contract consulting", "",
+        "Yahoo-era web and infrastructure contract work — see portfolio archive.",
+    ),
+    "motorola": (
+        "Contract consulting", "2009 – 2011",
+        "Closed-captioning embedded module for set-top boxes — OCAP, zero post-init allocation.",
+    ),
+    "surfware": (
+        "Contract consulting", "2006 – 2012",
+        "Surfcam CAD/CAM features, SolidWorks/AutoCAD import-export, 4/5-axis subsystem.",
+    ),
+    "spirent": (
+        "Senior Software Engineer", "Nov 2005 – Dec 2006",
+        "Tcl→C++ network-testing UI; embedded appliance scripting and instrumentation.",
+    ),
+    "directv": (
+        "Contract consulting", "2007 – 2012",
+        "OCR client/server pipeline rebuilt in under two months — C++, FFT, ActiveX, Perl automation.",
+    ),
+    "guidance": (
+        "Senior Software Engineer", "Nov 2005 – Dec 2006",
+        "Digital forensics — Symantec Ghost format reverse engineering, Win32 disk imaging.",
+    ),
+    "hms": (
+        "Application Security Specialist — Staff", "Mar – Nov 2005",
+        "Input validation library, penetration-testing tools, security reviews for e-commerce apps.",
+    ),
+    "telvista": (
+        "Programmer Analyst — Consultant", "Apr 2001 – Nov 2001",
+        "~8-month contract — TELMEX/Mexicana MIS, order entry, and scheduling databases.",
+    ),
+    "voltdelta": (
+        "Telecommunications / Network Support", "Nov 1998 – Oct 1999",
+        "Phone switch simulator, X.25 relay, and network visualization tools in C++.",
+    ),
+    "posdev": (
+        "Network and Programming Support", "Oct 1999 – Jan 2000",
+        "Warehouse PalmOS apps, SendGTL Win32 loader, help desk and network support.",
+    ),
+    "woodtech": (
+        "Senior Software Engineer", "Nov 1996 – Mar 1997",
+        "NT/Exchange, BBS file utilities, Netscape server, and executive MIS apps.",
+    ),
+    "disney": (
+        "Senior Software Engineer", "Jul 1997 – Nov 1998",
+        "Novell/Windows connector, commissary menu system, ASP/COM web apps for studio MIS.",
+    ),
+    "electrosonic": (
+        "Senior Programmer Analyst — Staff", "Jan 2000 – Apr 2001",
+        "AV scheduling, remote monitoring, museum deployments — ESCAN and CommLib winsock stack.",
+    ),
+    "access": (
+        "Programmer and Support Associate", "Mar 1995 – Sep 1996",
+        "Predictive dialer installs, Clipper utilities, and mainframe data integration.",
+    ),
+    "frys": (
+        "Software Sales Associate / PC Technician", "Jan 1993 – Feb 1994",
+        "Demo systems, software sales floor support, and hardware conflict resolution.",
+    ),
+    "lcs": (
+        "Network and Debugging Support Associate", "Sep 1992 – Jan 1993",
+        "Novell NetWare 3.11 installs and VB/Access MIS debugging on LAN/WAN.",
+    ),
+}
+
+# Non-portfolio-grid roles inserted immediately after the named slug (portfolio order)
+TIMELINE_AFTER_SLUG = {
+    "leidos": [
+        (
+            "Senior Solution Architect", "Independent Consultant", "Jul 2023 – Apr 2025",
+            "AWS microservices (EC2, S3, Lambda, API Gateway, CloudFormation) for multiple clients.",
+        ),
+    ],
+    "google": [
+        (
+            "Solution Architect", "Intelliswift · Contractor (Accenture)", "Mar 2021 – Jan 2022",
+            "AWS serverless/hybrid cloud; Java static-analysis platform with VS Code/PMD integration.",
+        ),
+    ],
+}
+
+
+def build_timeline() -> list[tuple[str, str, str, str]]:
+    """Career timeline in portfolio grid order; dates match project pages."""
+    entries: list[tuple[str, str, str, str]] = []
+    for name, _logo, _ext, slug, desc, _skills in portfolio_entries():
+        if slug in TIMELINE_BY_SLUG:
+            role, dates, note = TIMELINE_BY_SLUG[slug]
+        else:
+            role, dates, note = "Contract consulting", "", desc
+        entries.append((role, name, dates, note))
+        entries.extend(TIMELINE_AFTER_SLUG.get(slug, ()))
+    return entries
 
 # metric, title, blurb, optional project slug for "read more" link
 HIGHLIGHTS = [
@@ -200,17 +560,22 @@ SAMPLES = [
 
 
 def timeline_block() -> str:
-    return "\n".join(
-        f"""          <div class="timeline-item">
+    items = []
+    for role, org, era, note in build_timeline():
+        dates_html = (
+            f'\n              <span class="timeline-dates">{html.escape(era)}</span>'
+            if era else ""
+        )
+        items.append(
+            f"""          <div class="timeline-item">
             <div class="timeline-header">
-              <strong class="timeline-role">{html.escape(role)}</strong>
-              <span class="timeline-dates">{html.escape(era)}</span>
+              <strong class="timeline-role">{html.escape(role)}</strong>{dates_html}
             </div>
             <div class="timeline-org">{html.escape(org)}</div>
             <p>{html.escape(note)}</p>
           </div>"""
-        for role, org, era, note in TIMELINE
-    )
+        )
+    return "\n".join(items)
 
 
 def skill_chips(skills: list[str], limit: int | None = None) -> str:
@@ -330,8 +695,15 @@ def rel_prefix(depth: int) -> str:
 
 def carousel(depth: int = 0) -> str:
     p = rel_prefix(depth)
+    # 2px accent borders on selected carousel logos
+    border_slugs = {
+        "vmware", "google", "mafroda", "electrosonic", "disney", "voltdelta",
+        "spirent", "hms", "surfware", "motorola", "jakeknows", "directv",
+    }
     items = "\n".join(
-        f'      <a class="logo-carousel-link" href="{p}projects/{html.escape(slug)}.html"'
+        f'      <a class="logo-carousel-link'
+        f'{" logo-carousel-link--" + html.escape(slug) if slug in border_slugs else ""}"'
+        f' href="{p}projects/{html.escape(slug)}.html"'
         f' title="{html.escape(alt)}">'
         f'<img src="{p}assets/images/{logo}.{ext}" alt="{html.escape(alt)}" loading="eager" decoding="async"></a>'
         for logo, ext, alt, slug in CAROUSEL_LOGOS
@@ -355,11 +727,15 @@ def header(active: str, depth: int = 0) -> str:
       <img class="profile-thumb" src="{p}assets/images/profile.jpeg" alt="{OWNER}">
     </a>
     <a href="{p}index.html" class="site-brand">{SITE_NAME}</a>
-  </div>
-  <div class="nav-wrap">
-    <ul class="site-nav">
+    <a href="https://www.recordholders.org/en/list/rubik.html" class="rubiks-link" target="_blank" rel="noopener noreferrer" title="Rubik's Cube">
+      <img src="{p}assets/images/rubiks-cube.png" alt="" width="31" height="31" loading="lazy" decoding="async">
+      <span>11.2s average  (80s)</span>
+    </a>
+    <nav class="nav-wrap" aria-label="Primary">
+      <ul class="site-nav">
 {links}
-    </ul>
+      </ul>
+    </nav>
   </div>
 {carousel(depth)}
   </header>"""
@@ -392,17 +768,7 @@ def load_compilation() -> dict[str, dict]:
 
 def compilation_block(slug: str) -> str:
     """HTML from portfolio-compilation.json for this project slug."""
-    if slug in SKIP_COMPILATION_SLUGS:
-        return ""
-    entry = load_compilation().get(slug)
-    if not entry or not entry.get("html"):
-        return ""
-    title = html.escape(entry.get("display_title") or entry.get("folder") or slug)
-    return (
-        '      <h2>Development archive analysis</h2>\n'
-        f'      <p class="compilation-lead"><em>From exhaustive archive review — {title}</em></p>\n'
-        f'      {entry["html"]}'
-    )
+    return ""
 
 
 def project_from_compilation(slug: str, card: dict) -> dict:
@@ -423,13 +789,6 @@ def project_from_compilation(slug: str, card: dict) -> dict:
         bits.append(meta["domain"])
     if bits:
         intro_parts.append(f"<p><em>{html.escape(' · '.join(bits))}</em></p>")
-    folder = card.get("dev_folder") or entry.get("folder") or ""
-    if folder:
-        shown = display_dev_folder(folder)
-        intro_parts.append(
-            f"<p>Development archive (<strong>{html.escape(shown)}</strong>): "
-            f"<code>{html.escape(str(DEV_ROOT / folder))}</code></p>"
-        )
     tech = ", ".join(meta.get("technologies") or card.get("skills") or [])
     return {
         "title": title,
@@ -541,27 +900,18 @@ def sync_static_page_carousels() -> None:
 def auto_project(slug: str, card: dict) -> dict:
     """Generate project page from catalog + Development inventory."""
     tags = []
-    if card.get("portfolio_only"):
-        tags.append("Portfolio only — not on resume")
-    elif card.get("in_current_resume"):
+    if card.get("in_current_resume"):
         tags.append("Current resume")
     elif card.get("in_old_resume"):
         tags.append("Generic Resume")
     tag_html = ""
     if tags:
         tag_html = f'<p class="portfolio-tag"><em>{html.escape(" · ".join(tags))}</em></p>'
-    folder = card.get("dev_folder") or ""
     intro_parts = [
         f"<p><strong>{html.escape(card['name'])}</strong></p>",
         tag_html,
         f"<p>{html.escape(card['desc'])}</p>",
     ]
-    if folder:
-        shown = display_dev_folder(folder)
-        intro_parts.append(
-            f"<p>Development archive (<strong>{html.escape(shown)}</strong>): "
-            f"<code>{html.escape(str(DEV_ROOT / folder))}</code></p>"
-        )
     return {
         "title": f"{card['name']} Projects",
         "intro": "\n".join(intro_parts),
@@ -592,7 +942,11 @@ def load_dev_inventory() -> dict:
 def load_nnn_archive() -> dict:
     if NNN_ARCHIVE_JSON.is_file():
         try:
-            return json.loads(NNN_ARCHIVE_JSON.read_text(encoding="utf-8"))
+            return filter_archive_data(
+                scrub_archive_obj(
+                    json.loads(NNN_ARCHIVE_JSON.read_text(encoding="utf-8"))
+                )
+            )
         except (json.JSONDecodeError, OSError):
             pass
     return {}
@@ -637,7 +991,7 @@ def render_doc_segments(segments: list[dict]) -> str:
     for seg in segments:
         kind = seg.get("kind")
         if kind == "text":
-            content = html.escape(seg.get("content") or "")
+            content = html.escape(archive_text(seg.get("content") or ""))
             if not content.strip():
                 continue
             parts.append(
@@ -650,6 +1004,22 @@ def render_doc_segments(segments: list[dict]) -> str:
                 parts.append(fig_html)
     parts.append("        </div>")
     return "\n".join(parts)
+
+
+def render_pdf_embed(pdf_src: str, title: str, depth: int = 1) -> str:
+    url = html.escape(f"{rel_prefix(depth)}{pdf_src}")
+    safe_title = html.escape(title)
+    return (
+        '        <div class="archive-pdf-embed">\n'
+        f'        <object data="{url}" type="application/pdf" width="100%" height="600px">\n'
+        f'            <iframe src="{url}" width="100%" height="100%" style="border: none;" title="{safe_title}">\n'
+        "                <p>Your browser does not support embedded PDFs.\n"
+        f'                   <a href="{url}">Download the PDF instead</a>.\n'
+        "                </p>\n"
+        "            </iframe>\n"
+        "        </object>\n"
+        "        </div>"
+    )
 
 
 def render_nnn_block(block: dict) -> str:
@@ -675,7 +1045,11 @@ def render_nnn_block(block: dict) -> str:
             "      </figure>"
         )
 
-    badge = {"code": "CODE", "text": "TEXT", "document": "DOC"}.get(btype, btype.upper() if btype else "")
+    badge = {
+        "code": "CODE",
+        "text": "TEXT",
+        "document": "PDF" if block.get("pdf_src") else "DOC",
+    }.get(btype, btype.upper() if btype else "")
     header = (
         f'        <div class="archive-panel__header">\n'
         f'          <span class="archive-badge-type">{badge}</span>\n'
@@ -685,7 +1059,7 @@ def render_nnn_block(block: dict) -> str:
         header += f'          <span class="archive-path">{path_hint}</span>\n'
     header += "        </div>"
 
-    content = block.get("content") or ""
+    content = archive_text(block.get("content") or "")
     truncated = block.get("truncated")
     meta = ""
     if truncated:
@@ -695,28 +1069,32 @@ def render_nnn_block(block: dict) -> str:
             meta = '        <p class="archive-truncated">Excerpt shown — full document in archive.</p>\n'
 
     if btype == "code":
-        lang = html.escape(block.get("lang") or "text")
+        lang = html.escape(highlight_lang(block.get("lang")))
         body = (
             f'        <pre class="archive-code"><code class="language-{lang}">'
             f"{html.escape(content)}</code></pre>\n"
         )
         panel_class = "archive-panel archive-panel--code"
     elif btype == "document":
-        segments = block.get("segments") or []
-        if segments:
-            body = render_doc_segments(segments) + "\n"
-            if truncated and content:
-                body += (
-                    '        <details class="archive-doc-fulltext">\n'
-                    '          <summary>Full extracted text</summary>\n'
-                    f'          <div class="archive-doc">{html.escape(content)}</div>\n'
-                    "        </details>\n"
-                )
+        pdf_src = block.get("pdf_src")
+        if pdf_src:
+            body = render_pdf_embed(pdf_src, block.get("title") or "Document") + "\n"
         else:
-            body = f'        <div class="archive-doc">{html.escape(content)}</div>\n'
+            segments = block.get("segments") or []
+            if segments:
+                body = render_doc_segments(segments) + "\n"
+                if truncated and content:
+                    body += (
+                        '        <details class="archive-doc-fulltext">\n'
+                        '          <summary>Full extracted text</summary>\n'
+                        f'          <div class="archive-doc">{html.escape(content)}</div>\n'
+                        "        </details>\n"
+                    )
+            else:
+                body = f'        <div class="archive-doc">{html.escape(content)}</div>\n'
         panel_class = "archive-panel archive-panel--doc"
     elif btype == "text":
-        body = f'        <pre class="archive-text"><code>{html.escape(content)}</code></pre>\n'
+        body = render_archive_text(content)
         panel_class = "archive-panel archive-panel--text"
     else:
         return ""
@@ -732,7 +1110,10 @@ def render_nnn_block(block: dict) -> str:
 
 def nnn_archive_block(slug: str) -> str:
     """HTML showcase from nnn professional archive."""
-    entry = load_nnn_archive().get("employers", {}).get(slug)
+    archive_slug = ARCHIVE_SLUG_ALIASES.get(slug, slug)
+    entry = load_nnn_archive().get("employers", {}).get(archive_slug)
+    if not entry:
+        entry = load_nnn_archive().get("employers", {}).get(slug)
     if not entry or not entry.get("blocks"):
         return ""
     stats = entry.get("stats") or {}
@@ -774,6 +1155,7 @@ def head_meta(
         f'  <link rel="icon" href="{p}assets/favicon.svg" type="image/svg+xml">',
         f'  <meta name="theme-color" content="#0e1014">',
         f'  <link rel="stylesheet" href="{p}css/style.css">',
+        f'  <link rel="stylesheet" href="{p}assets/vendor/highlight/styles/github-dark.min.css">',
     ]
     if SITE_BASE_URL:
         canon = f"{SITE_BASE_URL}/{slug_path.replace('index.html', '').rstrip('/')}"
@@ -858,6 +1240,7 @@ def page(
 {body}
   </main>
 {footer(depth)}
+  <script src="{p}assets/vendor/highlight/highlight.min.js"></script>
   <script src="{p}js/carousel.js"></script>
   <script src="{p}js/site.js"></script>
 </body>
@@ -867,14 +1250,14 @@ def page(
 PROJECTS = {
     "mafroda": {
         "title": "MAF RODA Agrobotic",
-        "intro": """<p><strong>Sr. Software Engineer — R&amp;D Staff</strong> · Apr 2025 – Present · Remote / Americas</p>
+        "intro": """<p><strong>Sr. Software Engineer — R&amp;D Staff</strong> · Apr 2025 – Present · Traver, CA</p>
 <p>MAF RODA Agrobotic — global leader in post-harvest fruit and vegetable automation (sorting, grading, packaging, palletizing). Current role (3rd at MAF RODA): <strong>Americas traceability lead</strong>.</p>
 <ul>
 <li><strong>Traceability — Americas:</strong> lead regional traceability systems; AI-assisted tooling and codebase modernization</li>
+<li><strong>OpenCV:</strong> SIMD + startup buffer pre-allocation on production sorters</li>
 <li><strong>Python fleet installer (ORPHEA):</strong> YAML-driven operations framework — WMI/WinRM discovery, network config, remote provisioning of sorting clusters</li>
 <li><strong>UiSettingsEditor:</strong> WinForms C# tool for production HMI skin / Figma palette settings (JSON appsettings)</li>
-<li><strong>JsonWebApi:</strong> ASP.NET Core REST API backing traceability and packing web views</li>
-<li><strong>OpenCV:</strong> SIMD + startup buffer pre-allocation on production sorters</li>
+<li><strong>OrpheaSimulator:</strong> ASP.NET Core REST API backing traceability and packing web views</li>
 </ul>""",
         "tech": "Python, OpenCV, SIMD, C++, C#, ASP.NET Core, WinForms, WMI, WinRM, YAML, JSON, Windows, Image Processing, Traceability, Fleet Deployment, Network Provisioning, AI-Assisted Development",
         "sections": [
@@ -886,6 +1269,8 @@ PROJECTS = {
                 ("traceability-detail.png", "Traceability detail — lot and lane tracking"),
                 ("traceability-ui.png", "Traceability UI — monitoring and configuration"),
             ], extra_class="project-gallery--large")),
+            ("OpenCV Performance", "SIMD · Buffer pre-allocation · Production sorters", """<p>Optimized OpenCV image-processing paths on production fruit sorters using SIMD intrinsics and an allocation strategy that pre-allocates buffers at startup.</p>
+<p>Result: reduced runtime memory footprint and buffer churn during high-throughput sorting operations on the line.</p>"""),
             ("Python Fleet Installer", "ORPHEA Operations Framework · Python · YAML · WinRM", """<p>Designed and built the <strong>MAF Silent Install</strong> / ORPHEA operations framework: a layered Python system that provisions fruit-sorting clusters from YAML configuration.</p>
 <ul>
 <li>Multi-tier architecture: high-level modules, operation objects, and support layer (WinRM, PSRP, OpenSSH, PsExec, WMIC, netsh)</li>
@@ -904,15 +1289,13 @@ PROJECTS = {
 <li>Validates combinations and syncs palette slots for article / outlet configurations</li>
 </ul>
 <p>Stack: .NET WinForms, System.Text.Json, custom color-swatch controls.</p>"""),
-            ("JsonWebApi", "ASP.NET Core · REST · JSON", """<p>Sample web API supporting traceability and packing workflows — serves JSON to Angular / web front ends in the MAF ecosystem.</p>
+            ("OrpheaSimulator", "ASP.NET Core · REST · JSON", """<p>Sample web API supporting traceability and packing workflows — serves JSON to Angular / web front ends in the MAF ecosystem.</p>
 <ul>
 <li>ASP.NET Core minimal hosting with controllers and OpenAPI</li>
 <li>JSON serialization with explicit property naming for legacy client compatibility</li>
 <li>CORS-enabled development mode; integrates with ArticlesImg XML and web view projects</li>
 </ul>
 <p>Companion to web modules (WebPacking, WebViewBinFillers, LindaVista) in the Graphics tree.</p>"""),
-            ("OpenCV Performance", "SIMD · Buffer pre-allocation · Production sorters", """<p>Optimized OpenCV image-processing paths on production fruit sorters using SIMD intrinsics and an allocation strategy that pre-allocates buffers at startup.</p>
-<p>Result: reduced runtime memory footprint and buffer churn during high-throughput sorting operations on the line.</p>"""),
         ],
     },
     "leidos": {
@@ -994,7 +1377,8 @@ PROJECTS = {
     },
     "directv": {
         "title": "DirecTV Projects",
-        "intro": """<ul>
+        "intro": """<p><strong>Contract consulting</strong> · 2007 – 2012</p>
+<ul>
 <li>redrat_scripter: red rat code for infrared transceiver, usb, perl client that reads scripts and sends commands to server that uses sockets</li>
 <li>redrat_blaster: used in server farm to blast with random IR messages to discover software errors</li>
 <li>USB Device Driver: Modified to minimize memory usage and avoid excess of object recreation</li>
@@ -1011,7 +1395,7 @@ PROJECTS = {
         "tech": "C/C++, JavaScript, Perl, ACE Framework, ActiveX, COM, Win32, USB Device Driver Development, OCR, Machine Vision, Image Processing, FFT, Fast (Discrete) Fourier Transform, Heuristics Methods for Machine Vision, Image Database Retrieval System using above and FFT, Image Binarization, Image Capture, Embedded, Web Based Test: Test Director",
         "work": """<h2>Work Performed</h2>
 <p>Envisioned, promoted, architected, designed and developed software infrastructure for Automation system in C++, ActiveX, COM and Win32. The Client/Server system uses ACE Framework design and architecture patterns and drives video capture devices to acquire and process images, perform OCR and recognition of other artifacts using the Fast Fourier Transform algorithm and other methods in Machine Vision.</p>
-<p>Invented algorithms using kernel methods and decision trees for analysis of image data and comparison for recognition. This was done in an incredible short time working independently, this took about one month of research and implementation.</p>
+<p>Invented algorithms using kernel methods and decision trees for analysis of image data and comparison for recognition. This was done in an incredible short time working independently, this took one month of research and implementation.</p>
 <p>Envisioned, promoted, designed and developed Linux Socket C++ Server and Perl Client script processing Automation application for driving libusb based RedRat infrared Transceiver concurrent multiple devices. A RedRat is a device that can read and replicate remote control signals. ANSI C, C++, OOP, Patterns, Image Processing, JavaScript, Test Director, Visual Studio, DirectX, USB Devices.</p>
 <p>Applications and ActiveX controls were used from Test Directors and instrumented using javascript.</p>""",
     },
@@ -1024,9 +1408,16 @@ PROJECTS = {
 <p>Web Applications Development. Assimilated legacy server application in order to develop new architecture and design. Developed back end server for job application system for mobile devices for iPhone and Android.</p>
 <p>Developed architecture, design and code for the new Identity Engine. The engine is a business core application intended to provide positive identification of an individual via digital activity harvested in diverse ways using patented technologies.</p>""",
     },
+    "yahoo": {
+        "title": "Yahoo Projects",
+        "intro": """<p><strong>Contract consulting</strong></p>
+<p>Yahoo-era web and infrastructure contract work — see portfolio archive for project materials.</p>""",
+        "tech": "Web, Infrastructure, Contract Consulting",
+    },
     "disney": {
         "title": "Disney Projects",
-        "intro": """<ul>
+        "intro": """<p><strong>Senior Software Engineer</strong> · Jul 1997 – Nov 1998 · Walt Disney Studios (CDI contract) · Burbank, CA</p>
+<ul>
 <li>CorpPurch: Request purchases</li>
 <li>DialIn_OutRequest: Request dial in/out access</li>
 <li>HRTS: Request hardware</li>
@@ -1056,7 +1447,8 @@ PROJECTS = {
     },
     "electrosonic": {
         "title": "Electrosonic Projects",
-        "intro": """<ul>
+        "intro": """<p><strong>Senior Programmer Analyst — Staff</strong> · Jan 2000 – Apr 2001 · Burbank, CA</p>
+<ul>
 <li>CommLib: DLL, rewrote winsock to handle double buffering for better performance</li>
 <li>MonitorDLL: DLL to monitor computers, servers or other devices through CommLib Winsock TCP/IP</li>
 <li>LiquidAudio streaming control: Designed as an ActiveX control, used to stream audio</li>
@@ -1081,7 +1473,8 @@ PROJECTS = {
     },
     "voltdelta": {
         "title": "Volt Delta Projects",
-        "intro": """<ul>
+        "intro": """<p><strong>Telecommunications / Network Support</strong> · Nov 1998 – Oct 1999 · Orange, CA</p>
+<ul>
 <li>Phone Switch Simulator: C++ app that was used to test other applications instead of using a real phone switch which cost $1,000/hr at AT&amp;T</li>
 <li>X.25 Relay: C++ app, used special hardware in a computer/server to interface with X.25 networks, it connected TCP/IP networks to them</li>
 <li>StarStationManager: Manage X.25 work stations</li>
@@ -1093,14 +1486,55 @@ PROJECTS = {
 <p>Led team developing Telephone Switch Simulator in C++ saving time and money by allowing testing of programs in-house.</p>
 <p>Developed other tools using web technologies, MS SQL, Stored Procedures and Visual Studio.</p>""",
     },
+    "veritas": {
+        "title": "Veritas Projects",
+        "intro": """<p><strong>Senior Software Developer</strong> · 2016 – 2017 · Contractor</p>
+<p>NetBackup appliance hardening — OSCAP, OAuth2/LDAP, Java/Python refactor.</p>""",
+        "tech": "Java, Python, C/C++, Perl, Bash, OSCAP, OWASP, OAuth2, LDAP, Active Directory, SELinux, REST, Microservices, CLI, Security, Backup",
+        "work": """<h2>Work Performed</h2>
+<ul>
+<li>Developed solutions to enhance and harden NetBackup appliance. Secured compliance with OSCAP security recommendations.</li>
+<li>Refactored Java and Python code for the new in-the-works architecture. Used Java, C/C++, Python, Perl, Bash, RESTful web services, microservices, and CLI.</li>
+<li>Networking, LDAP, NIS/Kerberos, malware detection and elimination.</li>
+<li>Used OWASP and OSCAP tools with XML lists of items for security compliance. OAuth2 authentication and authorization using SELinux, LDAP, and Active Directory.</li>
+</ul>""",
+    },
+    "hpe": {
+        "title": "HPE Projects",
+        "intro": """<p><strong>Senior Software Developer</strong> · 2017 – 2018 · Contractor</p>
+<p>Airwave wireless appliance hardening and Perl→Python port.</p>""",
+        "tech": "Java, Python, Perl, Bash, RegEx, Flask, Celery, JavaScript, OSCAP, OWASP, REST, Microservices, CLI, LDAP, Docker, VMware, Cloud, Wireless, Security",
+        "work": """<h2>Work Performed</h2>
+<ul>
+<li>Analysis and development of solutions to harden Airwave appliance for wireless management.</li>
+<li>Developed solutions to enhance and harden wireless systems.</li>
+<li>Secured compliance with OSCAP security recommendations. Ported Perl to Python code for the new in-the-works architecture.</li>
+<li>Used Java, Python, RegEx, Flask, Celery, Perl, and Bash.</li>
+<li>RESTful web services and microservices, JavaScript, and CLI. Networking, LDAP, NIS/Kerberos, malware detection and elimination. Docker, VMware, and cloud virtualization technologies. Used OWASP and OSCAP tools with XML lists of items for security compliance.</li>
+</ul>""",
+    },
+    "meta": {
+        "title": "Meta Projects",
+        "intro": """<p><strong>Privacy Audit Engineer</strong> · Oct 2020 – Mar 2021 · Contractor (DISYS)</p>
+<p>Privacy audit engineering for M&amp;A — compliance tooling across SQL/NoSQL estates.</p>""",
+        "tech": "C/C++, Java, Perl, Python, SQL, NoSQL, Cassandra, MongoDB, AWS, Privacy, Security, Compliance, Virtual Reality, Graphics, Device Drivers, Camera Imaging, Windows, Linux",
+        "work": """<h2>Work Performed</h2>
+<ul>
+<li>Auditing of systems for companies in the process of being acquired.</li>
+<li>Reviewing systems and data to assess risks and ensure compliance with diverse government bodies and regulations, including international.</li>
+<li>Analyzed databases and other information systems to ensure privacy and security compliance with US and international laws, working in conjunction with attorneys.</li>
+<li>Created tools to aid the teams with analysis and keeping track of work, originally using spreadsheets.</li>
+<li>Devised methods to abstract the analysis of architectures and designs, helping to better keep track of progress in a more standardized way.</li>
+<li>C/C++, Java, Perl, Python, NoSQL, SQL, Cassandra, MongoDB, virtual reality, graphics and device drivers, camera imaging. AWS and other cloud systems, Windows and Linux.</li>
+</ul>""",
+    },
     "vmware": {
         "title": "VMware Projects",
-        "intro": """<p><strong>Sr. Member of Technical Staff (MTS)</strong> · 2015 – 2018 · Palo Alto</p>
+        "intro": """<p><strong>Sr. Member of Technical Staff (MTS)</strong> · 2015 – 2016 · Palo Alto · Contractor</p>
 <p>VMware — virtualization and cloud infrastructure. QA automation for ESX, HBR, and related appliances.</p>
 <ul>
 <li><strong>Gemini framework:</strong> replaced ~80k LOC Perl legacy with ~8k LOC Python — ~8× faster execution</li>
 <li><strong>Paradigms:</strong> object-oriented, functional, and meta-programming patterns in a cohesive test harness</li>
-<li><strong>Veritas / HPE (adjacent):</strong> OSCAP and OWASP hardening on backup appliances (see timeline)</li>
 </ul>""",
         "tech": "Python, Perl, Virtualization, ESX, HBR, SSH, Automation, QA, Framework Development, Test Instrumentation, Networking",
         "sections": [
@@ -1121,7 +1555,8 @@ PROJECTS = {
     },
     "hms": {
         "title": "Hypermedia Projects",
-        "intro": """<ul>
+        "intro": """<p><strong>Application Security Specialist — Staff</strong> · Mar – Nov 2005 · Los Angeles, CA</p>
+<ul>
 <li>Input Validation Library: used by in-house web applications to provide security, prevent sql injection and other exploits</li>
 <li>Tools: For penetration testing, web site accounting and monitoring</li>
 </ul>""",
@@ -1133,9 +1568,22 @@ PROJECTS = {
 <p>Developed tools and scripts including an input validation library which uses regular expressions and is assembly optimized for speed, including several automatic features freeing developers from most of the responsibility of input validation.</p>
 <p>Developed interfaces to this library for Java, C and Perl in a Linux environment.</p>""",
     },
+    "guidance": {
+        "title": "Guidance Software Projects",
+        "intro": """<p><strong>Senior Software Engineer</strong> · Nov 2005 – Dec 2006 · Consultancy</p>
+<p>Digital forensics — Symantec Ghost format reverse engineering, Win32 disk imaging.</p>""",
+        "tech": "C++, Forensics, IDA Pro, Win32, Reverse Engineering, Image Processing, Visual Studio, WinDbg, DDK, SoftICE",
+        "work": """<h2>Work Performed</h2>
+<ul>
+<li>Developed digital forensics tool using Win32. Utilized methods of data extraction for cellular phones and other devices.</li>
+<li>Reverse engineered a commercial application for imaging hard drives to provide support for its file structure. Deciphered obfuscation techniques in the structures through the use of IDA Pro and hex viewers.</li>
+<li>Developed the code to support the new file format using C++, all in approximately 2 months.</li>
+</ul>""",
+    },
     "surfware": {
         "title": "Surfware Projects",
-        "intro": """<ul>
+        "intro": """<p><strong>Contract consulting</strong> · 2006 – 2012</p>
+<ul>
 <li>Surfcam: Added features and enhancements</li>
 <li>SolidWorks/Autocad Import/Export App: windows app to export/import data from surfcam files to/from</li>
 </ul>""",
@@ -1148,7 +1596,8 @@ PROJECTS = {
     },
     "motorola": {
         "title": "Motorola Projects",
-        "intro": """<p><strong>Closed Captioning Embedded Module</strong></p>
+        "intro": """<p><strong>Contract consulting</strong> · 2009 – 2011</p>
+<p><strong>Closed Captioning Embedded Module</strong></p>
 <p>C/C++, Closed Captioning, OCAP, Embedded, Set Top Boxes</p>""",
         "tech": "C/C++, Closed Captioning, OCAP, Embedded, Set Top Boxes",
         "work": """<h2>Work Performed</h2>
@@ -1156,14 +1605,16 @@ PROJECTS = {
     },
     "opentv": {
         "title": "OpenTV Projects",
-        "intro": """<p><strong>Dynamic Scheduler:</strong> Resolved Issues and Enhanced Win32 C# App, used for Local Advertisement Scheduling</p>""",
+        "intro": """<p><strong>Software Expert — Staff</strong> · Mar 2013 – Mar 2014 · Mountain View, CA</p>
+<p><strong>Dynamic Scheduler:</strong> Resolved Issues and Enhanced Win32 C# App, used for Local Advertisement Scheduling</p>""",
         "tech": "C#, C/C++, Python, Perl, Oracle, Big Data Import, Win32, Scheduling, Web Services, SOAP, SQL, Stored Procedures, IIS, MVC, .NET, XML",
         "work": """<h2>Work Performed</h2>
 <p>Developed software enhancements and bug fixes for application used by major cable companies worldwide. The application was very complex containing over a million lines of code.</p>""",
     },
     "spirent": {
         "title": "Spirent Projects",
-        "intro": """<ul>
+        "intro": """<p><strong>Senior Software Engineer</strong> · Nov 2005 – Dec 2006 · Consultancy</p>
+<ul>
 <li>Tlc Interface: replaced old Tcl code base and converted it to C++, resulting in only one line of tcl code from several thousands.</li>
 <li>Mainline: Helped to create second version of embedded application that drives a network testing appliance and can be scripted and instrumented using tcl.</li>
 </ul>""",
@@ -1188,26 +1639,26 @@ PROJECTS = {
 <p>Built <strong>SendGTL</strong> — a configurable loader that reads pipe-delimited parameter rows, validates file paths, and drives serial transfer dialogs with registry persistence (<code>Positive Developments</code> registry key).</p>
 <p>Provided network support and help desk coverage for employees and warehouse clients by phone.</p>""",
     },
-    "audiotelco": {
-        "title": "Audio Telco Projects",
-        "intro": """<p><strong>Network and Telecommunications Support</strong> · Mar 1997 – Jun 1997 · Los Angeles, CA</p>
-<p>Audio Telco (TelVista project archive) — MIS databases, order entry, and telecom equipment coordination for local and international offices.</p>
+    "telvista": {
+        "title": "TelVista Projects",
+        "intro": """<p><strong>Programmer Analyst — Consultant</strong> · Apr 2001 – Nov 2001 · ~8 month contract</p>
+<p>TelVista — MIS databases, order entry, and telecom workflow for TELMEX and Mexicana Airlines.</p>
 <ul>
 <li><strong>MIS database:</strong> MS Access and Visual Basic with high-volume data entry forms, validation, and time-saving workflows</li>
 <li><strong>Order entry database:</strong> customer and order tracking for telecommunications services</li>
 <li><strong>TELMEX Account Processing:</strong> account workflow prototype (<code>Project 000 - Test</code>)</li>
 <li><strong>Mexicana appointment scheduling:</strong> appointment database with feasibility analysis notes on routing and daily capacity (<code>Project 001 - Mexicana</code>)</li>
+<li><strong>WorkFlowApp:</strong> reusable .NET workflow engine with full SDLC documentation in archive</li>
 </ul>""",
-        "tech": "MS Access, Visual Basic, MIS, Order Entry, Telecommunications, Network Administration, Database Design",
+        "tech": "MS Access, Visual Basic, .NET, C#, MIS, Order Entry, Telecommunications, Workflow, Database Design",
         "work": """<h2>Work Performed</h2>
 <p>Designed and coded MIS and order-entry databases in MS Access and Visual Basic — forms optimized for large-volume entry with validation rules.</p>
-<p>Administered and configured office networks; provided in-house tech support.</p>
-<p>Setup, configured, programmed, and coordinated telephone equipment for local and international offices.</p>
-<p>Documented requirements and QA processes for TelVista client projects (TELMEX and Mexicana airline scheduling).</p>""",
+<p>Documented requirements and QA processes for TELMEX and Mexicana airline scheduling projects.</p>
+<p>Built workflow automation prototypes and reusable engine components for telecom business processes.</p>""",
     },
     "woodtech": {
         "title": "Wood Technologies International",
-        "intro": """<p><strong>Network Support</strong> · Nov 1996 – Mar 1997 · Long Beach, CA</p>
+        "intro": """<p><strong>Senior Software Engineer</strong> · Nov 1996 – Mar 1997 · Long Beach, CA</p>
 <ul>
 <li>Network support and help desk for in-house employees and phone clients</li>
 <li>Installation of NT, Windows 95, Exchange, BBS, and related software</li>
@@ -1224,7 +1675,7 @@ PROJECTS = {
     },
     "access": {
         "title": "ACCESS! Corporation",
-        "intro": """<p><strong>Installation and Support Associate</strong> · Mar 1995 – Sep 1996 · Playa Del Rey, CA</p>
+        "intro": """<p><strong>Programmer and Support Associate</strong> · Mar 1995 – Sep 1996 · Playa Del Rey, CA</p>
 <p>ACCESS! — predictive dialer systems for collection and telemarketing agencies (PC/Dialogic).</p>
 <ul>
 <li>On-site installation and hardware/software support for administrators and clients nationwide</li>
@@ -1282,7 +1733,7 @@ PROJECTS = {
 <p>Diagnosed hardware and software conflicts; maintained demo machines for product showcases.</p>""",
     },
     "lcs": {
-        "title": "LCS Logical Computer Services",
+        "title": "Logical Computer Services",
         "intro": """<p><strong>Network and Debugging Support Associate</strong> · Sep 1992 – Jan 1993 · Burbank, CA</p>
 <ul>
 <li>Data processing duties for financial and MIS systems</li>
@@ -1355,13 +1806,11 @@ def main():
         badge = ""
         if slug == "mafroda":
             badge = '<span class="current-badge">Current</span>'
-        elif c.get("portfolio_only"):
-            badge = '<span class="archive-badge">Dev Archive</span>'
+        badge_line = f"          {badge}\n" if badge else ""
         current_cls = " portfolio-item--current" if slug == "mafroda" else ""
         return f"""      <article class="portfolio-item fade-in{current_cls}">
         <a href="projects/{slug}.html">
-          {badge}
-          <div class="logo-wrap"><img src="assets/images/{img}.{ext}" alt="{html.escape(name)}"></div>
+{badge_line}          <div class="logo-wrap"><img src="assets/images/{img}.{ext}" alt="{html.escape(name)}"></div>
           <span class="company-name">{html.escape(name)}</span>
           <span class="company-desc">{html.escape(desc)}</span>
           {skill_chips(skills, 5)}
@@ -1377,7 +1826,7 @@ def main():
             f"""    <section class="hero fade-in">
       <p class="hero-eyebrow">{PROFESSIONAL_TITLE}</p>
       <h1>{OWNER}</h1>
-      <p class="hero-lead">Currently <strong>Sr. Software Engineer at MAF RODA Agrobotic</strong> (Americas traceability). Full career arc from 1992 — retail tech support and MIS databases through Google, Leidos, VMware, Disney, DirecTV, museum AV systems, and warehouse handheld apps.</p>
+      <p class="hero-lead">Currently <strong>Sr. Software Engineer at MAF RODA Agrobotic</strong> (Americas traceability). Cloud, enterprise and solutions architecture, design and full development life cycle. AI &amp; ML. Virtualization, machine vision, reverse engineering, privacy &amp; security, digital forensics. Embedded systems, kernel, device and low-level programming. Databases and schema design.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="{RESUME_ASSET}">Download Resume</a>
         <a class="btn btn-secondary" href="mailto:{CONTACT_EMAIL}">Get in Touch</a>
@@ -1391,11 +1840,10 @@ def main():
     </section>
 {highlights_strip()}
     <h2 class="page-title">Experience</h2>
-    <p class="page-intro">Employers and project highlights from 1992 to present — including pre-Electrosonic roles. Click a card for full detail. See also <a href="experience-history.html">Experience History</a> for supplemental roles.</p>
     <div class="portfolio-grid">
 {cards}
     </div>""",
-            description=f"{PROFESSIONAL_TITLE} — full career portfolio from 1992 through Google, Leidos, VMware, Disney, DirecTV, and early MIS/warehouse roles.",
+            description=f"{PROFESSIONAL_TITLE} — portfolio spanning Google, Leidos, VMware, Disney, DirecTV, and current work at MAF RODA.",
         )
     )
 
@@ -1440,7 +1888,7 @@ def main():
         page(
             "Samples",
             "Samples",
-            f"""    <img class="samples-hero fade-in" src="assets/images/samples/hero-beer.jpg" alt="" loading="lazy">
+            f"""    <img class="samples-hero fade-in" src="assets/images/samples/hero.jpeg" alt="" loading="lazy">
     <h1 class="page-title">Projects Samples</h1>
     <div class="samples-list">
 {samples_html}
@@ -1499,6 +1947,11 @@ def main():
     PROJECTS_DIR.mkdir(exist_ok=True)
     catalog_slugs = [c["slug"] for c in load_catalog().get("portfolio", [])]
     for slug in catalog_slugs:
+        if slug in SKIP_INDEX_SLUGS:
+            stale_page = PROJECTS_DIR / f"{slug}.html"
+            if stale_page.exists():
+                stale_page.unlink()
+            continue
         if slug not in PROJECTS:
             card = catalog_by_slug.get(slug, {"slug": slug, "name": slug, "desc": "", "skills": []})
             PROJECTS[slug] = auto_project(slug, card)
@@ -1517,6 +1970,20 @@ def main():
     stale = PROJECTS_DIR / "hypermedia.html"
     if stale.exists():
         stale.unlink()
+
+    redirect = PROJECTS_DIR / "audiotelco.html"
+    redirect.write_text(
+        page(
+            "TelVista Projects",
+            "Portfolio",
+            '    <meta http-equiv="refresh" content="0; url=telvista.html">\n'
+            '    <p>Moved to <a href="telvista.html">TelVista Projects</a>.</p>',
+            depth=1,
+            slug_path="projects/audiotelco.html",
+            description="Redirect to TelVista project page.",
+        ),
+        encoding="utf-8",
+    )
 
     sync_static_page_carousels()
 

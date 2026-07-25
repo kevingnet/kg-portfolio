@@ -32,4 +32,10 @@
       });
     });
   });
+
+  if (window.hljs) {
+    document.querySelectorAll("pre.archive-code code").forEach((block) => {
+      hljs.highlightElement(block);
+    });
+  }
 })();
