@@ -1683,3 +1683,290 @@ main {
 .resume-document .skills {
   margin-bottom: 0.4rem;
 }
+
+/* Homepage cards: role and dates */
+.portfolio-item .company-role {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin: -0.2rem 0 0.45rem;
+}
+
+/* Featured case studies (homepage cards) */
+.case-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.case-card p {
+  margin-bottom: 0.5rem;
+}
+
+.case-card__link {
+  margin-top: auto;
+  padding-top: 0.35rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Case studies page */
+.case-intro {
+  color: var(--muted);
+  max-width: 720px;
+  margin-bottom: 2rem;
+}
+
+.case-study {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  margin-bottom: 2rem;
+  scroll-margin-top: 210px;
+}
+
+.case-study__metric {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+
+.case-study__header h2 {
+  font-size: 1.45rem;
+  margin: 0.25rem 0 0.35rem;
+}
+
+.case-study__meta {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+}
+
+.case-study__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.case-study__grid h3 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.case-study__grid ul {
+  padding-left: 1.1rem;
+}
+
+.case-study__grid li {
+  margin-bottom: 0.4rem;
+}
+
+.case-study__more {
+  margin-top: 1.25rem;
+  font-weight: 600;
+}
+
+.case-more ul {
+  padding-left: 1.1rem;
+}
+
+.case-more li {
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 900px) {
+  .case-study__grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .case-study {
+    padding: 1.25rem;
+  }
+}
+
+/* Long code and document panels: cap the height, with a toggle (site.js) */
+.archive-code,
+.archive-text {
+  max-height: 28rem;
+  overflow: auto;
+}
+
+.archive-code.is-expanded,
+.archive-text.is-expanded {
+  max-height: none;
+}
+
+.archive-expand {
+  display: block;
+  margin: 0.5rem 0 0 auto;
+  padding: 0.35rem 0.85rem;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.archive-expand:hover {
+  border-color: var(--accent);
+}
+
+/* Logo carousel pause/play button (carousel.js) */
+.logo-carousel {
+  position: relative;
+}
+
+.logo-carousel-toggle {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.4rem;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  font-size: 0.7rem;
+  line-height: 1;
+  color: var(--text);
+  background: rgba(14, 16, 20, 0.85);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.logo-carousel-toggle:hover,
+.logo-carousel-toggle:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Previous / next employer and call to action on project pages */
+.project-pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 3rem 0 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.project-pager__link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.75rem 1rem;
+  min-width: 0;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+
+.project-pager__link span {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.project-pager__link:hover {
+  border-color: var(--accent);
+  opacity: 1;
+}
+
+.project-pager__next {
+  text-align: right;
+  margin-left: auto;
+}
+
+.project-cta {
+  text-align: center;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.project-cta p {
+  font-weight: 600;
+  margin-bottom: 0.85rem;
+}
+
+.project-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+/* Print: clean, light resume and pages without site chrome */
+@media print {
+  :root {
+    --bg: #fff;
+    --bg-card: #fff;
+    --text: #111;
+    --muted: #444;
+    --accent: #2c5282;
+    --border: #ccc;
+  }
+
+  body {
+    background: #fff;
+    color: #111;
+    font-size: 10.5pt;
+  }
+
+  .site-header,
+  .site-footer,
+  .skip-link,
+  .resume-toolbar,
+  .back-link,
+  .project-pager,
+  .project-cta,
+  .archive-expand,
+  .logo-carousel {
+    display: none !important;
+  }
+
+  .fade-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  main,
+  .resume-document {
+    max-width: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .resume-document .role {
+    break-inside: avoid;
+  }
+
+  .resume-document h2 {
+    break-after: avoid;
+  }
+
+  .archive-code,
+  .archive-text {
+    max-height: none;
+  }
+}

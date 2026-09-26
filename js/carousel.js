@@ -78,13 +78,23 @@
     if (items.length < 2) return;
 
     track.dataset.carouselInit = "1";
-    items.forEach((item) => track.appendChild(item.cloneNode(true)));
+    items.forEach((item) => {
+      // The clones only make the loop seamless; keep them out of the tab
+      // order and away from screen readers.
+      const clone = item.cloneNode(true);
+      clone.setAttribute("aria-hidden", "true");
+      clone.setAttribute("tabindex", "-1");
+      track.appendChild(clone);
+    });
 
     const bootState = readFromHash() || readFromStorage();
     clearHash();
 
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let ratio = 0;
     let paused = false;
+    let userPaused = reduceMotion.matches;
+    let lastFrame = 0;
     let lastSave = 0;
     let hasBooted = false;
 
@@ -107,7 +117,7 @@
 
     function persist(force) {
       const t = performance.now();
-      if (!force && t - lastSave < 200) return;
+      if (!force && t - lastSave < 1000) return;
       lastSave = t;
       writeState(ratio, t);
     }
@@ -138,7 +148,16 @@
       }).observe(track);
     }
 
-    function setPaused(value) {
+    let hoverPaused = false;
+    let toggle = null;
+
+    function updatePaused() {
+      const value = userPaused || hoverPaused;
+      if (toggle) {
+        toggle.setAttribute("aria-pressed", String(userPaused));
+        toggle.setAttribute("aria-label", userPaused ? "Play logo carousel" : "Pause logo carousel");
+        toggle.textContent = userPaused ? "\u25B6" : "\u275A\u275A";
+      }
       if (paused === value) return;
       paused = value;
       if (carousel) {
@@ -148,15 +167,31 @@
     }
 
     if (carousel) {
-      carousel.addEventListener("mouseenter", () => setPaused(true));
-      carousel.addEventListener("mouseleave", () => setPaused(false));
-      carousel.addEventListener("focusin", () => setPaused(true));
+      carousel.addEventListener("mouseenter", () => { hoverPaused = true; updatePaused(); });
+      carousel.addEventListener("mouseleave", () => { hoverPaused = false; updatePaused(); });
+      carousel.addEventListener("focusin", () => { hoverPaused = true; updatePaused(); });
       carousel.addEventListener("focusout", (e) => {
-        if (!carousel.contains(e.relatedTarget)) setPaused(false);
+        if (!carousel.contains(e.relatedTarget)) { hoverPaused = false; updatePaused(); }
+      });
+
+      toggle = document.createElement("button");
+      toggle.type = "button";
+      toggle.className = "logo-carousel-toggle";
+      toggle.addEventListener("click", () => {
+        userPaused = !userPaused;
+        updatePaused();
+      });
+      carousel.appendChild(toggle);
+      updatePaused();
+
+      reduceMotion.addEventListener?.("change", (e) => {
+        userPaused = e.matches;
+        updatePaused();
       });
     }
 
     track.querySelectorAll("a.logo-carousel-link").forEach((link) => {
+      if (link.getAttribute("aria-hidden") === "true") link.setAttribute("tabindex", "-1");
       const prime = () => navHashForLink(link);
       link.addEventListener("mousedown", prime);
       link.addEventListener("touchstart", prime, { passive: true });
@@ -168,10 +203,13 @@
 
     window.addEventListener("pagehide", () => persist(true));
 
-    function step() {
+    function step(now) {
       const half = render();
+      // Advance by elapsed time, so the speed is the same on 60 Hz and 120 Hz screens.
+      const frames = lastFrame ? Math.min((now - lastFrame) / FRAME_MS, 4) : 1;
+      lastFrame = now;
       if (!paused && half > 1) {
-        ratio = (ratio + SPEED / half) % 1;
+        ratio = (ratio + (SPEED * frames) / half) % 1;
         const offset = ratio * half;
         track.style.transform = "translateX(-" + offset + "px)";
         persist(false);

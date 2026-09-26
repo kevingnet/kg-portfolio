@@ -20,14 +20,13 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <meta name="theme-color" content="#0e1014">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="assets/vendor/highlight/styles/github-dark.min.css">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
   <div class="top-bar">
     <a href="about.html" aria-label="About Kevin Alexander Guerra">
-      <img class="profile-thumb" src="assets/images/profile.png?v=tips2" alt="Kevin Alexander Guerra">
+      <img class="profile-thumb" src="assets/images/profile-thumb.png" width="40" height="40" alt="Kevin Alexander Guerra">
     </a>
     <a href="index.html" class="site-brand">KG PORTFOLIO</a>
     <a href="https://www.recordholders.org/en/list/rubik.html" class="rubiks-link" target="_blank" rel="noopener noreferrer" title="Rubik&#39;s Cube">
@@ -39,6 +38,7 @@
         <li><a href="index.html" class="active">Portfolio</a></li>
         <li><a href="services.html" class="">Services</a></li>
         <li><a href="samples.html" class="">Samples</a></li>
+        <li><a href="resume.html" class="">Resume</a></li>
         <li><a href="about.html" class="">About</a></li>
       </ul>
     </nav>
@@ -99,28 +99,29 @@
         </div>
       </div>
     </section>
-    <section class="highlights-strip fade-in" aria-label="Selected highlights">
-      <h2 class="highlights-heading">Selected highlights</h2>
+    <section class="highlights-strip case-strip fade-in" id="case-studies" aria-labelledby="case-studies-heading">
+      <h2 class="highlights-heading" id="case-studies-heading">Featured case studies</h2>
       <div class="highlights-grid">
-      <article class="highlight-card fade-in">
-        <span class="highlight-metric">2h → 11m</span>
-        <h2 class="highlight-title"><a href="projects/google.html">Google Earth pipeline</a></h2>
-        <p>Geospatial XML processing — branch reordering, invariant caching, parallel Postgres import.</p>
-      </article>
-      <article class="highlight-card fade-in">
+      <article class="highlight-card case-card fade-in">
         <span class="highlight-metric">7 months</span>
-        <h2 class="highlight-title"><a href="projects/google.html">Localization platform</a></h2>
-        <p>Unstalled a 2-year project; ~45k LOC legacy replaced with ~24k LOC greenfield + 2k LOC RBAC.</p>
+        <h3 class="highlight-title"><a href="case-studies.html#google-localization">Google localization platform</a></h3>
+        <p><strong>Problem:</strong> a global platform stalled for two years on ~45k lines of legacy code.</p>
+        <p><strong>Result:</strong> greenfield rewrite in ~24k lines with a new RBAC security module; ~$500k projected first-year savings.</p>
+        <a class="case-card__link" href="case-studies.html#google-localization">Read the case study &rarr;</a>
       </article>
-      <article class="highlight-card fade-in">
-        <span class="highlight-metric">80k → 8k LOC</span>
-        <h2 class="highlight-title"><a href="projects/vmware.html">VMware QA framework</a></h2>
-        <p>Python automation framework ~8× faster than legacy Perl — OOP, functional, and meta-programming.</p>
+      <article class="highlight-card case-card fade-in">
+        <span class="highlight-metric">80k &rarr; 8k lines</span>
+        <h3 class="highlight-title"><a href="case-studies.html#vmware-gemini">VMware QA framework</a></h3>
+        <p><strong>Problem:</strong> slow, hard-to-extend Perl test framework for ESX and HBR.</p>
+        <p><strong>Result:</strong> new Python framework, a tenth of the size, with test runs about 8&times; faster.</p>
+        <a class="case-card__link" href="case-studies.html#vmware-gemini">Read the case study &rarr;</a>
       </article>
-      <article class="highlight-card fade-in">
+      <article class="highlight-card case-card fade-in">
         <span class="highlight-metric">&lt;2 months</span>
-        <h2 class="highlight-title"><a href="projects/directv.html">DirecTV OCR system</a></h2>
-        <p>Rebuilt failed OCR pipeline after a prior 6-person, 4-year effort — C++, FFT, client/server.</p>
+        <h3 class="highlight-title"><a href="case-studies.html#directv-ocr">DirecTV OCR test system</a></h3>
+        <p><strong>Problem:</strong> on-screen text had to be read from live video; a prior 6-person, 4-year effort had failed.</p>
+        <p><strong>Result:</strong> working C++ client/server OCR pipeline with FFT image processing in under 2 months.</p>
+        <a class="case-card__link" href="case-studies.html#directv-ocr">Read the case study &rarr;</a>
       </article>
       </div>
     </section>
@@ -131,6 +132,7 @@
           <span class="current-badge">Current</span>
           <div class="logo-wrap"><img src="assets/images/mafroda.png" alt="MAF RODA"></div>
           <span class="company-name">MAF RODA</span>
+          <span class="company-role">Sr. Software Engineer — R&amp;D Staff · Apr 2025 – Present</span>
           <span class="company-desc">Americas traceability lead — fleet installer, OpenCV on sorters, sample apps.</span>
           <div class="skill-row"><span class="skill-chip">Python</span><span class="skill-chip">OpenCV</span><span class="skill-chip">C#</span><span class="skill-chip">.NET</span><span class="skill-chip">Traceability</span></div>
         </a>
@@ -139,6 +141,7 @@
         <a href="projects/leidos.html">
           <div class="logo-wrap"><img src="assets/images/leidos.png" alt="Leidos"></div>
           <span class="company-name">Leidos</span>
+          <span class="company-role">Sr. Solution Architect · Nov 2022 – Jun 2023</span>
           <span class="company-desc">Airport security scanning app (C++, Qt5, Python) and enterprise performance architecture.</span>
           <div class="skill-row"><span class="skill-chip">C++</span><span class="skill-chip">Qt5</span><span class="skill-chip">Python</span><span class="skill-chip">Imaging</span><span class="skill-chip">Security</span></div>
         </a>
@@ -147,6 +150,7 @@
         <a href="projects/google.html">
           <div class="logo-wrap"><img src="assets/images/google.jpeg" alt="Google"></div>
           <span class="company-name">Google</span>
+          <span class="company-role">Sr. Software Engineer / Solution Architect · 2018 – 2022</span>
           <span class="company-desc">Earth Enterprise, Avik/Babel L10n, Antaeus, Android tooling — archived contractor trees.</span>
           <div class="skill-row"><span class="skill-chip">Java</span><span class="skill-chip">Python</span><span class="skill-chip">Dart</span><span class="skill-chip">GCP</span><span class="skill-chip">Android</span></div>
         </a>
@@ -155,6 +159,7 @@
         <a href="projects/meta.html">
           <div class="logo-wrap"><img src="assets/images/facebook.jpeg" alt="Meta"></div>
           <span class="company-name">Meta</span>
+          <span class="company-role">Privacy Audit Engineer · Oct 2020 – Mar 2021</span>
           <span class="company-desc">Privacy audit engineering for M&amp;A — compliance tooling across SQL/NoSQL estates.</span>
           <div class="skill-row"><span class="skill-chip">C/C++</span><span class="skill-chip">Java</span><span class="skill-chip">Perl</span><span class="skill-chip">Python</span><span class="skill-chip">SQL</span></div>
         </a>
@@ -163,6 +168,7 @@
         <a href="projects/vmware.html">
           <div class="logo-wrap"><img src="assets/images/vmware.jpeg" alt="VMware"></div>
           <span class="company-name">VMware</span>
+          <span class="company-role">Sr. Member of Technical Staff (MTS) · 2015 – 2016</span>
           <span class="company-desc">Gemini Python QA framework, gemini2 automation, CLIInfo test harness.</span>
           <div class="skill-row"><span class="skill-chip">Python</span><span class="skill-chip">Perl</span><span class="skill-chip">Virtualization</span><span class="skill-chip">Automation</span><span class="skill-chip">ESX</span></div>
         </a>
@@ -171,6 +177,7 @@
         <a href="projects/veritas.html">
           <div class="logo-wrap"><img src="assets/images/veritas.jpeg" alt="Veritas"></div>
           <span class="company-name">Veritas</span>
+          <span class="company-role">Senior Software Developer · 2016 – 2017</span>
           <span class="company-desc">NetBackup appliance hardening — OSCAP, OAuth2/LDAP, Java/Python refactor.</span>
           <div class="skill-row"><span class="skill-chip">Java</span><span class="skill-chip">Python</span><span class="skill-chip">C/C++</span><span class="skill-chip">Perl</span><span class="skill-chip">Bash</span></div>
         </a>
@@ -179,6 +186,7 @@
         <a href="projects/thuuz.html">
           <div class="logo-wrap"><img src="assets/images/thuuz.png" alt="Thuuz"></div>
           <span class="company-name">Thuuz</span>
+          <span class="company-role">Contract consulting</span>
           <span class="company-desc">Callsigns JSON API, S3 sync scripts for sports broadcast metadata.</span>
           <div class="skill-row"><span class="skill-chip">Python</span><span class="skill-chip">AWS</span><span class="skill-chip">S3</span><span class="skill-chip">JSON</span><span class="skill-chip">API</span></div>
         </a>
@@ -187,6 +195,7 @@
         <a href="projects/knurld.html">
           <div class="logo-wrap"><img src="assets/images/knulrd.jpeg" alt="Knurld"></div>
           <span class="company-name">Knurld</span>
+          <span class="company-role">Contract consulting</span>
           <span class="company-desc">Voice biometric API integration, Apigee, Python ML/scoring pipeline prototypes.</span>
           <div class="skill-row"><span class="skill-chip">Python</span><span class="skill-chip">API</span><span class="skill-chip">ML</span><span class="skill-chip">Voice Biometrics</span><span class="skill-chip">Apigee</span></div>
         </a>
@@ -195,6 +204,7 @@
         <a href="projects/butterfleye.html">
           <div class="logo-wrap"><img src="assets/images/butterfleye.jpeg" alt="Butterfleye"></div>
           <span class="company-name">Butterfleye</span>
+          <span class="company-role">Contract consulting</span>
           <span class="company-desc">Camera cloud backend — Alembic migrations, timeline events, video segments, streaming.</span>
           <div class="skill-row"><span class="skill-chip">Python</span><span class="skill-chip">SQL</span><span class="skill-chip">AWS</span><span class="skill-chip">IoT</span><span class="skill-chip">Video</span></div>
         </a>
@@ -203,6 +213,7 @@
         <a href="projects/hpe.html">
           <div class="logo-wrap"><img src="assets/images/hpe.jpeg" alt="HPE"></div>
           <span class="company-name">HPE</span>
+          <span class="company-role">Senior Software Developer · 2017 – 2018</span>
           <span class="company-desc">Airwave wireless appliance hardening and Perl→Python port.</span>
           <div class="skill-row"><span class="skill-chip">Java</span><span class="skill-chip">Python</span><span class="skill-chip">Perl</span><span class="skill-chip">Bash</span><span class="skill-chip">Flask</span></div>
         </a>
@@ -211,6 +222,7 @@
         <a href="projects/jakeknows.html">
           <div class="logo-wrap"><img src="assets/images/company.png" alt="JakeKnows"></div>
           <span class="company-name">JakeKnows</span>
+          <span class="company-role">Contract consulting</span>
           <span class="company-desc">Identity engine, code generators, Sony Taleo mobile job app, WCF engine services.</span>
           <div class="skill-row"><span class="skill-chip">C#</span><span class="skill-chip">Python</span><span class="skill-chip">MSSQL</span><span class="skill-chip">WCF</span><span class="skill-chip">Code Generation</span></div>
         </a>
@@ -219,6 +231,7 @@
         <a href="projects/yahoo.html">
           <div class="logo-wrap"><img src="assets/images/yahoo.jpeg" alt="Yahoo"></div>
           <span class="company-name">Yahoo</span>
+          <span class="company-role">Contract consulting</span>
           <span class="company-desc">Search infrastructure C++ modules — alf* networking, I/O, and server components.</span>
           <div class="skill-row"><span class="skill-chip">C++</span><span class="skill-chip">Search</span><span class="skill-chip">Networking</span><span class="skill-chip">Linux</span></div>
         </a>
@@ -227,6 +240,7 @@
         <a href="projects/motorola.html">
           <div class="logo-wrap"><img src="assets/images/motorola.jpeg" alt="Motorola"></div>
           <span class="company-name">Motorola</span>
+          <span class="company-role">Contract consulting · 2009 – 2011</span>
           <span class="company-desc">OCAP closed-captioning renderer for set-top boxes — zero post-init allocation.</span>
           <div class="skill-row"><span class="skill-chip">C++</span><span class="skill-chip">Embedded</span><span class="skill-chip">OCAP</span><span class="skill-chip">Linux</span><span class="skill-chip">DTV</span></div>
         </a>
@@ -235,6 +249,7 @@
         <a href="projects/surfware.html">
           <div class="logo-wrap"><img src="assets/images/surfware.jpeg" alt="Surfware"></div>
           <span class="company-name">Surfware</span>
+          <span class="company-role">Contract consulting · 2006 – 2012</span>
           <span class="company-desc">Surfcam Velocity4/5, INC2APT, SolidWorks translators, InstallManager.</span>
           <div class="skill-row"><span class="skill-chip">C++</span><span class="skill-chip">C#</span><span class="skill-chip">OpenGL</span><span class="skill-chip">CAD/CAM</span><span class="skill-chip">Parasolid</span></div>
         </a>
@@ -243,6 +258,7 @@
         <a href="projects/spirent.html">
           <div class="logo-wrap"><img src="assets/images/spirent.jpeg" alt="Spirent"></div>
           <span class="company-name">Spirent</span>
+          <span class="company-role">Senior Software Engineer · Nov 2005 – Dec 2006</span>
           <span class="company-desc">TestCenter Tcl/SWIG UI, mainline network-test appliance automation.</span>
           <div class="skill-row"><span class="skill-chip">C++</span><span class="skill-chip">Tcl</span><span class="skill-chip">SWIG</span><span class="skill-chip">Networking</span><span class="skill-chip">.NET</span></div>
         </a>
@@ -251,6 +267,7 @@
         <a href="projects/directv.html">
           <div class="logo-wrap"><img src="assets/images/directv.jpeg" alt="DirecTV"></div>
           <span class="company-name">DirecTV</span>
+          <span class="company-role">Contract consulting · 2007 – 2012</span>
           <span class="company-desc">OCR client/server, RedRat IR automation, STB test scripts, screen capture pipeline.</span>
           <div class="skill-row"><span class="skill-chip">C++</span><span class="skill-chip">OCR</span><span class="skill-chip">ACE</span><span class="skill-chip">Computer Vision</span><span class="skill-chip">Perl</span></div>
         </a>
@@ -259,6 +276,7 @@
         <a href="projects/guidance.html">
           <div class="logo-wrap"><img src="assets/images/guidance.jpeg" alt="Guidance Software"></div>
           <span class="company-name">Guidance Software</span>
+          <span class="company-role">Senior Software Engineer · Nov 2005 – Dec 2006</span>
           <span class="company-desc">Digital forensics — Symantec Ghost format reverse engineering, Win32 disk imaging.</span>
           <div class="skill-row"><span class="skill-chip">C++</span><span class="skill-chip">Forensics</span><span class="skill-chip">IDA Pro</span><span class="skill-chip">Win32</span><span class="skill-chip">Reverse Engineering</span></div>
         </a>
@@ -267,6 +285,7 @@
         <a href="projects/hms.html">
           <div class="logo-wrap"><img src="assets/images/hypermedia.jpeg" alt="HMS"></div>
           <span class="company-name">HMS</span>
+          <span class="company-role">Application Security Specialist — Staff · Mar – Nov 2005</span>
           <span class="company-desc">Assembly-optimized input validation library, auth/netidb, penetration testing tools.</span>
           <div class="skill-row"><span class="skill-chip">C++</span><span class="skill-chip">Python</span><span class="skill-chip">Security</span><span class="skill-chip">Linux</span><span class="skill-chip">Perl</span></div>
         </a>
@@ -275,6 +294,7 @@
         <a href="projects/telvista.html">
           <div class="logo-wrap"><img src="assets/images/telvista.jpeg" alt="TelVista"></div>
           <span class="company-name">TelVista</span>
+          <span class="company-role">Programmer Analyst — Consultant · Apr 2001 – Nov 2001</span>
           <span class="company-desc">TelVista MIS, TELMEX/Mexicana scheduling, WorkFlowApp .NET solution.</span>
           <div class="skill-row"><span class="skill-chip">MS Access</span><span class="skill-chip">Visual Basic</span><span class="skill-chip">.NET</span><span class="skill-chip">Telecom</span></div>
         </a>
@@ -283,6 +303,7 @@
         <a href="projects/voltdelta.html">
           <div class="logo-wrap"><img src="assets/images/voltdelta.jpeg" alt="VoltDelta"></div>
           <span class="company-name">VoltDelta</span>
+          <span class="company-role">Telecommunications / Network Support · Nov 1998 – Oct 1999</span>
           <span class="company-desc">X.25/TCP/IP relay, StarTreeList DB, phone switch simulator.</span>
           <div class="skill-row"><span class="skill-chip">C++</span><span class="skill-chip">X.25</span><span class="skill-chip">TCP/IP</span><span class="skill-chip">Win32</span><span class="skill-chip">MSSQL</span></div>
         </a>
@@ -291,6 +312,7 @@
         <a href="projects/posdev.html">
           <div class="logo-wrap"><img src="assets/images/posdev.svg" alt="Positive Developments"></div>
           <span class="company-name">Positive Developments</span>
+          <span class="company-role">Network and Programming Support · Oct 1999 – Jan 2000</span>
           <span class="company-desc">SendGTL Win32 loader, Allstate Floral PalmOS warehouse scanner.</span>
           <div class="skill-row"><span class="skill-chip">C++</span><span class="skill-chip">PalmOS</span><span class="skill-chip">MFC</span><span class="skill-chip">Warehouse</span><span class="skill-chip">Serial I/O</span></div>
         </a>
@@ -299,6 +321,7 @@
         <a href="projects/woodtech.html">
           <div class="logo-wrap"><img src="assets/images/woodtech.svg" alt="Wood Technologies"></div>
           <span class="company-name">Wood Technologies</span>
+          <span class="company-role">Senior Software Engineer · Nov 1996 – Mar 1997</span>
           <span class="company-desc">NT/Exchange, BBS utilities, Netscape server, executive MIS databases.</span>
           <div class="skill-row"><span class="skill-chip">NT</span><span class="skill-chip">Exchange</span><span class="skill-chip">BBS</span><span class="skill-chip">SQL</span><span class="skill-chip">Netscape</span></div>
         </a>
@@ -307,6 +330,7 @@
         <a href="projects/disney.html">
           <div class="logo-wrap"><img src="assets/images/disney.jpeg" alt="Disney"></div>
           <span class="company-name">Disney</span>
+          <span class="company-role">Senior Software Engineer · Jul 1997 – Nov 1998</span>
           <span class="company-desc">NWConnect deployer, SendMail ActiveX, IIS/ASP enterprise web apps, Commissary menu system.</span>
           <div class="skill-row"><span class="skill-chip">C++</span><span class="skill-chip">ASP</span><span class="skill-chip">VB</span><span class="skill-chip">MSSQL</span><span class="skill-chip">ActiveX</span></div>
         </a>
@@ -315,6 +339,7 @@
         <a href="projects/electrosonic.html">
           <div class="logo-wrap"><img src="assets/images/electrosonic.jpeg" alt="Electrosonic"></div>
           <span class="company-name">Electrosonic</span>
+          <span class="company-role">Senior Programmer Analyst — Staff · Jan 2000 – Apr 2001</span>
           <span class="company-desc">ESCAN scheduler, museum client apps (AMNH, CMHF), remote AV device control.</span>
           <div class="skill-row"><span class="skill-chip">C++</span><span class="skill-chip">COM</span><span class="skill-chip">TCP/IP</span><span class="skill-chip">Embedded</span><span class="skill-chip">MPEG</span></div>
         </a>
@@ -323,6 +348,7 @@
         <a href="projects/access.html">
           <div class="logo-wrap"><img src="assets/images/access.svg" alt="ACCESS!"></div>
           <span class="company-name">ACCESS!</span>
+          <span class="company-role">Programmer and Support Associate · Mar 1995 – Sep 1996</span>
           <span class="company-desc">Predictive dialer installs, Clipper data manager, mainframe file-transfer integration.</span>
           <div class="skill-row"><span class="skill-chip">Clipper</span><span class="skill-chip">Dialogic</span><span class="skill-chip">Databases</span><span class="skill-chip">Telemarketing</span><span class="skill-chip">Mainframe</span></div>
         </a>
@@ -331,6 +357,7 @@
         <a href="projects/frys.html">
           <div class="logo-wrap"><img src="assets/images/frys.svg" alt="Fry&#39;s Electronics"></div>
           <span class="company-name">Fry's Electronics</span>
+          <span class="company-role">Software Sales Associate / PC Technician · Jan 1993 – Feb 1994</span>
           <span class="company-desc">Retail software sales, demo systems, PC technical support.</span>
           <div class="skill-row"><span class="skill-chip">PC Support</span><span class="skill-chip">Retail</span><span class="skill-chip">Diagnostics</span><span class="skill-chip">Sales</span></div>
         </a>
@@ -339,6 +366,7 @@
         <a href="projects/lcs.html">
           <div class="logo-wrap"><img src="assets/images/lcs.svg" alt="Logical Computer Services"></div>
           <span class="company-name">Logical Computer Services</span>
+          <span class="company-role">Network and Debugging Support Associate · Sep 1992 – Jan 1993</span>
           <span class="company-desc">Novell NetWare 3.11 installs, VB/Access MIS debugging on LAN/WAN.</span>
           <div class="skill-row"><span class="skill-chip">Novell</span><span class="skill-chip">NetWare</span><span class="skill-chip">Visual Basic</span><span class="skill-chip">MS Access</span></div>
         </a>
@@ -360,7 +388,6 @@
     </div>
     <p class="footer-copy">© 2026 Kevin Alexander Guerra. <a href="assets/Kevin-Guerra.pdf">Resume (PDF)</a></p>
   </footer>
-  <script src="assets/vendor/highlight/highlight.min.js"></script>
   <script src="js/carousel.js"></script>
   <script src="js/site.js"></script>
 
