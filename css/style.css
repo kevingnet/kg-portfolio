@@ -1970,3 +1970,17 @@ main {
     max-height: none;
   }
 }
+
+.maf-trace-summary {
+  margin: 1rem 0 1.5rem;
+  padding: 1.1rem 1.25rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+}
+
+.maf-trace-summary ul {
+  padding-left: 1.1rem;
+  margin: 0.5rem 0;
+}
