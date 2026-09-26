@@ -9,6 +9,7 @@
 param(
   [switch]$Copy,
   [string[]]$SearchRoots = @(
+    "$env:USERPROFILE\tools\kg\KGCodeSamplesWhole",
     "$env:USERPROFILE\tools\kg\Jobs",
     "$env:USERPROFILE\Pictures\Screenshots"
   )
