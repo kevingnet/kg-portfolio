@@ -1,4 +1,19 @@
 (function () {
+  // Hide embedded PDF panels whose file is not on the server, instead of
+  // showing an empty viewer (or GitHub's 404 page inside it).
+  if (!/^https?:$/.test(location.protocol)) return;
+  document.querySelectorAll(".archive-pdf-embed object[data]").forEach((obj) => {
+    const panel = obj.closest(".archive-panel") || obj.closest(".archive-pdf-embed");
+    panel.style.display = "none";
+    fetch(obj.getAttribute("data"), { method: "HEAD" })
+      .then((res) => {
+        if (res.ok) panel.style.display = "";
+      })
+      .catch(() => {});
+  });
+})();
+
+(function () {
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduced) {
     document.querySelectorAll(".fade-in").forEach((el) => el.classList.add("visible"));
