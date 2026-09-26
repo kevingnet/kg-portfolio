@@ -1990,3 +1990,65 @@ main {
     display: none;
   }
 }
+
+/* Homepage: who the owner is looking for */
+.hero-open {
+  margin-top: 1rem;
+  padding: 0.6rem 0.9rem;
+  display: inline-block;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: rgba(212, 165, 116, 0.1);
+  border: 1px solid var(--accent-dim, var(--border));
+  border-radius: var(--radius);
+}
+
+/* Homepage: How I use AI in engineering */
+.ai-eng {
+  margin: 2.5rem 0;
+}
+
+.ai-eng__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.ai-eng__grid > div {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.25rem;
+}
+
+.ai-eng__grid h3 {
+  font-size: 1rem;
+  margin-bottom: 0.45rem;
+}
+
+.ai-eng__grid p {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.ai-eng__more {
+  margin-top: 0.85rem;
+  font-weight: 600;
+}
+
+/* Homepage: pre-2005 roles */
+.earlier-career-title {
+  margin-top: 2.5rem;
+}
+
+.earlier-career-title span {
+  font-size: 0.6em;
+  font-weight: 500;
+  color: var(--muted);
+  margin-left: 0.5rem;
+}
+
+.archive-shots-heading {
+  margin: 1.25rem 0 0.75rem;
+  font-size: 1rem;
+}
