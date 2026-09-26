@@ -92,12 +92,11 @@ a:hover {
 }
 
 .site-brand {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.02em;
   color: var(--text);
   text-decoration: none;
-  text-transform: uppercase;
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -1581,8 +1580,8 @@ main {
   }
 
   .site-brand {
-    font-size: 0.82rem;
-    letter-spacing: 0.08em;
+    font-size: 0.9rem;
+    letter-spacing: 0;
   }
 
   .site-nav a {
@@ -1983,4 +1982,11 @@ main {
 .maf-trace-summary ul {
   padding-left: 1.1rem;
   margin: 0.5rem 0;
+}
+
+/* Phones: keep the header to two rows; the cube icon stays, its caption hides */
+@media (max-width: 480px) {
+  .rubiks-link span {
+    display: none;
+  }
 }
