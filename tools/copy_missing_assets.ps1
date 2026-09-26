@@ -1,5 +1,7 @@
 # Finds the images/PDFs the site references but that are missing from the repo,
-# searches local folders for them by file name, and copies matches into place.
+# searches local folders for them by file name (ignoring spaces, underscores,
+# case and, if needed, the extension), and copies matches into place.
+# A .doc/.docx/.rtf original is converted to PDF with Microsoft Word.
 #
 # Usage (from the repo root, in PowerShell):
 #   powershell -ExecutionPolicy Bypass -File tools\copy_missing_assets.ps1          # dry run
@@ -56,35 +58,71 @@ function Get-Key([string]$name) {
 }
 
 Write-Host "Indexing search folders..."
-$index = @{}
+$byName = @{}   # key of full file name (with extension)
+$byBase = @{}   # key of name without extension
 foreach ($root in $SearchRoots) {
   if (-not (Test-Path $root)) { Write-Host "  (not found: $root)"; continue }
+  $n = 0
   Get-ChildItem -Path $root -Recurse -File -ErrorAction SilentlyContinue | ForEach-Object {
+    $n++
     $k = Get-Key $_.Name
-    if (-not $index.ContainsKey($k)) { $index[$k] = @() }
-    $index[$k] += $_.FullName
+    if (-not $byName.ContainsKey($k)) { $byName[$k] = @() }
+    $byName[$k] += $_.FullName
+    $b = Get-Key $_.BaseName
+    if (-not $byBase.ContainsKey($b)) { $byBase[$b] = @() }
+    $byBase[$b] += $_.FullName
   }
+  Write-Host "  $root : $n files"
 }
 
+$word = $null
+function Convert-ToPdf([string]$src, [string]$dest) {
+  if (-not $script:word) {
+    try { $script:word = New-Object -ComObject Word.Application; $script:word.Visible = $false }
+    catch { Write-Host "       (Microsoft Word not available; cannot convert)"; return $false }
+  }
+  try {
+    $doc = $script:word.Documents.Open($src, $false, $true)
+    $doc.SaveAs([ref]$dest, [ref]17)   # 17 = wdFormatPDF
+    $doc.Close($false)
+    return $true
+  } catch { Write-Host "       (conversion failed: $($_.Exception.Message))"; return $false }
+}
+
+$docExt = @('.doc', '.docx', '.rtf', '.odt', '.txt')
 $found = 0; $notFound = @()
 foreach ($rel in $missing) {
   $dest = Join-Path $repo ($rel -replace '/', '\')
   if (Test-Path $dest) { continue }
-  $k = Get-Key (Split-Path $rel -Leaf)
-  if ($index.ContainsKey($k)) {
-    $src = $index[$k][0]
+  $leaf = Split-Path $rel -Leaf
+  $k = Get-Key $leaf
+  $b = Get-Key ([IO.Path]::GetFileNameWithoutExtension($leaf))
+  $destExt = [IO.Path]::GetExtension($leaf).ToLower()
+
+  $src = $null; $convert = $false
+  if ($byName.ContainsKey($k)) {
+    $src = $byName[$k][0]
+  } elseif ($byBase.ContainsKey($b)) {
+    $cands = $byBase[$b]
+    $same = $cands | Where-Object { [IO.Path]::GetExtension($_).ToLower() -eq $destExt } | Select-Object -First 1
+    $img = $cands | Where-Object { $destExt -ne '.pdf' -and [IO.Path]::GetExtension($_).ToLower() -in @('.png', '.jpg', '.jpeg') } | Select-Object -First 1
+    $docSrc = $cands | Where-Object { $destExt -eq '.pdf' -and [IO.Path]::GetExtension($_).ToLower() -in $docExt } | Select-Object -First 1
+    if ($same) { $src = $same } elseif ($img) { $src = $img } elseif ($docSrc) { $src = $docSrc; $convert = $true }
+  }
+
+  if ($src) {
     $found++
     Write-Host "FOUND  $rel"
-    Write-Host "       <- $src"
-    if ($index[$k].Count -gt 1) { Write-Host "       ($($index[$k].Count) candidates; using the first)" }
+    Write-Host "       <- $src$(if ($convert) { '  (will convert to PDF with Word)' })"
     if ($Copy) {
       New-Item -ItemType Directory -Force -Path (Split-Path $dest) | Out-Null
-      Copy-Item -LiteralPath $src -Destination $dest
+      if ($convert) { [void](Convert-ToPdf $src $dest) } else { Copy-Item -LiteralPath $src -Destination $dest }
     }
   } else {
     $notFound += $rel
   }
 }
+if ($word) { $word.Quit() }
 
 Write-Host ""
 Write-Host "$found found, $($notFound.Count) not found."
