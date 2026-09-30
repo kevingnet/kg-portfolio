@@ -1996,7 +1996,7 @@ main {
 }
 
 .screen-tour__item {
-  width: 70%;
+  width: 85%;
   margin: 0 auto;
   background: var(--bg-elevated);
   border: 1px solid var(--border);
@@ -2004,7 +2004,7 @@ main {
   overflow: hidden;
 }
 
-/* Phones: 70% of a narrow column is too small to read, so use it all */
+/* Phones: 85% of a narrow column is too small to read, so use it all */
 @media (max-width: 760px) {
   .screen-tour__item {
     width: auto;
