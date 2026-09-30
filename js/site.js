@@ -47,6 +47,28 @@
     });
   });
 
+  // Phones: collapse the long experience grids on the homepage behind a
+  // "Show all" button. CSS only hides cards below 760px, so desktop is unchanged.
+  document.querySelectorAll(".portfolio-grid").forEach((grid) => {
+    const earlier = grid.classList.contains("portfolio-grid--earlier");
+    const total = grid.querySelectorAll(".portfolio-item").length;
+    if (total <= (earlier ? 0 : 6)) return;
+    grid.classList.add("is-collapsed");
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "grid-toggle";
+    const closedLabel = earlier ? `Show earlier career (${total} roles)` : `Show all ${total} roles`;
+    btn.textContent = closedLabel;
+    btn.setAttribute("aria-expanded", "false");
+    btn.addEventListener("click", () => {
+      const collapsed = grid.classList.toggle("is-collapsed");
+      btn.textContent = collapsed ? closedLabel : "Show fewer";
+      btn.setAttribute("aria-expanded", String(!collapsed));
+      if (collapsed) grid.scrollIntoView({ block: "start" });
+    });
+    grid.insertAdjacentElement("afterend", btn);
+  });
+
   if (window.hljs) {
     document.querySelectorAll("pre.archive-code code").forEach((block) => {
       hljs.highlightElement(block);

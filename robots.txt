@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kevingnet.github.io/kg-portfolio/sitemap.xml

@@ -34,6 +34,9 @@ OWNER = "Kevin Alexander Guerra"
 SITE_NAME = "Kevin Guerra Portfolio"
 COPYRIGHT_YEAR = "2026"
 CONTACT_EMAIL = "kevingnet1@gmail.com"
+SITE_URL = "https://kevingnet.github.io/kg-portfolio/"
+# Visitor counts: GoatCounter (free, no cookies). Dashboard at https://kevingnet.goatcounter.com
+ANALYTICS = '<script data-goatcounter="https://kevingnet.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>'
 
 NAV = [
     ("Portfolio", "index.html"),
@@ -157,6 +160,7 @@ def footer(prefix: str, extended: bool) -> str:
       <a href="mailto:{CONTACT_EMAIL}" title="Email">{CONTACT_EMAIL}</a>
     </div>
 {copy}
+    {ANALYTICS}
   </footer>"""
 
 
@@ -175,6 +179,18 @@ def refresh(path: Path, order: list[str]) -> str | None:
     return text
 
 
+def write_sitemap(pages: list[str]) -> None:
+    """sitemap.xml lists every page except the 404; robots.txt points to it."""
+    urls = "\n".join(
+        f"  <url><loc>{SITE_URL}{'' if p == 'index.html' else p}</loc></url>" for p in pages if p != "404.html"
+    )
+    (ROOT / "sitemap.xml").write_text(
+        f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>\n',
+        encoding="utf-8",
+    )
+    (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}sitemap.xml\n", encoding="utf-8")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--check", action="store_true", help="only report pages that would change")
@@ -185,7 +201,10 @@ def main() -> int:
 
     order = carousel_order()
     changed = []
-    for path in sorted([*ROOT.glob("*.html"), *ROOT.glob("projects/*.html")]):
+    pages = sorted([*ROOT.glob("*.html"), *ROOT.glob("projects/*.html")])
+    if not args.check:
+        write_sitemap([p.relative_to(ROOT).as_posix() for p in pages])
+    for path in pages:
         new = refresh(path, order)
         if new is None or new == path.read_text(encoding="utf-8"):
             continue

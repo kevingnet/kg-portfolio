@@ -2176,3 +2176,75 @@ main {
   margin-top: 0.85rem;
   font-weight: 600;
 }
+
+/* Long archive file names and paths wrap instead of widening the page */
+.archive-filename,
+.archive-path {
+  overflow-wrap: anywhere;
+}
+
+/* Phones: standalone links get a comfortable tap height (24px+ target size) */
+@media (max-width: 760px) {
+  .footer-social a,
+  .footer-copy a,
+  .hero-social a,
+  .sample-links a,
+  .code-links a,
+  .case-study__more a,
+  .ai-eng__more a,
+  .contact a,
+  .back-link,
+  .site-brand {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+  }
+}
+
+/* Phones: long experience grids show their first cards behind a toggle (see site.js) */
+.grid-toggle {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .portfolio-grid.is-collapsed > .portfolio-item:nth-child(n + 7) {
+    display: none;
+  }
+
+  .portfolio-grid--earlier.is-collapsed > .portfolio-item {
+    display: none;
+  }
+
+  .grid-toggle {
+    display: block;
+    width: 100%;
+    margin: 0.75rem 0 1.5rem;
+    padding: 0.8rem 1rem;
+    font: inherit;
+    font-weight: 600;
+    color: var(--text);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+}
+
+/* Homepage: public code with live-demo and source links */
+.code-links {
+  font-weight: 600;
+}
+
+/* 404 page */
+.not-found {
+  max-width: 640px;
+  padding: 3rem 0 2rem;
+}
+
+.not-found p {
+  color: var(--muted);
+}
+
+.not-found .hero-actions {
+  margin-top: 1.5rem;
+}
