@@ -30,7 +30,7 @@ NNN_ARCHIVE_JSON = ROOT / "data" / "nnn-archive.json"
 CAROUSEL_CHRONOLOGY_FILE = ROOT / "data" / "carousel-chronology.json"
 SKIP_COMPILATION_SLUGS = frozenset({"access"})
 SKIP_INDEX_SLUGS = frozenset({
-    "hivemapper", "chase", "greenleaf", "opentv", "audiotelco",
+    "hivemapper", "chase", "greenleaf", "audiotelco",
     "pleiades", "nokio", "enigma", "plastering",
     "bumpershop", "labumpers", "fotografia", "puntabanda",
 })  # index grid + carousel (+ project pages via main())
