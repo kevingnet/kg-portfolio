@@ -22,7 +22,7 @@ if ! "$GH" auth status >/dev/null 2>&1; then
 fi
 
 python3 build_site.py
-git add README.md build_site.py css/ js/ assets/ index.html about.html services.html samples.html projects/ .github/ .gitignore deploy.sh
+git add -A
 if ! git diff --cached --quiet; then
   git commit -m "Rebuild site for deploy"
 fi
@@ -34,5 +34,5 @@ else
 fi
 
 echo ""
-echo "Enable Pages: repo → Settings → Pages → Source: GitHub Actions"
+echo "Pages: repo → Settings → Pages → Deploy from branch: main / (root)"
 echo "Site URL: https://${REPO%%/*}.github.io/${REPO##*/}/"

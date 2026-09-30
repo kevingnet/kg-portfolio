@@ -1,64 +1,43 @@
-# KG Portfolio — Full Career (local only)
+# Kevin Guerra Portfolio
 
-Static HTML portfolio for **Kevin Alexander Guerra**. Generated from `build_site.py` and indexed from the Development archive on disk.
+Static portfolio site for **Kevin Alexander Guerra**, published with GitHub Pages at
+<https://kevingnet.github.io/kg-portfolio/>. Every push to `main` redeploys it within a minute or two.
 
-**This is a local site.** Open it directly in your browser — no web server, no GitHub Pages.
+## Editing
 
-## Open the site
+The HTML pages are the source of truth: edit `index.html`, `case-studies.html`,
+`projects/<employer>.html` and the rest directly. Styles are in `css/style.css`;
+scripts in `js/`.
 
-```bash
-xdg-open ~/Jobs/kg-portfolio-full/index.html
-```
-
-Or in your file manager: navigate to `~/Jobs/kg-portfolio-full/` and double-click `index.html`.
-
-All links, CSS, and assets use **relative paths** so `file://` works.
-
-## Rebuild after edits
+The header, nav, logo carousel and footer are the same on every page. Change them
+in `build_site.py`, then run:
 
 ```bash
-cd ~/Jobs/kg-portfolio-full
-python3 build_site.py
+python3 build_site.py           # rewrite pages whose shared parts are out of date
+python3 build_site.py --check   # list pages that would change (exit 1 if any)
 ```
 
-This will:
+It leaves page content alone. Run with `--check` before committing to confirm the
+shared parts are in sync.
 
-1. Parse `data/portfolio-compilation.md` → `data/portfolio-compilation.json` (exhaustive archive analysis per employer)
-2. Scan `/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development` → `data/development-inventory.json`
-3. Regenerate HTML pages with **Development archive analysis** (from compilation) plus file index sections
-4. Copy resume PDF from `~/Jobs/Kevin Guerra.pdf` if present
-5. Build header carousel (oldest→newest from `data/carousel-chronology.json`; resume overrides Development folder order)
+## Adding an employer to the carousel
 
-Archive folder names are shown **without** numeric prefixes (e.g. `Disney` not `03 Disney`).
+1. Put the logo in `assets/images/`.
+2. Add an entry to `LOGOS` in `build_site.py`.
+3. Add its slug to `data/carousel-chronology.json` in date order (oldest first).
+4. Create `projects/<slug>.html` (copy an existing project page).
+5. Run `python3 build_site.py`.
 
-**Carousel:** logos scroll left-to-right from earliest role (LCS, 1992) to current (MAF RODA). Each logo links to `projects/{slug}.html`. Order is defined in `data/carousel-chronology.json` from your resume + Experience History; Development folder numbers are tiebreakers only. `python3 build_site.py` prints any order conflicts where resume wins.
-
-## Source archive
-
-| Path | Role |
-|------|------|
-| `build_site.py` | Page copy, employer cards, project detail |
-| `tools/import_compilation.py` | Parses `data/portfolio-compilation.md` into per-slug JSON |
-| `data/portfolio-compilation.md` | Full Development archive compilation (source of truth for project analysis) |
-| `data/portfolio-compilation.json` | Structured compilation content for site generation |
-| `data/carousel-chronology.json` | Carousel logo order (resume-first) and documented Dev-folder discrepancies |
-| `tools/extract_development.py` | Indexes `.sln`/`.dsp`/`.dsw`, web-app folders, `.mdb` from Development tree |
-| `data/development-inventory.json` | Machine-readable index (regenerated each build) |
-| `projects/` | Generated employer detail pages |
-| `experience-history.html` | Full pre-2015 timeline supplement |
-
-Development root (must be mounted/readable):
-
-`/media/kg/fecd6373-9e9f-486b-b9b8-f798dc71fc77/all/Development`
-
-## Project layout
+## Layout
 
 | Path | Purpose |
 |------|---------|
-| `index.html` | Portfolio grid (22 employers) |
-| `about.html` | Bio, skills, timeline |
-| `experience-history.html` | Detailed history from Generic Resume + later roles |
-| `css/style.css` | Dark theme |
-| `assets/images/` | Logos and photos |
-
-Legacy folders `site/` and `mirrored/` are old Wix mirrors — not part of this site.
+| `index.html` | Home: hero, highlights, recommendations, experience grid |
+| `case-studies.html` | Four case studies in depth |
+| `projects/` | One page per employer |
+| `resume.html`, `experience-history.html` | Resume and full pre-2015 history |
+| `services.html`, `samples.html`, `about.html` | Other top-level pages |
+| `assets/images/` | Logos, photos and screenshots (screenshots are WebP) |
+| `assets/*.pdf` | Resume and experience-history PDFs |
+| `data/` | Carousel order and archive data used by `tools/` |
+| `tools/` | One-off scripts used to import archive material |

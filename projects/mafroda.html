@@ -106,7 +106,7 @@
 <p>These are the platform&rsquo;s desktop tools, captured in the lab, where a PLC twin (an emulator of the plant&rsquo;s OMRON PLC) stands in for the real line. In order, they go from the packing line itself, to the orders that feed it, to the signals the server reads, to the records it keeps, to a recall search. Click a screenshot to open it full size.</p>
 <div class="screen-tour">
   <figure class="screen-tour__item">
-    <a class="screen-tour__shot" href="../assets/images/projects/mafroda/plant-simulator.png" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/plant-simulator.png" width="2694" height="1433" alt="Plant Simulator window: dump stations, brushbeds, a sizer, outlets and case-out conveyors drawn as a graph over a faded plant layout, with fruit moving along the lines" loading="lazy" decoding="async"></a>
+    <a class="screen-tour__shot" href="../assets/images/projects/mafroda/plant-simulator.webp" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/plant-simulator.webp" width="2000" height="1064" alt="Plant Simulator window: dump stations, brushbeds, a sizer, outlets and case-out conveyors drawn as a graph over a faded plant layout, with fruit moving along the lines" loading="lazy" decoding="async"></a>
     <figcaption>
       <h4 class="screen-tour__title"><span class="screen-tour__num">1</span>Plant Simulator: the whole line, without hardware</h4>
       <p>A live model of a packing line, drawn over the plant&rsquo;s layout. Bins are tipped at the dump stations, fruit (the orange dots) runs through the brushbeds to the sizer, and the sizer sends it to the outlets, where cases are weighed and labelled, then scanned on their way to the case-out conveyors. Fruit can also go to the bin filler.</p>
@@ -114,7 +114,7 @@
     </figcaption>
   </figure>
   <figure class="screen-tour__item">
-    <a class="screen-tour__shot" href="../assets/images/projects/mafroda/erp-push.png" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/erp-push.png" width="2478" height="1476" alt="ERP Push window: an order form with bins and dump stations, harvest KDE fields, customers assigned to packing lanes, and the GTIN, pack style and carton artwork for one customer" loading="lazy" decoding="async"></a>
+    <a class="screen-tour__shot" href="../assets/images/projects/mafroda/erp-push.webp" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/erp-push.webp" width="2000" height="1191" alt="ERP Push window: an order form with bins and dump stations, harvest KDE fields, customers assigned to packing lanes, and the GTIN, pack style and carton artwork for one customer" loading="lazy" decoding="async"></a>
     <figcaption>
       <h4 class="screen-tour__title"><span class="screen-tour__num">2</span>ERP Push: where the work comes from</h4>
       <p>Plays the part of the packhouse&rsquo;s ERP. It files an order and a lot the way the ERP would: the fruit and variety, the bins and which dump stations feed them, which customer each packing lane is for, and each customer&rsquo;s GTIN, pack style, pallet mode and carton artwork.</p>
@@ -122,7 +122,7 @@
     </figcaption>
   </figure>
   <figure class="screen-tour__item">
-    <a class="screen-tour__shot" href="../assets/images/projects/mafroda/plc-pulses.png" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/plc-pulses.png" width="1536" height="911" alt="PLC Pulses window: rows of buttons and status lamps for dumps, brushbeds, sizers, fruit-flow zone counters, outlets and divert scanners" loading="lazy" decoding="async"></a>
+    <a class="screen-tour__shot" href="../assets/images/projects/mafroda/plc-pulses.webp" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/plc-pulses.webp" width="1536" height="911" alt="PLC Pulses window: rows of buttons and status lamps for dumps, brushbeds, sizers, fruit-flow zone counters, outlets and divert scanners" loading="lazy" decoding="async"></a>
     <figcaption>
       <h4 class="screen-tour__title"><span class="screen-tour__num">3</span>PLC Pulses: every signal the server listens to</h4>
       <p>A panel over the PLC&rsquo;s memory, built from the plant&rsquo;s PLC map and grouped by machine: the dump stations (bin weight, the barcode handshake, the server&rsquo;s permission to tip each bin, and run, fault, no-read and wrong-lot lamps), the brushbeds, the sizers, the fruit-flow zone counters, the outlets, and the scanners that read each case&rsquo;s SSCC label on its way out.</p>
@@ -130,7 +130,7 @@
     </figcaption>
   </figure>
   <figure class="screen-tour__item">
-    <a class="screen-tour__shot" href="../assets/images/projects/mafroda/tracker-mass-balance.png" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/tracker-mass-balance.png" width="2544" height="1224" alt="Tracker window, Mass balance tab: a flow chart splitting 320.99 kg received into packed, declared waste, rejected, not processed and unaccounted" loading="lazy" decoding="async"></a>
+    <a class="screen-tour__shot" href="../assets/images/projects/mafroda/tracker-mass-balance.webp" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/tracker-mass-balance.webp" width="2000" height="962" alt="Tracker window, Mass balance tab: a flow chart splitting 320.99 kg received into packed, declared waste, rejected, not processed and unaccounted" loading="lazy" decoding="async"></a>
     <figcaption>
       <h4 class="screen-tour__title"><span class="screen-tour__num">4</span>Tracker: every kilogram accounted for</h4>
       <p>Every lot has to add up. The mass balance takes the weight received and splits it into packed net weight (each case&rsquo;s weight minus its packaging), declared waste, rejected fruit, fruit weighed back into bins when the floor was cleared, and fruit held for orders. Anything left over shows as Unaccounted, and the yield is only shown once every case has been weighed. This lot has 0&nbsp;kg unaccounted, at a 64.9% yield.</p>
@@ -138,7 +138,7 @@
     </figcaption>
   </figure>
   <figure class="screen-tour__item">
-    <a class="screen-tour__shot" href="../assets/images/projects/mafroda/tracker-cte-ledger.png" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/tracker-cte-ledger.png" width="2553" height="1435" alt="Tracker window, CTE ledger tab: a list of lots with compliance verdicts, a timeline of the selected lot's critical tracking events, and server log entries from around the run" loading="lazy" decoding="async"></a>
+    <a class="screen-tour__shot" href="../assets/images/projects/mafroda/tracker-cte-ledger.webp" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/tracker-cte-ledger.webp" width="2000" height="1124" alt="Tracker window, CTE ledger tab: a list of lots with compliance verdicts, a timeline of the selected lot's critical tracking events, and server log entries from around the run" loading="lazy" decoding="async"></a>
     <figcaption>
       <h4 class="screen-tour__title"><span class="screen-tour__num">5</span>Tracker: the FSMA 204 record for a lot</h4>
       <p>The strip lays out the lot&rsquo;s critical tracking events on a timeline: receiving, the initial packing of each case, transformation and shipping. Any stretch of it can be selected and exported. The tabs hold the rest of the record: parts, bins, orders, cases, the 21 harvest KDEs, the verdict from the 28-rule compliance engine (this lot: 13 checks passed, 0 advisory, 0 failed), and the documents a regulator asks for, such as the FDA sortable spreadsheet and a GS1 EPCIS 2.0 export.</p>
@@ -146,7 +146,7 @@
     </figcaption>
   </figure>
   <figure class="screen-tour__item">
-    <a class="screen-tour__shot" href="../assets/images/projects/mafroda/investigator.png" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/investigator.png" width="2856" height="1536" alt="Investigator window: lots filed on one day, and for the selected lot three panes showing where it came from, the lot itself, and where its cases went" loading="lazy" decoding="async"></a>
+    <a class="screen-tour__shot" href="../assets/images/projects/mafroda/investigator.webp" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/investigator.webp" width="2000" height="1076" alt="Investigator window: lots filed on one day, and for the selected lot three panes showing where it came from, the lot itself, and where its cases went" loading="lazy" decoding="async"></a>
     <figcaption>
       <h4 class="screen-tour__title"><span class="screen-tour__num">6</span>Investigator: one step back, one step forward</h4>
       <p>The recall search. Find lots by label, day, variety, customer or grower, then pick one to see its whole chain on one screen. One step back: the grower, harvest date, the bins tipped and the harvest KDEs. The lot itself: its parts and critical tracking events. One step forward: the customers it was packed for, the buyers it shipped to, and each shipped case by SSCC, including cases still on site.</p>
@@ -154,34 +154,24 @@
     </figcaption>
   </figure>
 </div>
-<p>Screenshots from traceability tooling and web views deployed in the MAF sorting environment.</p>      <div class="project-gallery project-gallery--large">
+<h3 id="maf-outlet-display">Outlet display: in production</h3>
+<p>The part of the platform packers see. A screen over each pair of outlets shows what to pack into the next box, counts cases against the order, and turns red when something goes wrong. It runs in production at packhouse sites; a <a href="https://kevingnet.github.io/maf-traceability-demo/" target="_blank" rel="noopener">live demo</a> runs in the browser.</p>
+      <div class="project-gallery project-gallery--large">
       <figure class="project-figure">
-        <img src="../assets/images/projects/mafroda/main-display-normal.png" alt="Floor display — dual-outlet packing view" loading="lazy">
-        <figcaption>Floor display — dual-outlet packing view</figcaption>
+        <a class="project-figure__link" href="../assets/images/projects/mafroda/main-display-normal.webp" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/main-display-normal.webp" width="2000" height="1070" alt="Outlet display showing two outlets with article, PLU, label, size, grade, packed count and box picture" loading="lazy" decoding="async"></a>
+        <figcaption><strong>Two outlets at a glance.</strong> Article, PLU, label, size and grade for each outlet, cases packed against the order, the fruit count in the current box, a progress bar, and a picture of the box to use.</figcaption>
       </figure>
       <figure class="project-figure">
-        <img src="../assets/images/projects/mafroda/main-display-status1.png" alt="Floor display — error / status highlight" loading="lazy">
-        <figcaption>Floor display — error / status highlight</figcaption>
+        <a class="project-figure__link" href="../assets/images/projects/mafroda/main-display-status1.webp" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/main-display-status1.webp" width="2000" height="1070" alt="Outlet display with outlet 1 highlighted red and an error message at the top" loading="lazy" decoding="async"></a>
+        <figcaption><strong>An error, visible across the floor.</strong> When an outlet faults, its panel turns red and the error name appears at the top of the screen.</figcaption>
       </figure>
       <figure class="project-figure">
-        <img src="../assets/images/projects/mafroda/main-picker.png" alt="Main controls — Setup, Import, Maintenance, Theme" loading="lazy">
-        <figcaption>Main controls — Setup, Import, Maintenance, Theme</figcaption>
+        <a class="project-figure__link" href="../assets/images/projects/mafroda/main-picker.webp" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/main-picker.webp" width="1460" height="314" alt="Main controls: Setup, Import, Maintenance, Theme, language and outlet-pair buttons" loading="lazy" decoding="async"></a>
+        <figcaption><strong>Main controls.</strong> Setup, import, maintenance, theme and language, plus which pair of outlets this screen shows.</figcaption>
       </figure>
       <figure class="project-figure">
-        <img src="../assets/images/projects/mafroda/maint-outlets-selected.png" alt="Maintenance — outlets configuration" loading="lazy">
-        <figcaption>Maintenance — outlets configuration</figcaption>
-      </figure>
-      <figure class="project-figure">
-        <img src="../assets/images/projects/mafroda/sim-overview.png" alt="OrpheaSimulator — overview" loading="lazy">
-        <figcaption>OrpheaSimulator — overview</figcaption>
-      </figure>
-      <figure class="project-figure">
-        <img src="../assets/images/projects/mafroda/uieditor-color-dialog.png" alt="UiSettingsEditor — color dialog" loading="lazy">
-        <figcaption>UiSettingsEditor — color dialog</figcaption>
-      </figure>
-      <figure class="project-figure">
-        <img src="../assets/images/projects/mafroda/uieditor-figma-combination9.png" alt="UiSettingsEditor — Figma palette combination" loading="lazy">
-        <figcaption>UiSettingsEditor — Figma palette combination</figcaption>
+        <a class="project-figure__link" href="../assets/images/projects/mafroda/maint-outlets-selected.webp" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/maint-outlets-selected.webp" width="2000" height="1070" alt="Maintenance screen: table of outlets with article, boxes per order, count per box, PLU, label, size, grade and box image" loading="lazy" decoding="async"></a>
+        <figcaption><strong>Maintenance.</strong> The outlet table (article, boxes per order, count per box, PLU, label, size, grade, box image), edited in the side panel.</figcaption>
       </figure>
       </div>
       <h2>OpenCV Performance</h2>
@@ -196,25 +186,36 @@
 <li>Remote handling of large installer payloads (~10 GB), decompression, and end-to-end software deployment on Orphea, Engine, and cluster hosts</li>
 <li>GUI (<code>run_gui.py</code>) and batch runners for field engineers; script catalog and per-operation YAML configs</li>
 <li>Documented in <em>Software Architecture Document</em>, <em>Functional Specifications</em>, and <em>Framework.md</em> (installer.doc)</li>
-</ul>      <div class="project-gallery">
+</ul>
+      <div class="project-gallery">
       <figure class="project-figure">
-        <img src="../assets/images/projects/mafroda/installer-gui.png" alt="Installer GUI — fleet deployment control panel" loading="lazy">
-        <figcaption>Installer GUI — fleet deployment control panel</figcaption>
+        <a class="project-figure__link" href="../assets/images/projects/mafroda/installer-gui.webp" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/installer-gui.webp" width="745" height="913" alt="Installer GUI: fleet deployment control panel" loading="lazy" decoding="async"></a>
+        <figcaption><strong>Installer GUI.</strong> The field engineer&rsquo;s control panel for provisioning a sorting cluster.</figcaption>
       </figure>
       <figure class="project-figure">
-        <img src="../assets/images/projects/mafroda/installer-scripts.png" alt="Operations script catalog — batch and individual runners" loading="lazy">
-        <figcaption>Operations script catalog — batch and individual runners</figcaption>
+        <a class="project-figure__link" href="../assets/images/projects/mafroda/installer-scripts.webp" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/installer-scripts.webp" width="477" height="791" alt="Operations script catalog with batch and individual runners" loading="lazy" decoding="async"></a>
+        <figcaption><strong>Script catalog.</strong> Batch and individual runners, one YAML config per operation.</figcaption>
       </figure>
       </div>
       <h2>UiSettingsEditor</h2>
       <h3>C# · WinForms · JSON · Figma palettes</h3>
-<p>Desktop sample application for editing production UI settings used on sorting-line HMIs.</p>
+<p>Desktop tool for theming the outlet display above: it edits the display&rsquo;s <code>ui_settings.json</code>, so a site can match its colors without touching code.</p>
 <ul>
 <li>Loads and saves JSON <code>appsettings</code> for skin, outlet, and message styling</li>
 <li>Figma-integrated color palette editor with live swatches (container, label, font, border, clock, message stroke/shadow)</li>
 <li>Validates combinations and syncs palette slots for article / outlet configurations</li>
 </ul>
 <p>Stack: .NET WinForms, System.Text.Json, custom color-swatch controls.</p>
+      <div class="project-gallery">
+      <figure class="project-figure">
+        <a class="project-figure__link" href="../assets/images/projects/mafroda/uieditor-color-dialog.webp" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/uieditor-color-dialog.webp" width="1013" height="587" alt="UI Settings Editor: color swatches for font, label, container, border and outlet, with a color picker open" loading="lazy" decoding="async"></a>
+        <figcaption><strong>Editor.</strong> Each role of the display (font, label, container, border, outlet, clock) has its own swatch.</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <a class="project-figure__link" href="../assets/images/projects/mafroda/uieditor-figma-combination9.png" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/uieditor-figma-combination9.png" width="1498" height="868" alt="UI Settings Editor, Figma combinations tab: a palette picked from a Figma color guide and mapped to display roles" loading="lazy" decoding="async"></a>
+        <figcaption><strong>Figma combinations.</strong> Pick a palette from a Figma color guide and map each swatch to a display role in one step.</figcaption>
+      </figure>
+      </div>
       <h2>OrpheaSimulator</h2>
       <h3>ASP.NET Core · REST · JSON</h3>
 <p>Sample web API supporting traceability and packing workflows — serves JSON to Angular / web front ends in the MAF ecosystem.</p>
@@ -224,6 +225,12 @@
 <li>CORS-enabled development mode; integrates with ArticlesImg XML and web view projects</li>
 </ul>
 <p>Companion to web modules (WebPacking, WebViewBinFillers, LindaVista) in the Graphics tree.</p>
+      <div class="project-gallery">
+      <figure class="project-figure">
+        <a class="project-figure__link" href="../assets/images/projects/mafroda/sim-overview.webp" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/sim-overview.webp" width="1025" height="639" alt="Orphea Simulator window: current lot variety, species, parcel and lot number, articles per outlet and counters" loading="lazy" decoding="async"></a>
+        <figcaption><strong>Orphea Simulator.</strong> Stands in for the Orphea sizer: sets the current lot and the article on each outlet, and ticks the counters so the outlet display can be tested without a line.</figcaption>
+      </figure>
+      </div>
     </div>
     <nav class="project-pager" aria-label="More employers">
       <span></span>
