@@ -101,6 +101,58 @@
 </ul>
 <p><a href="../case-studies.html#maf-traceability">Read the traceability case study &rarr;</a></p>
 </div>
+<h3 id="maf-screens">Inside the platform: six screens</h3>
+<p>These are the platform&rsquo;s desktop tools, captured in the lab, where a PLC twin (an emulator of the plant&rsquo;s OMRON PLC) stands in for the real line. In order, they go from the packing line itself, to the orders that feed it, to the signals the server reads, to the records it keeps, to a recall search. Click a screenshot to open it full size.</p>
+<div class="screen-tour">
+  <figure class="screen-tour__item">
+    <a class="screen-tour__shot" href="../assets/images/projects/mafroda/plant-simulator.png" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/plant-simulator.png" width="2694" height="1433" alt="Plant Simulator window: dump stations, brushbeds, a sizer, outlets and case-out conveyors drawn as a graph over a faded plant layout, with fruit moving along the lines" loading="lazy" decoding="async"></a>
+    <figcaption>
+      <h4 class="screen-tour__title"><span class="screen-tour__num">1</span>Plant Simulator: the whole line, without hardware</h4>
+      <p>A live model of a packing line, drawn over the plant&rsquo;s layout. Bins are tipped at the dump stations, fruit (the orange dots) runs through the brushbeds to the sizer, and the sizer sends it to the outlets, where cases are weighed and labelled, then scanned on their way to the case-out conveyors. Fruit can also go to the bin filler.</p>
+      <p>Behind it, the PLC twin writes the same signals, in the same order, as the plant&rsquo;s real PLC, so the server runs the same code and writes the same tables it does on site. The status bar shows one of those exchanges: the barcode handshake that has to finish before a bin may tip. The cards at the bottom show the lot on the dumps and the two customer orders it is being packed for.</p>
+    </figcaption>
+  </figure>
+  <figure class="screen-tour__item">
+    <a class="screen-tour__shot" href="../assets/images/projects/mafroda/erp-push.png" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/erp-push.png" width="2478" height="1476" alt="ERP Push window: an order form with bins and dump stations, harvest KDE fields, customers assigned to packing lanes, and the GTIN, pack style and carton artwork for one customer" loading="lazy" decoding="async"></a>
+    <figcaption>
+      <h4 class="screen-tour__title"><span class="screen-tour__num">2</span>ERP Push: where the work comes from</h4>
+      <p>Plays the part of the packhouse&rsquo;s ERP. It files an order and a lot the way the ERP would: the fruit and variety, the bins and which dump stations feed them, which customer each packing lane is for, and each customer&rsquo;s GTIN, pack style, pallet mode and carton artwork.</p>
+      <p>The harvest key data elements FSMA 204 requires (grower, delivery, farm address) can be filled in here as well. They are the same fields an operator would otherwise enter by hand on the lot card, so an imported lot arrives already compliant. It also sets what happens to fruit left over once the orders are filled: reuse it, return it to bins, or pack and label extra cases.</p>
+    </figcaption>
+  </figure>
+  <figure class="screen-tour__item">
+    <a class="screen-tour__shot" href="../assets/images/projects/mafroda/plc-pulses.png" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/plc-pulses.png" width="1536" height="911" alt="PLC Pulses window: rows of buttons and status lamps for dumps, brushbeds, sizers, fruit-flow zone counters, outlets and divert scanners" loading="lazy" decoding="async"></a>
+    <figcaption>
+      <h4 class="screen-tour__title"><span class="screen-tour__num">3</span>PLC Pulses: every signal the server listens to</h4>
+      <p>A panel over the PLC&rsquo;s memory, built from the plant&rsquo;s PLC map and grouped by machine: the dump stations (bin weight, the barcode handshake, the server&rsquo;s permission to tip each bin, and run, fault, no-read and wrong-lot lamps), the brushbeds, the sizers, the fruit-flow zone counters, the outlets, and the scanners that read each case&rsquo;s SSCC label on its way out.</p>
+      <p>Every lamp or number is one PLC value, and every button writes one. A single signal can be fired by hand and the server&rsquo;s reaction checked on its own, which is how a line is commissioned and a fault chased down. For example: what happens when a bin is scanned for the wrong lot?</p>
+    </figcaption>
+  </figure>
+  <figure class="screen-tour__item">
+    <a class="screen-tour__shot" href="../assets/images/projects/mafroda/tracker-mass-balance.png" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/tracker-mass-balance.png" width="2544" height="1224" alt="Tracker window, Mass balance tab: a flow chart splitting 320.99 kg received into packed, declared waste, rejected, not processed and unaccounted" loading="lazy" decoding="async"></a>
+    <figcaption>
+      <h4 class="screen-tour__title"><span class="screen-tour__num">4</span>Tracker: every kilogram accounted for</h4>
+      <p>Every lot has to add up. The mass balance takes the weight received and splits it into packed net weight (each case&rsquo;s weight minus its packaging), declared waste, rejected fruit, fruit weighed back into bins when the floor was cleared, and fruit held for orders. Anything left over shows as Unaccounted, and the yield is only shown once every case has been weighed. This lot has 0&nbsp;kg unaccounted, at a 64.9% yield.</p>
+      <p>Its run was interrupted by a server restart, and the log line underneath shows the recovery: the lot kept running as a second part under its own lot code, and the cases already made kept the labels the first part gave them.</p>
+    </figcaption>
+  </figure>
+  <figure class="screen-tour__item">
+    <a class="screen-tour__shot" href="../assets/images/projects/mafroda/tracker-cte-ledger.png" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/tracker-cte-ledger.png" width="2553" height="1435" alt="Tracker window, CTE ledger tab: a list of lots with compliance verdicts, a timeline of the selected lot's critical tracking events, and server log entries from around the run" loading="lazy" decoding="async"></a>
+    <figcaption>
+      <h4 class="screen-tour__title"><span class="screen-tour__num">5</span>Tracker: the FSMA 204 record for a lot</h4>
+      <p>The strip lays out the lot&rsquo;s critical tracking events on a timeline: receiving, the initial packing of each case, transformation and shipping. Any stretch of it can be selected and exported. The tabs hold the rest of the record: parts, bins, orders, cases, the 21 harvest KDEs, the verdict from the 28-rule compliance engine (this lot: 13 checks passed, 0 advisory, 0 failed), and the documents a regulator asks for, such as the FDA sortable spreadsheet and a GS1 EPCIS 2.0 export.</p>
+      <p>Under the ledger, the plant errors logged within 10 seconds of each start, stop or interruption of the run sit next to the events. A gap in the record can then be matched to what the software was doing at that moment.</p>
+    </figcaption>
+  </figure>
+  <figure class="screen-tour__item">
+    <a class="screen-tour__shot" href="../assets/images/projects/mafroda/investigator.png" target="_blank" rel="noopener"><img src="../assets/images/projects/mafroda/investigator.png" width="2856" height="1536" alt="Investigator window: lots filed on one day, and for the selected lot three panes showing where it came from, the lot itself, and where its cases went" loading="lazy" decoding="async"></a>
+    <figcaption>
+      <h4 class="screen-tour__title"><span class="screen-tour__num">6</span>Investigator: one step back, one step forward</h4>
+      <p>The recall search. Find lots by label, day, variety, customer or grower, then pick one to see its whole chain on one screen. One step back: the grower, harvest date, the bins tipped and the harvest KDEs. The lot itself: its parts and critical tracking events. One step forward: the customers it was packed for, the buyers it shipped to, and each shipped case by SSCC, including cases still on site.</p>
+      <p>Double-clicking a bin, customer or buyer lists every other lot it touched. That is how a recall widens from one lot to everything affected.</p>
+    </figcaption>
+  </figure>
+</div>
 <p>Screenshots from traceability tooling and web views deployed in the MAF sorting environment.</p>      <div class="project-gallery project-gallery--large">
       <figure class="project-figure">
         <img src="../assets/images/projects/mafroda/main-display-normal.png" alt="Floor display — dual-outlet packing view" loading="lazy">

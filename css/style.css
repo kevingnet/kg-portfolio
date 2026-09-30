@@ -1984,6 +1984,62 @@ main {
   margin: 0.5rem 0;
 }
 
+/* MAF RODA: full-width screenshots, each with a written explanation */
+#maf-screens {
+  scroll-margin-top: 210px; /* same clearance as .case-study for the sticky header */
+}
+
+.screen-tour {
+  display: grid;
+  gap: 1.75rem;
+  margin: 1.25rem 0 2rem;
+}
+
+.screen-tour__item {
+  margin: 0;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.screen-tour__shot {
+  display: block;
+  background: #12151c;
+}
+
+.screen-tour__shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.screen-tour__item figcaption {
+  padding: 0.95rem 1.15rem 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.content-section .screen-tour__title {
+  margin: 0 0 0.45rem;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.screen-tour__num {
+  color: var(--accent);
+  margin-right: 0.4rem;
+}
+
+.content-section .screen-tour__item p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin-bottom: 0.55rem;
+}
+
+.content-section .screen-tour__item p:last-child {
+  margin-bottom: 0;
+}
+
 /* Phones: keep the header to two rows; the cube icon stays, its caption hides */
 @media (max-width: 480px) {
   .rubiks-link span {
