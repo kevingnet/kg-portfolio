@@ -1984,7 +1984,7 @@ main {
   margin: 0.5rem 0;
 }
 
-/* MAF RODA: full-width screenshots, each with a written explanation */
+/* MAF RODA: screenshots, each with a written explanation */
 #maf-screens {
   scroll-margin-top: 210px; /* same clearance as .case-study for the sticky header */
 }
@@ -1996,11 +1996,19 @@ main {
 }
 
 .screen-tour__item {
-  margin: 0;
+  width: 70%;
+  margin: 0 auto;
   background: var(--bg-elevated);
   border: 1px solid var(--border);
   border-radius: 8px;
   overflow: hidden;
+}
+
+/* Phones: 70% of a narrow column is too small to read, so use it all */
+@media (max-width: 760px) {
+  .screen-tour__item {
+    width: auto;
+  }
 }
 
 .screen-tour__shot {
